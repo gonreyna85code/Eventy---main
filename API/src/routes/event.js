@@ -1,8 +1,6 @@
 const Router = require("express");
-const axios = require("axios").default;
 require("dotenv").config();
 const { Event } = require("../db");
-const { User } = require("../db");
 
 const router = Router();
 
@@ -20,7 +18,7 @@ router.get("/event/:id", async (req, res) => {
 
 router.post("/event", async (req, res) => {
   const info = req.body;
-  if (info.name === "") return res.status(505).send("Debe tener un nombre");
+  if (info.name === "") return res.status(505).send("Must have a name");
   await Event.create(info);
   const DB_event = await Event.findAll({
     where: { name: info.name },
