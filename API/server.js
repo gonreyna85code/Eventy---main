@@ -7,8 +7,6 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const app = express();
-const User = require("./models/user");
-const Event = require("./models/event");
 const user = require("./routes/user");
 const event = require("./routes/event");
 
@@ -45,7 +43,7 @@ require("./passportConfig")(passport);
 
 
 app.use('/', user)
-//app.use('/', event)
+app.use('/', event)
 
 
 
