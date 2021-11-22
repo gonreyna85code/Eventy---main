@@ -1,4 +1,4 @@
-const User = require("./user");
+const User = require("./models/user");
 const bcrypt = require("bcryptjs");
 const localStrategy = require("passport-local").Strategy;
 
@@ -27,6 +27,7 @@ module.exports = function (passport) {
     User.findOne({ _id: id }, (err, user) => {
       const userInformation = {
         username: user.username,
+        profile: user.profile,
       };
       cb(err, userInformation);
     });

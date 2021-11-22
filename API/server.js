@@ -4,11 +4,13 @@ const cors = require("cors");
 const passport = require("passport");
 const passportLocal = require("passport-local").Strategy;
 const cookieParser = require("cookie-parser");
-const bcrypt = require("bcryptjs");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const app = express();
-const User = require("./user");
+const User = require("./models/user");
+const Event = require("./models/event");
+const user = require("./routes/user");
+const event = require("./routes/event");
 
 
 mongoose.connect(
@@ -21,9 +23,6 @@ mongoose.connect(
     console.log("Mongoose Is Connected");
   }
 );
-
-
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
@@ -45,42 +44,9 @@ app.use(passport.session());
 require("./passportConfig")(passport);
 
 
-app.post("/login", (req, res, next) => {
-  passport.authenticate("local", (err, user, info) => {
-    if (err) throw err;
-    if (!user) res.send("No User Exists");
-    else {
-      req.logIn(user, (err) => {
-        if (err) throw err;
-        res.send("Successfully Authenticated");
-        console.log(req.user);
-      });
-    }
-  })(req, res, next);
-});
+app.use('/', user)
+//app.use('/', event)
 
-
-app.post("/register", (req, res) => {
-  User.findOne({ username: req.body.username }, async (err, doc) => {
-    if (err) throw err;
-    if (doc) res.send("User Already Exists");
-    if (!doc) {
-      const hashedPassword = await bcrypt.hash(req.body.password, 10);
-
-      const newUser = new User({
-        username: req.body.username,
-        password: hashedPassword,
-      });
-      await newUser.save();
-      res.send("User Created");
-    }
-  });
-});
-
-
-app.get("/user", (req, res) => {
-  res.send(req.user); 
-});
 
 
 
