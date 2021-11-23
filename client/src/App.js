@@ -1,6 +1,6 @@
 import './App.css';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import Home from './components/Home'
+import Home from './components/home.js'
 import Userform from './components/Userform';
 
 function App() {

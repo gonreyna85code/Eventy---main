@@ -22,5 +22,11 @@ router.post("/event", (req, res) => {
   });
 });
 
-module.exports = router;
+router.get("/event", (req, res) => {
+  Event.findOne({ name: req.body.name }, (err, doc) => {
+    if (err) throw err;
+    res.send(doc);
+  });
+});
 
+module.exports = router;
