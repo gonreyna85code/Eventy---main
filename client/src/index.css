@@ -1,8 +1,17 @@
+:root {
+  --azul: #01385f;
+  --naranja: #ed8b26;
+  --grisoscuro: #333333;
+  --negro: #000000;
+  --blanco: #ffffff;
+  --fonttitle:'Bebas Neue', 'sans-serif';
+  --font: 'Open Sans', sans-serif;
+  --transition: all ease 0.3s;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Open-sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -10,4 +19,27 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Esta clase es para centrar horizontalmente, no centra textos solo contenedores */
+.cont-center{
+  display: table;
+  margin-inline: auto;
+}
+
+/* Centrar textos */
+.text-center{
+  text-align: center!important;
+}
+
+/* Los titulos h1, h2 y h3 estan con la tipografia Bebas Neue*/
+h1, h2, h3{
+
+  font-family: var(--fonttitle);
+
+}
+
+p{
+  font-weight: 300;
+  line-height: 1.5;
 }
