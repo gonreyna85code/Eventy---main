@@ -11,9 +11,10 @@ export function register(register) {
           data: {
             username: register.username,
             password: register.password,
+            profile: register.profile,
           },
           withCredentials: true,
-          url: "http://localhost:4000/login",
+          url: "http://localhost:4000/register",
         });
         return dispatch({ type: "REGISTER", payload: json.data });
       } catch (error) {

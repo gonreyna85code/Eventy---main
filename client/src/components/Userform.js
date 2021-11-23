@@ -1,22 +1,23 @@
 import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { register } from "../redux/actions";
 
 function validatorInput (input){
     let errores = {};
-    if(!input.name){
+    if(!input.profile.name){
         errores.name = 'Defina su primer nombre'
-    } else if (!input.surname){
+    } else if (!input.profile.surname){
         errores.surname = 'Defina su/s apellido/s'
     } else if(!input.username){
         errores.username = 'Debe colocar un nombre de usuario'
     }else if (!input.password){
         errores.password = 'Debe colocar una contraseña'
-    }else if (!input.age){
+    }else if (!input.profile.age){
         errores.age = 'Defina su edad'
-    } else if (!input.email){
+    } else if (!input.profile.email){
         errores.email = 'Debe colocar un email de contacto'
-    } else if (!input.city){
+    } else if (!input.profile.city){
         errores.city = 'La ciudad nos servirá para mostrarle eventos cercanos'
     }
 
@@ -30,11 +31,12 @@ export default function Userform (){
     const [input, setInput] = useState({
         username: "",
         password:"",
+        profile: {
         name: "",
         surname: "",
         age: 0,
         email:"",
-        city:""
+        city:""}
     });
 
     function handleChange(e){
@@ -46,29 +48,52 @@ export default function Userform (){
             ...input,
             [e.target.name]: e.target.value,
         }))
+        console.log(input)
     }
+
+    function handleChangeProfile(e){
+        setInput({
+            ...input,
+            profile:{
+                ...input.profile,
+                [e.target.name]: e.target.value,
+            }
+        });
+        setErrores(validatorInput({
+            ...input,
+            profile:{
+                ...input.profile,
+                [e.target.name]: e.target.value,
+            }
+            
+        }))
+        console.log(input)
+    }
+
 
     function handleSubmit(e){
         e.preventDefault();
         console.log(input);
-        if(!input.name ||
-            !input.surname ||
+        if(!input.profile.name ||
+            !input.profile.surname ||
             !input.username||
             !input.password ||
-            !input.age ||
-            !input.email){
+            !input.profile.age ||
+            !input.profile.email){
                 alert('Todos los campos deben ser completados correctamente')
             } else {
-                //dispatch(nombre de la acción(input));
+                dispatch(register(input));
                 alert('Usuario creado, Bienvenido a Eventy')
                 setInput({
                     username: "",
                     password:"",
+                    profile:{
                     name: "",
                     surname: "",
                     age: 0,
                     email:"",
                     city:""
+                    }
                 });
             }
     }
@@ -91,7 +116,7 @@ export default function Userform (){
             value = {input.name}
             name = 'name'
             onChange= {(e) => {
-                 handleChange(e);
+                 handleChangeProfile(e);
                 }}
             /> 
             {errores.name && (
@@ -104,7 +129,7 @@ export default function Userform (){
             type = 'text'
             value = {input.surname}
             name = 'surname'
-            onChange= {(e) => handleChange(e)}
+            onChange= {(e) => handleChangeProfile(e)}
             />
                 {errores.surname && (
                 <p className = 'error'>{errores.surname}</p>
@@ -140,7 +165,7 @@ export default function Userform (){
             type = 'number'
             value = {input.age}
             name = 'age'
-            onChange= {(e) => handleChange(e)}
+            onChange= {(e) => handleChangeProfile(e)}
             />
                 {errores.age && (
                 <p className = 'error'>{errores.age}</p>
@@ -152,7 +177,7 @@ export default function Userform (){
             type = 'text'
             value = {input.email}
             name = 'email'
-            onChange= {(e) => handleChange(e)}
+            onChange= {(e) => handleChangeProfile(e)}
             />
                 {errores.email && (
                 <p className = 'error'>{errores.email}</p>
@@ -164,7 +189,7 @@ export default function Userform (){
             type = 'text'
             value = {input.city}
             name = 'city'
-            onChange= {(e) => handleChange(e)}
+            onChange= {(e) => handleChangeProfile(e)}
             />
                 {errores.city && (
                 <p className = 'error'>{errores.city}</p>
