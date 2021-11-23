@@ -3,22 +3,16 @@
         <Boton colorBtn='azul'>Test Boton</Boton>
 
     Posibles colores:
-        azul
-        naranja
+        btn_azul
+        btn_naranja
  */
 import styles from './Boton.module.css';
-import React, {useEffect, useState}from 'react';
 
-
-
-const Boton = ({colorBtn, children}) =>{
+const Boton = ({colorBtn, children, onClick}) =>{
     
-    let [color, setColor] = useState(null)
-    useEffect(()=>{
-        setColor(`btn_${colorBtn}`)
-    })
+    
  return(
-     <button className={`${styles.btn} ${styles[color]}`}>
+     <button className={`${styles.btn} ${styles[colorBtn]}`} onClick={onClick}>
         {children}
      </button>
  );
