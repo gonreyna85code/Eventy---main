@@ -14,18 +14,18 @@
     box-shadow: 0 0 8px rgb(0 0 0 / 26%);
 }
 
-.btn-azul{
+.btn_azul{
     background-color: var(--azul);
     color: var(--blanco);
 }
-.btn-azul:hover{
+.btn_azul:hover{
     background-color: var(--naranja);
 }
-.btn-naranja{
+.btn_naranja{
     background-color: var(--naranja);
     color: var(--blanco);
 }
-.btn-naranja:hover{
+.btn_naranja:hover{
     background-color: var(--azul);
 }
 
