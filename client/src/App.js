@@ -2,7 +2,7 @@ import './App.css';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Home from './components/home.js'
 import Userform from './components/Userform';
-import HomeUser from './components/HomeUser/HomeUser';
+import HomeUser from './components/home/home';
 
 function App() {
   return (
