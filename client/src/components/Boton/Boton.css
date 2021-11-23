@@ -1,0 +1,31 @@
+.btn{
+    border: none;
+    padding: 10px 27px;
+    transition: var(--transition);
+    display: inline-block;
+    margin: 10px;
+    font-family: var(--fonttitle);
+    font-size: 17px;
+    letter-spacing: 0.5px;
+    cursor: pointer
+}
+
+.btn:hover{
+    box-shadow: 0 0 8px rgb(0 0 0 / 26%);
+}
+
+.btn-azul{
+    background-color: var(--azul);
+    color: var(--blanco);
+}
+.btn-azul:hover{
+    background-color: var(--naranja);
+}
+.btn-naranja{
+    background-color: var(--naranja);
+    color: var(--blanco);
+}
+.btn-naranja:hover{
+    background-color: var(--azul);
+}
+
