@@ -9,7 +9,7 @@ export default function Home (){
     const navigate = useNavigate();
 
     const handleClick = () =>{
-        navigate("/login")
+        navigate("/userform")
     }
 
     return (
