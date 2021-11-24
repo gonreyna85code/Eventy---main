@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../redux/actions";
+import Boton from ".././components/Boton/Boton";
+import Input from ".././components/Input/Input";
 
 function validatorInput(input) {
   let errores = {};
@@ -137,85 +139,81 @@ export default function Userform() {
 
   function form(){
     return(
-    <div>
+    <div className='cont-center'>
       <h1>Crear nuevo Usuario</h1>
       <form>
         <div>
-          <label>Nombre:</label>
-          <input
-            type="text"
-            value={input.name}
-            name="name"
-            onChange={(e) => {
-              handleChangeProfile(e);
-            }}
-          />
+            <Input
+              label='Nombre:'
+              type='text'
+              name='name'
+              value = {input.name}
+              onChange={(e) => handleChangeProfile(e)}
+            />
           {errores.name && <p className="error">{errores.name}</p>}
         </div>
         <div className="input">
-          <label>Apellido:</label>
-          <input
-            type="text"
-            value={input.surname}
-            name="surname"
+        <Input
+            label='Apellido:'
+            type='text'
+            name='username'
+            value = {input.surname}
             onChange={(e) => handleChangeProfile(e)}
-          />
+        />
           {errores.surname && <p className="error">{errores.surname}</p>}
         </div>
         <div className="input">
-          <label>Usuario:</label>
-          <input
-            type="text"
-            value={input.username}
-            name="username"
+        <Input
+            label='Usuario:'
+            type='text'
+            name='username'
+            value = {input.username}
             onChange={(e) => handleChange(e)}
-          />
+        />
           {errores.username && <p className="error">{errores.username}</p>}
         </div>
         <div className="input">
-          <label>Contraseña:</label>
-          <input
-            type="password"
-            value={input.password}
-            name="password"
+        <Input
+            label='Contraseña:'
+            type='password'
+            name='password'
+            value = {input.password}
             onChange={(e) => handleChange(e)}
           />
           {errores.password && <p className="error">{errores.password}</p>}
         </div>
         <div className="input">
-          <label>Edad:</label>
-          <input
-            type="number"
-            value={input.age}
-            name="age"
+        <Input
+            label='Edad:'
+            type='number'
+            name='age'
+            value = {input.age}
             onChange={(e) => handleChangeProfile(e)}
-          />
+        />
           {errores.age && <p className="error">{errores.age}</p>}
         </div>
         <div className="input">
-          <label>Email:</label>
-          <input
-            type="text"
-            value={input.email}
-            name="email"
+        <Input
+            label='Email:'
+            type='text'
+            name='email'
+            value = {input.email}
             onChange={(e) => handleChangeProfile(e)}
-          />
+        />
           {errores.email && <p className="error">{errores.email}</p>}
         </div>
         <div className="input">
-          <label>Ciudad:</label>
-          <input
-            type="text"
-            value={input.city}
-            name="city"
+        <Input
+            label='Ciudad:'
+            type='text'
+            name='city'
+            value = {input.city}
             onChange={(e) => handleChangeProfile(e)}
-          />
+        />
           {errores.city && <p className="error">{errores.city}</p>}
         </div>
         <div className="divcrear">
-          <button className="crear" onClick={(e) => handleSubmit(e)}>
-            Crear Usuario
-          </button>
+        <Boton colorBtn='btn_azul' onClick={(e) => handleSubmit(e)}>Crear Usuario</Boton>
         </div>
       </form>
       </div>
@@ -225,38 +223,38 @@ export default function Userform() {
   const [errores, setErrores] = useState({});
 
   return (
-    <div>
+    <div className='cont-center'>
       <Link to="/">
-        <button className="botonback">Volver al Home</button>
+      <Boton colorBtn='btn_naranja'>Volver al Home</Boton>
       </Link>
       <h1>Por favor, Ingrese su Usuario y Contraseña</h1>
       <form>
-      <div className="input">
-          <label>Usuario:</label>
-          <input
-            type="text"
-            value={input.username}
-            name="username"
+        <div className="input">
+          <Input
+            label='Usuario'
+            type='text'
+            name='username'
+            value = {input.username}
             onChange={(e) => handleChange(e)}
-          />
-          {errores.username && <p className="error">{errores.username}</p>}
+        />
+        {errores.username && <p className="error">{errores.username}</p>}
         </div>
         <div className="input">
-          <label>Contraseña:</label>
-          <input
-            type="password"
-            value={input.password}
-            name="password"
+          <Input
+            label='Contraseña'
+            type='password'
+            name='password'
+            value = {input.password}
             onChange={(e) => handleChange(e)}
           />
           {errores.password && <p className="error">{errores.password}</p>}
         </div>
       </form>
       <div>
-        <button onClick = {(e)=> handleEnter(e)}>INGRESAR</button>
+      <Boton colorBtn='btn_azul' onClick={(e) => handleEnter(e)}>INGRESAR</Boton>
       </div>
       <div>
-      <button onClick = {(e)=> handleNotRegister(e)}>Aún no estoy registrado</button>
+      <Boton colorBtn='btn_naranja' onClick={(e)=> handleNotRegister(e)}>Aún no estoy registrado</Boton>
       {
         register === true && form() 
       }
