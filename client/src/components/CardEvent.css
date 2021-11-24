@@ -1,15 +1,17 @@
 
+.cardsEvents{
+    display:flex;
+    justify-content:space-around
+}
+
 .contenedor{
     border-style: solid;
-    border-color: black;
-    background-color: rgb(70, 70, 70);
-    border-radius: 25px;
+    border-color: rgb(1, 56, 95);
     padding: 25px;
-    background-image: linear-gradient(to right, rgb(1, 56, 95) 30%, rgb(88, 74, 151) 50%, rgb(237, 139, 38) 70%);
     box-shadow: rgb(0, 0, 0) 5px 5px 5px 5px; 
     display: flex;
-    justify-content: space-between;
-    flex-direction: row-reverse;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .imagen{
@@ -20,17 +22,19 @@
 }
 
 .nameCard{
-    color:white;
+    color:rgb(1, 56, 95);
 }
 
 .locationCard{
-    color: white;
+    color: black;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     
 }
 
 .dateCard{
-    color: white;
+    color: black;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     
 }
+
+background-image: linear-gradient(to right, rgb(1, 56, 95) 30%, rgb(88, 74, 151) 50%, rgb(237, 139, 38) 70%);

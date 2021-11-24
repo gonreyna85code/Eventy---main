@@ -10,9 +10,13 @@ export default function Card({name, id, location, date, img}){
             </Link>
             <div>
             <Link to = {'/events/' + id} className = 'nameCard'> 
-            <h1>{name}</h1>
+            <h3>{name}</h3>
             </Link>
+            </div>
+            <div>
             <h4 className = 'locationCard'>{location}</h4>
+            </div>
+            <div>
             <h5 className = 'dateCard'>{date}</h5>
             </div>
         </div>

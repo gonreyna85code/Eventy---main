@@ -39,6 +39,8 @@ export default function Userform() {
     },
   });
 
+  const [register, setRegister] = useState(false);
+
   function handleChange(e) {
     setInput({
       ...input,
@@ -102,13 +104,40 @@ export default function Userform() {
     }
   }
 
-  const [errores, setErrores] = useState({});
+  function handleEnter(e){
+    e.preventDefault();
+    console.log(input);
+    if (
+      !input.username ||
+      !input.password
+    ) {
+      alert("Todos los campos deben ser completados correctamente");
+    } else {
+      //dispatch(accion de ingreso(input));
+      alert("Usuario confirmado, Bienvenido a Eventy");
+      setInput({
+        username: "",
+        password: "",
+        profile: {
+          name: "",
+          surname: "",
+          age: 0,
+          email: "",
+          city: "",
+        },
+      });
+    }
+  }
 
-  return (
+  function handleNotRegister(e){
+    e.preventDefault();
+    setRegister(true);
+    console.log(register);
+  }
+
+  function form(){
+    return(
     <div>
-      <Link to="/">
-        <button className="botonback">Volver al Home</button>
-      </Link>
       <h1>Crear nuevo Usuario</h1>
       <form>
         <div>
@@ -189,6 +218,49 @@ export default function Userform() {
           </button>
         </div>
       </form>
+      </div>
+    )
+  }
+
+  const [errores, setErrores] = useState({});
+
+  return (
+    <div>
+      <Link to="/">
+        <button className="botonback">Volver al Home</button>
+      </Link>
+      <h1>Por favor, Ingrese su Usuario y Contraseña</h1>
+      <form>
+      <div className="input">
+          <label>Usuario:</label>
+          <input
+            type="text"
+            value={input.username}
+            name="username"
+            onChange={(e) => handleChange(e)}
+          />
+          {errores.username && <p className="error">{errores.username}</p>}
+        </div>
+        <div className="input">
+          <label>Contraseña:</label>
+          <input
+            type="password"
+            value={input.password}
+            name="password"
+            onChange={(e) => handleChange(e)}
+          />
+          {errores.password && <p className="error">{errores.password}</p>}
+        </div>
+      </form>
+      <div>
+        <button onClick = {(e)=> handleEnter(e)}>INGRESAR</button>
+      </div>
+      <div>
+      <button onClick = {(e)=> handleNotRegister(e)}>Aún no estoy registrado</button>
+      {
+        register === true && form() 
+      }
+    </div>
     </div>
   );
 }
