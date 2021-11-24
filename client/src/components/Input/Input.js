@@ -1,9 +1,9 @@
-import './Input.css'
+import styles from './Input.module.css'
 
 const Input = ({ label, ...rest }) =>{
     return (
 
-        <div className="item-input">
+        <div className={styles.item_input}>
         
             <label>{label}</label>
             <input {...rest}/>
