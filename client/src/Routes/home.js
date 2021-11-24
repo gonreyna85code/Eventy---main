@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import deportesImg from './images/categoria-deportes.png'
 import logoBlanco from './images/logo-blanco.png'
 import styles from './home.module.css'
@@ -35,6 +35,8 @@ const pruebaEventos = [
 
 export default function Home(){
 
+    
+
     return(
         <div className={styles.container}>
             <div className={styles.navBar}>
@@ -42,9 +44,9 @@ export default function Home(){
             </div>
             <div className={styles.principalBanner}>
                 <div>
-                    <p className={styles.P1}>SIGUE</p>
-                    <p className={styles.P2}>LOS EVENTOS</p>
-                    <p className={styles.P3}>CERANOS A TI</p>
+                    <a className={styles.P1}>SIGUE</a>
+                    <a className={styles.P2}>LOS EVENTOS</a>
+                    <a className={styles.P3}>CERANOS A TI</a>
 
                 </div>
             </div>
@@ -66,25 +68,123 @@ export default function Home(){
                             DEPORTES
                         </p>
                         <button className={`${botonStyles.btn} ${botonStyles.btn_azul} ${styles.boton}`}>VER EVENTOS</button>
-                        {/* <Boton className={styles.boton} colorBtn='azul'> VER EVENTOS</Boton> */}
                         
                         
                     </div>
                 </div>
             </div>
+
+
+
+
             <div className={styles.events}>
                 <h1 className={styles.eventsTitle}>EVENTOS DESTACADOS</h1>
-                <div className = 'cardsEvents'>
-                {
-                    pruebaEventos && pruebaEventos.map((el)=>{
-                        return(
-                            <div key = {el.id}>
-                        <Card img = {el.img} name = {el.name} location = {el.location} date = {el.date} id = {el.id}/>
-                        </div>
-                        )
-                    })
-                }
+                <div className={styles.carrusel}>
+                    <div id='CarrouselEventos' className = {styles.cardsEvents}>
+                    {
+                        pruebaEventos && pruebaEventos.map((el)=>{
+                            return(
+                            <Card img = {el.img} name = {el.name} location = {el.location} date = {el.date} id = {el.id}/>
+                            )
+                        })
+                    }
+                    </div>
+                    {document.defaultView.window.outerWidth<= 768?
+                    <div>
+                        <button className= {`${botonStyles.btn} ${botonStyles.btn_naranja}`} onClick={()=>{
+                            if(document.getElementById('CarrouselEventos').style.transform === ''){
+                                document.getElementById('CarrouselEventos').style.transform=`translateX(+33.3%)`
+                            }else{
+                                let hola = parseFloat(document.getElementById('CarrouselEventos').style.transform.split('(')[1].split(')')[0])
+                                if (hola===0) {
+                                    
+                                }else{
+                                    document.getElementById('CarrouselEventos').style.transform= `translateX(${hola +33.3}%)`
+
+                                }
+                            }
+                            
+                            // console.log();
+                        }}>
+                            {'<'}
+                        </button>
+                        <button className= {`${botonStyles.btn} ${botonStyles.btn_naranja}`} onClick={async()=>{
+                            if(document.getElementById('CarrouselEventos').style.transform === ''){
+                                document.getElementById('CarrouselEventos').style.transform=`translateX(-33.3%)`
+                            }else{
+                                
+                                let hola = parseFloat(document.getElementById('CarrouselEventos').style.transform.split('(')[1].split(')')[0])
+                                if (hola>-60) {
+                                    document.getElementById('CarrouselEventos').style.transform= `translateX(${hola -33.3}%)`
+                                } 
+                            }
+                        }}>
+                            {'>'}
+                        </button>
+                    </div>:null
+                    }
+
                 </div>
+            </div>
+
+
+
+
+
+            <div className={styles.noticias}>
+                <h1 className={styles.noticiasTitle}>ULTIMAS NOTICIAS</h1>
+                <div>
+                <div className={styles.carrusel}>
+                    <div id='CarrouselNoticias' className = {styles.cardsEvents}>
+                    {
+                        pruebaEventos && pruebaEventos.map((el)=>{
+                            return(
+                            <Card img = {el.img} name = {el.name} location = {el.location} date = {el.date} id = {el.id}/>
+                            )
+                        })
+                    }
+                    </div>
+                    {document.defaultView.window.outerWidth<= 768?
+                    <div>
+                        <button className= {`${botonStyles.btn} ${botonStyles.btn_azul}`} onClick={()=>{
+                            if(document.getElementById('CarrouselNoticias').style.transform === ''){
+                                document.getElementById('CarrouselNoticias').style.transform=`translateX(33.3%)`
+                            }else{
+                                let hola = parseFloat(document.getElementById('CarrouselNoticias').style.transform.split('(')[1].split(')')[0])
+                                if (hola===0) {
+                                    
+                                }else{
+                                    document.getElementById('CarrouselNoticias').style.transform= `translateX(${hola +33.3}%)`
+
+                                }
+                            }
+                            
+                            // console.log();
+                        }}>
+                            {'<'}
+                        </button>
+                        <button className= {`${botonStyles.btn} ${botonStyles.btn_azul}`} onClick={async()=>{
+                            if(document.getElementById('CarrouselNoticias').style.transform === ''){
+                                document.getElementById('CarrouselNoticias').style.transform=`translateX(-33.3%)`
+                            }else{
+                                
+                                let hola = parseFloat(document.getElementById('CarrouselNoticias').style.transform.split('(')[1].split(')')[0])
+                                if (hola>-60) {
+                                    document.getElementById('CarrouselNoticias').style.transform= `translateX(${hola -33.3}%)`
+                                } 
+                            }
+                        }}>
+                            {'>'}
+                        </button>
+                    </div>:null
+                    }
+
+
+                </div>
+                </div>
+            </div>
+            <div className={styles.sideBar}>
+                    <a>Eventy - 2021 | Soy Henry</a>
             </div>
         </div>
     )
