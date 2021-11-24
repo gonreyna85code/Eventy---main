@@ -1,18 +1,18 @@
 import './App.css';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import Home from './components/home.js'
-import Userform from './components/Userform';
-import HomeUser from './components/HomeUser/HomeUser';
-import CrearEventos from './components/CrearEventos/CrearEventos';
+import Landing from './Routes/Landing'
+import Userform from './Routes/Userform';
+import Home from './Routes/home';
+import CrearEventos from './Routes/CrearEventos/CrearEventos';
 
 function App() {
   return (
     <BrowserRouter>
     <div className="App">
       <Routes>
-        <Route exact path = '/' element ={<Home/>}/>
+        <Route exact path = '/' element ={<Landing/>}/>
         <Route exact path = '/login' element = {<Userform/>}/>
-        <Route exact path = '/homeuser' element = {<HomeUser/>}/>
+        <Route exact path = '/homeuser' element = {<Home/>}/>
         <Route exact path = '/crear-evento' element = {<CrearEventos/>}/>
       </Routes>
     </div>
