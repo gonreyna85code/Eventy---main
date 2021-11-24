@@ -29,4 +29,33 @@ router.get("/event", (req, res) => {
   });
 });
 
+router.get("/eventsAll", async (req,res)=> {
+  var parametro = req.body.parametro; 
+  var nombre, lugar, info; 
+  var response = await Event.find(); //Aqui se piden todos los datos de la base de datos
+
+  //Aqui se compara el paremetro de busqueda con los tres principales parametros de cada evento con el fin de encontrar lo que le cliente busca
+  nombre = response.filter(evento => {return evento.name.includes(parametro)}); 
+  lugar = response.filter(evento => {return evento.location.includes(parametro)}); 
+  info = response.filter(evento => {if (evento.info && evento.info.description)return evento.info.description.includes(parametro)})
+
+  var resultado = nombre.concat(lugar.concat(info)); 
+
+  function removeDuplicates(inArray){ // esta función elimina los duplicados
+    var arr = inArray.concat() 
+    for(var i=0; i<arr.length; ++i) { 
+        for(var j=i+1; j<arr.length; ++j) { 
+            if(arr[i].id === arr[j].id) {
+                arr.splice(j, 1); 
+            }
+        }
+    }
+    return arr;
+}
+
+  resultado = removeDuplicates(resultado); 
+  if (resultado.length === 0) res.status(400).send("Evento no encontrado") // Si no se encontro nada devuelve un status 400, no se si es el mas indicado, corrigan si se saben el indicado. 
+  else res.json(resultado)
+})
+
 module.exports = router;

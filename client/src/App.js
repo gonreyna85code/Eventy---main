@@ -4,6 +4,7 @@ import Landing from './Routes/Landing'
 import Userform from './Routes/Userform';
 import Home from './Routes/home';
 import CrearEventos from './Routes/CrearEventos/CrearEventos';
+import NavBar from "./Routes/NavBar/NavBar"
 
 function App() {
   return (
@@ -13,7 +14,10 @@ function App() {
         <Route exact path = '/' element ={<Landing/>}/>
         <Route exact path = '/login' element = {<Userform/>}/>
         <Route exact path = '/homeuser' element = {<Home/>}/>
-        <Route exact path = '/crear-evento' element = {<CrearEventos/>}/>
+        <Route exact path = '/crear-evento' element={<div>
+          <NavBar/>
+          <CrearEventos/>
+        </div>}/>
       </Routes>
     </div>
     </BrowserRouter>

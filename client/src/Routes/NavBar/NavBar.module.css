@@ -1,0 +1,16 @@
+.navBar{
+    background-color:#ed8b26;
+    width: 100%;
+    margin: 0; 
+    display: grid;
+    grid-template-columns:repeat(3,1fr) ;
+
+}
+
+.icono img{
+    height: 50px;  
+    overflow: auto; 
+    padding: 5px;
+    position: relative; 
+    left: -30%; 
+}

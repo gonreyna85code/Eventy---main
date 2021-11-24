@@ -1,9 +1,11 @@
 import { GET_USER } from "./actions.js";
+import { FIND_EVENT } from "./actions.js";
 
 const initialState = {
   User: [],
   Event: [],
   Events: [],
+  SearchResult: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -12,6 +14,12 @@ function rootReducer(state = initialState, action) {
       ...state,
       User: action.payload,
     };
+  }
+  if (action.type === FIND_EVENT){
+    return {
+      ...state, 
+      SearchResult: action.payload,
+    }
   }
   return state;
 }
