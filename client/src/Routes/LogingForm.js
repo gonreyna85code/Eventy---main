@@ -29,11 +29,12 @@ function validatorInput(input) {
 }
 
 export default function Userform() {
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]); 
 
-  const dispatch = useDispatch();
+  
 
   const [input, setInput] = useState({
     username: "",
