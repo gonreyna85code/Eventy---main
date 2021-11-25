@@ -30,15 +30,15 @@ router.get("/event/:name", (req, res) => {
   });
 });
 
-router.get("/eventsAll", async (req,res)=> {
-  var parametro = req.body.parametro; 
+router.get("/eventsAll/:parametro", async (req,res)=> {
+  var parametro = req.params.parametro.toLowerCase().trim();
+  if (parametro === "")  res.status(400).send("Busqueda invalida"); 
   var nombre, lugar, info; 
   var response = await Event.find(); //Aqui se piden todos los datos de la base de datos
-
   //Aqui se compara el paremetro de busqueda con los tres principales parametros de cada evento con el fin de encontrar lo que le cliente busca
-  nombre = response.filter(evento => {return evento.name.includes(parametro)}); 
-  lugar = response.filter(evento => {return evento.location.includes(parametro)}); 
-  info = response.filter(evento => {if (evento.info && evento.info.description)return evento.info.description.includes(parametro)})
+  nombre = response.filter(evento => {return evento.name.toLowerCase().includes(parametro)}); 
+  lugar = response.filter(evento => {return evento.location.toLowerCase().includes(parametro)}); 
+  info = response.filter(evento => {if (evento.info && evento.info.description)return evento.info.description.toLowerCase().includes(parametro)})
 
   var resultado = nombre.concat(lugar.concat(info)); 
 
@@ -57,6 +57,44 @@ router.get("/eventsAll", async (req,res)=> {
   resultado = removeDuplicates(resultado); 
   if (resultado.length === 0) res.status(400).send("Evento no encontrado") // Si no se encontro nada devuelve un status 400, no se si es el mas indicado, corrigan si se saben el indicado. 
   else res.json(resultado)
+})
+
+router.get("/events/filter/categoria-:categoria?/ciudad-:ciudad?/pago-:pago?", async (req,res)=>{
+  var categoria = req.params.categoria.toLowerCase(); //acepta un string con el nombre parcial o total de una categoria; 
+  var ciudad = req.params.ciudad.toLowerCase(); //acepta un string con el nombre parcial o total de la ciudad;
+  var pago = parseInt(req.params.pago); //acepta 0 para no pago y 1 para pago
+
+  var response = await Event.find()//Se llama a todos los eventos; 
+
+
+//A continuacion se declaran las funciones que van a filtrar cada categoria; 
+  function filtroCat(datos){
+    return datos.filter(evento => {if(evento.categoria){return evento.categoria.toLowerCase().includes(categoria)}}); 
+  }
+  function filtroCity(datos){
+    return datos.filter(evento =>{if(evento.location){return evento.location.toLowerCase().includes(ciudad)}})
+  }
+  function filtroPago(datos){
+    return datos.filter(evento => {if(pago)return evento.event_pay === true; else {return evento.event_pay === false}})
+  }
+  // Si hay parametro se filtra y se pasa la informacion al siguiente filtro, si no hay parametro se pasa la informacion sin tocar y asi se repite la secuencia; 
+  var primerFiltro; 
+
+  if (categoria !== "null"){primerFiltro=filtroCat(response)}
+  else {primerFiltro=response;}
+
+  var segundoFiltro; 
+
+  if(ciudad !== "null"){segundoFiltro = filtroCity(primerFiltro)}
+  else {segundoFiltro= primerFiltro; }
+
+  var tercerFiltro; 
+
+  if(pago !== "null"){tercerFiltro = filtroPago(segundoFiltro)}
+  else {tercerFiltro = segundoFiltro; }
+
+  if (tercerFiltro.length === 0)res.status(400).send("No hay eventos que cumplan estos parametros")
+  else {res.json(tercerFiltro)}
 })
 
 module.exports = router;

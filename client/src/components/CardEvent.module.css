@@ -1,0 +1,47 @@
+
+
+
+.contenedor{
+    border: solid 5px;
+    border-color: rgb(1, 56, 95);
+    padding: 5px;
+    display: grid;
+    justify-content: center;
+    flex-direction: column;
+    width:80%;
+    /* height:500px ; */
+    
+}
+
+.imagen{
+    min-width: 0%;
+    width:100%;
+}
+.iconNaranja{
+    color: var(--naranja);
+}
+.iconAzul{
+    color: var(--azul);
+}
+.nameCard{
+    color:rgb(1, 56, 95);
+}
+
+.locationCard{
+    color: black;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    
+}
+
+.dateCard{
+    color: black;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    
+}
+
+
+@media (width > 768px) {
+    .contenedor{
+        width: 70%;
+    }
+}

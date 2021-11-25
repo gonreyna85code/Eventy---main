@@ -17,8 +17,11 @@
 .principalBanner div{
     padding: 20%;
     display: grid;
-    padding-left: 5%;
+    padding-left: 10%;
     justify-items: left;
+}
+.bannerBoton{
+    margin: 2% 0% 2% 0%;
 }
 .principalBanner div a{
     font-family: var(--fonttitle);
@@ -43,6 +46,7 @@
     align-items: center;
     height: auto;
     width: 100%;
+    grid-template-columns: auto auto;
 
 }
 
@@ -51,6 +55,37 @@
     width: 20%;
     padding-left: 5%;
     
+}
+.acceder{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 5%;
+    justify-self: right;
+    padding-right: 20px;
+}
+.navBarButon{
+    justify-self: left;
+    font-size: 157%;
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 10px 15px 10px 15px;
+    justify-items: center;
+    align-items: center;
+    gap: 10px;
+}
+.navBarButon svg {
+    margin: 0 5px 0 5px;
+}
+.elipsis {
+    color: var(--azul);
+    width: max-content;
+    transform:  rotate(90deg);
+    font-size: 11pt;
+
+    
+}
+.elipsis svg{
+    margin: 1px;
 }
 .clases{
     display: grid;
@@ -77,8 +112,8 @@
     color: white;
 }
 .events{
-    /* display: grid; */
     width: 100%;
+    padding-bottom:5% ;
 }
 .eventsTitle{
     color: var(--azul);
@@ -91,8 +126,6 @@
     font-size: 150%;
 }
 .carrusel{
-    
-    
     width: 100vw;
     overflow: hidden;
 }
@@ -109,8 +142,8 @@
     letter-spacing:.5vw;
 }
 .noticias{
-    margin-top: 5%;
     background-color: var(--naranja);
+    padding-bottom:5% ;
 }
 .sideBar{
     font-family: var(--font);
@@ -119,4 +152,57 @@
 }
 .sideBar a{
     color: var(--blanco);
+}
+.hola{
+    width: 50px;
+    height: 50px;
+    color: var(--naranja);
+}
+
+@media (width > 768px) {
+    .sideBar{
+        padding: 2%;
+    }
+    .navLogo{
+        width: 15%;
+        padding: 1.5% 0 1.5% 3%;
+    }
+    .principalBanner div{
+        padding: 15% 0 15% 10%;
+    }
+    .principalBanner div a{
+        font-size: 400%;
+    }
+    .bannerBoton{
+        margin: 2% 0% 2% 0%;
+        font-size: 200%;
+    }
+    .nombreClase{
+        font-size: 400%;
+    }
+    .boton{
+        font-size: 200%;
+    }
+    .eventsTitle{
+        font-size: 350%;
+    }
+    .noticiasTitle{
+        font-size: 350%;
+    }
+    .carrusel{ 
+        overflow: visible;
+        width: 100%;
+        /* padding: 5%; */
+    }
+    .cardsEvents{
+        display:grid;
+        grid-template-columns: auto auto auto;
+        width: 100%;
+        margin-bottom: 5%;
+        /* transform: translateX(50%) */
+    }
+    .carruselButton{
+        display: none;
+    }
+
 }

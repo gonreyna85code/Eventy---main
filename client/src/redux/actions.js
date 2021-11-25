@@ -103,8 +103,7 @@ export function findEvent (parametro){
       axios({
       method: "GET",
       withCredentials: true,
-      url: "http://localhost:4000/eventsAll",
-      body: JSON.stringify({parametro: parametro })
+      url: "http://localhost:4000/eventsAll/" + parametro,
     })
     .then(resultado => dispatch({type: FIND_EVENT, payload: resultado}))
     .catch(err => alert(err))

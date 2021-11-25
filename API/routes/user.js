@@ -38,7 +38,11 @@ router.post("/register", (req, res) => {
 });
 
 router.get("/user", (req, res) => {
-  res.send(req.user);
+  if (req.user) {
+    res.send(req.user);
+  }else{
+    res.send('Usuario no logueado')
+  }
 });
 
 router.put("/user_update", (req, res) => {
