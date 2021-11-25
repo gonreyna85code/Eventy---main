@@ -14,6 +14,7 @@ export default function SearchBar (){
     function search(event){
         event.preventDefault();
         dispatch(findEvent(state))
+        setState("")
     }
 
     return (
