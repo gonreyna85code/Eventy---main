@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from "react-redux";
+<<<<<<< HEAD
 import { register } from "../redux/actions";
 import { login } from "../redux/actions";
 import { getUser } from "../redux/actions";
+=======
+import { register, getUser, login } from "../redux/actions";
+>>>>>>> dbb88ad89ed702a976cd0f3ed3bd1d5eb6da41ab
 import Boton from ".././components/Boton/Boton";
 import Input from ".././components/Input/Input";
 
@@ -30,10 +35,8 @@ function validatorInput(input) {
 }
 
 export default function Userform() {
+  let navigate = useNavigate();
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getUser());
-  }, [dispatch]); 
 
   
 
@@ -100,6 +103,7 @@ export default function Userform() {
     } else {
       dispatch(register(input));
       alert("Usuario creado, Bienvenido a Eventy");
+      navigate('/homeuser');
       setInput({
         username: "",
         password: "",
@@ -125,6 +129,8 @@ export default function Userform() {
     } else {
       dispatch(login(input));
       alert("Usuario confirmado, Bienvenido a Eventy");
+      navigate('/homeuser');
+      dispatch(getUser());
       setInput({
         username: "",
         password: "",
@@ -146,6 +152,7 @@ export default function Userform() {
   }
 
   function form(){
+
     return(
     <div className='cont-center'>
       <h1>Crear nuevo Usuario</h1>
