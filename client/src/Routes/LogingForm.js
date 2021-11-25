@@ -126,7 +126,7 @@ export default function Userform() {
     } else {
       dispatch(login(input));
       alert("Usuario confirmado, Bienvenido a Eventy");
-
+      navigate('/homeuser');
       setInput({
         username: "",
         password: "",
