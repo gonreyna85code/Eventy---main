@@ -1,5 +1,6 @@
 const Router = require("express");
 const Event = require("../models/event");
+const User = require("../models/user");
 
 
 const router = Router();
@@ -24,10 +25,14 @@ router.post("/event",isAuthenticated, function(req, res){
         user: req.body.user,
       });
       await newEvent.save();
-      res.send("Event Created");
+      console.log
+      User.findOneAndUpdate({ _id: req.body.user }, { $push: { events: newEvent._id } }, { new: true }, (err, doc) => {
+        
+      });
     }
   });
 });
+
 
 router.get("/event/:name",isAuthenticated, (req, res) => {
   const {name} = req.params;
