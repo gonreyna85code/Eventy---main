@@ -8,6 +8,7 @@ import Card from '../components/CardEvent'
 import {FontAwesomeIcon}from '@fortawesome/react-fontawesome'
 import {faCircle } from '@fortawesome/free-solid-svg-icons'
 import{faUser}from '@fortawesome/free-regular-svg-icons'
+import { Link } from 'react-router-dom'
 
 
 //COMIENZO DE ZONA DE HARDCODEO
@@ -51,10 +52,12 @@ export default function Home(){
                     <FontAwesomeIcon icon={faCircle}/>
                     <FontAwesomeIcon icon={faCircle}/>
                     </div>
+                    <Link to = '/login'>
                     <button className={`${botonStyles.btn} ${botonStyles.btn_azul} ${styles.navBarButon}`}>  
                         <FontAwesomeIcon icon={faUser}/>
                         <a>ACCEDER</a>
                     </button>
+                    </Link>
                 </div>
             </div>
             <div className={styles.principalBanner}>
@@ -62,7 +65,9 @@ export default function Home(){
                     <a className={styles.P1}>SIGUE</a>
                     <a className={styles.P2}>LOS EVENTOS</a>
                     <a className={styles.P3}>CERCANOS A TI</a>
+                <Link to = '/login'>
                 <button className={`${botonStyles.btn} ${botonStyles.btn_azul} ${styles.bannerBoton}`}> ACCEDER</button>
+                </Link>
                 </div>
             </div>
             <div className={styles.clases}>

@@ -30,7 +30,9 @@ export default function Card({name, id, location, date, img,buttonColor}){
             <div>
             <FontAwesomeIcon className={`${colorIcon}`}  icon={faCalendarAlt} /> <a className = {styles.dateCard}>{date}</a>
             </div>
+            <Link to = {'/detailEvent/' + name}>
             <button className={`${botonStyles.btn} ${colorButton}`} >VER DETALLES</button>
+            </Link>
             {console.log(buttonColor)}
         </div>
     )
