@@ -9,7 +9,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const user = require("./routes/user");
 const event = require("./routes/event");
-
+//hola
 
 mongoose.connect(
   "mongodb+srv://gonreyna85:gonreyna85@cluster0.bubyh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
