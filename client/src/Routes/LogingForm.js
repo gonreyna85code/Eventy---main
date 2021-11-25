@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from "react-redux";
@@ -31,9 +31,6 @@ function validatorInput(input) {
 export default function Userform() {
   let navigate = useNavigate();
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getUser());
-  }, [dispatch]); 
 
   
 
@@ -127,6 +124,7 @@ export default function Userform() {
       dispatch(login(input));
       alert("Usuario confirmado, Bienvenido a Eventy");
       navigate('/homeuser');
+      dispatch(getUser());
       setInput({
         username: "",
         password: "",

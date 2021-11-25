@@ -1,14 +1,15 @@
-import React, { useState }from "react";
+import React, { useState, useEffect }from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import Boton from "../../components/Boton/Boton";
 import Input from "../../components/Input/Input";
 import styles from "./CrearEventos.module.css"
-import { postEvent } from "../../redux/actions";
+import { postEvent, getUser } from "../../redux/actions";
 
 
 const CrearEventos = () =>{
+    
     const user = useSelector((state) => state.User);
-
+console.log(user)
     const eventInicialState = {
         name:'',
         location: '',
@@ -41,7 +42,9 @@ const CrearEventos = () =>{
 
     } 
 
-
+    useEffect(() => {
+        dispatch(getUser());
+      }, [dispatch]);
     return(
         <div className='cont-center'>
             <h1>Crear un Nuevo Evento</h1>
