@@ -1,24 +1,23 @@
 
-.cardsEvents{
-    display:flex;
-    justify-content:space-around
-}
+
 
 .contenedor{
-    border-style: solid;
+    border: solid 5px;
     border-color: rgb(1, 56, 95);
-    padding: 25px;
-    box-shadow: rgb(0, 0, 0) 5px 5px 5px 5px; 
-    display: flex;
+    padding: 5px;
+    /* box-shadow: rgb(0, 0, 0) 5px 5px 5px 5px;  */
+    display: grid;
     justify-content: center;
     flex-direction: column;
+    width:80%;
+    /* margin:0 10px 0 10px; */
+    
 }
 
 .imagen{
-    width: 30vh; 
-    height: 15vh;
-    margin: 5px;    
-    border-radius: 15px;
+    width:100%;
+    /* height:max-content; */
+    /* margin: 5px;     */
 }
 
 .nameCard{
@@ -37,4 +36,4 @@
     
 }
 
-background-image: linear-gradient(to right, rgb(1, 56, 95) 30%, rgb(88, 74, 151) 50%, rgb(237, 139, 38) 70%);
+
