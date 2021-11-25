@@ -87,6 +87,8 @@ export function postEvent(event) {
           event_pay: event.event_pay,
           date: event.date,
           user: event.user,
+          category: event.category,
+          subcategory: event.category
         },
         withCredentials: true,
         url: "http://localhost:4000/event",

@@ -6,17 +6,21 @@ import styles from "./CrearEventos.module.css"
 import { postEvent } from "../../redux/actions";
 
 
-const eventInicialState = {
-    name:'',
-    location: '',
-    info: {},
-    event_pay: false,
-    date: '',
-    user: ''
-  }
-
-
 const CrearEventos = () =>{
+    const user = useSelector((state) => state.User);
+
+    const eventInicialState = {
+        name:'',
+        location: '',
+        info: {},
+        event_pay: false,
+        date: '',
+        user: user.id,
+        category:'',
+        subcategory:''
+      }
+
+    console.log(eventInicialState);
 
     const dispatch = useDispatch();
     const [event, setEvent] = useState(eventInicialState);
