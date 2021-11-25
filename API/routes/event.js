@@ -30,11 +30,10 @@ router.get("/event/:name", (req, res) => {
   });
 });
 
-router.get("/eventsAll", async (req,res)=> {
-  var parametro = req.body.parametro; 
+router.get("/eventsAll/:parametro", async (req,res)=> {
+  var parametro = req.params.parametro; 
   var nombre, lugar, info; 
   var response = await Event.find(); //Aqui se piden todos los datos de la base de datos
-
   //Aqui se compara el paremetro de busqueda con los tres principales parametros de cada evento con el fin de encontrar lo que le cliente busca
   nombre = response.filter(evento => {return evento.name.includes(parametro)}); 
   lugar = response.filter(evento => {return evento.location.includes(parametro)}); 
