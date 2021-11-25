@@ -16,7 +16,7 @@ console.log(user)
         info: {},
         event_pay: false,
         date: '',
-        user: user.id,
+        user: user?.id,
         category:'',
         subcategory:''
       }

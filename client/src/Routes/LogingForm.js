@@ -99,7 +99,8 @@ export default function Userform() {
     } else {
       dispatch(register(input));
       alert("Usuario creado, Bienvenido a Eventy");
-      navigate('/homeuser');
+      dispatch(getUser());
+      navigate('/crear-evento');
       setInput({
         username: "",
         password: "",
@@ -125,8 +126,8 @@ export default function Userform() {
     } else {
       dispatch(login(input));
       alert("Usuario confirmado, Bienvenido a Eventy");
-      navigate('/homeuser');
       dispatch(getUser());
+      navigate('/crear-evento');
       setInput({
         username: "",
         password: "",
