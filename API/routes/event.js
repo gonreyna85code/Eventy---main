@@ -1,9 +1,16 @@
 const Router = require("express");
 const Event = require("../models/event");
 
+
 const router = Router();
 
-router.post("/event", (req, res) => {
+var isAuthenticated = function (req, res, next) {
+  if (req.isAuthenticated())
+    return next();
+  res.sendStatus(401);
+}
+
+router.post("/event",isAuthenticated, function(req, res){
   Event.findOne({ name: req.body.name }, async (err, doc) => {
     if (err) throw err;
     if (doc) res.send("Event Already Exists");
@@ -22,7 +29,7 @@ router.post("/event", (req, res) => {
   });
 });
 
-router.get("/event/:name", (req, res) => {
+router.get("/event/:name",isAuthenticated, (req, res) => {
   const {name} = req.params;
   Event.findOne({ name: name }, (err, doc) => {
     if (err) throw err;
@@ -30,7 +37,7 @@ router.get("/event/:name", (req, res) => {
   });
 });
 
-router.get("/eventsAll/:parametro", async (req,res)=> {
+router.get("/eventsAll/:parametro",isAuthenticated, async (req,res)=> {
   var parametro = req.params.parametro.toLowerCase(); 
   var nombre, lugar, info; 
   var response = await Event.find(); //Aqui se piden todos los datos de la base de datos
@@ -58,7 +65,7 @@ router.get("/eventsAll/:parametro", async (req,res)=> {
   else res.json(resultado)
 })
 
-router.get("/events/filter/categoria-:categoria?/ciudad-:ciudad?/pago-:pago?", async (req,res)=>{
+router.get("/events/filter/categoria-:categoria?/ciudad-:ciudad?/pago-:pago?",isAuthenticated, async (req,res)=>{
   var categoria = req.params.categoria.toLowerCase(); //acepta un string con el nombre parcial o total de una categoria; 
   var ciudad = req.params.ciudad.toLowerCase(); //acepta un string con el nombre parcial o total de la ciudad;
   var pago = parseInt(req.params.pago); //acepta 0 para no pago y 1 para pago
