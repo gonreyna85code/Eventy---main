@@ -22,18 +22,18 @@ router.post("/event", (req, res) => {
   });
 });
 
-router.get("/event", (req, res) => {
-  Event.findOne({ name: req.body.name }, (err, doc) => {
+router.get("/event/:name", (req, res) => {
+  const {name} = req.params;
+  Event.findOne({ name: name }, (err, doc) => {
     if (err) throw err;
     res.send(doc);
   });
 });
 
-router.get("/eventsAll", async (req,res)=> {
-  var parametro = req.body.parametro; 
+router.get("/eventsAll/:parametro", async (req,res)=> {
+  var parametro = req.params.parametro; 
   var nombre, lugar, info; 
   var response = await Event.find(); //Aqui se piden todos los datos de la base de datos
-
   //Aqui se compara el paremetro de busqueda con los tres principales parametros de cada evento con el fin de encontrar lo que le cliente busca
   nombre = response.filter(evento => {return evento.name.includes(parametro)}); 
   lugar = response.filter(evento => {return evento.location.includes(parametro)}); 

@@ -3,6 +3,7 @@ export const REGISTER = "REGISTER";
 export const LOGIN = "LOGIN";
 export const GET_USER = "GET_USER";
 export const FIND_EVENT = "FIND_EVENT"; 
+export const GET_EVENT = 'GET_EVENT';
 
 export function register(register) {
     return async function (dispatch) {
@@ -65,7 +66,7 @@ export function getEvent(name) {
       const json = await axios({
         method: "GET",
         withCredentials: true,
-        url: "http://localhost:4000/event",
+        url: "http://localhost:4000/event/" + name,
       });
       return dispatch({ type: "GET_EVENT", payload: json.data });
     } catch (error) {
@@ -102,8 +103,7 @@ export function findEvent (parametro){
       axios({
       method: "GET",
       withCredentials: true,
-      url: "http://localhost:4000/eventsAll",
-      body: JSON.stringify({parametro: parametro })
+      url: "http://localhost:4000/eventsAll/" + parametro,
     })
     .then(resultado => dispatch({type: FIND_EVENT, payload: resultado}))
     .catch(err => alert(err))
