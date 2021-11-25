@@ -26,6 +26,7 @@ const CrearEventos = () =>{
         e.preventDefault();
         dispatch(postEvent(event));
         console.log(event);
+        alert('El evento se creó exitosamente');
         setEvent(eventInicialState);
     }
 

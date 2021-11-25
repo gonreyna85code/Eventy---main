@@ -4,6 +4,7 @@ import Landing from './Routes/Landing'
 import Userform from './Routes/Userform';
 import Home from './Routes/home';
 import CrearEventos from './Routes/CrearEventos/CrearEventos';
+import DetailEvet from './Routes/DetailEvent';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route exact path = '/login' element = {<Userform/>}/>
         <Route exact path = '/homeuser' element = {<Home/>}/>
         <Route exact path = '/crear-evento' element = {<CrearEventos/>}/>
+        <Route exact path = '/detailEvent/:name' element = {<DetailEvet/>}/>
       </Routes>
     </div>
     </BrowserRouter>

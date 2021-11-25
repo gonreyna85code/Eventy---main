@@ -5,11 +5,11 @@ import './CardEvent.css'
 export default function Card({name, id, location, date, img}){
     return(
         <div className = 'contenedor' key = {name}>
-            <Link to = {'/events/' + id}>
+            <Link to = {'/detailEvent/' + name}>
             <img className = 'imagen' src = {img} alt = "img not found" />
             </Link>
             <div>
-            <Link to = {'/events/' + id} className = 'nameCard'> 
+            <Link to = {'/detailEvent/' + name} className = 'nameCard'> 
             <h3>{name}</h3>
             </Link>
             </div>

@@ -1,5 +1,6 @@
 import { GET_USER } from "./actions.js";
 import { FIND_EVENT } from "./actions.js";
+import { GET_EVENT } from "./actions.js"
 
 const initialState = {
   User: [],
@@ -19,6 +20,13 @@ function rootReducer(state = initialState, action) {
     return {
       ...state, 
       SearchResult: action.payload,
+    }
+  }
+  if (action.type === GET_EVENT){
+    console.log('este es el ' + action.payload);
+    return {
+      ...state,
+      Event: action.payload
     }
   }
   return state;

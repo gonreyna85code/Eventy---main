@@ -22,8 +22,9 @@ router.post("/event", (req, res) => {
   });
 });
 
-router.get("/event", (req, res) => {
-  Event.findOne({ name: req.body.name }, (err, doc) => {
+router.get("/event/:name", (req, res) => {
+  const {name} = req.params;
+  Event.findOne({ name: name }, (err, doc) => {
     if (err) throw err;
     res.send(doc);
   });
