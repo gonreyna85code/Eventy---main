@@ -5,6 +5,10 @@ import styles from './home.module.css'
 import Boton from '../components/Boton/Boton'
 import botonStyles from "../components/Boton/Boton.module.css"
 import Card from '../components/CardEvent'
+import {FontAwesomeIcon}from '@fortawesome/react-fontawesome'
+import {faCircle } from '@fortawesome/free-solid-svg-icons'
+import{faUser}from '@fortawesome/free-regular-svg-icons'
+
 
 //COMIENZO DE ZONA DE HARDCODEO
 const pruebaEventos = [
@@ -41,13 +45,24 @@ export default function Home(){
         <div className={styles.container}>
             <div className={styles.navBar}>
                 <img className={styles.navLogo} src={logoBlanco}/>
+                <div className={styles.acceder}>
+                    <div className={styles.elipsis}>
+                    <FontAwesomeIcon icon={faCircle}/>
+                    <FontAwesomeIcon icon={faCircle}/>
+                    <FontAwesomeIcon icon={faCircle}/>
+                    </div>
+                    <button className={`${botonStyles.btn} ${botonStyles.btn_azul} ${styles.navBarButon}`}>  
+                        <FontAwesomeIcon icon={faUser}/>
+                        <a>ACCEDER</a>
+                    </button>
+                </div>
             </div>
             <div className={styles.principalBanner}>
                 <div>
                     <a className={styles.P1}>SIGUE</a>
                     <a className={styles.P2}>LOS EVENTOS</a>
-                    <a className={styles.P3}>CERANOS A TI</a>
-
+                    <a className={styles.P3}>CERCANOS A TI</a>
+                <button className={`${botonStyles.btn} ${botonStyles.btn_azul} ${styles.bannerBoton}`}> ACCEDER</button>
                 </div>
             </div>
             <div className={styles.clases}>
@@ -56,7 +71,7 @@ export default function Home(){
                         <p className= {styles.nombreClase}>
                             SOCIALES
                         </p>
-                        <button className={`${botonStyles.btn} ${botonStyles.btn_naranja} ${styles.boton}`}>VER EVENTOS</button>
+                        <button className={`${styles.boton} ${botonStyles.btn} ${botonStyles.btn_naranja} `}>VER EVENTOS</button>
                         {/* <Boton className={styles.boton} colorBtn='naranja'> VER EVENTOS</Boton> */}
 
                     </div>
@@ -84,14 +99,18 @@ export default function Home(){
                     {
                         pruebaEventos && pruebaEventos.map((el)=>{
                             return(
-                            <Card img = {el.img} name = {el.name} location = {el.location} date = {el.date} id = {el.id}/>
+                            <Card img = {el.img} name = {el.name} location = {el.location} date = {el.date} id = {el.id} buttonColor='naranja'/>
                             )
                         })
                     }
                     </div>
-                    {document.defaultView.window.outerWidth<= 768?
+                    {document.defaultView.window.outerWidth> 768  ?
+                    // document.getElementById('CarrouselEventos').style.transform= `translateX(0)`
+                    console.log('hola')
+                    :null}
+                    {/* {console.log(document.getElementById('CarrouselEventos'))} */}
                     <div>
-                        <button className= {`${botonStyles.btn} ${botonStyles.btn_naranja}`} onClick={()=>{
+                        <button  className= {`${botonStyles.btn} ${botonStyles.btn_naranja} ${styles.carruselButton}`} onClick={()=>{
                             if(document.getElementById('CarrouselEventos').style.transform === ''){
                                 document.getElementById('CarrouselEventos').style.transform=`translateX(+33.3%)`
                             }else{
@@ -104,11 +123,10 @@ export default function Home(){
                                 }
                             }
                             
-                            // console.log();
                         }}>
                             {'<'}
                         </button>
-                        <button className= {`${botonStyles.btn} ${botonStyles.btn_naranja}`} onClick={async()=>{
+                        <button className= {`${botonStyles.btn} ${botonStyles.btn_naranja} ${styles.carruselButton}`} onClick={async()=>{
                             if(document.getElementById('CarrouselEventos').style.transform === ''){
                                 document.getElementById('CarrouselEventos').style.transform=`translateX(-33.3%)`
                             }else{
@@ -121,12 +139,10 @@ export default function Home(){
                         }}>
                             {'>'}
                         </button>
-                    </div>:null
-                    }
+                    </div>
 
                 </div>
             </div>
-
 
 
 
@@ -139,14 +155,14 @@ export default function Home(){
                     {
                         pruebaEventos && pruebaEventos.map((el)=>{
                             return(
-                            <Card img = {el.img} name = {el.name} location = {el.location} date = {el.date} id = {el.id}/>
+                            <Card img = {el.img} name = {el.name} location = {el.location} date = {el.date} id = {el.id} buttonColor= 'azul'/>
                             )
                         })
                     }
                     </div>
-                    {document.defaultView.window.outerWidth<= 768?
+
                     <div>
-                        <button className= {`${botonStyles.btn} ${botonStyles.btn_azul}`} onClick={()=>{
+                        <button className= {`${botonStyles.btn} ${botonStyles.btn_azul} ${styles.carruselButton}`} onClick={()=>{
                             if(document.getElementById('CarrouselNoticias').style.transform === ''){
                                 document.getElementById('CarrouselNoticias').style.transform=`translateX(33.3%)`
                             }else{
@@ -159,11 +175,10 @@ export default function Home(){
                                 }
                             }
                             
-                            // console.log();
                         }}>
                             {'<'}
                         </button>
-                        <button className= {`${botonStyles.btn} ${botonStyles.btn_azul}`} onClick={async()=>{
+                        <button className= {`${botonStyles.btn} ${botonStyles.btn_azul} ${styles.carruselButton}`} onClick={async()=>{
                             if(document.getElementById('CarrouselNoticias').style.transform === ''){
                                 document.getElementById('CarrouselNoticias').style.transform=`translateX(-33.3%)`
                             }else{
@@ -176,8 +191,7 @@ export default function Home(){
                         }}>
                             {'>'}
                         </button>
-                    </div>:null
-                    }
+                    </div>
 
 
                 </div>
