@@ -6,12 +6,13 @@ import CrearEventos from './Routes/CrearEventos/CrearEventos';
 import DetailEvet from './Routes/DetailEvent';
 import NavBar from "./Routes/NavBar/NavBar"
 
-
+//hola
 
 function App() {
   return (
     <BrowserRouter>
     <div className="App">
+      
       <Routes>
         <Route exact path = '/' element ={<Landing/>}/> 
         <Route exact path = '/crear-evento' element = {<CrearEventos/>}/>
