@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../redux/actions";
+import { login } from "../redux/actions";
 import { getUser } from "../redux/actions";
 import Boton from ".././components/Boton/Boton";
 import Input from ".././components/Input/Input";
@@ -122,7 +123,7 @@ export default function Userform() {
     ) {
       alert("Todos los campos deben ser completados correctamente");
     } else {
-      //dispatch(accion de ingreso(input));
+      dispatch(login(input));
       alert("Usuario confirmado, Bienvenido a Eventy");
       setInput({
         username: "",
