@@ -3,7 +3,7 @@
     margin: 0;
 }
 .container{
-
+    width: 100%;
     display: grid;
 }
 .principalBanner{
@@ -11,18 +11,21 @@
     max-width: 100%;
     background-image: url('./images/banner-home.png');
     background-repeat: no-repeat;
-    background-size:  cover;
-    height: fit-content;
+    background-size:100% 100%;
     display: grid;
 }
 .principalBanner div{
-    padding: 90px;
+    padding: 20%;
+    display: grid;
+    padding-left: 5%;
+    justify-items: left;
 }
-.principalBanner div p{
+.principalBanner div a{
     font-family: var(--fonttitle);
     color: var(--blanco);
     padding: 0;
     margin: 0;
+    font-size: 300%;
 }
 .P1{
     font-size: 20pt ;
@@ -39,17 +42,10 @@
     display: grid;
     align-items: center;
     height: auto;
+    width: 100%;
 
 }
-/* .navBar::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-top: 100px solid #fff;
-    border-right: 150px solid transparent;
-    width: 0;
-  } */
+
 .navLogo{
     padding: 2%;
     width: 20%;
@@ -60,13 +56,19 @@
     display: grid;
     grid-template-columns: 50% 50%;
     background-image: url('./images/categorias-home.png');
-    background-size:cover;
+    /* background-size:contain; */
+    background-repeat:no-repeat ;
+    background-size:100% 100%;
+    height: auto;
+    width: 100%;
+
 }
 .deportes,.sociales{
     display: grid;
     justify-items: center;
     align-items: center;
-    /* padding: 100px; */
+    margin: 20%;
+
 }
 
 .nombreClase{
@@ -75,16 +77,46 @@
     color: white;
 }
 .events{
-    display: grid;
-    padding: 2%;
+    /* display: grid; */
+    width: 100%;
 }
 .eventsTitle{
-    font-family: var(--fonttitle);
     color: var(--azul);
-    justify-self: center;
+    padding: 5% 0 5% 0 ;
+    letter-spacing:.5vw;
 }
 .boton{
     padding: 3%;
     margin: 0;
-    font-size: 10%;
+    font-size: 150%;
+}
+.carrusel{
+    
+    
+    width: 100vw;
+    overflow: hidden;
+}
+.cardsEvents{
+    width: 300%;
+    display: grid;
+    grid-template-columns: 100vw 100vw 100vw;
+    justify-items: center;
+    transition: all 1s; 
+}
+.noticiasTitle{
+    padding: 5% 0 5% 0 ;
+    color: var(--blanco);
+    letter-spacing:.5vw;
+}
+.noticias{
+    margin-top: 5%;
+    background-color: var(--naranja);
+}
+.sideBar{
+    font-family: var(--font);
+    padding: 3%;
+    background-color: var(--azul);
+}
+.sideBar a{
+    color: var(--blanco);
 }
