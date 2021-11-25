@@ -37,7 +37,7 @@ router.get("/event/:name",isAuthenticated, (req, res) => {
   });
 });
 
-router.get("/eventsAll/:parametro", async (req,res)=> {
+router.get("/eventsAll/:parametro",isAuthenticated, async (req,res)=> {
   var parametro = req.params.parametro.toLowerCase(); 
   var nombre, lugar, info; 
   var response = await Event.find(); //Aqui se piden todos los datos de la base de datos
