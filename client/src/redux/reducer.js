@@ -3,7 +3,7 @@ import { FIND_EVENT } from "./actions.js";
 import { GET_EVENT } from "./actions.js"
 
 const initialState = {
-  User: [],
+  User: {},
   Event: [],
   Events: [],
   SearchResult: [],
