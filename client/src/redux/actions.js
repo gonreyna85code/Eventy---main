@@ -1,6 +1,7 @@
 import axios from "axios";
 export const REGISTER = "REGISTER";
 export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
 export const GET_USER = "GET_USER";
 export const FIND_EVENT = "FIND_EVENT"; 
 export const GET_EVENT = 'GET_EVENT';
@@ -34,13 +35,28 @@ export function login(login) {
         method: "POST",
         data: {
           username: login.username,
-          password: login.password,
-          
+          password: login.password,          
         },
         withCredentials: true,
         url: "http://localhost:4000/login",
       });
       return dispatch({ type: "LOGIN", payload: json.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function logout(login) {
+  return async function (dispatch) {
+    try {
+      const json = await axios({
+        method: "GET",
+        withCredentials: true,
+        url: "http://localhost:4000/logout",
+      });
+      console.log('Usuario no logueado')
+      return dispatch({ type: "LOGOUT", payload: json.data });
     } catch (error) {
       console.log(error);
     }
