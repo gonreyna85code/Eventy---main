@@ -1,5 +1,5 @@
 .cont_principal{
-    min-height: 80vh;
+    min-height: 50vh;
     padding-top: 80px;
     background-image: url('./img/fondo-homeuser.jpg');
     background-position: center bottom;
@@ -22,7 +22,6 @@
 }
 
 h1.titulo{
-    -color: #fff;
     font-size: 65px;
 }
 .cont_carrusel{
@@ -34,5 +33,35 @@ h1.titulo{
 
 .cont_busqueda{
     background-color: var(--naranja);
-    padding: 120px 20px 50px;
+    padding-block: 120px 50px;
+}
+
+.cont_categoria_home{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.cont_info_categoria_home{
+    width: 40%;
+}
+.cont_carrusel_categoria_home{
+    width: 60%;
+    padding: 50px 30px
+}
+
+
+.cat_sociales{
+    background-image: url('./img/categoria-sociales.png');
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+
+.cat_deportes{
+    background-image: url('./img/categoria-deportes.png');
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: contain;
 }

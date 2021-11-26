@@ -7,8 +7,10 @@ import { getUser, getNearbyEvents } from '../../redux/actions';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import './HomeCarrusel.css';
-
-
+import SearchBar from '../../components/SearchBar/SearchBar';
+import Container from '../../components/Container/Container';
+import Boton from '../../components/Boton/Boton';
+import CardEvent from '../../components/CardEvent'
 
 const responsive = {
     0: {
@@ -64,13 +66,107 @@ const Home = () => {
                         controlsStrategy="alternate"
                         autoPlay={true}
                         infinite={true}
-                        autoPlayInterval={10000}
+                        autoPlayInterval={4000}
                         keyboardNavigation={true}
                         disableButtonsControls={false}
                         disableDotsControls={true}
                     />
                 </div>
-                <div className={styles.cont_busqueda}>
+            </div>
+            <div className={styles.cont_busqueda}>
+                <Container>
+                    <div className={styles.cont_info_busqueda}>
+                        <h2>Busca un Evento de tu Interes</h2>
+                        <div className={styles.cont_searchBar}>
+                            <SearchBar/>
+                        </div>
+                    </div>
+                </Container>
+            </div>
+            <div className={`${styles.cat_sociales} ${styles.cont_categoria_home}`}>
+                <div className={styles.cont_info_categoria_home}>
+                    <h2>Sociales</h2>
+                    <Boton colorBtn='btn_naranja'>Ver Eventos</Boton>
+                </div>
+                <div className={styles.cont_carrusel_categoria_home}>
+                    <AliceCarousel
+                        mouseTracking
+                        items={
+                            user.events && user.events.map( evento => {
+                                
+                                return(
+                                    <div>
+                                       {
+
+                                        evento.info.imagen ?
+                                        
+                                        <CardEvent
+                                            name={evento.name}
+                                            img={evento.info.imagen}
+                                            location={evento.location}
+                                            date={evento.date}
+                                            id={evento._id}
+                                            buttonColor='naranja'
+                                            />
+                                        : ``
+                                        }
+                                    </div>
+                                );
+
+                            })
+                        }
+                        responsive={responsive}
+                        controlsStrategy="alternate"
+                        autoPlay={true}
+                        infinite={true}
+                        autoPlayInterval={4000}
+                        disableButtonsControls={true}
+                        disableDotsControls={false}
+                    />
+                </div>
+            </div>
+            <div className={`${styles.cat_deportes} ${styles.cont_categoria_home}`}>
+                <div className={styles.cont_carrusel_categoria_home}>
+                    <AliceCarousel
+                        mouseTracking
+                        items={
+                            user.events && user.events.map( evento => {
+                                
+                                return(
+                                    <div>
+                                       {
+
+                                        evento.info.imagen ?
+                                        
+                                            <CardEvent
+                                                name={evento.name}
+                                                img={evento.info.imagen}
+                                                location={evento.location}
+                                                date={evento.date}
+                                                id={evento._id}
+                                                buttonColor='naranja'
+                                                />
+                                            :
+                                            
+                                            ``
+                                        }
+                                    </div>
+                                );
+
+                            })
+                        }
+                        responsive={responsive}
+                        controlsStrategy="alternate"
+                        autoPlay={true}
+                        infinite={true}
+                        autoPlayInterval={4000}
+                        disableButtonsControls={true}
+                        disableDotsControls={false}
+                    />
+                </div>
+                <div className={styles.cont_info_categoria_home}>
+                    <h2>Deportes</h2>
+                    <Boton colorBtn='btn_naranja'>Ver Eventos</Boton>
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 /**
     Ejemplo de uso:
-        <Boton colorBtn='azul'>Test Boton</Boton>
+        <Boton colorBtn='btn_azul'>Test Boton</Boton>
 
     Posibles colores:
         btn_azul
