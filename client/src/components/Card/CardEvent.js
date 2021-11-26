@@ -1,10 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD:client/src/components/Card/CardEvent.js
 import Boton from "../Boton/Boton";
-=======
-//import Boton from "./Boton/Boton";
->>>>>>> e28d52054927fc67e304c4cebd7d9bba35ef8b09:client/src/components/CardEvent.js
 import styles from './CardEvent.module.css'
 import botonStyles from "../Boton/Boton.module.css"
 import {FontAwesomeIcon}from '@fortawesome/react-fontawesome'

@@ -1,18 +1,8 @@
-<<<<<<< HEAD:client/src/components/Landing/Landing.js
 import React, { useState } from 'react'
 import logoBlanco from './images/logo-blanco.png'
 import styles from './home.module.css'
 import botonStyles from "../Boton/Boton.module.css"
 import Card from '../Card/CardEvent'
-=======
-import React from 'react'
-//import deportesImg from './images/categoria-deportes.png'
-import logoBlanco from './images/logo-blanco.png'
-import styles from './home.module.css'
-//import Boton from '../components/Boton/Boton'
-import botonStyles from "../components/Boton/Boton.module.css"
-import Card from '../components/CardEvent'
->>>>>>> e28d52054927fc67e304c4cebd7d9bba35ef8b09:client/src/Routes/Landing.js
 import {FontAwesomeIcon}from '@fortawesome/react-fontawesome'
 import {faCircle } from '@fortawesome/free-solid-svg-icons'
 import{faUser}from '@fortawesome/free-regular-svg-icons'
