@@ -5,7 +5,7 @@ const User = require("../models/user");
 
 const router = Router();
 
-var isAuthenticated = function (req, res, next) {
+const isAuthenticated = function (req, res, next) {
   if (req.isAuthenticated())
     return next();
   res.sendStatus(401);
