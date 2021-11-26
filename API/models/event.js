@@ -3,12 +3,12 @@ const Schema = mongoose.Schema;
 
 const event = new mongoose.Schema({
   name: String,
-  location: String,
+  location: { type: Schema.Types.String, ref: "User" },
+  category: { type: Schema.Types.String, ref: "User" },
+  subcategory: { type: Schema.Types.String, ref: "User" },
   event_pay: Boolean,
   date: Date,
   user: { type: Schema.Types.ObjectId, ref: "User" },
-  category: String,
-  subcategory: String,
   info: Object,
 });
 

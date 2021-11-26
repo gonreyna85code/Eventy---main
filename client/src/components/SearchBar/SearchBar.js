@@ -1,5 +1,4 @@
 import React from "react";
-import Boton from "../Boton/Boton"
 import { useDispatch } from "react-redux";
 import { findEvent } from "../../redux/actions";
 import style from './SearchBar.module.css'

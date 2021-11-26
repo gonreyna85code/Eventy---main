@@ -11,14 +11,14 @@ export default function NavBar(){
   
     return (
         <div className={styles.navBar}>
-            <div className={styles.icono}><Link to ="/homeuser"><img src={logo}/></Link></div>
+            <div className={styles.icono}><Link to ="/homeuser"><img src={logo} alt=''/></Link></div>
             <div className={styles.search}><SearchBar/></div>
             <div className={styles.menu}>
                 <FontAwesomeIcon icon={faUser}/>
                 <ul>
-                    <li><Link to="/crear-evento" style={{textDecoration: 'none', color: 'black'}}><a>Crear Evento</a></Link></li>
-                    <li><Link to="/home" style={{textDecoration: 'none', color: 'black'}}><a>ruta 2</a></Link></li>
-                    <li><Link to="/home" style={{textDecoration: 'none', color: 'black'}}><a>ruta 3</a></Link></li>
+                    <li><Link to="/crear-evento" style={{textDecoration: 'none', color: 'black'}}><span>Crear Evento</span></Link></li>
+                    <li><Link to="/home" style={{textDecoration: 'none', color: 'black'}}><span>ruta 2</span></Link></li>
+                    <li><Link to="/home" style={{textDecoration: 'none', color: 'black'}}><span>ruta 3</span></Link></li>
                 </ul>
             </div>
         </div>

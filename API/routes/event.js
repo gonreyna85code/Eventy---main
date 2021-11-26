@@ -1,10 +1,11 @@
 const Router = require("express");
 const Event = require("../models/event");
+const User = require("../models/user");
 
 
 const router = Router();
 
-var isAuthenticated = function (req, res, next) {
+const isAuthenticated = function (req, res, next) {
   if (req.isAuthenticated())
     return next();
   res.sendStatus(401);
@@ -22,12 +23,15 @@ router.post("/event",isAuthenticated, function(req, res){
         event_pay: req.body.event_pay,
         date: req.body.date,
         user: req.body.user,
-      });
+        category: req.body.category,
+        subcategory: req.body.subcategory,
+      });      
+      await User.updateOne({ _id: req.body.user }, { $push: { events: newEvent._id } });
       await newEvent.save();
-      res.send("Event Created");
     }
   });
 });
+
 
 router.get("/event/:name",isAuthenticated, (req, res) => {
   const {name} = req.params;

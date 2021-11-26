@@ -23,7 +23,7 @@
 .bannerBoton{
     margin: 2% 0% 2% 0%;
 }
-.principalBanner div a{
+.principalBanner div span{
     font-family: var(--fonttitle);
     color: var(--blanco);
     padding: 0;

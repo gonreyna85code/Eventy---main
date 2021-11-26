@@ -1,11 +1,14 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
 
-const user = new mongoose.Schema({  
+
+const user =  mongoose.Schema({  
   username: String,
   password: String,
   profile: Object,
-  events: [{ type: Schema.Types.ObjectId, ref: "Event" }],
+  events: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }],
+  follows: [{type: mongoose.Schema.Types.ObjectId, ref: "Event" }],
+  near: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }],
+  subscriptions: [{ type: mongoose.Schema.Types.String, ref: "Event" }],
 });
 
 module.exports = mongoose.model("User", user);

@@ -30,6 +30,8 @@ module.exports = function (passport) {
         username: user.username,
         events: user.events,
         profile: user.profile,
+        city: user.city,
+        subscriptions: user.subscriptions,
       };
       cb(err, userInformation);
     });

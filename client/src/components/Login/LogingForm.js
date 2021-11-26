@@ -1,9 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+<<<<<<< HEAD:client/src/components/Login/LogingForm.js
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../redux/actions";
 import Boton from "../../components/Boton/Boton";
 import Input from "../../components/Input/Input";
+=======
+import { useNavigate } from 'react-router';
+import { useDispatch} from "react-redux";
+import { registerUser } from "../redux/actions";
+import { login } from "../redux/actions";
+import { getUser } from "../redux/actions";
+import Boton from ".././components/Boton/Boton";
+import Input from ".././components/Input/Input";
+
+>>>>>>> e28d52054927fc67e304c4cebd7d9bba35ef8b09:client/src/Routes/LogingForm.js
 
 function validatorInput(input) {
   let errores = {};
@@ -90,8 +101,13 @@ export default function Userform() {
     ) {
       alert("Todos los campos deben ser completados correctamente");
     } else {
-      dispatch(register(input));
+      dispatch(registerUser(input));
       alert("Usuario creado, Bienvenido a Eventy");
+<<<<<<< HEAD:client/src/components/Login/LogingForm.js
+=======
+      dispatch(getUser());
+      navigate('/');
+>>>>>>> e28d52054927fc67e304c4cebd7d9bba35ef8b09:client/src/Routes/LogingForm.js
       setInput({
         username: "",
         password: "",
@@ -117,6 +133,11 @@ export default function Userform() {
     } else {
       //dispatch(accion de ingreso(input));
       alert("Usuario confirmado, Bienvenido a Eventy");
+<<<<<<< HEAD:client/src/components/Login/LogingForm.js
+=======
+      dispatch(getUser());
+      navigate('/');
+>>>>>>> e28d52054927fc67e304c4cebd7d9bba35ef8b09:client/src/Routes/LogingForm.js
       setInput({
         username: "",
         password: "",
@@ -156,7 +177,7 @@ export default function Userform() {
         <Input
             label='Apellido:'
             type='text'
-            name='username'
+            name='surname'
             value = {input.surname}
             onChange={(e) => handleChangeProfile(e)}
         />
