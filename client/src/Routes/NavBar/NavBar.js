@@ -2,7 +2,6 @@ import React from "react";
 import SearchBar from '../../components/SearchBar/SearchBar'
 import { Link } from "react-router-dom";
 import { useDispatch} from "react-redux";
-import { useNavigate } from 'react-router';
 import logo from '../../Routes/images/logo-blanco.png'
 import styles from './NavBar.module.css'
 import {FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,7 +10,6 @@ import { logout } from "../../redux/actions";
  
 
 export default function NavBar(){  
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const handler = () => {
         dispatch(logout());
