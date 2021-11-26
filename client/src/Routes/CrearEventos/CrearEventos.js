@@ -6,8 +6,8 @@ import styles from "./CrearEventos.module.css";
 import { postEvent, getUser } from "../../redux/actions";
 
 const CrearEventos = () => {
-    let sports= ['Maraton', 'Aeromodelismo', 'Futbol', 'Tenis', 'Handball'];
-    let socials = ['Fiesta', 'Reunion', 'Protesta'];
+  const sports = ["Maraton", "Aeromodelismo", "Futbol", "Tenis", "Handball"];
+  const socials = ["Fiesta", "Reunion", "Protesta"];
   const user = useSelector((state) => state.User);
   console.log(user);
   const eventInicialState = {
@@ -61,27 +61,31 @@ const CrearEventos = () => {
           name="location"
           onChange={handleChange}
         />
-        <select name="category" onChange={handleChange} defaultValue='1'>
-          <option value='1' disabled >
+        <select name="category" onChange={handleChange} defaultValue="1">
+          <option value="1" disabled>
             Categoria
           </option>
           <option value="sports">Deportes</option>
           <option value="social">Social</option>
         </select>
-        <br/>
-        <select name="subcategory" onChange={handleChange} defaultValue='1'>
-        <option value='1' disabled >
+        <br />
+        <select name="subcategory" onChange={handleChange} defaultValue="1">
+          <option value="1" disabled>
             Sub-Categoria
           </option>
-        {event.category === 'social' ? socials.map((e) => (
-          <option key={e} value={e}>
-            {e}
-          </option>
-        )) : event.category === 'sports' ? sports.map((e) => (
-          <option key={e} value={e}>
-            {e}
-          </option>
-        )) : null}
+          {event.category === "social"
+            ? socials.map((e) => (
+                <option key={e} value={e}>
+                  {e}
+                </option>
+              ))
+            : event.category === "sports"
+            ? sports.map((e) => (
+                <option key={e} value={e}>
+                  {e}
+                </option>
+              ))
+            : null}
         </select>
         <Input label="Fecha" type="date" name="date" onChange={handleChange} />
         <Input
