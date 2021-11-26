@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import styles from './Home.module.css';
 import NavBar from '../NavBar/NavBar';
 import EventHome from './EventHome';
@@ -7,6 +8,8 @@ import { getUser, getNearbyEvents } from '../../redux/actions';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import './HomeCarrusel.css';
+import botonStyles from '../../components/Boton/Boton.module.css'
+
 
 
 
@@ -70,8 +73,32 @@ const Home = () => {
                         disableDotsControls={true}
                     />
                 </div>
-                <div className={styles.cont_busqueda}>
+                
+            <div className={styles.clases}>
+                <div className={styles.clasesContainer}>
+                    <div className={styles.sociales}>
+                        <p className= {styles.nombreClase}>
+                            SOCIALES
+                        </p>
+                        <Link to = '/social'>
+                        <button className={`${styles.boton} ${botonStyles.btn} ${botonStyles.btn_naranja} `}>VER EVENTOS</button>
+                        {/* <Boton className={styles.boton} colorBtn='naranja'> VER EVENTOS</Boton> */}
+                        </Link>
+                    </div>
                 </div>
+                <div className={styles.clasesContainer}>
+                    <div className={styles.deportes}>
+                        <p className= {styles.nombreClase}>
+                            DEPORTES
+                        </p>
+                        <Link to = '/sport'>
+                        <button className={`${botonStyles.btn} ${botonStyles.btn_azul} ${styles.boton}`}>VER EVENTOS</button>
+                        </Link>
+                    </div>
+                </div>
+            </div>
+            <div className={styles.cont_busqueda}>
+            </div>
             </div>
         </div>
     );

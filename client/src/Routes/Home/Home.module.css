@@ -36,3 +36,29 @@ h1.titulo{
     background-color: var(--naranja);
     padding: 120px 20px 50px;
 }
+
+.clases{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    background-image: url('../images/categorias-home.png');
+    /* background-size:contain; */
+    background-repeat:no-repeat ;
+    background-size:100% 100%;
+    height: auto;
+    width: 100%;
+
+}
+
+.deportes,.sociales{
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    margin: 20%;
+
+}
+
+.nombreClase{
+    font-size: 250%;
+    font-family: var(--fonttitle);
+    color: white;
+}

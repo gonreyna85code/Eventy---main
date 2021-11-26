@@ -5,6 +5,7 @@ export const GET_USER = "GET_USER";
 export const FIND_EVENT = "FIND_EVENT"; 
 export const GET_EVENT = 'GET_EVENT';
 export const GET_NEARBY_EVENTS = 'GET_NEARBY_EVENTS';
+export const FIND_EVENT_CATEGORY = 'FIND_EVENT_CATEGORY';
 
 export function registerUser(register) {
     return async function (dispatch) {
@@ -122,6 +123,18 @@ export function getNearbyEvents(parametro){
       url: "http://localhost:4000/eventsAll/" + parametro,
     })
     .then(resultado => dispatch({type: GET_NEARBY_EVENTS, payload: resultado.data}))
+    .catch(err => alert(err))
+  }
+}
+
+export function findEventByCategory (parametro){
+  return function (dispatch){
+      axios({
+      method: "GET",
+      withCredentials: true,
+      url: "http://localhost:4000//events/filter/categoria-" + parametro,
+    })
+    .then(resultado => dispatch({type: FIND_EVENT_CATEGORY, payload: resultado}))
     .catch(err => alert(err))
   }
 }
