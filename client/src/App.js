@@ -32,6 +32,7 @@ function App() {
           <Route exact path = '/detailEvent/:name' element = {<DetailEvet/>}/>
           <Route exact path = '/login' element = {<LogingForm/>}/>
         </Routes>
+        
       </div>
     </BrowserRouter>
   );
