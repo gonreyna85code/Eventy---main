@@ -12,6 +12,7 @@ const isAuthenticated = function (req, res, next) {
 }
 
 router.post("/event",isAuthenticated, function(req, res){
+  console.log(req.body)
   Event.findOne({ name: req.body.name }, async (err, doc) => {
     if (err) throw err;
     if (doc) res.send("Event Already Exists");
