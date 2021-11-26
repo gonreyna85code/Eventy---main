@@ -12,7 +12,6 @@ const isAuthenticated = function (req, res, next) {
 }
 
 router.post("/event",isAuthenticated, function(req, res){
-  console.log(req.body)
   Event.findOne({ name: req.body.name }, async (err, doc) => {
     if (err) throw err;
     if (doc) res.send("Event Already Exists");
@@ -24,12 +23,11 @@ router.post("/event",isAuthenticated, function(req, res){
         event_pay: req.body.event_pay,
         date: req.body.date,
         user: req.body.user,
-      });
+        category: req.body.category,
+        subcategory: req.body.subcategory,
+      });      
+      await User.updateOne({ _id: req.body.user }, { $push: { events: newEvent._id } });
       await newEvent.save();
-      console.log
-      User.findOneAndUpdate({ _id: req.body.user }, { $push: { events: newEvent._id } }, { new: true }, (err, doc) => {
-        
-      });
     }
   });
 });

@@ -20,18 +20,22 @@ export default function Card({name, id, location, date, img,buttonColor}){
     }
     return(
         <div className = {styles.contenedor} key = {name}>
-            <img className = {styles.imagen} src = {img} alt = "img not found" />
-            <div>
-            <h3 className = {styles.nameCard}>{name}</h3>
+            <div className={styles.cont_img} style={{backgroundImage:`url(${img})`}}>
+                {/* <img className = {styles.imagen} src = {img} alt={name} /> */}
             </div>
             <div>
-            <FontAwesomeIcon  className={`${colorIcon}`} icon={faMapMarkerAlt} /> <span className = {styles.locationCard}>{location}</span>
+                <h3 className = {styles.nameCard}>{name}</h3>
             </div>
-            <div>
-            <FontAwesomeIcon className={`${colorIcon}`}  icon={faCalendarAlt} /> <span className = {styles.dateCard}>{date}</span>
+            <div className={styles.cont_info}>
+                <div>
+                    <FontAwesomeIcon  className={`${colorIcon}`} icon={faMapMarkerAlt} /> <span className = {styles.locationCard}>{location}</span>
+                </div>
+                <div>
+                    <FontAwesomeIcon className={`${colorIcon}`}  icon={faCalendarAlt} /> <span className = {styles.dateCard}>{date}</span>
+                </div>
             </div>
             <Link to = {'/detailEvent/' + name}>
-            <button className={`${botonStyles.btn} ${colorButton}`} >VER DETALLES</button>
+                <button className={`${botonStyles.btn} ${colorButton}`} >VER DETALLES</button>
             </Link>
         </div>
     )

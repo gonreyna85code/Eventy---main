@@ -1,5 +1,5 @@
 .cont_principal{
-    min-height: 80vh;
+    min-height: 50vh;
     padding-top: 80px;
     background-image: url('./img/fondo-homeuser.jpg');
     background-position: center bottom;
@@ -21,9 +21,11 @@
     font-size: 25px;
 }
 
-h1.titulo{
-    -color: #fff;
+.cont_home :is(h1, h2){
     font-size: 65px;
+    color: #fff;
+    line-height: 1.2;
+    text-shadow: 1px 1px 4px #333333a8;
 }
 .cont_carrusel{
     width: 80%;
@@ -34,31 +36,35 @@ h1.titulo{
 
 .cont_busqueda{
     background-color: var(--naranja);
-    padding: 120px 20px 50px;
+    padding-block: 120px 50px;
 }
 
-.clases{
-    display: grid;
-    grid-template-columns: 50% 50%;
-    background-image: url('../images/categorias-home.png');
-    /* background-size:contain; */
-    background-repeat:no-repeat ;
-    background-size:100% 100%;
-    height: auto;
-    width: 100%;
-
-}
-
-.deportes,.sociales{
-    display: grid;
-    justify-items: center;
+.cont_categoria_home{
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    margin: 20%;
-
 }
 
-.nombreClase{
-    font-size: 250%;
-    font-family: var(--fonttitle);
-    color: white;
+.cont_info_categoria_home{
+    width: 50%;
+}
+.cont_carrusel_categoria_home{
+    width: 50%;
+    padding: 70px 40px 30px
+}
+
+
+.cat_sociales{
+    background-image: url('./img/categoria-sociales.png');
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+
+.cat_deportes{
+    background-image: url('./img/categoria-deportes.png');
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: contain;
 }

@@ -2,22 +2,32 @@
 
 
 .contenedor{
-    border: solid 5px;
-    border-color: rgb(1, 56, 95);
+    border: 3px solid rgb(1, 56, 95);
     padding: 5px;
-    display: grid;
+    display: flex;
     justify-content: center;
     flex-direction: column;
-    width:80%;
-    margin-left: 5px;
-    margin-right: 5px;
-    /* height:500px ; */
-    
+    width: calc(100% - 50px);
+    margin-inline: 20px;
+    background-color: #fff;
 }
 
+.contenedor:hover{
+    box-shadow: 0 0 5px rgba(1,56,95,0.5);
+    transition: var(--transition);
+}
+
+.cont_img{
+    height: 250px;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 20px;
+}
 .imagen{
-    min-width: 0%;
-    width:100%;
+    width:auto;
+    min-height: 200px;
 }
 .iconNaranja{
     color: var(--naranja);
@@ -27,6 +37,7 @@
 }
 .nameCard{
     color:rgb(1, 56, 95);
+    font-size: 23px;
 }
 
 .locationCard{
@@ -40,10 +51,12 @@
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     
 }
-
+.cont_info{
+    margin-block: 5px;
+}
 
 @media (width > 768px) {
     .contenedor{
-        width: 70%;
+        -width: 70%;
     }
 }

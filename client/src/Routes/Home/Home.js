@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 import styles from './Home.module.css';
 import NavBar from '../NavBar/NavBar';
 import EventHome from './EventHome';
-import { getUser, getNearbyEvents } from '../../redux/actions';
+import { getUser } from '../../redux/actions';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import './HomeCarrusel.css';
-import botonStyles from '../../components/Boton/Boton.module.css'
-
-
-
+import SearchBar from '../../components/SearchBar/SearchBar';
+import Container from '../../components/Container/Container';
+import Boton from '../../components/Boton/Boton';
+import CardEvent from '../../components/CardEvent'
 
 const responsive = {
     0: {
@@ -26,20 +26,18 @@ const Home = () => {
     
     const dispatch = useDispatch();
     const user = useSelector( state => state.User );
-    const eventosCercanos = useSelector(state => state.NearbyEvents)
+    const eventosCercanos = user.near
 
     useEffect(()=>{
         dispatch(getUser());
     }, [dispatch]);
 
-    useEffect(()=>{
-        dispatch(getNearbyEvents(user.profile.city));
-    }, [dispatch, user.profile.city]);
+    
     
     console.log({eventosCercanos})
 
     return(
-        <div className='cont-home'>
+        <div className={styles.cont_home}>
             <NavBar/>
             <div className={styles.cont_principal}>
                 <div className={styles.cont_info_principal}>
@@ -51,7 +49,7 @@ const Home = () => {
                     <AliceCarousel
                         mouseTracking
                         items={
-                            user.events && user.events.map( evento => {
+                            user.near && user.near.map( evento => {
                                 return(
                                     <EventHome
                                     name={evento.name}
@@ -67,38 +65,114 @@ const Home = () => {
                         controlsStrategy="alternate"
                         autoPlay={true}
                         infinite={true}
-                        autoPlayInterval={10000}
+                        autoPlayInterval={4000}
                         keyboardNavigation={true}
                         disableButtonsControls={false}
                         disableDotsControls={true}
                     />
                 </div>
-                
-            <div className={styles.clases}>
-                <div className={styles.clasesContainer}>
-                    <div className={styles.sociales}>
-                        <p className= {styles.nombreClase}>
-                            SOCIALES
-                        </p>
-                        <Link to = '/social'>
-                        <button className={`${styles.boton} ${botonStyles.btn} ${botonStyles.btn_naranja} `}>VER EVENTOS</button>
-                        {/* <Boton className={styles.boton} colorBtn='naranja'> VER EVENTOS</Boton> */}
-                        </Link>
+            </div>
+            <div className={styles.cont_busqueda}>
+                <Container>
+                    <div className={styles.cont_info_busqueda}>
+                        <h2>Busca un Evento de tu Interes</h2>
+                        <div className={styles.cont_searchBar}>
+                            <SearchBar/>
+                        </div>
                     </div>
+                </Container>
+            </div>
+            <div className={`${styles.cat_sociales} ${styles.cont_categoria_home}`}>
+                <div className={styles.cont_info_categoria_home}>
+                    <h2>Sociales</h2>
+                    <Link to = '/social'>
+                    <Boton colorBtn='btn_naranja'>Ver Eventos</Boton>
+                    </Link>
                 </div>
-                <div className={styles.clasesContainer}>
-                    <div className={styles.deportes}>
-                        <p className= {styles.nombreClase}>
-                            DEPORTES
-                        </p>
-                        <Link to = '/sport'>
-                        <button className={`${botonStyles.btn} ${botonStyles.btn_azul} ${styles.boton}`}>VER EVENTOS</button>
-                        </Link>
-                    </div>
+                <div className={styles.cont_carrusel_categoria_home}>
+                    <AliceCarousel
+                        mouseTracking
+                        items={
+                            user.events && user.events.map( evento => {
+                                
+                                return(
+                                    <div>
+                                       {
+
+                                        evento.info.imagen ?
+                                        
+                                        <CardEvent
+                                            name={evento.name}
+                                            img={evento.info.imagen}
+                                            location={evento.location}
+                                            date={evento.date}
+                                            id={evento._id}
+                                            buttonColor='naranja'
+                                            />
+                                        : ``
+                                        }
+                                    </div>
+                                );
+
+                            })
+                        }
+                        responsive={responsive}
+                        controlsStrategy="alternate"
+                        autoPlay={true}
+                        infinite={true}
+                        autoPlayInterval={4000}
+                        disableButtonsControls={true}
+                        disableDotsControls={false}
+                    />
+                </div>
+            </div>
+            <div className={`${styles.cat_deportes} ${styles.cont_categoria_home}`}>
+                <div className={styles.cont_carrusel_categoria_home}>
+                    <AliceCarousel
+                        mouseTracking
+                        items={
+                            user.events && user.events.map( evento => {
+                                
+                                return(
+                                    <div>
+                                       {
+
+                                        evento.info.imagen ?
+                                        
+                                            <CardEvent
+                                                name={evento.name}
+                                                img={evento.info.imagen}
+                                                location={evento.location}
+                                                date={evento.date}
+                                                id={evento._id}
+                                                buttonColor='naranja'
+                                                />
+                                            :
+                                            
+                                            ``
+                                        }
+                                    </div>
+                                );
+
+                            })
+                        }
+                        responsive={responsive}
+                        controlsStrategy="alternate"
+                        autoPlay={true}
+                        infinite={true}
+                        autoPlayInterval={4000}
+                        disableButtonsControls={true}
+                        disableDotsControls={false}
+                    />
+                </div>
+                <div className={styles.cont_info_categoria_home}>
+                    <h2>Deportes</h2>
+                    <Link to = '/sport'>
+                    <Boton colorBtn='btn_naranja'>Ver Eventos</Boton>
+                    </Link>
                 </div>
             </div>
             <div className={styles.cont_busqueda}>
-            </div>
             </div>
         </div>
     );

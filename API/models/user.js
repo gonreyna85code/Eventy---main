@@ -6,6 +6,9 @@ const user =  mongoose.Schema({
   password: String,
   profile: Object,
   events: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }],
+  follows: [{type: mongoose.Schema.Types.ObjectId, ref: "Event" }],
+  near: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }],
+  subscriptions: [{ type: mongoose.Schema.Types.String, ref: "Event" }],
 });
 
 module.exports = mongoose.model("User", user);

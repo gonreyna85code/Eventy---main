@@ -168,7 +168,7 @@ export default function Userform() {
         <Input
             label='Apellido:'
             type='text'
-            name='username'
+            name='surname'
             value = {input.surname}
             onChange={(e) => handleChangeProfile(e)}
         />

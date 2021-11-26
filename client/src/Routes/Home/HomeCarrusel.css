@@ -16,10 +16,10 @@
     width: 550px;
     margin-left: -16.6666667%;
     box-shadow: 0 0 10px rgba(1,56,95,0.8);
-    transition: var(--transition);
 }
 .cont-carrusel .alice-carousel__stage-item.__active.__target + li .cont-eventHome:hover{
     box-shadow: 0 0 20px rgba(1,56,95,0.9);
+    transition: var(--transition);
 }
 .cont-carrusel .cont-eventHome{
     height: 100%;
@@ -54,6 +54,7 @@
 }
 .cont-carrusel .cont-infoEventoHome > div h3{
     font-size: 20px;
+    letter-spacing: 0.5px;
 }
 
 .cont-carrusel .cont-infoEventoHome > div ul{
