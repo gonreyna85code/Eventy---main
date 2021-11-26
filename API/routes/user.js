@@ -2,6 +2,7 @@ const Router = require("express");
 const bcrypt = require("bcryptjs");
 const User = require("../models/user");
 const passport = require("passport");
+const Event = require("../models/event");
 
 const router = Router();
 
@@ -37,19 +38,27 @@ router.post("/register", (req, res) => {
   });
 });
 
-router.get("/user", (req, res) => {
+router.get("/user", async (req, res) => {
+  const near = await Event.find({ location: req.user.profile.city });
+  const follows = await Event.find({ category: req.user.subscriptions });
   if (req.user) {
-    User.findOne({ _id: req.user.id }, (err, doc) => {
+    User.findOne({ _id: req.user.id }, async (err, doc) => {
       if (err) throw err;
-      res.send(doc);
-    }).populate('events');
-  }else{
-    res.send('Usuario no logueado')
+      if (!doc) res.send("User Not Found");
+      if (doc) {
+        doc.near = near;
+        doc.follows = follows;
+        doc.save();
+        res.send(doc);
+      }
+    }).populate('follows').populate('events');
+  } else {
+    res.send("Usuario no logueado");
   }
 });
 
 router.put("/user_update", (req, res) => {
-  User.findOneAndUpdate({ username: req.body.username }, async (err, doc) => {
+  User.findOne({ username: req.body.username }, async (err, doc) => {
     if (err) throw err;
     if (!doc) res.send("User Not Found");
     if (doc) {

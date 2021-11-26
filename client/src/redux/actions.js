@@ -89,7 +89,7 @@ export function postEvent(event) {
           date: event.date,
           user: event.user,
           category: event.category,
-          subcategory: event.category
+          subcategory: event.subcategory
         },
         withCredentials: true,
         url: "http://localhost:4000/event",

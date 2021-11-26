@@ -7,7 +7,7 @@ import { postEvent, getUser } from "../../redux/actions";
 
 const CrearEventos = () => {
   const sports = ["Maraton", "Aeromodelismo", "Futbol", "Tenis", "Handball"];
-  const socials = ["Fiesta", "Reunion", "Protesta"];
+  const socials = ["Fiesta", "Reunion", "Protesta", "Concierto"];
   const user = useSelector((state) => state.User);
   console.log(user);
   const eventInicialState = {
@@ -62,7 +62,7 @@ const CrearEventos = () => {
           onChange={handleChange}
         />
         <select name="category" onChange={handleChange} defaultValue="1">
-          <option value="1" disabled>
+          <option  value="1" disabled>
             Categoria
           </option>
           <option value="sports">Deportes</option>
@@ -75,7 +75,7 @@ const CrearEventos = () => {
           </option>
           {event.category === "social"
             ? socials.map((e) => (
-                <option key={e} value={e}>
+                <option name={e} key={e} value={e}>
                   {e}
                 </option>
               ))
