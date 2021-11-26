@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router';
+<<<<<<< HEAD
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../redux/actions";
+=======
+import { useDispatch} from "react-redux";
+import { registerUser } from "../redux/actions";
+>>>>>>> 2640cf2020a72d95d25a063e625ed589e0d24934
 import { login } from "../redux/actions";
 import { getUser } from "../redux/actions";
 import Boton from ".././components/Boton/Boton";
@@ -97,9 +102,10 @@ export default function Userform() {
     ) {
       alert("Todos los campos deben ser completados correctamente");
     } else {
-      dispatch(register(input));
+      dispatch(registerUser(input));
       alert("Usuario creado, Bienvenido a Eventy");
-      navigate('/homeuser');
+      dispatch(getUser());
+      navigate('/');
       setInput({
         username: "",
         password: "",
@@ -125,8 +131,8 @@ export default function Userform() {
     } else {
       dispatch(login(input));
       alert("Usuario confirmado, Bienvenido a Eventy");
-      navigate('/homeuser');
       dispatch(getUser());
+      navigate('/');
       setInput({
         username: "",
         password: "",

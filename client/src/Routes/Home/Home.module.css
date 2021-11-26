@@ -1,0 +1,38 @@
+.cont_principal{
+    min-height: 80vh;
+    padding-top: 80px;
+    background-image: url('./img/fondo-homeuser.jpg');
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.cont_info_principal{
+    margin-bottom: 50px;
+    color: #fff;
+    text-align: center;
+    line-height: 1.2;
+    text-shadow: 1px 1px 5px var(--grisoscuro);
+}
+.cont_info_principal p{
+    font-size: 25px;
+}
+
+h1.titulo{
+    -color: #fff;
+    font-size: 65px;
+}
+.cont_carrusel{
+    width: 80%;
+    max-width: 1240px;
+    display: block;
+    margin: 0 auto -180px;
+}
+
+.cont_busqueda{
+    background-color: var(--naranja);
+    padding: 120px 20px 50px;
+}

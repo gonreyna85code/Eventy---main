@@ -39,7 +39,10 @@ router.post("/register", (req, res) => {
 
 router.get("/user", (req, res) => {
   if (req.user) {
-    res.send(req.user);
+    User.findOne({ _id: req.user.id }, (err, doc) => {
+      if (err) throw err;
+      res.send(doc);
+    }).populate('events');
   }else{
     res.send('Usuario no logueado')
   }
