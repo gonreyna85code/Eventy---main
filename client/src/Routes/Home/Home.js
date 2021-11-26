@@ -39,7 +39,11 @@ const Home = () => {
         <div className='cont-home'>
             <NavBar/>
             <div className={styles.cont_principal}>
-                <h1 className={styles.titulo}>Eventos Cercanos</h1>
+                <div className={styles.cont_info_principal}>
+                    <h1 className={styles.titulo}>Eventos Cercanos</h1>
+                    <p>Encuentra eventos cercanos a tu ubicación</p>
+                </div>
+                
                 <div className={`cont-carrusel ${styles.cont_carrusel}`}>
                     <AliceCarousel
                         mouseTracking

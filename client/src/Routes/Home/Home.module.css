@@ -1,8 +1,6 @@
-h1.titulo{
-    paddint-top: 120px;
-}
 .cont_principal{
     min-height: 80vh;
+    padding-top: 80px;
     background-image: url('./img/fondo-homeuser.jpg');
     background-position: center bottom;
     background-repeat: no-repeat;
@@ -12,6 +10,21 @@ h1.titulo{
     justify-content: flex-end;
 }
 
+.cont_info_principal{
+    margin-bottom: 50px;
+    color: #fff;
+    text-align: center;
+    line-height: 1.2;
+    text-shadow: 1px 1px 5px var(--grisoscuro);
+}
+.cont_info_principal p{
+    font-size: 25px;
+}
+
+h1.titulo{
+    -color: #fff;
+    font-size: 65px;
+}
 .cont_carrusel{
     width: 80%;
     max-width: 1240px;
