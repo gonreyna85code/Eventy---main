@@ -9,7 +9,7 @@ import { postEvent, getUser } from "../../redux/actions";
 const CrearEventos = () =>{
     
     const user = useSelector((state) => state.User);
-console.log(user)
+   console.log(user)
     const eventInicialState = {
         name:'',
         location: '',
@@ -21,7 +21,7 @@ console.log(user)
         subcategory:''
       }
 
-    console.log(eventInicialState);
+
 
     const dispatch = useDispatch();
     const [event, setEvent] = useState(eventInicialState);
@@ -37,9 +37,10 @@ console.log(user)
 
     const handleChange = (e) => {
 
-        let valueEvent = e.target.name === 'description' || e.target.name === 'imagen' ? { ...event, info: {...event.info, [e.target.name]: e.target.value} } : { ...event,[e.target.name] : e.target.value }
+        let valueEvent = e.target.name === 'description' || e.target.name === 'imagen' ? { ...event, info: {...event.info, [e.target.name]: e.target.value} } : { ...event,[e.target.name] : e.target.value,
+        user: user?.id }
         setEvent(valueEvent);
-
+        console.log(event);
     } 
 
     useEffect(() => {
