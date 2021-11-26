@@ -9,7 +9,11 @@ const CrearEventos = () => {
   const sports = ["Maraton", "Aeromodelismo", "Futbol", "Tenis", "Handball"];
   const socials = ["Fiesta", "Reunion", "Protesta", "Concierto"];
   const user = useSelector((state) => state.User);
-  console.log(user);
+  const dispatch = useDispatch();
+  if(!user){
+    dispatch(getUser());
+  }
+  console.log(user)
   const eventInicialState = {
     name: "",
     location: "",
@@ -21,7 +25,7 @@ const CrearEventos = () => {
     subcategory: "",
   };
 
-  const dispatch = useDispatch();
+  
   const [event, setEvent] = useState(eventInicialState);
 
   const handleSubmit = (e) => {

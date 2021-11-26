@@ -39,7 +39,7 @@ router.post("/register", (req, res) => {
 });
 
 router.get("/user", async (req, res) => {
-  const near = await Event.find({ location: req.user.profile.city });
+  const near = await Event.find({ location: req.user.profile?.city });
   const follows = await Event.find({ category: req.user.subscriptions });
   if (req.user) {
     User.findOne({ _id: req.user.id }, async (err, doc) => {
