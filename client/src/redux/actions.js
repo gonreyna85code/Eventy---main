@@ -5,7 +5,7 @@ export const GET_USER = "GET_USER";
 export const FIND_EVENT = "FIND_EVENT"; 
 export const GET_EVENT = 'GET_EVENT';
 
-export function register(register) {
+export function registerUser(register) {
     return async function (dispatch) {
       try {
         const json = await axios({

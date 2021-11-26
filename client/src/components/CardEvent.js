@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Boton from "./Boton/Boton";
+//import Boton from "./Boton/Boton";
 import styles from './CardEvent.module.css'
 import botonStyles from "../components/Boton/Boton.module.css"
 import {FontAwesomeIcon}from '@fortawesome/react-fontawesome'
@@ -33,7 +33,6 @@ export default function Card({name, id, location, date, img,buttonColor}){
             <Link to = {'/detailEvent/' + name}>
             <button className={`${botonStyles.btn} ${colorButton}`} >VER DETALLES</button>
             </Link>
-            {console.log(buttonColor)}
         </div>
     )
 }

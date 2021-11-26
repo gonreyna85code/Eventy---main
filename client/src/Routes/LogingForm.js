@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router';
-import { useDispatch, useSelector } from "react-redux";
-import { register } from "../redux/actions";
+import { useDispatch} from "react-redux";
+import { registerUser } from "../redux/actions";
 import { login } from "../redux/actions";
 import { getUser } from "../redux/actions";
 import Boton from ".././components/Boton/Boton";
@@ -97,7 +97,7 @@ export default function Userform() {
     ) {
       alert("Todos los campos deben ser completados correctamente");
     } else {
-      dispatch(register(input));
+      dispatch(registerUser(input));
       alert("Usuario creado, Bienvenido a Eventy");
       dispatch(getUser());
       navigate('/crear-evento');

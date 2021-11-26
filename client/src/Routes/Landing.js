@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import deportesImg from './images/categoria-deportes.png'
+import React from 'react'
+//import deportesImg from './images/categoria-deportes.png'
 import logoBlanco from './images/logo-blanco.png'
 import styles from './home.module.css'
-import Boton from '../components/Boton/Boton'
+//import Boton from '../components/Boton/Boton'
 import botonStyles from "../components/Boton/Boton.module.css"
 import Card from '../components/CardEvent'
 import {FontAwesomeIcon}from '@fortawesome/react-fontawesome'
@@ -45,7 +45,7 @@ export default function Home(){
     return(
         <div className={styles.container}>
             <div className={styles.navBar}>
-                <img className={styles.navLogo} src={logoBlanco}/>
+                <img className={styles.navLogo} src={logoBlanco} alt=''/>
                 <div className={styles.acceder}>
                     <div className={styles.elipsis}>
                     <FontAwesomeIcon icon={faCircle}/>
@@ -104,7 +104,7 @@ export default function Home(){
                     {
                         pruebaEventos && pruebaEventos.map((el)=>{
                             return(
-                            <Card img = {el.img} name = {el.name} location = {el.location} date = {el.date} id = {el.id} buttonColor='naranja'/>
+                            <Card key={el.name} img = {el.img} name = {el.name} location = {el.location} date = {el.date} id = {el.id} buttonColor='naranja'/>
                             )
                         })
                     }
@@ -160,7 +160,7 @@ export default function Home(){
                     {
                         pruebaEventos && pruebaEventos.map((el)=>{
                             return(
-                            <Card img = {el.img} name = {el.name} location = {el.location} date = {el.date} id = {el.id} buttonColor= 'azul'/>
+                            <Card key = {el.name} img = {el.img} name = {el.name} location = {el.location} date = {el.date} id = {el.id} buttonColor= 'azul'/>
                             )
                         })
                     }
