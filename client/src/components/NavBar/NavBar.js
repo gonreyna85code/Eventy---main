@@ -1,5 +1,5 @@
 import React from "react";
-import SearchBar from '../../components/SearchBar/SearchBar'
+import SearchBar from '../SearchBar/SearchBar'
 import { Link } from "react-router-dom";
 import logo from '../../Routes/images/logo-blanco.png'
 import styles from './NavBar.module.css'

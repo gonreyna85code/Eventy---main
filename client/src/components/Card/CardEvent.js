@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Boton from "./Boton/Boton";
+import Boton from "../Boton/Boton";
 import styles from './CardEvent.module.css'
-import botonStyles from "../components/Boton/Boton.module.css"
+import botonStyles from "../Boton/Boton.module.css"
 import {FontAwesomeIcon}from '@fortawesome/react-fontawesome'
 import {faCalendarAlt, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons'
 
