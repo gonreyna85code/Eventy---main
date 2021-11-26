@@ -1,4 +1,4 @@
-import {useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './Home.module.css';
 import NavBar from '../NavBar/NavBar';
@@ -30,7 +30,7 @@ const Home = () => {
 
     useEffect(()=>{
         dispatch(getNearbyEvents(user.profile.city));
-    }, [dispatch]);
+    }, [dispatch, user.profile.city]);
     
     console.log({eventosCercanos})
 
