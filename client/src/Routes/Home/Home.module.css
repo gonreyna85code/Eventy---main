@@ -1,3 +1,70 @@
-.titulo{
-    paddint-top: 120px;
+.cont_principal{
+    min-height: 50vh;
+    padding-top: 80px;
+    background-image: url('./img/fondo-homeuser.jpg');
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.cont_info_principal{
+    margin-bottom: 50px;
+    color: #fff;
+    text-align: center;
+    line-height: 1.2;
+    text-shadow: 1px 1px 5px var(--grisoscuro);
+}
+.cont_info_principal p{
+    font-size: 25px;
+}
+
+.cont_home :is(h1, h2){
+    font-size: 65px;
+    color: #fff;
+    line-height: 1.2;
+    text-shadow: 1px 1px 4px #333333a8;
+}
+.cont_carrusel{
+    width: 80%;
+    max-width: 1240px;
+    display: block;
+    margin: 0 auto -180px;
+}
+
+.cont_busqueda{
+    background-color: var(--naranja);
+    padding-block: 120px 50px;
+}
+
+.cont_categoria_home{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.cont_info_categoria_home{
+    width: 50%;
+}
+.cont_carrusel_categoria_home{
+    width: 50%;
+    padding: 70px 40px 30px
+}
+
+
+.cat_sociales{
+    background-image: url('./img/categoria-sociales.png');
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+
+.cat_deportes{
+    background-image: url('./img/categoria-deportes.png');
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
