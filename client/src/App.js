@@ -27,8 +27,7 @@ function App() {
       <div className="App">
         
         <Routes>
-         { user && user.id ? <Route path='/' element={<NavBar/>}/> : `` }
-          <Route exact path = '/' element ={ user && user.id ? <Home/> : <Landing/> }/> 
+          <Route exact path = '/' element ={ user && !user._id ? <Landing/>: <Home/> }/> 
           <Route exact path = '/crear-evento' element = {<CrearEventos/>}/>
           <Route exact path = '/detailEvent/:name' element = {<DetailEvet/>}/>
           <Route exact path = '/login' element = {<LogingForm/>}/>
