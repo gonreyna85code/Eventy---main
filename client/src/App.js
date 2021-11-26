@@ -6,7 +6,7 @@ import LogingForm from './Routes/LogingForm';
 import Landing from './Routes/Landing';
 import CrearEventos from './Routes/CrearEventos/CrearEventos';
 import DetailEvet from './Routes/DetailEvent';
-import NavBar from "./Routes/NavBar/NavBar"
+//import NavBar from "./Routes/NavBar/NavBar"
 import {getUser} from './redux/actions'
 import Home from './Routes/Home/Home';
 
