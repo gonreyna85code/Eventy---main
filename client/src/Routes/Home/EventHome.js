@@ -4,9 +4,7 @@ const EventHome = ({name, img, location, date, id}) => {
 
     return(
         <Link to={`/detailEvent/${name}`}>
-            <div className='cont-eventHome'>
-                <div className='eventHomeImg' style={{backgroundImage:`url(${img})`}}>
-                </div>
+            <div className='cont-eventHome' style={{backgroundImage:`url(${img})`}}>
                 <div className='cont-infoEventoHome'>
                     <h3>{name}</h3>
                     <ul>

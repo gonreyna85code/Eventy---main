@@ -42,7 +42,7 @@ const Home = () => {
                 <AliceCarousel
                     mouseTracking
                     items={
-                        eventosCercanos && eventosCercanos.map( evento => {
+                        user.events && user.events.map( evento => {
                             return(
                                 <EventHome
                                 name={evento.name}
