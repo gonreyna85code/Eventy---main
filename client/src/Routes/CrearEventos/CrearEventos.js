@@ -65,6 +65,18 @@ const CrearEventos = () =>{
                     onChange={handleChange}
                 />
                 <Input
+                    label='Categoria'
+                    type='text'
+                    name='category'
+                    onChange={handleChange}
+                />
+                <Input
+                    label='Sub-Categoria'
+                    type='text'
+                    name='subcategory'
+                    onChange={handleChange}
+                />
+                <Input
                     label='Fecha'
                     type='date'
                     name='date'
