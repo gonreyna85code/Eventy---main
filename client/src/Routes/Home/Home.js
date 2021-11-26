@@ -6,6 +6,7 @@ import EventHome from './EventHome';
 import { getUser, getNearbyEvents } from '../../redux/actions';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
+import './HomeCarrusel.css';
 
 
 
@@ -19,7 +20,7 @@ const responsive = {
 }
 
 const Home = () => {
-/*  EventHome = ({name, img, location, date, id}) */
+    
     const dispatch = useDispatch();
     const user = useSelector( state => state.User );
     const eventosCercanos = useSelector(state => state.NearbyEvents)
@@ -37,28 +38,36 @@ const Home = () => {
     return(
         <div className='cont-home'>
             <NavBar/>
-            <h1 className={styles.titulo}>Eventos Cercanos</h1>
-            <div className={styles.cont_carrusel}>
-                <AliceCarousel
-                    mouseTracking
-                    items={
-                        user.events && user.events.map( evento => {
-                            return(
-                                <EventHome
-                                name={evento.name}
-                                img={evento.info.imagen}
-                                location={evento.location}
-                                date={evento.date}
-                                id={evento._id}
-                                />
-                            );
-                        })
-                    }
-                    responsive={responsive}
-                    autoPlay={true}
-                    autoPlayInterval={3000}
-                    disableDotsControls={true}
-                />
+            <div className={styles.cont_principal}>
+                <h1 className={styles.titulo}>Eventos Cercanos</h1>
+                <div className={`cont-carrusel ${styles.cont_carrusel}`}>
+                    <AliceCarousel
+                        mouseTracking
+                        items={
+                            user.events && user.events.map( evento => {
+                                return(
+                                    <EventHome
+                                    name={evento.name}
+                                    img={evento.info.imagen}
+                                    location={evento.location}
+                                    date={evento.date}
+                                    id={evento._id}
+                                    />
+                                );
+                            })
+                        }
+                        responsive={responsive}
+                        controlsStrategy="alternate"
+                        autoPlay={true}
+                        infinite={true}
+                        autoPlayInterval={10000}
+                        keyboardNavigation={true}
+                        disableButtonsControls={false}
+                        disableDotsControls={true}
+                    />
+                </div>
+                <div className={styles.cont_busqueda}>
+                </div>
             </div>
         </div>
     );

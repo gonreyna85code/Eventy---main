@@ -20,7 +20,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
+a{text-decoration: none;}
 /* Esta clase es para centrar horizontalmente, no centra textos solo contenedores */
 .cont-center{
   display: table;
@@ -34,9 +34,8 @@ code {
 
 /* Los titulos h1, h2 y h3 estan con la tipografia Bebas Neue*/
 h1, h2, h3{
-
   font-family: var(--fonttitle);
-
+  font-weight: 100;
 }
 
 p{
