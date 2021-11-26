@@ -14,7 +14,7 @@ export default function DetailEvet(){
 
     useEffect(()=>{
         dispatch(getEvent(name)); 
-    }, [dispatch]);
+    }, [dispatch, name]);
 
     const theEvent = useSelector((state) => state.Event);
 
@@ -27,7 +27,7 @@ export default function DetailEvet(){
                <div>
                    <h1 className = 'nombre_evento'>{theEvent.name}</h1>
                    <div>
-                   <img className = 'imagen_detail' src = 'https://www.masquenegocio.com/wp-content/uploads/2018/03/evento-concierto-874x492.jpg'></img>
+                   <img className = 'imagen_detail' src = 'https://www.masquenegocio.com/wp-content/uploads/2018/03/evento-concierto-874x492.jpg' alt=''></img>
                    <p>Esta imágen solo es de prueba</p>
                    </div>
                    <div>

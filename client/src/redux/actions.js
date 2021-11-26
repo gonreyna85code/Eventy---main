@@ -6,7 +6,7 @@ export const FIND_EVENT = "FIND_EVENT";
 export const GET_EVENT = 'GET_EVENT';
 export const GET_NEARBY_EVENTS = 'GET_NEARBY_EVENTS';
 
-export function register(register) {
+export function registerUser(register) {
     return async function (dispatch) {
       try {
         const json = await axios({

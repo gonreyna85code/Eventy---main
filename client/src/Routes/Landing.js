@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import deportesImg from './images/categoria-deportes.png'
+import React from 'react'
+//import deportesImg from './images/categoria-deportes.png'
 import logoBlanco from './images/logo-blanco.png'
 import styles from './home.module.css'
-import Boton from '../components/Boton/Boton'
+//import Boton from '../components/Boton/Boton'
 import botonStyles from "../components/Boton/Boton.module.css"
 import Card from '../components/CardEvent'
 import {FontAwesomeIcon}from '@fortawesome/react-fontawesome'
@@ -45,7 +45,7 @@ export default function Home(){
     return(
         <div className={styles.container}>
             <div className={styles.navBar}>
-                <img className={styles.navLogo} src={logoBlanco}/>
+                <img className={styles.navLogo} src={logoBlanco} alt=''/>
                 <div className={styles.acceder}>
                     <div className={styles.elipsis}>
                     <FontAwesomeIcon icon={faCircle}/>
@@ -55,16 +55,16 @@ export default function Home(){
                     <Link to = '/login'>
                     <button className={`${botonStyles.btn} ${botonStyles.btn_azul} ${styles.navBarButon}`}>  
                         <FontAwesomeIcon icon={faUser}/>
-                        <a>ACCEDER</a>
+                        <span>ACCEDER</span>
                     </button>
                     </Link>
                 </div>
             </div>
             <div className={styles.principalBanner}>
                 <div>
-                    <a className={styles.P1}>SIGUE</a>
-                    <a className={styles.P2}>LOS EVENTOS</a>
-                    <a className={styles.P3}>CERCANOS A TI</a>
+                    <span className={styles.P1}>SIGUE</span>
+                    <span className={styles.P2}>LOS EVENTOS</span>
+                    <span className={styles.P3}>CERCANOS A TI</span>
                 <Link to = '/login'>
                 <button className={`${botonStyles.btn} ${botonStyles.btn_azul} ${styles.bannerBoton}`}> ACCEDER</button>
                 </Link>
@@ -104,7 +104,7 @@ export default function Home(){
                     {
                         pruebaEventos && pruebaEventos.map((el)=>{
                             return(
-                            <Card img = {el.img} name = {el.name} location = {el.location} date = {el.date} id = {el.id} buttonColor='naranja'/>
+                            <Card key={el.name} img = {el.img} name = {el.name} location = {el.location} date = {el.date} id = {el.id} buttonColor='naranja'/>
                             )
                         })
                     }
@@ -160,7 +160,7 @@ export default function Home(){
                     {
                         pruebaEventos && pruebaEventos.map((el)=>{
                             return(
-                            <Card img = {el.img} name = {el.name} location = {el.location} date = {el.date} id = {el.id} buttonColor= 'azul'/>
+                            <Card key = {el.name} img = {el.img} name = {el.name} location = {el.location} date = {el.date} id = {el.id} buttonColor= 'azul'/>
                             )
                         })
                     }
@@ -203,7 +203,7 @@ export default function Home(){
                 </div>
             </div>
             <div className={styles.sideBar}>
-                    <a>Eventy - 2021 | Soy Henry</a>
+                    <span>Eventy - 2021 | Soy Henry</span>
             </div>
         </div>
     )

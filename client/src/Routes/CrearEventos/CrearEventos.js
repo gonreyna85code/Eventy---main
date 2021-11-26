@@ -38,7 +38,7 @@ const CrearEventos = () =>{
     const handleChange = (e) => {
 
         let valueEvent = e.target.name === 'description' || e.target.name === 'imagen' ? { ...event, info: {...event.info, [e.target.name]: e.target.value} } : { ...event,[e.target.name] : e.target.value,
-        user: user?.id }
+        user: user._id }
         setEvent(valueEvent);
         console.log(event);
     } 
