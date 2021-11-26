@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router';
+<<<<<<< HEAD
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../redux/actions";
+=======
 import { useDispatch} from "react-redux";
 import { registerUser } from "../redux/actions";
+>>>>>>> 2640cf2020a72d95d25a063e625ed589e0d24934
 import { login } from "../redux/actions";
 import { getUser } from "../redux/actions";
 import Boton from ".././components/Boton/Boton";
