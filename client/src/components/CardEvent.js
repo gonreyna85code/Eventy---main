@@ -25,10 +25,10 @@ export default function Card({name, id, location, date, img,buttonColor}){
             <h3 className = {styles.nameCard}>{name}</h3>
             </div>
             <div>
-            <FontAwesomeIcon  className={`${colorIcon}`} icon={faMapMarkerAlt} /> <a className = {styles.locationCard}>{location}</a>
+            <FontAwesomeIcon  className={`${colorIcon}`} icon={faMapMarkerAlt} /> <span className = {styles.locationCard}>{location}</span>
             </div>
             <div>
-            <FontAwesomeIcon className={`${colorIcon}`}  icon={faCalendarAlt} /> <a className = {styles.dateCard}>{date}</a>
+            <FontAwesomeIcon className={`${colorIcon}`}  icon={faCalendarAlt} /> <span className = {styles.dateCard}>{date}</span>
             </div>
             <Link to = {'/detailEvent/' + name}>
             <button className={`${botonStyles.btn} ${colorButton}`} >VER DETALLES</button>

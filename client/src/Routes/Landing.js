@@ -55,16 +55,16 @@ export default function Home(){
                     <Link to = '/login'>
                     <button className={`${botonStyles.btn} ${botonStyles.btn_azul} ${styles.navBarButon}`}>  
                         <FontAwesomeIcon icon={faUser}/>
-                        <a>ACCEDER</a>
+                        <span>ACCEDER</span>
                     </button>
                     </Link>
                 </div>
             </div>
             <div className={styles.principalBanner}>
                 <div>
-                    <a className={styles.P1}>SIGUE</a>
-                    <a className={styles.P2}>LOS EVENTOS</a>
-                    <a className={styles.P3}>CERCANOS A TI</a>
+                    <span className={styles.P1}>SIGUE</span>
+                    <span className={styles.P2}>LOS EVENTOS</span>
+                    <span className={styles.P3}>CERCANOS A TI</span>
                 <Link to = '/login'>
                 <button className={`${botonStyles.btn} ${botonStyles.btn_azul} ${styles.bannerBoton}`}> ACCEDER</button>
                 </Link>
@@ -203,7 +203,7 @@ export default function Home(){
                 </div>
             </div>
             <div className={styles.sideBar}>
-                    <a>Eventy - 2021 | Soy Henry</a>
+                    <span>Eventy - 2021 | Soy Henry</span>
             </div>
         </div>
     )
