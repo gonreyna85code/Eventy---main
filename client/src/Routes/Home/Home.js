@@ -38,7 +38,7 @@ const Home = () => {
     console.log({eventosCercanos})
 
     return(
-        <div className='cont-home'>
+        <div className={styles.cont_home}>
             <NavBar/>
             <div className={styles.cont_principal}>
                 <div className={styles.cont_info_principal}>

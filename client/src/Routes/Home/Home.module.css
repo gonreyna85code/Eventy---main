@@ -21,8 +21,11 @@
     font-size: 25px;
 }
 
-h1.titulo{
+.cont_home :is(h1, h2){
     font-size: 65px;
+    color: #fff;
+    line-height: 1.2;
+    text-shadow: 1px 1px 4px #333333a8;
 }
 .cont_carrusel{
     width: 80%;
@@ -43,11 +46,11 @@ h1.titulo{
 }
 
 .cont_info_categoria_home{
-    width: 40%;
+    width: 50%;
 }
 .cont_carrusel_categoria_home{
-    width: 60%;
-    padding: 50px 30px
+    width: 50%;
+    padding: 70px 40px 30px
 }
 
 
