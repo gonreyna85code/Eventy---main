@@ -76,9 +76,10 @@ export default function Home(){
                         <p className= {styles.nombreClase}>
                             SOCIALES
                         </p>
+                        <Link to = '/login'>
                         <button className={`${styles.boton} ${botonStyles.btn} ${botonStyles.btn_naranja} `}>VER EVENTOS</button>
                         {/* <Boton className={styles.boton} colorBtn='naranja'> VER EVENTOS</Boton> */}
-
+                        </Link>
                     </div>
 
                 </div>
@@ -87,8 +88,9 @@ export default function Home(){
                         <p className= {styles.nombreClase}>
                             DEPORTES
                         </p>
+                        <Link to = '/login'>
                         <button className={`${botonStyles.btn} ${botonStyles.btn_azul} ${styles.boton}`}>VER EVENTOS</button>
-                        
+                        </Link>
                         
                     </div>
                 </div>
