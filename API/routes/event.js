@@ -25,9 +25,9 @@ router.post("/event",isAuthenticated, function(req, res){
         user: req.body.user,
         category: req.body.category,
         subcategory: req.body.subcategory,
-      });
-      await newEvent.save();
+      });      
       await User.updateOne({ _id: req.body.user }, { $push: { events: newEvent._id } });
+      await newEvent.save();
     }
   });
 });
