@@ -36,19 +36,18 @@ function rootReducer(state = initialState, action) {
       NearbyEvents: action.payload
     }
   }
-<<<<<<< HEAD
   if(action.type === PUT_USER ){
     return {
       ...state,
       User: {...state.User,
         profile:action.payload
       }
-=======
+    }
+  }
   if(action.type === FIND_EVENT_CATEGORY){
     return{
       ...state,
       Events: action.payload
->>>>>>> fabb16545721a7a3cc943f9b303ad7dd7bae25fc
     }
   }
   return state;

@@ -6,11 +6,8 @@ export const GET_USER = "GET_USER";
 export const FIND_EVENT = "FIND_EVENT"; 
 export const GET_EVENT = 'GET_EVENT';
 export const GET_NEARBY_EVENTS = 'GET_NEARBY_EVENTS';
-<<<<<<< HEAD
 export const PUT_USER = 'PUT_USER'
-=======
 export const FIND_EVENT_CATEGORY = 'FIND_EVENT_CATEGORY';
->>>>>>> fabb16545721a7a3cc943f9b303ad7dd7bae25fc
 
 export function registerUser(register) {
     return async function (dispatch) {
@@ -147,7 +144,6 @@ export function getNearbyEvents(parametro){
   }
 }
 
-<<<<<<< HEAD
 export function putUser(profile){
   return function(dispatch){
     axios({
@@ -157,7 +153,9 @@ export function putUser(profile){
       data: {...profile}
     })
     .then(resultado=>dispatch({type: PUT_USER, payload: profile}))
-=======
+    .catch(err=>alert(err))
+  }
+}
 export function findEventByCategory (parametro){
   return function (dispatch){
       axios({
@@ -166,7 +164,6 @@ export function findEventByCategory (parametro){
       url: "http://localhost:4000//events/filter/categoria-" + parametro,
     })
     .then(resultado => dispatch({type: FIND_EVENT_CATEGORY, payload: resultado}))
->>>>>>> fabb16545721a7a3cc943f9b303ad7dd7bae25fc
     .catch(err => alert(err))
   }
 }
