@@ -44,7 +44,7 @@ export default function SportCategory(){
                     <h1 className = 'hobbytitle'>Fútbol</h1>
                     <Link to = {'/subcategory/' + 'Futbol'}>
                     <button className={`${botonStyles.btn} ${botonStyles.btn_azul}`}>
-                        Seguir Hobby
+                        Acceder
                     </button>
                     </Link>
                 </div>
@@ -52,7 +52,7 @@ export default function SportCategory(){
                     <h1 className = 'hobbytitle'>Maratón</h1>
                     <Link to = {'/subcategory/' + 'Maraton'}>
                     <button className={`${botonStyles.btn} ${botonStyles.btn_azul}`}>
-                        Seguir Hobby
+                        Acceder
                     </button>
                     </Link>
                 </div>
@@ -60,7 +60,7 @@ export default function SportCategory(){
                     <h1 className = 'hobbytitle'>Tenis</h1>
                     <Link to = {'/subcategory/' + 'Tenis'}>
                     <button className={`${botonStyles.btn} ${botonStyles.btn_azul}`}>
-                        Seguir Hobby
+                        Acceder
                     </button>
                     </Link>
                 </div>
@@ -68,7 +68,7 @@ export default function SportCategory(){
                     <h1 className = 'hobbytitle'>Handball</h1>
                     <Link to = {'/subcategory/' + 'Handball'}>
                     <button className={`${botonStyles.btn} ${botonStyles.btn_azul}`}>
-                        Seguir Hobby
+                        Acceder
                     </button>
                     </Link>
                 </div>

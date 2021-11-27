@@ -16,7 +16,10 @@ export default function DetailEvet(){
         dispatch(getEvent(name)); 
     }, [dispatch, name]);
 
-    const theEvent = useSelector((state) => state.Event); 
+    const Events = useSelector((state) => state.Events);
+  
+    const Evento = Events.filter(el => el.name === name); 
+    const theEvent = Evento[0];
 
     console.log(theEvent);
 
