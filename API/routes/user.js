@@ -37,6 +37,10 @@ router.post("/register", (req, res) => {
     }
   });
 });
+router.get('/logout', function (req, res){
+  req.logOut()  // <-- not req.logout();
+  res.send('Usuario no logueado')
+});
 
 router.get("/user", async (req, res) => {
   const near = await Event.find({ location: req.user?.profile.city });

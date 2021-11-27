@@ -10,6 +10,8 @@ import Profile from './Routes/Profile/Profile';
 // import NavBar from "./Routes/NavBar/NavBar"
 import {getUser} from './redux/actions'
 import Home from './Routes/Home/Home';
+import SocialCategory from './Routes/SocialCategory/SocialCategory';
+import SportCategory from './Routes/SportCategory/SportCategory';
 
 
 function App() {
@@ -31,7 +33,12 @@ function App() {
           <Route exact path = '/crear-evento' element = {<CrearEventos/>}/>
           <Route exact path = '/detailEvent/:name' element = {<DetailEvet/>}/>
           <Route exact path = '/login' element = {<LogingForm/>}/>
+<<<<<<< HEAD
           <Route exact path = '/profile' element = {<Profile/>}/>
+=======
+          <Route exact path = '/social' element = {<SocialCategory/>}/>
+          <Route exact path = '/sport' element = {<SportCategory/>}/>
+>>>>>>> fabb16545721a7a3cc943f9b303ad7dd7bae25fc
         </Routes>
         
       </div>

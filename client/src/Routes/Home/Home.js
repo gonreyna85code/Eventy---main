@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import styles from './Home.module.css';
 import NavBar from '../NavBar/NavBar';
 import EventHome from './EventHome';
@@ -84,7 +85,9 @@ const Home = () => {
             <div className={`${styles.cat_sociales} ${styles.cont_categoria_home}`}>
                 <div className={styles.cont_info_categoria_home}>
                     <h2>Sociales</h2>
+                    <Link to = '/social'>
                     <Boton colorBtn='btn_naranja'>Ver Eventos</Boton>
+                    </Link>
                 </div>
                 <div className={styles.cont_carrusel_categoria_home}>
                     <AliceCarousel
@@ -164,8 +167,12 @@ const Home = () => {
                 </div>
                 <div className={styles.cont_info_categoria_home}>
                     <h2>Deportes</h2>
+                    <Link to = '/sport'>
                     <Boton colorBtn='btn_naranja'>Ver Eventos</Boton>
+                    </Link>
                 </div>
+            </div>
+            <div className={styles.cont_busqueda}>
             </div>
         </div>
     );

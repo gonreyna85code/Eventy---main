@@ -1,0 +1,31 @@
+.title{
+    font-size: 50px;
+}
+
+.cardsEvents{
+    width: 80%;
+    height: 25%;
+    display: flex;
+    justify-content: space-between;
+    margin-left:10%;
+}
+
+.cont-subcategories{
+    background-color: var(--naranja);
+    margin-top: 10px;
+    padding: 20px 20px 50px;
+}
+
+.hobby{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-style: solid;
+    border-color: rgb(1, 56, 95);
+    margin-bottom: 10px;
+}
+
+.hobbytitle{
+    margin-top: 10px;
+    margin-left: 10px;
+}
