@@ -6,7 +6,8 @@ import LogingForm from './Routes/LogingForm';
 import Landing from './Routes/Landing';
 import CrearEventos from './Routes/CrearEventos/CrearEventos';
 import DetailEvet from './Routes/DetailEvent';
-//import NavBar from "./Routes/NavBar/NavBar"
+import Profile from './Routes/Profile/Profile';
+// import NavBar from "./Routes/NavBar/NavBar"
 import {getUser} from './redux/actions'
 import Home from './Routes/Home/Home';
 
@@ -25,12 +26,12 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        
         <Routes>
           <Route exact path = '/' element ={ user && !user._id ? <Landing/>: <Home/> }/> 
           <Route exact path = '/crear-evento' element = {<CrearEventos/>}/>
           <Route exact path = '/detailEvent/:name' element = {<DetailEvet/>}/>
           <Route exact path = '/login' element = {<LogingForm/>}/>
+          <Route exact path = '/profile' element = {<Profile/>}/>
         </Routes>
         
       </div>

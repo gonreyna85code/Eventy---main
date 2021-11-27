@@ -1,6 +1,6 @@
 import { GET_USER } from "./actions.js";
 import { FIND_EVENT } from "./actions.js";
-import { GET_EVENT, GET_NEARBY_EVENTS } from "./actions.js"
+import { GET_EVENT, GET_NEARBY_EVENTS, PUT_USER } from "./actions.js"
 
 const initialState = {
   User: {},
@@ -34,6 +34,14 @@ function rootReducer(state = initialState, action) {
     return {
       ...state,
       NearbyEvents: action.payload
+    }
+  }
+  if(action.type === PUT_USER ){
+    return {
+      ...state,
+      User: {...state.User,
+        profile:action.payload
+      }
     }
   }
   return state;

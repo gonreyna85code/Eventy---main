@@ -17,7 +17,7 @@ export default function NavBar(){
                 <FontAwesomeIcon icon={faUser}/>
                 <ul>
                     <li><Link to="/crear-evento" style={{textDecoration: 'none', color: 'black'}}><span>Crear Evento</span></Link></li>
-                    <li><Link to="/home" style={{textDecoration: 'none', color: 'black'}}><span>ruta 2</span></Link></li>
+                    <li><Link to="/profile" style={{textDecoration: 'none', color: 'black'}}><span>Profile</span></Link></li>
                     <li><Link to="/home" style={{textDecoration: 'none', color: 'black'}}><span>ruta 3</span></Link></li>
                 </ul>
             </div>
