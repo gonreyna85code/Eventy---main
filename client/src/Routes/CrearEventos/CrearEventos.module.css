@@ -1,3 +1,26 @@
+.header{
+    padding: 80px 20px 200px;
+    background: var(--azul);
+}
+
+.header h1{
+    color: #fff;
+    line-height: 1.1;
+    text-align: center;
+    font-size: 65px;
+}
+.cont_crear_evento > div:nth-child(2){
+    padding: 0 20px 50px;
+    width: calc(100% - 40px);
+}
+.form{
+    padding: 20px 30px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 6px rgb(0 0 0 / 50%);
+    margin-top: -160px
+}
+
 .item_textarea {
     margin-bottom: 10px;
 }
@@ -13,5 +36,13 @@
     border: 1px solid #adadad;
     display: block;
     width: calc( 100% - 6px );
+    min-width: calc( 100% - 6px );
+    max-width: calc( 100% - 6px );;
     border-radius: 3px;
+}
+
+@media(max-width:767px){
+    .header h1{
+        font-size: 55px;
+    }
 }
