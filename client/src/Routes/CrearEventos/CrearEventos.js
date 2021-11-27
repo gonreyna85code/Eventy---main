@@ -72,7 +72,7 @@ const CrearEventos = () => {
         />
         <Select name="category" onchange={handleChange} default_value="1" default_name='Categoria' options={categories}/>
         <br />
-        <Select type="a" name="subcategory" onchange={handleChange} default_value="1" default_name='Sub-Categoria' herencia={event.category} options={subcategories}/>
+        {event.category === 'social' || event.category === 'sports' ? <Select type="a" name="subcategory" onchange={handleChange} default_value="1" default_name='Sub-Categoria' herencia={event.category} options={subcategories}/> : null}
         <Input label="Fecha" type="date" name="date" onChange={handleChange} />
         <Input
           label="Imagen del Evento (url)"
