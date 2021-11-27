@@ -27,7 +27,7 @@ export default function Card({name, id, location, date, img,buttonColor}){
             </div>
             :
             <div>
-                <img className = {styles.cont_img} src = 'https://i.pinimg.com/564x/40/b1/3b/40b13b8551695223454663c0d26caaa3.jpg'></img>
+                <img className = {styles.cont_img} src = 'https://i.pinimg.com/564x/40/b1/3b/40b13b8551695223454663c0d26caaa3.jpg' alt=''></img>
             </div>    
             }
             <div>
