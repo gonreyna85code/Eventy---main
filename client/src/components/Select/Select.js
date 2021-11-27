@@ -22,7 +22,7 @@ export default function Select({type,name,onchange,default_value,default_name,he
           <option  value={default_value}>
             {default_name}
           </option>
-          {options.map((o)=><option value={o.value} key={o.value}>{o.name?o.name:o.value}</option>)}
+          {options?.map((o)=><option value={o.value} key={o.value}>{o.name?o.name:o.value}</option>)}
         </select>
     )
 }
