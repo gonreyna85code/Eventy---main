@@ -168,11 +168,52 @@ const Home = () => {
                 <div className={styles.cont_info_categoria_home}>
                     <h2>Deportes</h2>
                     <Link to = '/sport'>
-                    <Boton colorBtn='btn_naranja'>Ver Eventos</Boton>
+                    <Boton colorBtn='btn_azul'>Ver Eventos</Boton>
                     </Link>
                 </div>
             </div>
-            <div className={styles.cont_busqueda}>
+            <div className={styles.cont_eventos_seguidos}>
+                <Container>
+                    <h2>Eventos Seguidos</h2>
+                    <div className={styles.cont_carrusel_seguidos}>
+                        <AliceCarousel
+                            mouseTracking
+                            items={
+                                user.events && user.events.map( evento => {
+                                    
+                                    return(
+                                        <div>
+                                        {
+
+                                            evento.info.imagen ?
+                                            
+                                                <CardEvent
+                                                    name={evento.name}
+                                                    img={evento.info.imagen}
+                                                    location={evento.location}
+                                                    date={evento.date}
+                                                    id={evento._id}
+                                                    buttonColor='naranja'
+                                                    />
+                                                :
+                                                
+                                                ``
+                                            }
+                                        </div>
+                                    );
+
+                                })
+                            }
+                            responsive={responsive}
+                            controlsStrategy="alternate"
+                            autoPlay={true}
+                            infinite={true}
+                            autoPlayInterval={4000}
+                            disableButtonsControls={true}
+                            disableDotsControls={false}
+                        />
+                    </div>
+                </Container>
             </div>
         </div>
     );
