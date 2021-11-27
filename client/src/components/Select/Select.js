@@ -19,7 +19,7 @@ export default function Select({type,name,onchange,default_value,default_name,he
     }
     return (
         <select name={name} onChange={onchange} defaultValue={default_value} className={styles.select}>
-          <option  value={default_value} disabled>
+          <option  value={default_value}>
             {default_name}
           </option>
           {options.map((o)=><option value={o.value} key={o.value}>{o.name?o.name:o.value}</option>)}
