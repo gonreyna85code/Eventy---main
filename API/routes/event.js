@@ -115,9 +115,9 @@ router.get('/socialEvents', isAuthenticated, async (req,res)=>{
   res.status(404).send('No hay eventos')
 })
 
-router.get('/sportEvents', isAuthenticated, async (req,res)=>{
+router.get('/sportEvents', async (req,res)=>{
   var response = await Event.find();
-  var socialEvents = response.filter(el => el.category === 'sport');
+  var socialEvents = response.filter(el => el.category === 'sports');
   socialEvents.length > 0 ?
   res.status(200).json(socialEvents) :
   res.status(404).send('No hay eventos')

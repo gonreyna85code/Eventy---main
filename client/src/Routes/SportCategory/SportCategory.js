@@ -10,12 +10,12 @@ import botonStyles from "../../components/Boton/Boton.module.css"
 export default function SportCategory(){
     const dispatch = useDispatch();
 
-    //useEffect(()=>{
-    //    dispatch(findEventByCategory('social'));
-    //},[]);
+    useEffect(()=>{
+        dispatch(findEventByCategory('sports'));
+    },[]);
 
-    const sportEvents = useSelector((state) => state.Events);
-    console.log(sportEvents) 
+    const sportsEvents = useSelector((state) => state.Events);
+    console.log(sportsEvents) 
 
     const pruebaEventos = [
         {
@@ -53,9 +53,9 @@ export default function SportCategory(){
             </div>
             <div className ='cardsEvents'>
             {
-                        pruebaEventos && pruebaEventos.map((el)=>{
+                        sportsEvents && sportsEvents.map((el)=>{
                             return(
-                            <Card key={el.name} img = {el.img} name = {el.name} location = {el.location} date = {el.date} id = {el.id} buttonColor='naranja'/>
+                            <Card key={el.name} img = {el.info.imagen} name = {el.name} location = {el.location} date = {el.date} id = {el.id} buttonColor='naranja'/>
                             )
                         })
                     }
