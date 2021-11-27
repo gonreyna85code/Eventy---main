@@ -10,7 +10,7 @@ export default function Profile(){
     const user = useSelector(state => state.User);
     const [params,setParams]=useState({view:'Novedades'});
     function handleClick(e){
-        setParams({view:e.target.value})
+        setParams({view:e.target.innerText})
     }
     return (
         <>

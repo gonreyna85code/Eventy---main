@@ -149,7 +149,7 @@ export function putUser(profile){
     axios({
       method: "PUT",
       withCredentials: true,
-      url: "http://localhost:4000//user_update",
+      url: "http://localhost:4000/user_update",
       data: {...profile}
     })
     .then(resultado=>dispatch({type: PUT_USER, payload: profile}))

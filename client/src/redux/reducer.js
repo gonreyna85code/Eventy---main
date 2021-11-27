@@ -40,7 +40,7 @@ function rootReducer(state = initialState, action) {
     return {
       ...state,
       User: {...state.User,
-        profile:action.payload
+        profile:{...state.User.profile,...action.payload}
       }
     }
   }

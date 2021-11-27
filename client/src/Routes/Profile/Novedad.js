@@ -31,7 +31,6 @@ export default function Novedad({info,type}){
         case 'evento':
             return (
                 <div className={styles.novedad}>
-                    <img src={info.user.photo?info.user.photo:photo} alt='photop' className={styles.photoi}/>
                     <span className={styles.p}> {info.user.username} ha creado el evento <b onClick={handleClick}> {info.event.name} </b></span>
                 </div>
             )

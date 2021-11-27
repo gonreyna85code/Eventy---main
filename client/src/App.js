@@ -12,6 +12,7 @@ import {getUser} from './redux/actions'
 import Home from './Routes/Home/Home';
 import SocialCategory from './Routes/SocialCategory/SocialCategory';
 import SportCategory from './Routes/SportCategory/SportCategory';
+import Setting from './Routes/Setting/Setting';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           <Route exact path = '/detailEvent/:name' element = {<DetailEvet/>}/>
           <Route exact path = '/login' element = {<LogingForm/>}/>
           <Route exact path = '/profile' element = {<Profile/>}/>
+          <Route exact path = '/setting' element = {<Setting/>}/>
           <Route exact path = '/social' element = {<SocialCategory/>}/>
           <Route exact path = '/sport' element = {<SportCategory/>}/>
         </Routes>
