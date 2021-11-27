@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import { Link } from "react-router-dom";
 import { findEventByCategory } from "../../redux/actions";
@@ -12,34 +12,10 @@ export default function SocialCategory(){
 
     useEffect(()=>{
         dispatch(findEventByCategory('social'));
-    },[]);
+    },[dispatch]);
 
     const socialEvents = useSelector((state) => state.Events);
-    console.log(socialEvents) 
-
-    const pruebaEventos = [
-        {
-        name: 'LollaPalooza 2022',
-        id: 1,
-        location: 'San Isidro, Argentina',
-        date: 'Marzo 18, 19 y 20 | 2022',
-        img: 'https://i.pinimg.com/564x/e6/e1/58/e6e158eba9ba9208b4abb6fec41e2aeb.jpg'
-    },
-    {
-        name: 'Festival Intenacional de Cine de Mar del Plata',
-        id: 2,
-        location: 'Mar del Plata, Argentina',
-        date: 'Noviembre 18 al 28 | 2021',
-        img: 'https://www.mardelplatafilmfest.com/beta36/images/news/36-festival-internacional-de-cine-de-mar-del-plata-imagen1_9.jpg'
-    },
-    {
-        name: 'Festival La Nueva Generación (LNG) 2022',
-        id: 3,
-        location: 'Córdoba, Argentina',
-        date: 'Noviembre 11, 12, 13 | 2022',
-        img: 'https://indiehoy.com/wp-content/uploads/2019/10/la-nueva-generacion.jpg'
-    }
-    ]
+    console.log(socialEvents)     
 
     return(
         <div>

@@ -108,25 +108,23 @@ router.get("/events/filter/categoria-:categoria?/ciudad-:ciudad?/pago-:pago?",is
 })
 
 router.get('/socialEvents', isAuthenticated, async (req,res)=>{
-  var response = await Event.find();
-  var socialEvents = response.filter(el => el.category === 'social');
-  socialEvents.length > 0 ?
-  res.status(200).json(socialEvents) :
+  var response = await Event.find({category: 'social'});
+  response.length > 0 ?
+  res.status(200).send(response) :
   res.status(404).send('No hay eventos')
 })
 
-router.get('/sportEvents', async (req,res)=>{
-  var response = await Event.find();
-  var socialEvents = response.filter(el => el.category === 'sports');
-  socialEvents.length > 0 ?
-  res.status(200).json(socialEvents) :
+router.get('/sportEvents', isAuthenticated, async (req,res)=>{
+var response = await Event.find({category: 'sports'});
+  response.length > 0 ?
+  res.status(200).send(response) :
   res.status(404).send('No hay eventos')
 })
 
 router.get('/allEvents', isAuthenticated, async(req,res)=>{
   var response = await Event.find();
   response.length > 0 ?
-  res.status(200).json(response) :
+  res.status(200).send(response) :
   res.status(404).send('No hay Eventos')
 })
 
