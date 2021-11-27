@@ -7,8 +7,9 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    width: calc(100% - 50px);
+    width: 250px;
     margin-inline: 20px;
+    margin-bottom: 20px;
     background-color: #fff;
 }
 

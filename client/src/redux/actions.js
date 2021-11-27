@@ -163,14 +163,14 @@ export function putUser(user){
     .catch(err=>alert(err))
   }
 }
-export function findEventByCategory (parametro){
+export function findEventByCategory (){
   return function (dispatch){
       axios({
       method: "GET",
       withCredentials: true,
-      url: "http://localhost:4000//events/filter/categoria-" + parametro,
+      url: "http://localhost:4000/socialEvents",
     })
-    .then(resultado => dispatch({type: FIND_EVENT_CATEGORY, payload: resultado}))
+    .then(resultado => dispatch({type: FIND_EVENT_CATEGORY, payload: resultado.data}))
     .catch(err => alert(err))
   }
 }
