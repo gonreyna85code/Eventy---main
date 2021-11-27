@@ -41,16 +41,36 @@ export default function SportCategory(){
             <div className = 'cont-subcategories'>
                 <h1 className = 'title2'>Subcategorías:</h1>
                 <div className = 'hobby'>
-                    <h1 className = 'hobbytitle'>Ejemplo de subcategoría</h1>
+                    <h1 className = 'hobbytitle'>Fútbol</h1>
+                    <Link to = {'/subcategory/' + 'Futbol'}>
                     <button className={`${botonStyles.btn} ${botonStyles.btn_azul}`}>
                         Seguir Hobby
                     </button>
+                    </Link>
                 </div>
                 <div className = 'hobby'>
-                    <h1 className = 'hobbytitle'>Ejemplo de subcategoría</h1>
+                    <h1 className = 'hobbytitle'>Maratón</h1>
+                    <Link to = {'/subcategory/' + 'Maraton'}>
                     <button className={`${botonStyles.btn} ${botonStyles.btn_azul}`}>
                         Seguir Hobby
                     </button>
+                    </Link>
+                </div>
+                <div className = 'hobby'>
+                    <h1 className = 'hobbytitle'>Tenis</h1>
+                    <Link to = {'/subcategory/' + 'Tenis'}>
+                    <button className={`${botonStyles.btn} ${botonStyles.btn_azul}`}>
+                        Seguir Hobby
+                    </button>
+                    </Link>
+                </div>
+                <div className = 'hobby'>
+                    <h1 className = 'hobbytitle'>Handball</h1>
+                    <Link to = {'/subcategory/' + 'Handball'}>
+                    <button className={`${botonStyles.btn} ${botonStyles.btn_azul}`}>
+                        Seguir Hobby
+                    </button>
+                    </Link>
                 </div>
             </div>
             <div>
