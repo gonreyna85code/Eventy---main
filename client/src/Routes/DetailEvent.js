@@ -27,8 +27,11 @@ export default function DetailEvet(){
                <div>
                    <h1 className = 'nombre_evento'>{theEvent.name}</h1>
                    <div>
-                   <img className = 'imagen_detail' src = 'https://www.masquenegocio.com/wp-content/uploads/2018/03/evento-concierto-874x492.jpg' alt=''></img>
-                   <p>Esta imágen solo es de prueba</p>
+                   {theEvent.info.imagen ?
+        <img className = 'imagen_detail' src = {theEvent.info.imagen} alt=''></img>
+        :
+        <img className = 'imagen_detail' src = {'https://www.masquenegocio.com/wp-content/uploads/2018/03/evento-concierto-874x492.jpg'} alt=''></img>
+            }
                    </div>
                    <div>
                        <h1>Información del evento:</h1>
@@ -50,7 +53,7 @@ export default function DetailEvet(){
                :
                <h1>Cargando... </h1>
            }
-           <Link to ='/homeuser'>
+           <Link to ='/'>
            <Boton colorBtn='btn_azul'>Volver al Home</Boton>
            </Link>
        </div>
