@@ -61,14 +61,16 @@ router.get("/user", async (req, res) => {
   }
 });
 
-router.put("/user_update", (req, res) => {
+router.put("/user_update", (req, res, next) => {
   User.findOne({ username: req.body.username }, async (err, doc) => {
     if (err) throw err;
     if (!doc) res.send("User Not Found");
     if (doc) {
       doc.profile = req.body.profile;
-      await doc.save();
-      res.send("User Updated");
+      await doc.save().then((r)=>{
+        console.log(doc)
+        res.send("User Updated");
+      });
     }
   });
 });

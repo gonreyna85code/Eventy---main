@@ -1,7 +1,7 @@
 import React from "react";
 import SearchBar from '../../components/SearchBar/SearchBar'
 import { Link } from "react-router-dom";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import logo from '../../Routes/images/logo-blanco.png'
 import styles from './NavBar.module.css'
 import {FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,7 +17,7 @@ export default function NavBar(){
     }
     return (
         <div className={styles.navBar}>
-            <div className={styles.icono}><Link to ="/homeuser"><img src={logo} alt=''/></Link></div>
+            <div className={styles.icono}><Link to ="/"><img src={logo} alt=''/></Link></div>
             <div className={styles.search}><SearchBar/></div>
             <div className={styles.menu}>
                 <FontAwesomeIcon icon={faUser}/>

@@ -144,15 +144,22 @@ export function getNearbyEvents(parametro){
   }
 }
 
-export function putUser(profile){
+export function putUser(user){
   return function(dispatch){
     axios({
       method: "PUT",
       withCredentials: true,
       url: "http://localhost:4000/user_update",
-      data: {...profile}
+      data: {
+        username:user.username,
+        profile:{...user.profile}
+      }
     })
-    .then(resultado=>dispatch({type: PUT_USER, payload: profile}))
+    .then(resultado=>{
+      dispatch({type: PUT_USER, payload: user.profile})
+      console.log(resultado.data)
+      alert("Cambios guardados")
+    })
     .catch(err=>alert(err))
   }
 }

@@ -1,6 +1,6 @@
 import {React, useState} from 'react';
 import { useSelector } from 'react-redux';
-import styles from './Profile.module.css'
+import styles from './Profile.module.css';
 import Initial from './Initial';
 import Information from './Information';
 import Novedades from './Novedades';
