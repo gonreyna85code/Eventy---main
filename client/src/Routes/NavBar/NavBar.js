@@ -23,13 +23,10 @@ export default function NavBar(){
                 <FontAwesomeIcon icon={faUser}/>
                 <ul>
                     <li><Link to="/crear-evento" style={{textDecoration: 'none', color: 'black'}}><span>Crear Evento</span></Link></li>
-<<<<<<< HEAD
                     <li><Link to="/profile" style={{textDecoration: 'none', color: 'black'}}><span>Profile</span></Link></li>
                     <li><Link to="/home" style={{textDecoration: 'none', color: 'black'}}><span>ruta 3</span></Link></li>
-=======
                     <li><Link to="/home" style={{textDecoration: 'none', color: 'black'}}><span>ruta 2</span></Link></li>
                     <li><Link to="/" onClick={(e) => handler()} style={{textDecoration: 'none', color: 'black'}}><span>Logout</span></Link></li>
->>>>>>> fabb16545721a7a3cc943f9b303ad7dd7bae25fc
                 </ul>
             </div>
         </div>
