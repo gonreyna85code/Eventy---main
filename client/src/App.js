@@ -15,6 +15,7 @@ import SportCategory from './Routes/SportCategory/SportCategory';
 import Setting from './Routes/Setting/Setting';
 import Resultado from './Routes/Resultado/Resultado.js';
 import SubCategory from './Routes/SocialCategory/SocialSubcategories/Socialsub';
+import AllEvents from './Routes/AllEvents/AllEvents';
 
 
 function App() {
@@ -42,6 +43,8 @@ function App() {
           <Route exact path = '/sport' element = {<div><NavBar/><SportCategory/></div>}/>
           <Route exact path = '/subcategory/:subcategory' element = {<div><NavBar/><SubCategory/></div>}/>
           <Route exact path = '/result' element = {<div><NavBar/><Resultado/></div>}/>
+          <Route exact path = '/all-events' element = {<div><NavBar/><AllEvents/></div>}/>
+         
         </Routes>
       </div>
     </BrowserRouter>
