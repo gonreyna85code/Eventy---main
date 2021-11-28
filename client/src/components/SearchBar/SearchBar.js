@@ -13,16 +13,14 @@ export default function SearchBar (props){
     const navigate = useNavigate(); 
 
     function search(event){
-        event.preventDefault();
         dispatch(findEvent(state));
         if(state !== "")navigate("/result")
         setState("")
-       
     }
 
     return (
         <div className={style.container}>
-            <input className={style.input}value = {state} onChange={event => setState(event.target.value)}/>
+            <input className={style.input}value = {state} onChange={event => setState(event.target.value)} onKeyDown={event => {if(event.key === "Enter")search()}}/>
            <button className={style.boton}  onClick={search}><FontAwesomeIcon icon={faSearch}/></button>
         </div>
     )
