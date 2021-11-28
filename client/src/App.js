@@ -19,6 +19,7 @@ import NavBar from './components/NavBar/NavBar';
 import Loginform from './components/Login/LogingForm';
 import RegisterForm from './components/Login/RegisterForm';
 
+import AllEvents from './Routes/AllEvents/AllEvents';
 
 
 function App() {

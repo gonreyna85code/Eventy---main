@@ -41,6 +41,19 @@ export default function Setting(){
         dispatch(getUser());
     }, [dispatch]);
 
+    useEffect(() => {
+        setProfile({
+            name:user.profile?.name,
+            surname: user.profile?.surname,
+            age: user.profile?.age,
+            email: user.profile?.email,
+            city: user.profile?.city,
+            photo:user.profile?.photo?user.profile?.photo:'',
+            portada:user.profile?.portada?user.profile?.portada:'',
+            gender:user.profile?.gender?user.profile?.gender:'',
+        })
+    },[user])
+
     if(user==="Usuario no logueado"){
         return (
             <Warning />

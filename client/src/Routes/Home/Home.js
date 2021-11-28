@@ -46,14 +46,14 @@ const Home = () => {
                 </div>
                 
                 <div className={`cont-carrusel ${styles.cont_carrusel}`}>
-                    {/* <AliceCarousel
+                    <AliceCarousel
                         mouseTracking
                         items={
                             user.near && user.near.map( evento => {
                                 return(
                                     <EventHome
                                     name={evento.name}
-                                    img={evento.info.imagen}
+                                    img={evento.info.image}
                                     location={evento.location}
                                     date={evento.date.slice(8,10)+'/'+evento.date.slice(5,7)}
                                     id={evento._id}
@@ -69,7 +69,7 @@ const Home = () => {
                         keyboardNavigation={true}
                         disableButtonsControls={false}
                         disableDotsControls={true}
-                    /> */}
+                    />
                 </div>
             </div>
             <div className={styles.cont_busqueda}>
@@ -101,7 +101,42 @@ const Home = () => {
                     </Link>
                 </div>
                 <div className={styles.cont_carrusel_categoria_home}>
-                    {/* <AliceCarousel
+                    <AliceCarousel
+                        mouseTracking
+                        items={
+                            user.events && user.events.map( evento => {
+                                
+                                return(
+                                    <div>
+                                       {
+                                        
+                                        <CardEvent
+                                            name={evento.name}
+                                            img='https://www.chefandparty.com/wp-content/uploads/2020/07/Sociales.jpg'
+                                            location={evento.location}
+                                            date={evento.date}
+                                            id={evento._id}
+                                            buttonColor='naranja'
+                                        />
+                                        }
+                                    </div>
+                                );
+
+                            })
+                        }
+                        responsive={responsive}
+                        controlsStrategy="alternate"
+                        autoPlay={true}
+                        infinite={true}
+                        autoPlayInterval={4000}
+                        disableButtonsControls={true}
+                        disableDotsControls={false}
+                    />
+                </div>
+            </div>
+            <div className={`${styles.cat_deportes} ${styles.cont_categoria_home}`}>
+                <div className={styles.cont_carrusel_categoria_home}>
+                    <AliceCarousel
                         mouseTracking
                         items={
                             user.events && user.events.map( evento => {
@@ -110,57 +145,16 @@ const Home = () => {
                                     <div>
                                     {
 
-                                        evento.info.imagen ?
-                                        
-                                        <CardEvent
-                                            name={evento.name}
-                                            img={evento.info.imagen}
-                                            location={evento.location}
-                                            date={evento.date}
-                                            id={evento._id}
-                                            buttonColor='naranja'
-                                            />
-                                        : ``
-                                        }
-                                    </div>
-                                );
-
-                            })
-                        }
-                        responsive={responsive}
-                        controlsStrategy="alternate"
-                        autoPlay={true}
-                        infinite={true}
-                        autoPlayInterval={4000}
-                        disableButtonsControls={true}
-                        disableDotsControls={false}
-                    /> */}
-                </div>
-            </div>
-            <div className={`${styles.cat_deportes} ${styles.cont_categoria_home}`}>
-                <div className={styles.cont_carrusel_categoria_home}>
-                    {/* <AliceCarousel
-                        mouseTracking
-                        items={
-                            user.events && user.events.map( evento => {
-                                
-                                return(
-                                    <div>
-                                       {
-
-                                        evento.info.imagen ?
                                         
                                             <CardEvent
                                                 name={evento.name}
-                                                img={evento.info.imagen}
+                                                img='https://blog.jeep.com.ec/hubfs/7%20deportes%20extremos%20para%20realizar%20outdoor%20despu%C3%A9s%20de%20la%20cuarentena-4.png'
                                                 location={evento.location}
                                                 date={evento.date}
                                                 id={evento._id}
                                                 buttonColor='naranja'
                                                 />
-                                            :
                                             
-                                            ``
                                         }
                                     </div>
                                 );
@@ -174,7 +168,7 @@ const Home = () => {
                         autoPlayInterval={4000}
                         disableButtonsControls={true}
                         disableDotsControls={false}
-                    /> */}
+                    />
                 </div>
                 <div className={styles.cont_info_categoria_home}>
                     <h2>Deportes</h2>
@@ -187,7 +181,7 @@ const Home = () => {
                 <Container>
                     <h2>Eventos Seguidos</h2>
                     <div className={styles.cont_carrusel_seguidos}>
-                        {/* <AliceCarousel
+                        <AliceCarousel
                             mouseTracking
                             items={
                                 user.events && user.events.map( evento => {
@@ -195,20 +189,16 @@ const Home = () => {
                                     return(
                                         <div>
                                         {
-
-                                            evento.info.imagen ?
                                             
-                                                <CardEvent
-                                                    name={evento.name}
-                                                    img={evento.info.imagen}
-                                                    location={evento.location}
-                                                    date={evento.date}
-                                                    id={evento._id}
-                                                    buttonColor='naranja'
-                                                    />
-                                                :
-                                                
-                                                ``
+                                            <CardEvent
+                                                name={evento.name}
+                                                img='https://blog.jeep.com.ec/hubfs/7%20deportes%20extremos%20para%20realizar%20outdoor%20despu%C3%A9s%20de%20la%20cuarentena-1.png'
+                                                location={evento.location}
+                                                date={evento.date}
+                                                id={evento._id}
+                                                buttonColor='naranja'
+                                                />
+
                                             }
                                         </div>
                                     );
@@ -222,7 +212,7 @@ const Home = () => {
                             autoPlayInterval={4000}
                             disableButtonsControls={true}
                             disableDotsControls={false}
-                        /> */}
+                        />
                     </div>
                 </Container>
             </div>

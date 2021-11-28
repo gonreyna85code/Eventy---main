@@ -9,6 +9,11 @@ export const GET_NEARBY_EVENTS = 'GET_NEARBY_EVENTS';
 export const PUT_USER = 'PUT_USER'
 export const FIND_EVENT_CATEGORY = 'FIND_EVENT_CATEGORY';
 export const FIND_EVENT_SUB = 'FIND_EVENT_SUB';
+export const GET_ALL_EVENTS = 'GET_ALL_EVENTS';
+export const GET_BY_CAT = 'GET_BY_CAT';
+export const GET_BY_SUB = 'GET_BY_SUB';
+export const GET_BY_CITY = 'GET_BY_CITY';
+
 
 export function registerUser(register) {
     return async function (dispatch) {
@@ -118,6 +123,18 @@ export function postEvent(event) {
   };
 }
 
+export function getAllEvents(){
+  return function (dispatch){
+      axios({
+      method: "GET",
+      withCredentials: true,
+      url: "http://localhost:4000/allEvents",
+    })
+    .then(resultado => dispatch({type: GET_ALL_EVENTS, payload: resultado}))
+    .catch(err => alert(err))
+  }
+}
+
 export function findEvent (parametro){
   return function (dispatch){
       axios({
@@ -198,3 +215,17 @@ export function findEventSub(subcategory){
     .catch(err => alert(err))
   }
 } 
+
+export function getByCat(category) {
+  return { type: "GET_BY_CAT", payload: category };
+}
+
+export function getBySub(subcategory) {
+  return { type: "GET_BY_SUB", payload: subcategory };
+}
+
+export function getByCity(city) {
+  return { type: "GET_BY_CITY", payload: city };
+}
+
+

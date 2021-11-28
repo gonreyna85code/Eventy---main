@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getEvent } from "../redux/actions";
 import './DetailEvents.css';
 import Boton from "../components/Boton/Boton";
+import styles from './Home/Home.module.css';
 
 export default function DetailEvet(){
     
@@ -28,6 +29,7 @@ export default function DetailEvet(){
            {
                theEvent?
                <div>
+                 <div className = 'fondo'>
                    <h1 className = 'nombre_evento'>{theEvent.name}</h1>
                    <div>
                    {theEvent.info.imagen ?
@@ -36,12 +38,13 @@ export default function DetailEvet(){
         <img className = 'imagen_detail' src = {'https://www.masquenegocio.com/wp-content/uploads/2018/03/evento-concierto-874x492.jpg'} alt=''></img>
             }
                    </div>
+                 </div>
                    <div>
                        <h1>Información del evento:</h1>
                        <h3>Lugar:</h3>
                        <p>{theEvent.location}</p>
                        <h3>Fecha y hora:</h3>
-                       <p>{theEvent.date.slice(8,10)+'/'+theEvent.date.slice(5,7)}</p>
+                       <p>{theEvent.date.slice(8,10)+'/'+theEvent.date.slice(5,7)+'/'+theEvent.date.slice(2,4)}</p>
                        <p>Esta es una fecha de prueba</p>
                    </div>
                    <div>
