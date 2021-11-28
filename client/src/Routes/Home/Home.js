@@ -52,11 +52,11 @@ const Home = () => {
                             user.near && user.near.map( evento => {
                                 return(
                                     <EventHome
-                                    name={evento.name}
-                                    img={evento.info.image}
-                                    location={evento.location}
-                                    date={evento.date.slice(8,10)+'/'+evento.date.slice(5,7)}
-                                    id={evento._id}
+                                        name={evento.name}
+                                        img={evento.info.imagen}
+                                        location={evento.location}
+                                        date={evento.date.slice(8,10)+'/'+evento.date.slice(5,7)}
+                                        id={evento._id}
                                     />
                                 );
                             })
