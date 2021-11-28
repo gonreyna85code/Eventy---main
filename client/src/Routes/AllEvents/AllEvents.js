@@ -9,6 +9,7 @@ const AllEvents = () => {
                 <h1>Todos Los Eventos</h1>
             </div>
             <FilterEvents/>
+
         </div>
     );
 
