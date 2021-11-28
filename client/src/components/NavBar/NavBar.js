@@ -1,5 +1,5 @@
 import React from "react";
-import SearchBar from '../../components/SearchBar/SearchBar'
+import SearchBar from '../SearchBar/SearchBar'
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,7 @@ import styles from './NavBar.module.css'
 import {FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faUser} from '@fortawesome/free-solid-svg-icons';
 import { logout } from "../../redux/actions";
+import Boton from "../Boton/Boton";
 
  
 
@@ -20,17 +21,23 @@ export default function NavBar(){
         navigate('/');
         window.location.reload(true);
     }
+
+    if(user==="Usuario no logueado"){
+        return (
+            <div></div>
+        )
+    }
     return (
         <div className={styles.navBar}>
             <div className={styles.icono}><Link to ="/"><img src={logo} alt=''/></Link></div>
             <div className={styles.search}><SearchBar/></div>
             <div className={styles.menu}>
-             <FontAwesomeIcon icon={faUser}/>
-             {user.username}
+            <FontAwesomeIcon icon={faUser}/>
+            {user.username}
                 <ul>
                     <li><Link to="/crear-evento" style={{textDecoration: 'none', color: 'black'}}><span>Crear Evento</span></Link></li>
                     <li><Link to="/profile" style={{textDecoration: 'none', color: 'black'}}><span>Profile</span></Link></li>
-                    <li><Link to="/setting" style={{textDecoration: 'none', color: 'black'}}><span>Setting</span></Link></li>
+                    <li><Link to="/" style={{textDecoration: 'none', color: 'black'}}><span>About</span></Link></li>
                     <li><Link to="/" onClick={(e) => handler()} style={{textDecoration: 'none', color: 'black'}}><span>Logout</span></Link></li>
                 </ul>
             </div>

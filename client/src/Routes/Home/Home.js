@@ -2,16 +2,16 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styles from './Home.module.css';
-import NavBar from '../NavBar/NavBar';
+import NavBar from '../../components/NavBar/NavBar';
 import EventHome from './EventHome';
 import { getUser } from '../../redux/actions';
-import AliceCarousel from 'react-alice-carousel';
+import {AliceCarousel} from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import './HomeCarrusel.css';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import Container from '../../components/Container/Container';
 import Boton from '../../components/Boton/Boton';
-import CardEvent from '../../components/CardEvent'
+import CardEvent from '../../components/Card/CardEvent'
 
 const responsive = {
     0: {
@@ -143,7 +143,7 @@ const Home = () => {
                                 
                                 return(
                                     <div>
-                                       {
+                                    {
 
                                         
                                             <CardEvent

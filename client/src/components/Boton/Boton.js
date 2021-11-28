@@ -12,7 +12,7 @@ const Boton = ({colorBtn, children, onClick}) =>{
     
     
  return(
-     <button className={`${styles.btn} ${styles[colorBtn]}`} onClick={onClick}>
+     <button type='button' className={`${styles.btn} ${styles[colorBtn]}`} onClick={onClick}>
         {children}
      </button>
  );
