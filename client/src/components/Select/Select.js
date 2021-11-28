@@ -18,11 +18,14 @@ export default function Select({type,name,onchange,default_value,default_name,he
         options=options.map((o)=>o.option)[0]
     }
     return (
+      <div className={styles.item_select}>
+        <label>{name}</label>
         <select name={name} onChange={onchange} defaultValue={default_value} className={styles.select}>
-          <option  value={default_value}>
+          <option  value={default_value} className={styles.options}>
             {default_name}
           </option>
-          {options?.map((o)=><option value={o.value} key={o.value}>{o.name?o.name:o.value}</option>)}
+          {options?.map((o)=><option  className={styles.options} value={o.value} key={o.value}>{o.name?o.name:o.value}</option>)}
         </select>
+      </div>
     )
 }

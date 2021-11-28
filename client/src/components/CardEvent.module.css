@@ -5,9 +5,9 @@
     border: 3px solid rgb(1, 56, 95);
     padding: 5px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: column;
-    width: 250px;
+    width: calc(100% - 50px);
     margin-inline: 20px;
     margin-bottom: 20px;
     background-color: #fff;

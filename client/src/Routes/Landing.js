@@ -9,6 +9,7 @@ import {FontAwesomeIcon}from '@fortawesome/react-fontawesome'
 import {faCircle } from '@fortawesome/free-solid-svg-icons'
 import{faUser}from '@fortawesome/free-regular-svg-icons'
 import { Link } from 'react-router-dom'
+import Container from '../components/Container/Container'
 
 
 //COMIENZO DE ZONA DE HARDCODEO
@@ -102,15 +103,17 @@ export default function Home(){
             <div className={styles.events}>
                 <h1 className={styles.eventsTitle}>EVENTOS DESTACADOS</h1>
                 <div className={styles.carrusel}>
-                    <div id='CarrouselEventos' className = {styles.cardsEvents}>
-                    {
-                        pruebaEventos && pruebaEventos.map((el)=>{
-                            return(
-                            <Card key={el.name} img = {el.img} name = {el.name} location = {el.location} date = {el.date} id = {el.id} buttonColor='naranja'/>
-                            )
-                        })
-                    }
-                    </div>
+                    <Container>
+                        <div id='CarrouselEventos' className = {styles.cardsEvents}>
+                        {
+                            pruebaEventos && pruebaEventos.map((el)=>{
+                                return(
+                                <Card key={el.name} img = {el.img} name = {el.name} location = {el.location} date = {el.date} id = {el.id} buttonColor='naranja'/>
+                                )
+                            })
+                        }
+                        </div>
+                    </Container>
                     {document.defaultView.window.outerWidth> 768  ?
                     // document.getElementById('CarrouselEventos').style.transform= `translateX(0)`
                     console.log('hola')
@@ -157,51 +160,53 @@ export default function Home(){
             <div className={styles.noticias}>
                 <h1 className={styles.noticiasTitle}>ULTIMAS NOTICIAS</h1>
                 <div>
-                <div className={styles.carrusel}>
-                    <div id='CarrouselNoticias' className = {styles.cardsEvents}>
-                    {
-                        pruebaEventos && pruebaEventos.map((el)=>{
-                            return(
-                            <Card key = {el.name} img = {el.img} name = {el.name} location = {el.location} date = {el.date} id = {el.id} buttonColor= 'azul'/>
-                            )
-                        })
-                    }
-                    </div>
+                <Container>
+                    <div className={styles.carrusel}>
+                        <div id='CarrouselNoticias' className = {styles.cardsEvents}>
+                        {
+                            pruebaEventos && pruebaEventos.map((el)=>{
+                                return(
+                                <Card key = {el.name} img = {el.img} name = {el.name} location = {el.location} date = {el.date} id = {el.id} buttonColor= 'azul'/>
+                                )
+                            })
+                        }
+                        </div>
 
-                    <div>
-                        <button className= {`${botonStyles.btn} ${botonStyles.btn_azul} ${styles.carruselButton}`} onClick={()=>{
-                            if(document.getElementById('CarrouselNoticias').style.transform === ''){
-                                document.getElementById('CarrouselNoticias').style.transform=`translateX(33.3%)`
-                            }else{
-                                let hola = parseFloat(document.getElementById('CarrouselNoticias').style.transform.split('(')[1].split(')')[0])
-                                if (hola===0) {
-                                    
+                        <div>
+                            <button className= {`${botonStyles.btn} ${botonStyles.btn_azul} ${styles.carruselButton}`} onClick={()=>{
+                                if(document.getElementById('CarrouselNoticias').style.transform === ''){
+                                    document.getElementById('CarrouselNoticias').style.transform=`translateX(33.3%)`
                                 }else{
-                                    document.getElementById('CarrouselNoticias').style.transform= `translateX(${hola +33.3}%)`
+                                    let hola = parseFloat(document.getElementById('CarrouselNoticias').style.transform.split('(')[1].split(')')[0])
+                                    if (hola===0) {
+                                        
+                                    }else{
+                                        document.getElementById('CarrouselNoticias').style.transform= `translateX(${hola +33.3}%)`
 
+                                    }
                                 }
-                            }
-                            
-                        }}>
-                            {'<'}
-                        </button>
-                        <button className= {`${botonStyles.btn} ${botonStyles.btn_azul} ${styles.carruselButton}`} onClick={async()=>{
-                            if(document.getElementById('CarrouselNoticias').style.transform === ''){
-                                document.getElementById('CarrouselNoticias').style.transform=`translateX(-33.3%)`
-                            }else{
                                 
-                                let hola = parseFloat(document.getElementById('CarrouselNoticias').style.transform.split('(')[1].split(')')[0])
-                                if (hola>-60) {
-                                    document.getElementById('CarrouselNoticias').style.transform= `translateX(${hola -33.3}%)`
-                                } 
-                            }
-                        }}>
-                            {'>'}
-                        </button>
+                            }}>
+                                {'<'}
+                            </button>
+                            <button className= {`${botonStyles.btn} ${botonStyles.btn_azul} ${styles.carruselButton}`} onClick={async()=>{
+                                if(document.getElementById('CarrouselNoticias').style.transform === ''){
+                                    document.getElementById('CarrouselNoticias').style.transform=`translateX(-33.3%)`
+                                }else{
+                                    
+                                    let hola = parseFloat(document.getElementById('CarrouselNoticias').style.transform.split('(')[1].split(')')[0])
+                                    if (hola>-60) {
+                                        document.getElementById('CarrouselNoticias').style.transform= `translateX(${hola -33.3}%)`
+                                    } 
+                                }
+                            }}>
+                                {'>'}
+                            </button>
+                        </div>
+
+
                     </div>
-
-
-                </div>
+                </Container>
                 </div>
             </div>
             <div className={styles.sideBar}>

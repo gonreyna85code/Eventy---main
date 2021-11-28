@@ -36,8 +36,66 @@
 
 .cont_busqueda{
     background-color: var(--naranja);
-    padding-block: 120px 50px;
+    padding-block: 200px 100px;
 }
+.cont_searchBar{
+    margin-top: 50px
+}
+.cont_searchBar > div{
+    left: 0;
+    top: 0;
+    max-width: 850px;
+    display: block;
+    margin-inline: auto;
+}
+
+.cont_searchBar > div > input {
+
+    border-radius: 0;
+    width: calc(100% - 102px);
+    padding: 2px 8px;
+    left: 0;
+    vertical-align: top;
+    height: 40px;
+
+}
+.cont_searchBar > div > button{
+    padding: 11.5px 30px;
+    background: var(--azul);
+    z-index: 5;
+    position: relative;
+    transition: var(--trasition);
+}
+.cont_searchBar > div > button:hover{
+    box-shadow: 0 0 8px rgb(0 0 0 / 50%);
+}
+.subcategorias ul{
+    padding: 0;
+    list-style: none;
+    margin-top: 20px;
+}
+.subcategorias ul li{
+    display: inline-block;
+    margin-inline: 5px;
+    line-height: 1.7;
+}
+.subcategorias ul li a{
+    color: #fff;
+    transition: var(--trasition);
+}
+.subcategorias ul li a:hover{
+    font-weight: 700;
+}
+.subcategorias ul li:not(:last-child)::after{
+    content: ' ';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    display: inline-block;
+    background: #fff;
+    margin: 0 0 3px 10px;
+}
+
 
 .cont_categoria_home{
     display: flex;
@@ -46,11 +104,12 @@
 }
 
 .cont_info_categoria_home{
-    width: 50%;
+    width: 40%;
+    padding: 50px
 }
 .cont_carrusel_categoria_home{
-    width: 50%;
-    padding: 70px 40px 30px
+    width: 60%;
+    padding: 80px 40px 20px;
 }
 
 
@@ -67,4 +126,9 @@
     background-position: top right;
     background-repeat: no-repeat;
     background-size: contain;
+}
+
+.cont_eventos_seguidos{
+    padding-block: 80px;
+    background: var(--azul);
 }

@@ -7,6 +7,7 @@ import Novedades from './Novedades';
 import { getUser } from '../../redux/actions.js';
 import Warning from '../../components/Warning.js/Warning';
 
+
 export default function Profile(){
     const user = useSelector(state => state.User);
     const dispatch = useDispatch();
@@ -28,12 +29,14 @@ export default function Profile(){
     }
 
     return (
-        <div className={styles.profile}>
-            <Initial user={user} />
-            <section id={styles.section2}>
-                <Information user={user} handleClick={handleClick}/>
-                <Novedades user={user} params={params} />
-            </section>
-        </div>
+        <>
+            <div className={styles.profile}>
+                <Initial user={user} />
+                <section id={styles.section2}>
+                    <Information user={user} handleClick={handleClick}/>
+                    <Novedades user={user} params={params} />
+                </section>
+            </div>
+        </>
     )
 }

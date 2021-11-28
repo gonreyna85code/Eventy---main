@@ -42,21 +42,21 @@ export default function Setting(){
 
     return (
         <>
-        <div className={styles.setting} >
-            <Initial user={user}/>
-            <h1>Configuración</h1>
-            <form className={styles.form}>
-                <Input label='Name' type='text' name='name' value={profile.name} onChange={handleChange} />
-                <Input label='Surname' type='text' name='surname' value={profile.surname} onChange={handleChange} />
-                <Input label='Age' type='number' name='age' value={profile.age} onChange={handleChange} />
-                <Input label='Email' type='text' name='email' value={profile.email} onChange={handleChange} />
-                <Input label='City' type='text' name='city' value={profile.city} onChange={handleChange} />
-                <Input label='Link foto portada' type='portada' name='surname' value={profile.portada} onChange={handleChange} />
-                <Input label='Link foto de perfil' type='link' name='photo' value={profile.photo} onChange={handleChange} />
-                <Select name='gender' onchange={handleChange} default_value={1} default_name='Genero' options={gender}/><br/>
-                <Boton colorBtn='btn_naranja' children='Guardar' onClick={handleSubmit} />
-            </form>
-        </div>
+            <div className={styles.setting} >
+                <Initial user={user}/>
+                <h1>Configuración</h1>
+                <form className={styles.form}>
+                    <Input label='Name' type='text' name='name' value={profile.name} onChange={handleChange} />
+                    <Input label='Surname' type='text' name='surname' value={profile.surname} onChange={handleChange} />
+                    <Input label='Age' type='number' name='age' value={profile.age} onChange={handleChange} />
+                    <Input label='Email' type='text' name='email' value={profile.email} onChange={handleChange} />
+                    <Input label='City' type='text' name='city' value={profile.city} onChange={handleChange} />
+                    <Input label='Link foto portada' type='portada' name='surname' value={profile.portada} onChange={handleChange} />
+                    <Input label='Link foto de perfil' type='link' name='photo' value={profile.photo} onChange={handleChange} />
+                    <Select name='gender' onchange={handleChange} default_value={1} default_name='Genero' options={gender}/><br/>
+                    <Boton colorBtn='btn_naranja' children='Guardar' onClick={handleSubmit} />
+                </form>
+            </div>
         </>
     )
 }

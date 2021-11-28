@@ -8,6 +8,7 @@ export const GET_EVENT = 'GET_EVENT';
 export const GET_NEARBY_EVENTS = 'GET_NEARBY_EVENTS';
 export const PUT_USER = 'PUT_USER'
 export const FIND_EVENT_CATEGORY = 'FIND_EVENT_CATEGORY';
+export const FIND_EVENT_SUB = 'FIND_EVENT_SUB';
 
 export function registerUser(register) {
     return async function (dispatch) {
@@ -80,18 +81,16 @@ export function getUser() {
 }
 
 export function getEvent(name) {
-  return async function (dispatch) {
-    try {
-      const json = await axios({
-        method: "GET",
-        withCredentials: true,
-        url: "http://localhost:4000/event/" + name,
-      });
-      return dispatch({ type: "GET_EVENT", payload: json.data });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  return function (dispatch){
+    axios({
+    method: "GET",
+    withCredentials: true,
+    url: "http://localhost:4000/event/" + name,
+  })
+  .then(resultado => dispatch({type: GET_EVENT, payload: resultado.data}))
+  .then(resultado => console.log(resultado))
+  .catch(err => alert(err))
+}
 }
 
 export function postEvent(event) {
@@ -163,27 +162,39 @@ export function putUser(user){
     .catch(err=>alert(err))
   }
 }
+
 export function findEventByCategory (category){
   if(category === 'social'){
-  return function (dispatch){
+    return function (dispatch){
       axios({
-      method: "GET",
-      withCredentials: true,
-      url: "http://localhost:4000/socialEvents",
-    })
-    .then(resultado => dispatch({type: FIND_EVENT_CATEGORY, payload: resultado.data}))
-    .catch(err => alert(err))
+        method: "GET",
+        withCredentials: true,
+        url: "http://localhost:4000/socialEvents",
+      })
+      .then(resultado => dispatch({type: FIND_EVENT_CATEGORY, payload: resultado.data}))
+      .catch(err => alert(err))
+    }
+  }else if(category === 'sports'){
+    return function (dispatch){
+      axios({
+        method: "GET",
+        withCredentials: true,
+        url: "http://localhost:4000/sportEvents",
+      })
+      .then(resultado => dispatch({type: FIND_EVENT_CATEGORY, payload: resultado.data}))
+      .catch(err => alert(err))
+    }
   }
 }
-else if(category === 'sports'){
+
+export function findEventSub(subcategory){
   return function (dispatch){
     axios({
-    method: "GET",
-    withCredentials: true,
-    url: "http://localhost:4000/sportEvents",
-  })
-  .then(resultado => dispatch({type: FIND_EVENT_CATEGORY, payload: resultado.data}))
-  .catch(err => alert(err))
-}
-}
-}
+      method: "GET",
+      withCredentials: true,
+      url: "http://localhost:4000/allEvents",
+    })
+    .then(resultado => dispatch({type: FIND_EVENT_SUB, payload: resultado.data, sub: subcategory}))
+    .catch(err => alert(err))
+  }
+} 

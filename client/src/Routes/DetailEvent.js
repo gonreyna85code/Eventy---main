@@ -16,7 +16,10 @@ export default function DetailEvet(){
         dispatch(getEvent(name)); 
     }, [dispatch, name]);
 
-    const theEvent = useSelector((state) => state.Event);
+    const Events = useSelector((state) => state.Events);
+  
+    const Evento = Events.filter(el => el.name === name); 
+    const theEvent = Evento[0];
 
     console.log(theEvent);
 
@@ -27,15 +30,18 @@ export default function DetailEvet(){
                <div>
                    <h1 className = 'nombre_evento'>{theEvent.name}</h1>
                    <div>
-                   <img className = 'imagen_detail' src = 'https://www.masquenegocio.com/wp-content/uploads/2018/03/evento-concierto-874x492.jpg' alt=''></img>
-                   <p>Esta imágen solo es de prueba</p>
+                   {theEvent.info.imagen ?
+        <img className = 'imagen_detail' src = {theEvent.info.imagen} alt=''></img>
+        :
+        <img className = 'imagen_detail' src = {'https://www.masquenegocio.com/wp-content/uploads/2018/03/evento-concierto-874x492.jpg'} alt=''></img>
+            }
                    </div>
                    <div>
                        <h1>Información del evento:</h1>
                        <h3>Lugar:</h3>
                        <p>{theEvent.location}</p>
                        <h3>Fecha y hora:</h3>
-                       <p>{theEvent.date}</p>
+                       <p>{theEvent.date.slice(0,10)}</p>
                        <p>Esta es una fecha de prueba</p>
                    </div>
                    <div>
@@ -50,7 +56,7 @@ export default function DetailEvet(){
                :
                <h1>Cargando... </h1>
            }
-           <Link to ='/homeuser'>
+           <Link to ='/'>
            <Boton colorBtn='btn_azul'>Volver al Home</Boton>
            </Link>
        </div>
