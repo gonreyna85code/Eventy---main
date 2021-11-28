@@ -55,7 +55,7 @@ const Home = () => {
                                     name={evento.name}
                                     img={evento.info.imagen}
                                     location={evento.location}
-                                    date={evento.date}
+                                    date={evento.date.slice(8,10)+'/'+evento.date.slice(5,7)}
                                     id={evento._id}
                                     />
                                 );
