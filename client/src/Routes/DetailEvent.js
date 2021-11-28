@@ -19,7 +19,7 @@ export default function DetailEvet(){
         dispatch(getEvent(name)); 
     }, [dispatch, name]);
 
-    const Events = useSelector((state) => state.Events);
+    const Events = useSelector((state) => state.Event);
   
     const Evento = Events.filter(el => el.name === name); 
     const theEvent = Evento[0];
@@ -61,7 +61,7 @@ export default function DetailEvet(){
                        </div>
                        <div className = 'data_info'>
                            <h1>Mapa:</h1>
-                           <img className = 'mapa' src = 'https://i.pinimg.com/564x/a4/40/e4/a440e408502b6aa3e290e030540ea6dc.jpg'/>
+                           <img className = 'mapa' src = 'https://i.pinimg.com/564x/a4/40/e4/a440e408502b6aa3e290e030540ea6dc.jpg' alt=''/>
                        </div>
                    </div>
                    <div>
