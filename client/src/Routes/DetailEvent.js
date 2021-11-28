@@ -16,7 +16,10 @@ export default function DetailEvet(){
         dispatch(getEvent(name)); 
     }, [dispatch, name]);
 
-    const theEvent = useSelector((state) => state.Event); 
+    const Events = useSelector((state) => state.Events);
+  
+    const Evento = Events.filter(el => el.name === name); 
+    const theEvent = Evento[0];
 
     console.log(theEvent);
 
@@ -38,7 +41,7 @@ export default function DetailEvet(){
                        <h3>Lugar:</h3>
                        <p>{theEvent.location}</p>
                        <h3>Fecha y hora:</h3>
-                       <p>{theEvent.date}</p>
+                       <p>{theEvent.date.slice(0,10)}</p>
                        <p>Esta es una fecha de prueba</p>
                    </div>
                    <div>

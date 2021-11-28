@@ -81,18 +81,16 @@ export function getUser() {
 }
 
 export function getEvent(name) {
-  return async function (dispatch) {
-    try {
-      const json = await axios({
-        method: "GET",
-        withCredentials: true,
-        url: "http://localhost:4000/event/" + name,
-      });
-      return dispatch({ type: "GET_EVENT", payload: json.data });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  return function (dispatch){
+    axios({
+    method: "GET",
+    withCredentials: true,
+    url: "http://localhost:4000/event/" + name,
+  })
+  .then(resultado => dispatch({type: GET_EVENT, payload: resultado.data}))
+  .then(resultado => console.log(resultado))
+  .catch(err => alert(err))
+}
 }
 
 export function postEvent(event) {

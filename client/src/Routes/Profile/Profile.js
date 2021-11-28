@@ -4,7 +4,7 @@ import styles from './Profile.module.css';
 import Initial from './Initial';
 import Information from './Information';
 import Novedades from './Novedades';
-import NavBar from '../NavBar/NavBar';
+
 
 export default function Profile(){
     const user = useSelector(state => state.User);
@@ -14,7 +14,7 @@ export default function Profile(){
     }
     return (
         <>
-            <NavBar />
+            
             <div className={styles.profile}>
                 <Initial user={user} />
                 <section id={styles.section2}>

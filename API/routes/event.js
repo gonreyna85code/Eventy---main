@@ -35,7 +35,7 @@ router.post("/event",isAuthenticated, function(req, res){
 
 router.get("/event/:name", async (req, res) => {
   const {name} = req.params;
-  var response = await Event.findOne({ name: name });
+  var response = await Event.find({ name: name });
   response.length > 0 ?
   res.status(200).send(response) :
   res.status(404).send('No hay eventos')

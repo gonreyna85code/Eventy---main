@@ -39,16 +39,36 @@ export default function SocialCategory(){
             <div className = 'cont-subcategories'>
                 <h1 className = 'title2'>Subcategorías:</h1>
                 <div className = 'hobby'>
-                    <h1 className = 'hobbytitle'>Ejemplo de subcategoría</h1>
+                    <h1 className = 'hobbytitle'>Fiestas</h1>
+                    <Link to = {'/subcategory/' + 'Fiesta'}>
                     <button className={`${botonStyles.btn} ${botonStyles.btn_azul}`}>
-                        Seguir Hobby
+                        Acceder
                     </button>
+                    </Link>
                 </div>
                 <div className = 'hobby'>
-                    <h1 className = 'hobbytitle'>Ejemplo de subcategoría</h1>
+                    <h1 className = 'hobbytitle'>Reuniones</h1>
+                    <Link to = {'/subcategory/' + 'Reunion'}>
                     <button className={`${botonStyles.btn} ${botonStyles.btn_azul}`}>
-                        Seguir Hobby
+                        Acceder
                     </button>
+                    </Link>
+                </div>
+                <div className = 'hobby'>
+                    <h1 className = 'hobbytitle'>Protestas</h1>
+                    <Link to = {'/subcategory/' + 'Protesta'}>
+                    <button className={`${botonStyles.btn} ${botonStyles.btn_azul}`}>
+                        Acceder
+                    </button>
+                    </Link>
+                </div>
+                <div className = 'hobby'>
+                    <h1 className = 'hobbytitle'>Conciertos</h1>
+                    <Link to = {'/subcategory/' + 'Concierto'}>
+                    <button className={`${botonStyles.btn} ${botonStyles.btn_azul}`}>
+                        Acceder
+                    </button>
+                    </Link>
                 </div>
             </div>
             <div>
