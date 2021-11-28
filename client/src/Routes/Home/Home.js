@@ -53,7 +53,7 @@ const Home = () => {
                                 return(
                                     <EventHome
                                     name={evento.name}
-                                    img={evento.info.imagen}
+                                    img={evento.info.image}
                                     location={evento.location}
                                     date={evento.date.slice(8,10)+'/'+evento.date.slice(5,7)}
                                     id={evento._id}
@@ -114,7 +114,7 @@ const Home = () => {
                                         
                                         <CardEvent
                                             name={evento.name}
-                                            img={evento.info.imagen}
+                                            img={evento.info.image}
                                             location={evento.location}
                                             date={evento.date}
                                             id={evento._id}

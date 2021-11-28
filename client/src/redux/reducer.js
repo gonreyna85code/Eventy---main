@@ -1,6 +1,6 @@
 import { FIND_EVENT_CATEGORY, GET_USER } from "./actions.js";
 import { FIND_EVENT } from "./actions.js";
-import { GET_EVENT, GET_NEARBY_EVENTS, PUT_USER, FIND_EVENT_SUB } from "./actions.js"
+import { GET_EVENT, GET_NEARBY_EVENTS, PUT_USER, FIND_EVENT_SUB, GET_ALL_EVENTS } from "./actions.js"
 
 const initialState = {
   User: {},
@@ -8,6 +8,9 @@ const initialState = {
   Events: [],
   SearchResult: [],
   NearbyEvents: [],
+  Filtrados1: [],
+  Filtrados2: [],
+  AllEvents: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -57,6 +60,12 @@ function rootReducer(state = initialState, action) {
       ...state,
       Events: eventSub
     }
+  }
+  if (action.type === GET_ALL_EVENTS){
+    return {
+      ...state,
+      AllEvents: action.payload,
+    };
   }
   return state;
 }
