@@ -1,14 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD:client/src/components/Card/CardEvent.js
-import Boton from "../Boton/Boton";
-=======
->>>>>>> a0be8b25a1ac0814da36ad766092528b54d01fd0:client/src/components/CardEvent.js
 import styles from './CardEvent.module.css'
 import botonStyles from "../Boton/Boton.module.css"
 import {FontAwesomeIcon}from '@fortawesome/react-fontawesome'
 import {faCalendarAlt, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons'
-import '../portadadefault.png'
+// import '../portadadefault.png'
 
 
 export default function Card({name, id, location, date, img,buttonColor}){
