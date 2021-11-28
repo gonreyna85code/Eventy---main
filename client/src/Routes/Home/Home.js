@@ -46,7 +46,7 @@ const Home = () => {
                 </div>
                 
                 <div className={`cont-carrusel ${styles.cont_carrusel}`}>
-                    {/* <AliceCarousel
+                    <AliceCarousel
                         mouseTracking
                         items={
                             user.near && user.near.map( evento => {
@@ -69,7 +69,7 @@ const Home = () => {
                         keyboardNavigation={true}
                         disableButtonsControls={false}
                         disableDotsControls={true}
-                    /> */}
+                    />
                 </div>
             </div>
             <div className={styles.cont_busqueda}>
@@ -101,7 +101,7 @@ const Home = () => {
                     </Link>
                 </div>
                 <div className={styles.cont_carrusel_categoria_home}>
-                    {/* <AliceCarousel
+                    <AliceCarousel
                         mouseTracking
                         items={
                             user.events && user.events.map( evento => {
@@ -131,12 +131,12 @@ const Home = () => {
                         autoPlayInterval={4000}
                         disableButtonsControls={true}
                         disableDotsControls={false}
-                    /> */}
+                    />
                 </div>
             </div>
             <div className={`${styles.cat_deportes} ${styles.cont_categoria_home}`}>
                 <div className={styles.cont_carrusel_categoria_home}>
-                    {/* <AliceCarousel
+                    <AliceCarousel
                         mouseTracking
                         items={
                             user.events && user.events.map( evento => {
@@ -168,7 +168,7 @@ const Home = () => {
                         autoPlayInterval={4000}
                         disableButtonsControls={true}
                         disableDotsControls={false}
-                    /> */}
+                    />
                 </div>
                 <div className={styles.cont_info_categoria_home}>
                     <h2>Deportes</h2>
@@ -181,7 +181,7 @@ const Home = () => {
                 <Container>
                     <h2>Eventos Seguidos</h2>
                     <div className={styles.cont_carrusel_seguidos}>
-                        {/* <AliceCarousel
+                        <AliceCarousel
                             mouseTracking
                             items={
                                 user.events && user.events.map( evento => {
@@ -212,7 +212,7 @@ const Home = () => {
                             autoPlayInterval={4000}
                             disableButtonsControls={true}
                             disableDotsControls={false}
-                        /> */}
+                        />
                     </div>
                 </Container>
             </div>
