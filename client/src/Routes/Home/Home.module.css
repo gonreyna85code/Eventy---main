@@ -127,3 +127,8 @@
     background-repeat: no-repeat;
     background-size: contain;
 }
+
+.cont_eventos_seguidos{
+    padding-block: 80px;
+    background: var(--azul);
+}
