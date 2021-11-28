@@ -1,11 +1,14 @@
 import axios from "axios";
 export const REGISTER = "REGISTER";
 export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
 export const GET_USER = "GET_USER";
 export const FIND_EVENT = "FIND_EVENT"; 
 export const GET_EVENT = 'GET_EVENT';
 export const GET_NEARBY_EVENTS = 'GET_NEARBY_EVENTS';
+export const PUT_USER = 'PUT_USER'
 export const FIND_EVENT_CATEGORY = 'FIND_EVENT_CATEGORY';
+export const FIND_EVENT_SUB = 'FIND_EVENT_SUB';
 
 export function registerUser(register) {
     return async function (dispatch) {
@@ -34,13 +37,28 @@ export function login(login) {
         method: "POST",
         data: {
           username: login.username,
-          password: login.password,
-          
+          password: login.password,          
         },
         withCredentials: true,
         url: "http://localhost:4000/login",
       });
       return dispatch({ type: "LOGIN", payload: json.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function logout(login) {
+  return async function (dispatch) {
+    try {
+      const json = await axios({
+        method: "GET",
+        withCredentials: true,
+        url: "http://localhost:4000/logout",
+      });
+      console.log('Usuario no logueado')
+      return dispatch({ type: "LOGOUT", payload: json.data });
     } catch (error) {
       console.log(error);
     }
@@ -63,18 +81,16 @@ export function getUser() {
 }
 
 export function getEvent(name) {
-  return async function (dispatch) {
-    try {
-      const json = await axios({
-        method: "GET",
-        withCredentials: true,
-        url: "http://localhost:4000/event/" + name,
-      });
-      return dispatch({ type: "GET_EVENT", payload: json.data });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  return function (dispatch){
+    axios({
+    method: "GET",
+    withCredentials: true,
+    url: "http://localhost:4000/event/" + name,
+  })
+  .then(resultado => dispatch({type: GET_EVENT, payload: resultado.data}))
+  .then(resultado => console.log(resultado))
+  .catch(err => alert(err))
+}
 }
 
 export function postEvent(event) {
@@ -127,14 +143,58 @@ export function getNearbyEvents(parametro){
   }
 }
 
-export function findEventByCategory (parametro){
-  return function (dispatch){
-      axios({
-      method: "GET",
+export function putUser(user){
+  return function(dispatch){
+    axios({
+      method: "PUT",
       withCredentials: true,
-      url: "http://localhost:4000//events/filter/categoria-" + parametro,
+      url: "http://localhost:4000/user_update",
+      data: {
+        username:user.username,
+        profile:{...user.profile}
+      }
     })
-    .then(resultado => dispatch({type: FIND_EVENT_CATEGORY, payload: resultado}))
-    .catch(err => alert(err))
+    .then(resultado=>{
+      dispatch({type: PUT_USER, payload: user.profile})
+      console.log(resultado.data)
+      alert("Cambios guardados")
+    })
+    .catch(err=>alert(err))
   }
 }
+
+export function findEventByCategory (category){
+  if(category === 'social'){
+    return function (dispatch){
+      axios({
+        method: "GET",
+        withCredentials: true,
+        url: "http://localhost:4000/socialEvents",
+      })
+      .then(resultado => dispatch({type: FIND_EVENT_CATEGORY, payload: resultado.data}))
+      .catch(err => alert(err))
+    }
+  }else if(category === 'sports'){
+    return function (dispatch){
+      axios({
+        method: "GET",
+        withCredentials: true,
+        url: "http://localhost:4000/sportEvents",
+      })
+      .then(resultado => dispatch({type: FIND_EVENT_CATEGORY, payload: resultado.data}))
+      .catch(err => alert(err))
+    }
+  }
+}
+
+export function findEventSub(subcategory){
+  return function (dispatch){
+    axios({
+      method: "GET",
+      withCredentials: true,
+      url: "http://localhost:4000/allEvents",
+    })
+    .then(resultado => dispatch({type: FIND_EVENT_SUB, payload: resultado.data, sub: subcategory}))
+    .catch(err => alert(err))
+  }
+} 

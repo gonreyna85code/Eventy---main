@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import { Link } from "react-router-dom";
 import { findEventByCategory } from "../../redux/actions";
@@ -12,63 +12,74 @@ export default function SocialCategory(){
 
     useEffect(()=>{
         dispatch(findEventByCategory('social'));
-    },[]);
+    },[dispatch]);
 
     const socialEvents = useSelector((state) => state.Events);
-    console.log(socialEvents) 
-
-    const pruebaEventos = [
-        {
-        name: 'LollaPalooza 2022',
-        id: 1,
-        location: 'San Isidro, Argentina',
-        date: 'Marzo 18, 19 y 20 | 2022',
-        img: 'https://i.pinimg.com/564x/e6/e1/58/e6e158eba9ba9208b4abb6fec41e2aeb.jpg'
-    },
-    {
-        name: 'Festival Intenacional de Cine de Mar del Plata',
-        id: 2,
-        location: 'Mar del Plata, Argentina',
-        date: 'Noviembre 18 al 28 | 2021',
-        img: 'https://www.mardelplatafilmfest.com/beta36/images/news/36-festival-internacional-de-cine-de-mar-del-plata-imagen1_9.jpg'
-    },
-    {
-        name: 'Festival La Nueva Generación (LNG) 2022',
-        id: 3,
-        location: 'Córdoba, Argentina',
-        date: 'Noviembre 11, 12, 13 | 2022',
-        img: 'https://indiehoy.com/wp-content/uploads/2019/10/la-nueva-generacion.jpg'
-    }
-    ]
+    console.log(socialEvents)     
 
     return(
         <div>
-            <div>
+            <div className = 'encabezado'>
+                <Link to = '/'>
+                <button className={`${botonStyles.btn} ${botonStyles.btn_azul}`}>
+                        Home
+                    </button>
+                </Link>
                 <h1 className = 'title'>Eventos Sociales</h1>
             </div>
             <div className ='cardsEvents'>
             {
-                        pruebaEventos && pruebaEventos.map((el)=>{
+                        socialEvents && socialEvents.map((el)=>{
                             return(
-                            <Card key={el.name} img = {el.img} name = {el.name} location = {el.location} date = {el.date} id = {el.id} buttonColor='naranja'/>
+                            <Card key={el.name} img = {el.info.imagen} name = {el.name} location = {el.location} date = {el.date} id = {el.id} buttonColor='naranja'/>
                             )
                         })
                     }
             </div>
             <div className = 'cont-subcategories'>
-                <h1 className = 'title'>Subcategorías:</h1>
+                <h1 className = 'title2'>Subcategorías:</h1>
                 <div className = 'hobby'>
-                    <h1 className = 'hobbytitle'>Ejemplo de subcategoría</h1>
+                    <h1 className = 'hobbytitle'>Fiestas</h1>
+                    <Link to = {'/subcategory/' + 'Fiesta'}>
                     <button className={`${botonStyles.btn} ${botonStyles.btn_azul}`}>
-                        Seguir Hobby
+                        Acceder
                     </button>
+                    </Link>
                 </div>
                 <div className = 'hobby'>
-                    <h1 className = 'hobbytitle'>Ejemplo de subcategoría</h1>
+                    <h1 className = 'hobbytitle'>Reuniones</h1>
+                    <Link to = {'/subcategory/' + 'Reunion'}>
                     <button className={`${botonStyles.btn} ${botonStyles.btn_azul}`}>
-                        Seguir Hobby
+                        Acceder
                     </button>
+                    </Link>
                 </div>
+                <div className = 'hobby'>
+                    <h1 className = 'hobbytitle'>Protestas</h1>
+                    <Link to = {'/subcategory/' + 'Protesta'}>
+                    <button className={`${botonStyles.btn} ${botonStyles.btn_azul}`}>
+                        Acceder
+                    </button>
+                    </Link>
+                </div>
+                <div className = 'hobby'>
+                    <h1 className = 'hobbytitle'>Conciertos</h1>
+                    <Link to = {'/subcategory/' + 'Concierto'}>
+                    <button className={`${botonStyles.btn} ${botonStyles.btn_azul}`}>
+                        Acceder
+                    </button>
+                    </Link>
+                </div>
+            </div>
+            <div>
+                    <h1 className = 'hobbytitle'>Crea tu propio evento!</h1>
+                    <div>
+                        <Link to = '/crear-evento'>
+                    <button className={`${botonStyles.btn} ${botonStyles.btn_azul}`}>
+                        Crear
+                    </button>
+                        </Link>
+                    </div>
             </div>
         </div>
     )

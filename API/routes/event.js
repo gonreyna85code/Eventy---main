@@ -33,12 +33,12 @@ router.post("/event",isAuthenticated, function(req, res){
 });
 
 
-router.get("/event/:name",isAuthenticated, (req, res) => {
+router.get("/event/:name", async (req, res) => {
   const {name} = req.params;
-  Event.findOne({ name: name }, (err, doc) => {
-    if (err) throw err;
-    res.send(doc);
-  });
+  var response = await Event.find({ name: name });
+  response.length > 0 ?
+  res.status(200).send(response) :
+  res.status(404).send('No hay eventos')
 });
 
 router.get("/eventsAll/:parametro",isAuthenticated, async (req,res)=> {
@@ -107,4 +107,26 @@ router.get("/events/filter/categoria-:categoria?/ciudad-:ciudad?/pago-:pago?",is
   else {res.json(tercerFiltro)}
 })
 
+router.get('/socialEvents', isAuthenticated, async (req,res)=>{
+  var response = await Event.find({category: 'social'});
+  response.length > 0 ?
+  res.status(200).send(response) :
+  res.status(404).send('No hay eventos')
+})
+
+router.get('/sportEvents', isAuthenticated, async (req,res)=>{
+var response = await Event.find({category: 'sports'});
+  response.length > 0 ?
+  res.status(200).send(response) :
+  res.status(404).send('No hay eventos')
+})
+
+router.get('/allEvents', async(req,res)=>{
+  var response = await Event.find();
+  response.length > 0 ?
+  res.status(200).send(response) :
+  res.status(404).send('No hay Eventos')
+})
+
 module.exports = router;
+

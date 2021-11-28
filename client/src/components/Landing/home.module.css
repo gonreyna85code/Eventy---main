@@ -11,7 +11,7 @@
     max-width: 100%;
     background-image: url('./images/banner-home.png');
     background-repeat: no-repeat;
-    background-size:100% 100%;
+    background-size:cover;
     display: grid;
 }
 .principalBanner div{
@@ -91,9 +91,9 @@
     display: grid;
     grid-template-columns: 50% 50%;
     background-image: url('./images/categorias-home.png');
-    /* background-size:contain; */
+    background-size:cover;
     background-repeat:no-repeat ;
-    background-size:100% 100%;
+    -background-size:100% 100%;
     height: auto;
     width: 100%;
 
@@ -195,7 +195,7 @@
         /* padding: 5%; */
     }
     .cardsEvents{
-        display:grid;
+        display:flex;
         grid-template-columns: auto auto auto;
         width: 100%;
         margin-bottom: 5%;

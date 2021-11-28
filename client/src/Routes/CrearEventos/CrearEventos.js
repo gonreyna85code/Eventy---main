@@ -2,12 +2,18 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Boton from "../../components/Boton/Boton";
 import Input from "../../components/Input/Input";
+import Select from "../../components/Select/Select";
+import Container from '../../components/Container/Container'
 import styles from "./CrearEventos.module.css";
 import { postEvent, getUser } from "../../redux/actions";
 
+
 const CrearEventos = () => {
-  const sports = ["Maraton", "Aeromodelismo", "Futbol", "Tenis", "Handball"];
-  const socials = ["Fiesta", "Reunion", "Protesta", "Concierto"];
+  const categories = [{value:"sports",name:"Deportes"},{value:"social",name:"Social"}]
+  const subcategories=[
+    {herencia:"sports",option:[{value:"Maraton"}, {value:"Aeromodelismo"}, {value:"Futbol"}, {value:"Tenis"}, {value:"Handball"}]},
+    {herencia:"social",option:[{value:"Fiesta"}, {value:"Reunion"}, {value:"Protesta"}, {value:"Concierto"}]}
+  ];
   const user = useSelector((state) => state.User);
   const dispatch = useDispatch();
   if(!user){
@@ -48,67 +54,66 @@ const CrearEventos = () => {
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
+
   return (
-    <div className="cont-center">
-      <h1>Crear un Nuevo Evento</h1>
-
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <Input
-          label="Nombre del Evento"
-          type="text"
-          name="name"
-          onChange={handleChange}
-        />
-        <Input
-          label="Ciudad"
-          type="text"
-          name="location"
-          onChange={handleChange}
-        />
-        <select name="category" onChange={handleChange} defaultValue="1">
-          <option  value="1" disabled>
-            Categoria
-          </option>
-          <option value="sports">Deportes</option>
-          <option value="social">Social</option>
-        </select>
-        <br />
-        <select name="subcategory" onChange={handleChange} defaultValue="1">
-          <option value="1" disabled>
-            Sub-Categoria
-          </option>
-          {event.category === "social"
-            ? socials.map((e) => (
-                <option name={e} key={e} value={e}>
-                  {e}
-                </option>
-              ))
-            : event.category === "sports"
-            ? sports.map((e) => (
-                <option key={e} value={e}>
-                  {e}
-                </option>
-              ))
-            : null}
-        </select>
-        <Input label="Fecha" type="date" name="date" onChange={handleChange} />
-        <Input
-          label="Imagen del Evento (url)"
-          type="url"
-          name="imagen"
-          onChange={handleChange}
-        />
-        <div className={styles.item_textarea}>
-          <label>Descripción del evento</label>
-          <textarea
-            name="description"
-            rows="4"
+    <div className={styles.cont_crear_evento}>
+      <div className={styles.header}>
+        <h1>Crear un Nuevo Evento</h1>
+      </div>
+      <Container>
+        <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
+          <Input
+            label="Nombre del Evento"
+            type="text"
+            name="name"
             onChange={handleChange}
-          ></textarea>
-        </div>
+          />
+          <Input
+            label="Ciudad"
+            type="text"
+            name="location"
+            onChange={handleChange}
+          />
+          <Select
+            name="category"
+            onchange={handleChange}
+            default_value="1"
+            default_name='Selecciona una Categoría'
+            options={categories}  
+          />
+          {event.category === 'social' || event.category === 'sports' ?
+            <Select
+              type="a"
+              name="subcategory"
+              onchange={handleChange}
+              default_value="1"
+              default_name='Selecciona una Subcategoría'
+              herencia={event.category} options={subcategories}/> : null}
+          
+          <Input
+            label="Fecha"
+            type="date"
+            name="date"
+            onChange={handleChange}
+          />
+          <Input
+            label="Imagen del Evento (url)"
+            type="url"
+            name="imagen"
+            onChange={handleChange}
+          />
+          <div className={styles.item_textarea}>
+            <label>Descripción del evento</label>
+            <textarea
+              name="description"
+              rows="4"
+              onChange={handleChange}
+            ></textarea>
+          </div>
 
-        <Boton colorBtn="btn_azul">Crear Evento</Boton>
-      </form>
+          <Boton colorBtn="btn_azul">Crear Evento</Boton>
+        </form>
+      </Container>
     </div>
   );
 };

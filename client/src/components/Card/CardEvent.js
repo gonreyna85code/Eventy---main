@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+<<<<<<< HEAD:client/src/components/Card/CardEvent.js
 import Boton from "../Boton/Boton";
+=======
+>>>>>>> a0be8b25a1ac0814da36ad766092528b54d01fd0:client/src/components/CardEvent.js
 import styles from './CardEvent.module.css'
 import botonStyles from "../Boton/Boton.module.css"
 import {FontAwesomeIcon}from '@fortawesome/react-fontawesome'
 import {faCalendarAlt, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons'
+import '../portadadefault.png'
 
 
 export default function Card({name, id, location, date, img,buttonColor}){
@@ -20,9 +24,15 @@ export default function Card({name, id, location, date, img,buttonColor}){
     }
     return(
         <div className = {styles.contenedor} key = {name}>
+            { img ?
             <div className={styles.cont_img} style={{backgroundImage:`url(${img})`}}>
                 {/* <img className = {styles.imagen} src = {img} alt={name} /> */}
             </div>
+            :
+            <div>
+                <img className = {styles.cont_img} src = 'https://i.pinimg.com/564x/40/b1/3b/40b13b8551695223454663c0d26caaa3.jpg' alt=''></img>
+            </div>    
+            }
             <div>
                 <h3 className = {styles.nameCard}>{name}</h3>
             </div>
@@ -31,7 +41,7 @@ export default function Card({name, id, location, date, img,buttonColor}){
                     <FontAwesomeIcon  className={`${colorIcon}`} icon={faMapMarkerAlt} /> <span className = {styles.locationCard}>{location}</span>
                 </div>
                 <div>
-                    <FontAwesomeIcon className={`${colorIcon}`}  icon={faCalendarAlt} /> <span className = {styles.dateCard}>{date}</span>
+                    <FontAwesomeIcon className={`${colorIcon}`}  icon={faCalendarAlt} /> <span className = {styles.dateCard}>{date.slice(8,10)+'/'+date.slice(5,7)}</span>
                 </div>
             </div>
             <Link to = {'/detailEvent/' + name}>
