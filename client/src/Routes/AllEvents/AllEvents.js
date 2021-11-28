@@ -9,6 +9,16 @@ import Loading from '../../components/Landing/Landing'
 
 
 const AllEvents = () => {
+     //const dispatch = useDispatch();
+     //const events = useSelector(state => state.AllEvents);
+    // const cities = () => {
+    //   let array = events.map(event => event.city);
+    //     let unique = [...new Set(array)];   
+    //     return unique;
+    // }
+    // useEffect(()=>{
+    //     dispatch(getAllEvents());
+    // }, [dispatch]);
 
     const filtrosInicialState = {
         orden: null,
