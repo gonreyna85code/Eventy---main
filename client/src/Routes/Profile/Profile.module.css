@@ -26,6 +26,7 @@
     left: 60px;
     bottom: auto;
     text-align: justify;
+    width: auto;
 }
 .fullname{
     font-size: 50px;
@@ -84,4 +85,11 @@
     height: 50px;
     border-radius: 100%;
     border: 1px;
+}
+
+#setting{
+    position: relative;
+    left: 300px;
+    bottom: 40px;
+    top: 0px;
 }

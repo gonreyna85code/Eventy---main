@@ -1,15 +1,13 @@
-import React from 'react'
-//import deportesImg from './images/categoria-deportes.png'
+import React, { useState } from 'react'
 import logoBlanco from './images/logo-blanco.png'
+import botonStyles from "../Boton/Boton.module.css"
 import styles from './home.module.css'
-//import Boton from '../components/Boton/Boton'
-import botonStyles from "../components/Boton/Boton.module.css"
-import Card from '../components/CardEvent'
+import Card from '../Card/CardEvent'
 import {FontAwesomeIcon}from '@fortawesome/react-fontawesome'
 import {faCircle } from '@fortawesome/free-solid-svg-icons'
 import{faUser}from '@fortawesome/free-regular-svg-icons'
 import { Link } from 'react-router-dom'
-import Container from '../components/Container/Container'
+import Container from '../Container/Container'
 
 
 //COMIENZO DE ZONA DE HARDCODEO
@@ -114,11 +112,6 @@ export default function Home(){
                         }
                         </div>
                     </Container>
-                    {document.defaultView.window.outerWidth> 768  ?
-                    // document.getElementById('CarrouselEventos').style.transform= `translateX(0)`
-                    console.log('hola')
-                    :null}
-                    {/* {console.log(document.getElementById('CarrouselEventos'))} */}
                     <div>
                         <button  className= {`${botonStyles.btn} ${botonStyles.btn_naranja} ${styles.carruselButton}`} onClick={()=>{
                             if(document.getElementById('CarrouselEventos').style.transform === ''){
