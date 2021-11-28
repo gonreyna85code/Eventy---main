@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect,useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Input from '../../components/Input/Input';
 import Boton from '../../components/Boton/Boton';
 import Select from '../../components/Select/Select';
-import NavBar from '../NavBar/NavBar';
 import Initial from '../Profile/Initial';
-import { putUser } from '../../redux/actions';
+import { putUser, getUser } from '../../redux/actions';
 import styles from './Setting.module.css';
 
 export default function Setting(){
@@ -37,9 +36,12 @@ export default function Setting(){
         dispatch(putUser({profile:profile,username:user.username}))
     }
 
+    useEffect(() => {
+        dispatch(getUser());
+    }, [dispatch]);
+
     return (
         <>
-        <NavBar />
         <div className={styles.setting} >
             <Initial user={user}/>
             <h1>Configuración</h1>
