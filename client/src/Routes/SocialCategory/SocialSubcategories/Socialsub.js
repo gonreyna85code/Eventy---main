@@ -1,7 +1,6 @@
 import React, {useEffect} from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Boton from "../../../components/Boton/Boton";
 import { findEventSub } from "../../../redux/actions";
 import Card from "../../../components/CardEvent";
 import botonStyles from '../../../components/Boton/Boton.module.css';
