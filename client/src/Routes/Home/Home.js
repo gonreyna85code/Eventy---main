@@ -22,20 +22,20 @@ const responsive = {
     },
 }
 
+const subcategorias = ["Maraton", "Aeromodelismo", "Futbol", "Tenis", "Handball", "Fiesta",
+    "Reunion", "Protesta", "Concierto"];
+
 const Home = () => {
     
     const dispatch = useDispatch();
     const user = useSelector( state => state.User );
-    const eventosCercanos = user.near
+
 
     useEffect(()=>{
         dispatch(getUser());
     }, [dispatch]);
 
     
-    
-    console.log({eventosCercanos})
-
     return(
         <div className={styles.cont_home}>
             <NavBar/>
@@ -78,6 +78,17 @@ const Home = () => {
                         <h2>Busca un Evento de tu Interes</h2>
                         <div className={styles.cont_searchBar}>
                             <SearchBar/>
+                        </div>
+                        <div className={styles.subcategorias}>
+                            <ul>
+                                {
+                                    subcategorias && subcategorias.map( subcategoria => {
+                                        return(
+                                            <li key={subcategoria}><Link to={`/subcategory/${subcategoria}`}>{subcategoria}</Link></li>
+                                        )
+                                    })
+                                }
+                            </ul>
                         </div>
                     </div>
                 </Container>
