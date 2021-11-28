@@ -41,6 +41,9 @@ export default function SubCategory(){
                         </div>
                     }
             </div>
+            <div className = 'fondo'>
+            <Boton colorBtn='btn_naranja'>Seguir Hobby</Boton>
+            </div>
         </div>
     )
 }
