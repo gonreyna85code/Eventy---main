@@ -6,6 +6,7 @@ import Information from './Information';
 import Novedades from './Novedades';
 import { getUser } from '../../redux/actions.js';
 import Warning from '../../components/Warning.js/Warning';
+import Loading from '../../components/Loading/Loading';
 
 
 export default function Profile(){
@@ -39,7 +40,7 @@ export default function Profile(){
                         <Novedades user={user} params={params} />
                     </section>
                 </div>
-                : ``
+                : <Loading/>
             }
         </div>
     )
