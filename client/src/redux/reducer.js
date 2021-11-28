@@ -9,7 +9,45 @@ import {
   GET_BY_CAT,
   GET_BY_SUB,
   GET_BY_CITY,
+  ORDEN_BY_NAME,
+  GET_ALL_CITIES
 } from "./actions.js";
+
+//========================
+//Funcion de ordenamiento
+
+export const ordenEventosNombre = ( state, payload ) => {
+ 
+  if( payload === 'asc'){
+
+      return state.Filtrados.sort( (a, b) => {
+          if( a.name.toLowerCase() > b.name.toLowerCase() ) return 1
+          if( b.name.toLowerCase() > a.name.toLowerCase() ) return -1
+          return 0
+      })
+
+  } else if( payload === 'desc' ){
+
+      return state.Filtrados.sort( (a, b) => {
+          if( a.name.toLowerCase() > b.name.toLowerCase() ) return -1
+          if( a.name.toLowerCase() > b.name.toLowerCase() ) return 1
+          return 0
+      });
+
+  } else {
+
+      return state.Filtrados.sort( (a, b) => {
+          if( a.name.toLowerCase() > Math.random() ) return -1
+          if( b.name.toLowerCase() > Math.random() ) return 1
+          return 0
+      });
+
+  }
+
+}
+
+// Fin de funcion de ordenamiento
+//===================================
 
 const initialState = {
   User: {},
@@ -17,10 +55,13 @@ const initialState = {
   Events: [],
   SearchResult: [],
   NearbyEvents: [],
+  Filtrados: [],
   Filtrados1: [],
   Filtrados2: [],
   AllEvents: [],
+  Cities: [],
 };
+
 
 function rootReducer(state = initialState, action) {
   if (action.type === GET_USER) {
@@ -36,7 +77,7 @@ function rootReducer(state = initialState, action) {
     };
   }
   if (action.type === GET_EVENT) {
-    console.log("este es el " + action.payload);
+    //console.log("este es el " + action.payload);
     return {
       ...state,
       Event: action.payload,
@@ -75,6 +116,7 @@ function rootReducer(state = initialState, action) {
     return {
       ...state,
       AllEvents: action.payload,
+      Filtrados: action.payload
     };
   }
   if (action.type === GET_BY_CAT) {
@@ -89,17 +131,31 @@ function rootReducer(state = initialState, action) {
     return {
       ...state,
       Filtrados: [...state.AllEvents].filter((d) =>
-        d.category.includes(action.payload)
+        d.subcategory.includes(action.payload)
       ),
     };
   }
   if (action.type === GET_BY_CITY) {
     return {
       ...state,
-      Filtrados1: [...state.AllEvents].filter((d) =>
-        d.category.includes(action.payload)
+      Filtrados: [...state.AllEvents].filter((d) =>
+        d.location.includes(action.payload)
       ),
     };
+  }
+
+  if(action.type === ORDEN_BY_NAME){
+    return {
+      ...state,
+      Filtrados: ordenEventosNombre(state, action.payload)
+    }
+  }
+
+  if(action.type === GET_ALL_CITIES){
+    return{
+      ...state,
+      Cities: [...state.AllEvents].map( e => { return {value:e.location, name: e.location}})
+    }
   }
   return state;
 }
