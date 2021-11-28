@@ -29,14 +29,18 @@ export default function Profile(){
     }
 
     return (
-        <>
-            <div className={styles.profile}>
-                <Initial user={user} />
-                <section id={styles.section2}>
-                    <Information user={user} handleClick={handleClick}/>
-                    <Novedades user={user} params={params} />
-                </section>
-            </div>
-        </>
+        <div>
+        
+            { user && user.hasOwnProperty('profile') ?
+                <div className={styles.profile}>
+                    <Initial user={user} />
+                    <section id={styles.section2}>
+                        <Information user={user} handleClick={handleClick}/>
+                        <Novedades user={user} params={params} />
+                    </section>
+                </div>
+                : ``
+            }
+        </div>
     )
 }
