@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import { Link } from "react-router-dom";
 import { findEventByCategory } from "../../redux/actions";
-import Card from "../../components/Card/CardEvent";
+import Card from "../../components/CardEvent";
 import '../SocialCategory/SocialCategory.css'
 import botonStyles from "../../components/Boton/Boton.module.css"
 

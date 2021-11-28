@@ -2,16 +2,16 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styles from './Home.module.css';
-import NavBar from '../../components/NavBar/NavBar';
+import NavBar from '../NavBar/NavBar';
 import EventHome from './EventHome';
 import { getUser } from '../../redux/actions';
-import {AliceCarousel} from 'react-alice-carousel';
+import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import './HomeCarrusel.css';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import Container from '../../components/Container/Container';
 import Boton from '../../components/Boton/Boton';
-import CardEvent from '../../components/Card/CardEvent'
+import CardEvent from '../../components/CardEvent'
 
 const responsive = {
     0: {
@@ -46,17 +46,17 @@ const Home = () => {
                 </div>
                 
                 <div className={`cont-carrusel ${styles.cont_carrusel}`}>
-                    {/* <AliceCarousel
+                    <AliceCarousel
                         mouseTracking
                         items={
                             user.near && user.near.map( evento => {
                                 return(
                                     <EventHome
-                                        name={evento.name}
-                                        img={evento.info.imagen}
-                                        location={evento.location}
-                                        date={evento.date.slice(8,10)+'/'+evento.date.slice(5,7)}
-                                        id={evento._id}
+                                    name={evento.name}
+                                    img={evento.info.image}
+                                    location={evento.location}
+                                    date={evento.date.slice(8,10)+'/'+evento.date.slice(5,7)}
+                                    id={evento._id}
                                     />
                                 );
                             })
@@ -69,7 +69,7 @@ const Home = () => {
                         keyboardNavigation={true}
                         disableButtonsControls={false}
                         disableDotsControls={true}
-                    /> */}
+                    />
                 </div>
             </div>
             <div className={styles.cont_busqueda}>

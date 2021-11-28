@@ -37,6 +37,10 @@ router.post("/register", (req, res) => {
     }
   });
 });
+router.get('/logout', function (req, res){
+  req.logOut()  // <-- not req.logout();
+  res.send('Usuario no logueado')
+});
 
 router.get("/user", async (req, res) => {
   const near = await Event.find({ location: req.user?.profile.city });
@@ -57,14 +61,16 @@ router.get("/user", async (req, res) => {
   }
 });
 
-router.put("/user_update", (req, res) => {
+router.put("/user_update", (req, res, next) => {
   User.findOne({ username: req.body.username }, async (err, doc) => {
     if (err) throw err;
     if (!doc) res.send("User Not Found");
     if (doc) {
       doc.profile = req.body.profile;
-      await doc.save();
-      res.send("User Updated");
+      await doc.save().then((r)=>{
+        console.log(doc)
+        res.send("User Updated");
+      });
     }
   });
 });

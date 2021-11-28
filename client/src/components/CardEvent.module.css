@@ -1,0 +1,63 @@
+
+
+
+.contenedor{
+    border: 3px solid rgb(1, 56, 95);
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: calc(100% - 100px);
+    margin-inline: 20px;
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+.contenedor:hover{
+    box-shadow: 0 0 5px rgba(1,56,95,0.5);
+    transition: var(--transition);
+}
+
+.cont_img{
+    height: 250px;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 20px;
+}
+.imagen{
+    width:auto;
+    min-height: 200px;
+}
+.iconNaranja{
+    color: var(--naranja);
+}
+.iconAzul{
+    color: var(--azul);
+}
+.nameCard{
+    color:rgb(1, 56, 95);
+    font-size: 23px;
+}
+
+.locationCard{
+    color: black;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    
+}
+
+.dateCard{
+    color: black;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    
+}
+.cont_info{
+    margin-block: 5px;
+}
+
+@media (width > 768px) {
+    .contenedor{
+        -width: 70%;
+    }
+}
