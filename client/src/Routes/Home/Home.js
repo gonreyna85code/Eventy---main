@@ -46,7 +46,7 @@ const Home = () => {
                 </div>
                 
                 <div className={`cont-carrusel ${styles.cont_carrusel}`}>
-                    <AliceCarousel
+                    {/* <AliceCarousel
                         mouseTracking
                         items={
                             user.near && user.near.map( evento => {
@@ -69,7 +69,7 @@ const Home = () => {
                         keyboardNavigation={true}
                         disableButtonsControls={false}
                         disableDotsControls={true}
-                    />
+                    /> */}
                 </div>
             </div>
             <div className={styles.cont_busqueda}>
