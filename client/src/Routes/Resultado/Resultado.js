@@ -1,6 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Card from "../../components/CardEvent";
+import Card from "../../components/Card/CardEvent";
+// import Card from "../../components/CardEvent";
+
 
 export default function Resultado(){
     const resultado = useSelector(state => state.SearchResult)
