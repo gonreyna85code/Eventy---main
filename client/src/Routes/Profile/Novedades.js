@@ -17,7 +17,7 @@ export default function Novedades({user,params}){
             </div>
         )
     }
-    if(user.events.length!==0){
+    if(user.events?.length!==0){
         return (
             <div className={styles.novedades}>
                 {user.events.map((e)=><Novedad info={{event:e,user:user}} type='evento' key={`${e}${Math.random()}`} />)}

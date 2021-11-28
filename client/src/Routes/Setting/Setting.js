@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Input from '../../components/Input/Input';
 import Boton from '../../components/Boton/Boton';
 import Select from '../../components/Select/Select';
+import Warning from '../../components/Warning.js/Warning';
 import Initial from '../Profile/Initial';
 import { putUser, getUser } from '../../redux/actions';
 import styles from './Setting.module.css';
@@ -12,14 +13,14 @@ export default function Setting(){
     const dispatch=useDispatch();
 
     const [profile,setProfile]=useState({
-        name:user.profile.name,
-        surname: user.profile.surname,
-        age: user.profile.age,
-        email: user.profile.email,
-        city: user.profile.city,
-        photo:user.profile.photo?user.profile.photo:'',
-        portada:user.profile.portada?user.profile.portada:'',
-        gender:user.profile.gender?user.profile.gender:'',
+        name:user.profile?.name,
+        surname: user.profile?.surname,
+        age: user.profile?.age,
+        email: user.profile?.email,
+        city: user.profile?.city,
+        photo:user.profile?.photo?user.profile?.photo:'',
+        portada:user.profile?.portada?user.profile?.portada:'',
+        gender:user.profile?.gender?user.profile?.gender:'',
     });
 
     var gender=[{value:'Mujer',name:'Mujer'},{value:'Hombre',name:'Hombre'},{value:'No binario',name:'No binario'}]
@@ -39,6 +40,12 @@ export default function Setting(){
     useEffect(() => {
         dispatch(getUser());
     }, [dispatch]);
+
+    if(user==="Usuario no logueado"){
+        return (
+            <Warning />
+        )
+    }
 
     return (
         <>
