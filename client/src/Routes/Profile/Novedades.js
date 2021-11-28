@@ -6,14 +6,14 @@ export default function Novedades({user,params}){
     if(params.view==='Seguidores'){
         return (
             <div className={styles.novedades}>
-                {user.follows.map((e)=><Novedad info={e} type='seguidor' />)}
+                {user.follows?.map((e)=><Novedad info={e} type='seguidor' />)}
             </div>
         )
     }
     if(params.view==='Seguidos'){
         return (
             <div className={styles.novedades}>
-                {user.follows.map((e)=><Novedad info={e} type='seguido' />)}
+                {user.follows?.map((e)=><Novedad info={e} type='seguido' />)}
             </div>
         )
     }

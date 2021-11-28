@@ -41,7 +41,7 @@ export default function DetailEvet(){
                        <h3>Lugar:</h3>
                        <p>{theEvent.location}</p>
                        <h3>Fecha y hora:</h3>
-                       <p>{theEvent.date.slice(0,10)}</p>
+                       <p>{theEvent.date.slice(8,10)+'/'+theEvent.date.slice(5,7)}</p>
                        <p>Esta es una fecha de prueba</p>
                    </div>
                    <div>
