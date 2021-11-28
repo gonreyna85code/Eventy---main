@@ -10,6 +10,7 @@ const subcategories=[
 
 const FilterEvents = ({stateFiltros, handleChange, cities}) => {
 
+    
     return(
         <div className={styles.cont_filtros}>
 

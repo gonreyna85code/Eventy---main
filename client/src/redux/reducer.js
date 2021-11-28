@@ -122,7 +122,7 @@ function rootReducer(state = initialState, action) {
   if (action.type === GET_BY_CAT) {
     return {
       ...state,
-      Filtrados: [...state.AllEvents].filter((d) =>
+      Filtrados: action.payload === '1' ? [...state.AllEvents] : [...state.AllEvents].filter((d) =>
         d.category.includes(action.payload)
       ),
     };
@@ -130,7 +130,7 @@ function rootReducer(state = initialState, action) {
   if (action.type === GET_BY_SUB) {
     return {
       ...state,
-      Filtrados: [...state.AllEvents].filter((d) =>
+      Filtrados: action.payload === '1' ? [...state.AllEvents] : [...state.AllEvents].filter((d) =>
         d.subcategory.includes(action.payload)
       ),
     };
@@ -138,7 +138,7 @@ function rootReducer(state = initialState, action) {
   if (action.type === GET_BY_CITY) {
     return {
       ...state,
-      Filtrados: [...state.AllEvents].filter((d) =>
+      Filtrados: action.payload === '1' ? [...state.AllEvents] : [...state.AllEvents].filter((d) =>
         d.location.includes(action.payload)
       ),
     };
@@ -152,9 +152,12 @@ function rootReducer(state = initialState, action) {
   }
 
   if(action.type === GET_ALL_CITIES){
+
+    const array = [...state.AllEvents].map( e => e.location)
+    const unique = new Set(array)
     return{
       ...state,
-      Cities: [...state.AllEvents].map( e => { return {value:e.location, name: e.location}})
+      Cities:  unique
     }
   }
   return state;
