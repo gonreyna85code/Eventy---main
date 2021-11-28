@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import logoBlanco from './images/logo-blanco.png'
-import styles from './home.module.css'
 import botonStyles from "../Boton/Boton.module.css"
+import styles from './home.module.css'
 import Card from '../Card/CardEvent'
 import {FontAwesomeIcon}from '@fortawesome/react-fontawesome'
 import {faCircle } from '@fortawesome/free-solid-svg-icons'
@@ -107,11 +107,6 @@ export default function Home(){
                         })
                     }
                     </div>
-                    {document.defaultView.window.outerWidth> 768  ?
-                    // document.getElementById('CarrouselEventos').style.transform= `translateX(0)`
-                    console.log('hola')
-                    :null}
-                    {/* {console.log(document.getElementById('CarrouselEventos'))} */}
                     <div>
                         <button  className= {`${botonStyles.btn} ${botonStyles.btn_naranja} ${styles.carruselButton}`} onClick={()=>{
                             if(document.getElementById('CarrouselEventos').style.transform === ''){
@@ -181,7 +176,7 @@ export default function Home(){
                         }}>
                             {'<'}
                         </button>
-                        <button className= {`${botonStyles.btn} ${botonStyles.btn_azul} ${styles.carruselButton}`} onClick={async()=>{
+                        <button className= {`${botonStyles.btn} ${botonStyles.btn_azul} ${styles.carruselButton} `} onClick={async()=>{
                             if(document.getElementById('CarrouselNoticias').style.transform === ''){
                                 document.getElementById('CarrouselNoticias').style.transform=`translateX(-33.3%)`
                             }else{
