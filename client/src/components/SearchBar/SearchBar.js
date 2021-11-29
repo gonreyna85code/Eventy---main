@@ -23,7 +23,7 @@ export default function SearchBar (props){
     return (
         <div className={style.container}>
             <input className={style.input}value = {state} onChange={event => setState(event.target.value)}/>
-           <button className={style.boton}  onClick={search}><FontAwesomeIcon icon={faSearch}/></button>
+            <button className={style.boton}  onClick={search}><FontAwesomeIcon icon={faSearch}/></button>
         </div>
     )
 }

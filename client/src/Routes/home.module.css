@@ -170,12 +170,15 @@
     .principalBanner div{
         padding: 15% 0 15% 10%;
     }
-    .principalBanner div a{
+    .principalBanner  a{
+        font-size: 400%;
+    }
+    .principalBanner div span{
         font-size: 400%;
     }
     .bannerBoton{
         margin: 2% 0% 2% 0%;
-        font-size: 200%;
+        font-size: 70%;
     }
     .nombreClase{
         font-size: 400%;
