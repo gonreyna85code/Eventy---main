@@ -154,7 +154,7 @@ function rootReducer(state = initialState, action) {
   if(action.type === GET_ALL_CITIES){
 
     const array = [...state.AllEvents].map( e => e.location)
-    const unique = new Set(array)
+    const unique = [...new Set(array)]
     return{
       ...state,
       Cities:  unique
