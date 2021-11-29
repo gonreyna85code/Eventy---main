@@ -37,8 +37,8 @@ export default function NavBar(){
                     <ul>
                         <div ><Link to="/crear-evento" style={{textDecoration: 'none'}}><span>Crear Evento</span></Link></div>
                         <div ><Link to="/profile" style={{textDecoration: 'none'}}><span>Profile</span></Link></div>
-                        <div ><Link to="/setting" style={{textDecoration: 'none'}}><span>Setting</span></Link></div>
                         <div ><Link to="/" onClick={(e) => handler()} style={{textDecoration: 'none'}}><span>Logout</span></Link></div>
+                        {/* <div ><Link to="/setting" style={{textDecoration: 'none'}}><span>About</span></Link></div> */}
 
                     </ul>
                 </div>
