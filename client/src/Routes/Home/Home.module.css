@@ -132,22 +132,3 @@
     padding-block: 80px;
     background: var(--azul);
 }
-
-.cont_eventos_seguidos h2{
-    margin-bottom: 50px;
-}
-
-@media(max-width:768px){
-
-    .cat_sociales{
-        flex-direction: column;
-    }
-    .cat_deportes{
-        flex-direction: column-reverse;
-    }
-
-    .cont_categoria_home :is(.cont_info_categoria_home, .cont_carrusel_categoria_home){
-        width: 100%;
-    }
-
-}

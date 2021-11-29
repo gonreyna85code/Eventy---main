@@ -92,11 +92,3 @@
     color:var(--naranja);
     text-shadow: 0 0 5px var(--azul);
 }
-
-@media(max-width: 768px){
-    .cont-carrusel .alice-carousel__stage-item.__active.__target + li .cont-eventHome{
-        width: 136%;
-        margin-left: -16.6666667%;
-        box-shadow: 0 0 10px rgba(1,56,95,0.8);
-    }
-}

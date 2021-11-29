@@ -13,18 +13,9 @@ import Container from '../../components/Container/Container';
 import Boton from '../../components/Boton/Boton';
 import CardEvent from '../../components/CardEvent'
 
-const responsivePrincipal = {
-    0: {
-        items: 3,
-    },
-    1024:  {
-        items: 3,
-    },
-}
-
 const responsive = {
     0: {
-        items: 2,
+        items: 3,
     },
     1024:  {
         items: 3,
@@ -70,7 +61,7 @@ const Home = () => {
                                 );
                             })
                         }
-                        responsive={responsivePrincipal}
+                        responsive={responsive}
                         controlsStrategy="alternate"
                         autoPlay={true}
                         infinite={true}
