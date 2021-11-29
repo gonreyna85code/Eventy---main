@@ -4,7 +4,7 @@ import styles from './AllEvents.module.css';
 import FilterEvents from '../../components/FilterEvents/FilterEvents';
 import {getAllEvents, getByCat, getBySub, getByCity, filterByName, getAllCities} from '../../redux/actions';
 import CardEvent from '../../components/CardEvent';
-import Loading from '../../components/Landing/Landing'
+import Loading from '../Landing'
 
 
 
