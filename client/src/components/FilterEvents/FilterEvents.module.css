@@ -1,5 +1,18 @@
 .cont_filtros{
-    width: 80%;
-    display: block;
-    margin-inline: auto;
+    width: -moz-fit-content;
+    width: fit-content;
+    display: flex;
+    margin: -80px auto 60px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background: var(--naranja);
+    padding: 20px 40px;
+}
+
+.cont_filtros > div label{
+    color: #fff;
+}
+.cont_filtros > div{
+    margin-inline: 5px;
 }

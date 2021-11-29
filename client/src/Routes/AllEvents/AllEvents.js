@@ -4,7 +4,8 @@ import styles from './AllEvents.module.css';
 import FilterEvents from '../../components/FilterEvents/FilterEvents';
 import {getAllEvents, getByCat, getBySub, getByCity, filterByName, getAllCities} from '../../redux/actions';
 import CardEvent from '../../components/CardEvent';
-import Loading from '../../components/Landing/Landing'
+import Loading from '../../components/Landing/Landing';
+import Container from '../../components/Container/Container';
 
 
 const AllEvents = () => {
@@ -62,26 +63,31 @@ const AllEvents = () => {
                 <FilterEvents stateFiltros={filtros} handleChange={handleFilters} cities={cities.map( e => { return {value:e, name: e}} )}/>
                 {
                     eventos && eventos.length > 0 ?
-                        <div className={styles.cont_listado_eventos}>
-                            {
-                                eventos.map( evento => evento.name && evento.name.length > 0
-                                                        ?
-                                                            <CardEvent
-                                                                name={evento.name}
-                                                                img={evento.info.hasOwnProperty('image') ? evento.info.image : ``}
-                                                                location={evento.location}
-                                                                date={evento.date}
-                                                                id={evento._id}
-                                                                buttonColor='naranja'
-                                                            />
+                        <Container>
+                            <div className={styles.cont_listado_eventos}>
+                                {
+                                    eventos.map( evento => evento.name && evento.name.length > 0
+                                                            ?
+                                                                <CardEvent
+                                                                    name={evento.name}
+                                                                    img={evento.info.hasOwnProperty('image') ? evento.info.image : ``}
+                                                                    location={evento.location}
+                                                                    date={evento.date}
+                                                                    id={evento._id}
+                                                                    buttonColor='naranja'
+                                                                />
 
-                                                        : null
+                                                            : null
 
-                                        )
-                            }
-                        </div>
+                                            )
+                                }
+                            </div>
+                        </Container>
+                    : 
 
-                    : <Loading/>
+                    <div>
+                        <h3>No hemos encontrado eventos</h3>
+                    </div>
                 }
             </div>
 
