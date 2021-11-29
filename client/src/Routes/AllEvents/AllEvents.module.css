@@ -1,0 +1,9 @@
+.cont_listado_eventos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cont_listado_eventos > div{
+    width: calc(100% / 3 - 57px);
+}

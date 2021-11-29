@@ -13,11 +13,9 @@ export default function SearchBar (props){
     const navigate = useNavigate(); 
 
     function search(event){
-        event.preventDefault();
         dispatch(findEvent(state));
         if(state !== "")navigate("/result")
         setState("")
-       
     }
 
     return (

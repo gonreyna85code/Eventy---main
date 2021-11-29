@@ -42,7 +42,7 @@ export default function SportCategory(){
                 <h1 className = 'title2'>Subcategorías:</h1>
                 <div className = 'hobby'>
                     <h1 className = 'hobbytitle'>Fútbol</h1>
-                    <Link to = {'/subcategory/' + 'Futbol'}>
+                    <Link to = {'/subcategory/Futbol'}>
                     <button className={`${botonStyles.btn} ${botonStyles.btn_azul}`}>
                         Acceder
                     </button>
@@ -50,7 +50,7 @@ export default function SportCategory(){
                 </div>
                 <div className = 'hobby'>
                     <h1 className = 'hobbytitle'>Maratón</h1>
-                    <Link to = {'/subcategory/' + 'Maraton'}>
+                    <Link to = {'/subcategory/Maraton'}>
                     <button className={`${botonStyles.btn} ${botonStyles.btn_azul}`}>
                         Acceder
                     </button>
@@ -58,7 +58,7 @@ export default function SportCategory(){
                 </div>
                 <div className = 'hobby'>
                     <h1 className = 'hobbytitle'>Tenis</h1>
-                    <Link to = {'/subcategory/' + 'Tenis'}>
+                    <Link to = {'/subcategory/Tenis'}>
                     <button className={`${botonStyles.btn} ${botonStyles.btn_azul}`}>
                         Acceder
                     </button>
@@ -66,7 +66,7 @@ export default function SportCategory(){
                 </div>
                 <div className = 'hobby'>
                     <h1 className = 'hobbytitle'>Handball</h1>
-                    <Link to = {'/subcategory/' + 'Handball'}>
+                    <Link to = {'/subcategory/Handball'}>
                     <button className={`${botonStyles.btn} ${botonStyles.btn_azul}`}>
                         Acceder
                     </button>
