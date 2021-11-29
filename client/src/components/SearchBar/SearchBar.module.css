@@ -1,28 +1,25 @@
 .container{
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 2%;
-    width: fit-content;
+    position:relative; 
+    top: 15px;
+    left: 300px;  
 }
 
 
 .input{
-    background-color: #D67D0B;
-    border: none;
-    border-radius: 3px;
-    width: fit-content;
-    height: 30px;
-
-    justify-self: right;
+background-color: #D67D0B;
+border: none;
+border-radius: 3px;
+width: 180px;
+height: 30px;
+position: relative;
+left: -10px; 
 }
 .boton{
-    /* margin: 20px; */
     background-color: transparent;
     border: none; 
     cursor: pointer; 
-    justify-self: left;
 }
 .boton svg{
-    color: white; 
-    font-size: 20px;
+     color: white; 
+     font-size: 20px;
 }

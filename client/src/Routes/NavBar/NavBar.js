@@ -4,12 +4,10 @@ import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from "react-redux";
 import logo from '../../Routes/images/logo-blanco.png'
+import styles from './NavBar.module.css'
 import {FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faUser} from '@fortawesome/free-solid-svg-icons';
 import { logout } from "../../redux/actions";
-import botonStyles from "../../components/Boton/Boton.module.css"
-import styles from './NavBar.module.css'
-
 
  
 
@@ -25,26 +23,17 @@ export default function NavBar(){
     return (
         <div className={styles.navBar}>
             <div className={styles.icono}><Link to ="/"><img src={logo} alt=''/></Link></div>
-            <div className = {styles.menu}>
             <div className={styles.search}><SearchBar/></div>
-                <div className={styles.desplegable}>
-                    <div className= {styles.button}>
-                        <div className ={styles.profileName}>
-                            {user.profile.name}
-                        </div>
-                        <FontAwesomeIcon icon={faUser}/>
-                    </div>
-                    <ul>
-                        <div ><Link to="/crear-evento" style={{textDecoration: 'none'}}><span>Crear Evento</span></Link></div>
-                        <div ><Link to="/profile" style={{textDecoration: 'none'}}><span>Profile</span></Link></div>
-                        <div ><Link to="/setting" style={{textDecoration: 'none'}}><span>Setting</span></Link></div>
-                        <div ><Link to="/" onClick={(e) => handler()} style={{textDecoration: 'none'}}><span>Logout</span></Link></div>
-
-                    </ul>
-                </div>
-
+            <div className={styles.menu}>
+             <FontAwesomeIcon icon={faUser}/>
+             {user.username}
+                <ul>
+                    <li><Link to="/crear-evento" style={{textDecoration: 'none', color: 'black'}}><span>Crear Evento</span></Link></li>
+                    <li><Link to="/profile" style={{textDecoration: 'none', color: 'black'}}><span>Profile</span></Link></li>
+                    <li><Link to="/" style={{textDecoration: 'none', color: 'black'}}><span>About</span></Link></li>
+                    <li><Link to="/" onClick={(e) => handler()} style={{textDecoration: 'none', color: 'black'}}><span>Logout</span></Link></li>
+                </ul>
             </div>
-
         </div>
     )
 }

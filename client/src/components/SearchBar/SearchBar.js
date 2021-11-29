@@ -20,8 +20,8 @@ export default function SearchBar (props){
 
     return (
         <div className={style.container}>
-            <input className={style.input}value = {state} onChange={event => setState(event.target.value)}/>
-            <button className={style.boton}  onClick={search}><FontAwesomeIcon icon={faSearch}/></button>
+            <input className={style.input}value = {state} onChange={event => setState(event.target.value)} onKeyDown={event => {if(event.key === "Enter")search()}}/>
+           <button className={style.boton}  onClick={search}><FontAwesomeIcon icon={faSearch}/></button>
         </div>
     )
 }

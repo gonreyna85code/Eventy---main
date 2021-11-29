@@ -3,108 +3,57 @@
     width: 100%;
     margin: 0; 
     display: grid;
-    grid-template-columns:auto auto ;
+    grid-template-columns:repeat(3,1fr) ;
 
 }
-.icono{
-    justify-self: left;
-    padding: 1.5%;
-    padding-left: 5%;
 
-}
 .icono img{
     height: 50px;  
-}
-.menu{
-    display: flex;
-    gap: 20px;
-    justify-content: right;
-    align-items: center;
-    margin-right: 5%;
-}
-.desplegable {
-    background-color: #01385f; 
-    height: 50px;
-    top: 13px; 
-    align-content: center;
-    cursor: pointer;
-}
-.button{
-    padding: 10px;
-    display: grid;
-    grid-template-columns: auto auto;
-    font-size: 20pt;
-    gap: 5px;
-}
-
-.desplegable ul{
-    top: 50px;
-    display: grid;
-    color: wheat;
-    height: 0;
-    z-index: 10;
-    overflow:hidden;
-	height:0%;
-    justify-items: center;
-    right: 20px;
-}
-.desplegable ul div{
-    color: white;
-    list-style: none;
-}
-.desplegable:hover ul {
- 
-    position:sticky;
-    display: block;
-    height: fit-content;
-    overflow:visible;
-    -webkit-transition: all .3s ease;
-	-moz-transition: all .3s ease;
-	-ms-transition: all .3s ease;
-	-o-transition: all .3s ease;
-	transition: all .3s ease;
-
-
-}
-
-
-.desplegable:hover ul div{
-    
-    font-size: 20pt;
-    font-family: var(--fonttitle);
-    background-color: var(--naranja);
-    display: flex;
-    height: 100%;
-
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    -webkit-transition: all .3s ease;
-    -moz-transition: all .3s ease;
-    -ms-transition: all .3s ease;
-    -o-transition: all .3s ease;
-    transition: all .3s ease;
-    width: fit-content;
-    width: 100%;
-
-}
-.desplegable ul div:hover {
-    background-color: var(--azul);
-}
-.desplegable ul div:hover a{
-    color: var(--blanco);
-}
-.desplegable ul div a{
+    overflow: auto; 
     padding: 5px;
-    color: black;
-}
-.profileName{
-    color: var(--blanco);
-    font-family: var(--fonttitle);
+    position: relative; 
+    left: -30%; 
 }
 
-.menu .desplegable svg {
+.menu {
+    background-color: #01385f; 
+    width: 50px;
+    height: 30px;
+    position: relative; 
+    right: -80%;
+    top: 13px; 
+    padding: 0;
+    margin: 0;
+}
+.menu:hover{
+    background-color: #0F206A;
+}
+
+.menu ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    display: none;
+
+}
+.menu:hover > ul{
+    display: block;
+}
+
+.menu ul li{
+    padding: 5px;
+    position: relative; 
+    right: 100px;
+    top: -29px; 
+    background-color:#ed8b26 ;
+    border-width: 1px;
+    width: 100px;
+    height: 30px;
+}
+
+.menu svg {
     color: white; 
-    font-size: 22pt;
+    font-size: 22px;
     padding: 3px;
 }
+
