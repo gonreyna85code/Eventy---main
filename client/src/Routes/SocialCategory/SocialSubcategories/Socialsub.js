@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { findEventSub } from "../../../redux/actions";
 import Card from "../../../components/CardEvent";
 import botonStyles from '../../../components/Boton/Boton.module.css';
+import Boton from '../../../components/Boton/Boton'
 
 export default function SubCategory(){
 
