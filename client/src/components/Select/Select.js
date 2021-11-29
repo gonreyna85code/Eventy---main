@@ -24,7 +24,7 @@ export default function Select({type,name,onchange,default_value,default_name,he
           <option  value={default_value} className={styles.options}>
             {default_name}
           </option>
-          {options?.map((o)=><option  className={styles.options} value={o.value} key={o.value}>{o.name?o.name:o.value}</option>)}
+          {options?.map((o)=> o.value ? <option  className={styles.options} value={o.value} key={o.value}>{o.name?o.name:o.value}</option> : null)}
         </select>
       </div>
     )

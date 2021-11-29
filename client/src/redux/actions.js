@@ -13,6 +13,8 @@ export const GET_ALL_EVENTS = 'GET_ALL_EVENTS';
 export const GET_BY_CAT = 'GET_BY_CAT';
 export const GET_BY_SUB = 'GET_BY_SUB';
 export const GET_BY_CITY = 'GET_BY_CITY';
+export const ORDEN_BY_NAME = 'ORDEN_BY_NAME';
+export const GET_ALL_CITIES = 'GET_ALL_CITIES';
 
 
 export function registerUser(register) {
@@ -130,7 +132,7 @@ export function getAllEvents(){
       withCredentials: true,
       url: "http://localhost:4000/allEvents",
     })
-    .then(resultado => dispatch({type: GET_ALL_EVENTS, payload: resultado}))
+    .then(resultado => dispatch({type: GET_ALL_EVENTS, payload: resultado.data}))
     .catch(err => alert(err))
   }
 }
@@ -229,3 +231,10 @@ export function getByCity(city) {
 }
 
 
+export function filterByName(orden){
+  return{ type: ORDEN_BY_NAME, payload: orden}
+}
+
+export function getAllCities(){
+  return{ type: GET_ALL_CITIES, payload: ''}
+}

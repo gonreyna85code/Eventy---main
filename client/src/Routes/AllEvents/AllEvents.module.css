@@ -1,0 +1,24 @@
+.cont_header{
+    background: linear-gradient(
+0deg, rgba(1,56,95,1) 2%, rgba(1,56,95,0.9) 50%, rgba(1,56,95,0) 100%), url(https://images.pexels.com/photos/3052360/pexels-photo-3052360.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+    padding: 100px 10px 150px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.cont_header h1{
+    color: #fff;
+    font-size: 65px;
+}
+.cont_listado_eventos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 50px;
+}
+
+.cont_listado_eventos > div{
+    width: calc(100% / 3 - 57px);
+}
+

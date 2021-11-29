@@ -13,9 +13,18 @@ import Container from '../../components/Container/Container';
 import Boton from '../../components/Boton/Boton';
 import CardEvent from '../../components/CardEvent'
 
-const responsive = {
+const responsivePrincipal = {
     0: {
         items: 3,
+    },
+    1024:  {
+        items: 3,
+    },
+}
+
+const responsive = {
+    0: {
+        items: 2,
     },
     1024:  {
         items: 3,
@@ -53,7 +62,7 @@ const Home = () => {
                                 return(
                                     <EventHome
                                     name={evento.name}
-                                    img={evento.info.image}
+                                    img={evento.info.imagen}
                                     location={evento.location}
                                     date={evento.date.slice(8,10)+'/'+evento.date.slice(5,7)}
                                     id={evento._id}
@@ -61,7 +70,7 @@ const Home = () => {
                                 );
                             })
                         }
-                        responsive={responsive}
+                        responsive={responsivePrincipal}
                         controlsStrategy="alternate"
                         autoPlay={true}
                         infinite={true}

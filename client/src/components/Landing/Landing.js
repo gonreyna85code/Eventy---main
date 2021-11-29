@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import logoBlanco from './images/logo-blanco.png'
 import botonStyles from "../Boton/Boton.module.css"
 import styles from './home.module.css'
