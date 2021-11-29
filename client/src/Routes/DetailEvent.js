@@ -66,6 +66,23 @@ export default function DetailEvet(){
                    </div>
                    <div>
                        <h1>Comprar entradas:</h1>
+                       <div>
+                       <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post" >
+                          <input type="hidden" name="cmd" value="_cart"/>
+                          <input type="hidden" name="business" value="kautarol@gmail.com"/>
+                          <input type="hidden" name="lc" value="ES"/>
+                          <input type="hidden" name="item_name" value="Entradas"/>
+                          <input type="hidden" name="item_number" value="01"/>
+                          <input type="hidden" name="amount" value="0.05"/>
+                          <input type="hidden" name="currency_code" value="USD"/>
+                          <input type="hidden" name="button_subtype" value="products"/>
+                          <input type="hidden" name="no_note" value="0"/>
+                          <input type="hidden" name="add" value="1"/>
+                          <input type="hidden" name="bn" value="PP-ShopCartBF:btn_cart_LG.gif:NonHostedGuest"/>
+                          <input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal, la forma rápida y segura de pagar en Internet."/>
+                          <img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1"/>
+                        </form>          
+                       </div>
                        <p>Aquí iría el sistema de pagos.</p>
                    </div>
 
