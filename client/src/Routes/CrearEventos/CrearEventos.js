@@ -44,12 +44,27 @@ const CrearEventos = () => {
 
   const handleChange = (e) => {
     let valueEvent =
-      e.target.name === "description" || e.target.name === "imagen"
+      e.target.name === "description" || e.target.name === "imagen"|| e.target.name === 'fee'
         ? { ...event, info: { ...event.info, [e.target.name]: e.target.value } }
         : { ...event, [e.target.name]: e.target.value, user: user._id };
     setEvent(valueEvent);
     console.log(event);
   };
+
+  function handleCheck (e){
+    //e.preventDefault();
+    let boolean = event.event_pay;
+    if(boolean === false){
+      boolean = true
+    } else if (boolean === true){
+      boolean = false
+    };
+    setEvent({
+      ...event,
+      event_pay: boolean
+    });
+    console.log(event)
+  }
 
   useEffect(() => {
     dispatch(getUser());
@@ -109,6 +124,29 @@ const CrearEventos = () => {
               rows="4"
               onChange={handleChange}
             ></textarea>
+          </div>
+          <div>
+          <label>
+                    <input
+                    type = 'checkbox'
+                    name = 'event_pay'
+                    onChange = {(e)=> handleCheck(e)}
+                    />
+                    ¿Es un evento pago?
+          </label>
+          {
+            event.event_pay === true ?
+            <div>
+                       <Input
+            label="Precio de las entradas (USD)"
+            type="text"
+            name="fee"
+            onChange={handleChange}
+          />
+            </div>
+            :
+            <p>Marque la casilla si se venden entradas para su evento. De lo contrario, precione 'Crear Evento'</p>
+          }
           </div>
 
           <Boton colorBtn="btn_azul">Crear Evento</Boton>

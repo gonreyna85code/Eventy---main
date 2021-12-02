@@ -10,7 +10,8 @@ import {
   GET_BY_SUB,
   GET_BY_CITY,
   ORDEN_BY_NAME,
-  GET_ALL_CITIES
+  GET_ALL_CITIES,
+  POST_PREFERENCE
 } from "./actions.js";
 
 //========================
@@ -60,6 +61,7 @@ const initialState = {
   Filtrados2: [],
   AllEvents: [],
   Cities: [],
+  PrefereneceId:[]
 };
 
 
@@ -158,6 +160,13 @@ function rootReducer(state = initialState, action) {
     return{
       ...state,
       Cities:  unique
+    }
+  }
+
+  if(action.type === POST_PREFERENCE){
+    return{
+      ...state,
+      PreferenceId: action.payload.id
     }
   }
   return state;

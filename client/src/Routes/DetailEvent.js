@@ -1,17 +1,24 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getEvent } from "../redux/actions";
+import { getEvent, postPreference } from "../redux/actions";
 import './DetailEvents.css';
 import Boton from "../components/Boton/Boton";
 import {FontAwesomeIcon}from '@fortawesome/react-fontawesome';
 import {faCalendarAlt, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons';
-import './Ubicación.PNG'
+import './Ubicación.PNG';
+import { useMercadopago } from 'react-sdk-mercadopago';
+import Input from '../components/Input/Input'
+
+
 
 export default function DetailEvet(){
     
     const{name} = useParams();
     console.log(name)
+
+    const [cantidad, setCantidad] = useState(1);
+    const [preference, setPreference] = useState({});
 
     const dispatch = useDispatch();
 
@@ -20,11 +27,54 @@ export default function DetailEvet(){
     }, [dispatch, name]);
 
     const Events = useSelector((state) => state.Event);
+    const PreferenceId = useSelector((state)=>state.PreferenceId)
+    console.log(PreferenceId)
   
     const Evento = Events.filter(el => el.name === name); 
-    const theEvent = Evento[0];
+    const theEvent = Evento[0]; 
+
+  
+    useEffect(()=>{
+        if(theEvent){
+        const fee = theEvent.info.hasOwnProperty('fee') ? theEvent.info.fee : 3
+        setPreference({
+            title: 'Entradas de '+ theEvent.name,
+            price: fee,
+            quantity: cantidad
+       })
+    }
+    }, [theEvent, cantidad])
+    
+    function handleChange(e){
+        setCantidad(e.target.value);
+        console.log(cantidad)
+    }
+
+    function handleClick(e){
+        dispatch(postPreference(preference))
+    }
+
 
     console.log(theEvent);
+
+    const mercadopago = useMercadopago.v2('TEST-73717f29-d26d-4a49-aec6-3f75b4872625', {
+        locale: 'es-AR'
+    });
+
+    useEffect(() => {
+        if (mercadopago && PreferenceId) {
+            mercadopago.checkout({
+                preference: {
+                    id: PreferenceId
+                },
+                render: {
+                    container: '.pago',
+                    label: 'Pay',
+                }
+            })
+        }
+    }, [mercadopago, PreferenceId])
+
 
     return(
        <div>
@@ -66,22 +116,15 @@ export default function DetailEvet(){
                    </div>
                    <div>
                        <h1>Comprar entradas:</h1>
-                       <div>
-                       <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post" >
-                          <input type="hidden" name="cmd" value="_cart"/>
-                          <input type="hidden" name="business" value="kautarol@gmail.com"/>
-                          <input type="hidden" name="lc" value="ES"/>
-                          <input type="hidden" name="item_name" value="Entradas"/>
-                          <input type="hidden" name="item_number" value="01"/>
-                          <input type="hidden" name="amount" value="0.05"/>
-                          <input type="hidden" name="currency_code" value="USD"/>
-                          <input type="hidden" name="button_subtype" value="products"/>
-                          <input type="hidden" name="no_note" value="0"/>
-                          <input type="hidden" name="add" value="1"/>
-                          <input type="hidden" name="bn" value="PP-ShopCartBF:btn_cart_LG.gif:NonHostedGuest"/>
-                          <input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal, la forma rápida y segura de pagar en Internet."/>
-                          <img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1"/>
-                        </form>          
+                       <Input
+                          label="Cantidad de entradas"
+                          type="number"
+                          name="quantity"
+                          min = {1}
+                          onChange={(e)=>handleChange(e)}
+                       />
+                       <Boton onClick = {(e)=>handleClick(e)}>Aplicar Cantidad</Boton>
+                       <div className = 'pago'>   
                        </div>
                        <p>Aquí iría el sistema de pagos.</p>
                    </div>

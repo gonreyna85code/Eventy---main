@@ -1,7 +1,11 @@
 const Router = require("express");
 const Event = require("../models/event");
 const User = require("../models/user");
+const mercadopago = require ('mercadopago');
 
+mercadopago.configure({
+  access_token: 'TEST-7103077711305655-113021-c4a62acbbc30cccc0cfbc219280a11c8-274464234'
+});
 
 const router = Router();
 
@@ -36,6 +40,7 @@ router.post("/event",isAuthenticated, function(req, res){
 router.get("/event/:name", async (req, res) => {
   const {name} = req.params;
   var response = await Event.find({ name: name });
+  console.log(response);
   response.length > 0 ?
   res.status(200).send(response) :
   res.status(404).send('No hay eventos')
@@ -127,6 +132,38 @@ router.get('/allEvents', async(req,res)=>{
   res.status(200).send(response) :
   res.status(404).send('No hay Eventos')
 })
+
+router.post("/create_preference", (req, res) => {
+
+  const {title, price, quantity} = req.body;
+
+	let preference = {
+		items: [
+			{
+				title: title,
+				unit_price: Number(price),
+				quantity: Number(quantity),
+			}
+		],
+		//back_urls: {
+		//	"success": "http://localhost:8080/feedback",
+		//	"failure": "http://localhost:8080/feedback",
+		//	"pending": "http://localhost:8080/feedback"
+		//},
+		//auto_return: "approved",
+	};
+  console.log(preference)
+
+	mercadopago.preferences.create(preference)
+		.then(function (response) {
+      global.id = response.body.id
+			res.json({
+				id: response.body.id
+			});
+		}).catch(function (error) {
+			console.log(error);
+		});
+});
 
 module.exports = router;
 

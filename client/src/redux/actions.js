@@ -15,6 +15,7 @@ export const GET_BY_SUB = 'GET_BY_SUB';
 export const GET_BY_CITY = 'GET_BY_CITY';
 export const ORDEN_BY_NAME = 'ORDEN_BY_NAME';
 export const GET_ALL_CITIES = 'GET_ALL_CITIES';
+export const POST_PREFERENCE = 'POST_PREFERENCE';
 
 
 export function registerUser(register) {
@@ -237,4 +238,21 @@ export function filterByName(orden){
 
 export function getAllCities(){
   return{ type: GET_ALL_CITIES, payload: ''}
+}
+
+export function postPreference(preference){
+  return function (dispatch){
+    axios({
+      method: "POST",
+      data: {
+        title: preference.title,
+        price: preference.price,
+        quantity: preference.quantity
+      },
+      withCredentials: true,
+      url: "http://localhost:4000/create_preference",
+    })
+    .then(resultado => dispatch({type: POST_PREFERENCE, payload: resultado.data}))
+    .catch(err => alert(err))
+  }
 }
