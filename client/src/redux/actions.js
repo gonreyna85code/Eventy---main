@@ -16,6 +16,7 @@ export const GET_BY_CITY = 'GET_BY_CITY';
 export const ORDEN_BY_NAME = 'ORDEN_BY_NAME';
 export const GET_ALL_CITIES = 'GET_ALL_CITIES';
 export const POST_PREFERENCE = 'POST_PREFERENCE';
+export const PUT_EVENT = 'PUT_EVENT';
 
 
 export function registerUser(register) {
@@ -253,6 +254,19 @@ export function postPreference(preference){
       url: "http://localhost:4000/create_preference",
     })
     .then(resultado => dispatch({type: POST_PREFERENCE, payload: resultado.data}))
+    .catch(err => alert(err))
+  }
+}
+
+export function putEvent(edit, id){
+  return function (dispatch){
+    axios({
+      method:"PUT",
+      data: edit,
+      withCredentials: true,
+      url: "http://localhost:4000/editarEvento/" + id,
+    })
+    .then(resultado => dispatch({type: PUT_EVENT, payload: resultado.data}))
     .catch(err => alert(err))
   }
 }

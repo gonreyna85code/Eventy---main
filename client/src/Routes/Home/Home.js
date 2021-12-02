@@ -121,7 +121,7 @@ const Home = () => {
                                         
                                         <CardEvent
                                             name={evento.name}
-                                            img='https://www.chefandparty.com/wp-content/uploads/2020/07/Sociales.jpg'
+                                            img={evento.info.imagen ? evento.info.imagen : 'https://www.chefandparty.com/wp-content/uploads/2020/07/Sociales.jpg'}
                                             location={evento.location}
                                             date={evento.date}
                                             id={evento._id}
@@ -157,7 +157,7 @@ const Home = () => {
                                         
                                             <CardEvent
                                                 name={evento.name}
-                                                img='https://blog.jeep.com.ec/hubfs/7%20deportes%20extremos%20para%20realizar%20outdoor%20despu%C3%A9s%20de%20la%20cuarentena-4.png'
+                                                img= {evento.info.imagen ? evento.info.imagen :'https://blog.jeep.com.ec/hubfs/7%20deportes%20extremos%20para%20realizar%20outdoor%20despu%C3%A9s%20de%20la%20cuarentena-4.png'}
                                                 location={evento.location}
                                                 date={evento.date}
                                                 id={evento._id}
@@ -201,7 +201,7 @@ const Home = () => {
                                             
                                             <CardEvent
                                                 name={evento.name}
-                                                img='https://blog.jeep.com.ec/hubfs/7%20deportes%20extremos%20para%20realizar%20outdoor%20despu%C3%A9s%20de%20la%20cuarentena-1.png'
+                                                img={evento.info.imagen ? evento.info.imagen :'https://blog.jeep.com.ec/hubfs/7%20deportes%20extremos%20para%20realizar%20outdoor%20despu%C3%A9s%20de%20la%20cuarentena-4.png'}
                                                 location={evento.location}
                                                 date={evento.date}
                                                 id={evento._id}

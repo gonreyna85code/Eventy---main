@@ -93,6 +93,9 @@ export default function DetailEvet(){
                             <div>
                             <Boton colorBtn='btn_naranja'>Asistiré</Boton>
                             <Boton colorBtn='btn_naranja'>Seguir Evento</Boton>
+                            <Link to = {'/editar-evento/' + name}>
+                                <Boton colorBtn='btn_naranja'>Editar Evento</Boton>
+                            </Link>
                             </div>
                         </div>   
                         <div>
@@ -115,18 +118,25 @@ export default function DetailEvet(){
                        </div>
                    </div>
                    <div>
-                       <h1>Comprar entradas:</h1>
-                       <Input
-                          label="Cantidad de entradas"
-                          type="number"
-                          name="quantity"
-                          min = {1}
-                          onChange={(e)=>handleChange(e)}
-                       />
-                       <Boton onClick = {(e)=>handleClick(e)}>Aplicar Cantidad</Boton>
                        <div className = 'pago'>   
+                       {
+                           theEvent.event_pay === true ?
+                           <div>
+                           <h1>Comprar entradas:</h1>
+                           <h3>Precio general: {theEvent.info.fee}$</h3>
+                           <Input
+                              label="Cantidad de entradas"
+                              type="number"
+                              name="quantity"
+                              min = {1}
+                              onChange={(e)=>handleChange(e)}
+                           />
+                           <Boton onClick = {(e)=>handleClick(e)}>Aplicar Cantidad</Boton>
+                           </div>
+                           :
+                           <p>Este evento es GRATUITO.</p>
+                       }
                        </div>
-                       <p>Aquí iría el sistema de pagos.</p>
                    </div>
 
                </div>

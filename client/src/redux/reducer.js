@@ -11,7 +11,8 @@ import {
   GET_BY_CITY,
   ORDEN_BY_NAME,
   GET_ALL_CITIES,
-  POST_PREFERENCE
+  POST_PREFERENCE,
+  PUT_EVENT,
 } from "./actions.js";
 
 //========================
@@ -169,7 +170,16 @@ function rootReducer(state = initialState, action) {
       PreferenceId: action.payload.id
     }
   }
+
+  if(action.type === PUT_EVENT){
+    return{
+      ...state,
+      Event : action.payload
+    }
+  }
+
   return state;
 }
+
 
 export default rootReducer;

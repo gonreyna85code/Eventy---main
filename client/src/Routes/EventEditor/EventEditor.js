@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 import Boton from "../../components/Boton/Boton";
 import Input from "../../components/Input/Input";
 import Select from "../../components/Select/Select";
 import Container from '../../components/Container/Container'
-import styles from "./CrearEventos.module.css";
-import { postEvent, getUser } from "../../redux/actions";
+import styles from "../CrearEventos/CrearEventos.module.css";
+import { putEvent, getUser, getEvent } from "../../redux/actions";
 
 
-const CrearEventos = () => {
+const EventEditor = () => {
+
+    const{name} = useParams();
+    console.log(name)
+
+   
   const categories = [{value:"sports",name:"Deportes"},{value:"social",name:"Social"}]
   const subcategories=[
     {herencia:"sports",option:[{value:"Maraton"}, {value:"Aeromodelismo"}, {value:"Futbol"}, {value:"Tenis"}, {value:"Handball"}]},
@@ -16,6 +22,12 @@ const CrearEventos = () => {
   ];
   const user = useSelector((state) => state.User);
   const dispatch = useDispatch();
+
+  useEffect(()=>{ 
+    dispatch(getEvent(name)); 
+}, [dispatch, name]);
+const evento = useSelector ((state)=> state.Event);
+
   if(!user){
     dispatch(getUser());
   }
@@ -36,9 +48,9 @@ const CrearEventos = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(postEvent(event));
+    dispatch(putEvent(event, name));
     console.log(event);
-    alert("El evento se creó exitosamente");
+    alert("El evento se editó exitosamente");
     setEvent(eventInicialState);
   };
 
@@ -73,7 +85,7 @@ const CrearEventos = () => {
   return (
     <div className={styles.cont_crear_evento}>
       <div className={styles.header}>
-        <h1>Crear un Nuevo Evento</h1>
+        <h1>Editar Evento: {name}</h1>
       </div>
       <Container>
         <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
@@ -149,11 +161,14 @@ const CrearEventos = () => {
           }
           </div>
 
-          <Boton colorBtn="btn_azul">Crear Evento</Boton>
+          <Boton colorBtn="btn_azul">Editar Evento</Boton>
         </form>
+        <Link to = '/'>
+        <Boton colorBtn="btn_azul">Volver atrás</Boton>
+        </Link>
       </Container>
     </div>
   );
 };
 
-export default CrearEventos;
+export default EventEditor;

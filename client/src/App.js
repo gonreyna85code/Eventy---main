@@ -6,6 +6,7 @@ import LogingForm from './Routes/LogingForm';
 import Landing from './Routes/Landing';
 import CrearEventos from './Routes/CrearEventos/CrearEventos';
 import DetailEvet from './Routes/DetailEvent';
+import EventEditor from './Routes/EventEditor/EventEditor';
 import Profile from './Routes/Profile/Profile';
 import NavBar from "./Routes/NavBar/NavBar"
 import {getUser} from './redux/actions'
@@ -35,6 +36,7 @@ function App() {
         <Routes>
           <Route exact path = '/' element ={ user && !user._id ? <Landing/>: <Home/> }/> 
           <Route exact path = '/crear-evento' element = {<div><NavBar/><CrearEventos/></div>}/>
+          <Route exact path = '/editar-evento/:name' element = {<div><NavBar/><EventEditor/></div>}/>
           <Route exact path = '/detailEvent/:name' element = {<div><NavBar/><DetailEvet/></div>}/>
           <Route exact path = '/login' element = {<LogingForm/>}/>
           <Route exact path = '/profile' element = {<div><NavBar/><Profile/></div>}/>

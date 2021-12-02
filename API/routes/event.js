@@ -165,5 +165,27 @@ router.post("/create_preference", (req, res) => {
 		});
 });
 
+router.put('/editarEvento/:name', (req, res)=>{
+  const name = req.params;
+  console.log(name);
+
+  Event.findOneAndUpdate({ name: name.name },
+    {
+      name: req.body.name,
+      location: req.body.location,
+      info: req.body.info,
+      event_pay: req.body.event_pay,
+      date: req.body.date,
+      user: req.body.user,
+      category: req.body.category,
+      subcategory: req.body.subcategory,
+    }, (error, evento) =>{
+      if(error){console.log(error)}
+      console.log(evento)
+    });
+    console.log('hecho');
+    res.status(200).send(req.body)
+})
+
 module.exports = router;
 
