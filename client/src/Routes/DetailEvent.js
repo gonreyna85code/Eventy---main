@@ -22,7 +22,7 @@ export default function DetailEvet(){
 
     const dispatch = useDispatch();
 
-    useEffect(()=>{
+    useEffect(()=>{ 
         dispatch(getEvent(name)); 
     }, [dispatch, name]);
 
