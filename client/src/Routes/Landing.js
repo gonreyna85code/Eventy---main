@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-//import deportesImg from './images/categoria-deportes.png'
 import logoBlanco from './images/logo-blanco.png'
 import styles from './home.module.css'
 import Boton from '../components/Boton/Boton'
-import botonStyles from "../components/Boton/Boton.module.css"
 import Card from '../components/CardEvent'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser }from '@fortawesome/free-regular-svg-icons'
@@ -46,12 +44,14 @@ export default function Home(){
                 </div>
             </div>
             <div className={styles.principalBanner}>
-                <div className={styles.cont_banner}>
-                    <h1>SIGUE <span>LOS EVENTOS</span> CERCANOS A TI</h1>
-                    <Link to='/login'>
-                        <Boton colorBtn='btn_azul'>ACCEDER</Boton>
-                    </Link>
-                </div>
+                <Container>
+                    <div className={styles.cont_banner}>
+                        <h1>SIGUE <span>LOS EVENTOS</span> CERCANOS A TI</h1>
+                        <Link to='/login'>
+                            <Boton colorBtn='btn_azul'>ACCEDER</Boton>
+                        </Link>
+                    </div>
+                </Container>
             </div>
             <div className={styles.cont_categorias}>
                 <div className={styles.clasesContainer}>
@@ -74,34 +74,36 @@ export default function Home(){
             </div>
 
             <div className={styles.events}>
-                <h2 className={styles.eventsTitle}>EVENTOS DESTACADOS</h2>
-                <div className={styles.cont_carrusel}>
-                    <AliceCarousel
-                        mouseTracking
-                        items={
-                            eventos && eventos.map( evento => {
-                                return(
-                                    <Card
-                                        name={evento.name}
-                                        img={evento.info.imagen}
-                                        location={evento.location}
-                                        date={evento.date.slice(8,10)+'/'+evento.date.slice(5,7)}
-                                        id={evento._id}
-                                        buttonColor='naranja'
-                                    />
-                                );
-                            })
-                        }
-                        responsive={responsive}
-                        controlsStrategy="alternate"
-                        autoPlay={true}
-                        infinite={true}
-                        autoPlayInterval={4000}
-                        keyboardNavigation={true}
-                        disableButtonsControls={true}
-                        disableDotsControls={false}
-                    />
-                </div>
+                <Container>
+                    <h2 className={styles.eventsTitle}>EVENTOS DESTACADOS</h2>
+                    <div className={styles.cont_carrusel}>
+                        <AliceCarousel
+                            mouseTracking
+                            items={
+                                eventos && eventos.map( evento => {
+                                    return(
+                                        <Card
+                                            name={evento.name}
+                                            img={evento.info.imagen}
+                                            location={evento.location}
+                                            date={evento.date.slice(8,10)+'/'+evento.date.slice(5,7)}
+                                            id={evento._id}
+                                            buttonColor='naranja'
+                                        />
+                                    );
+                                })
+                            }
+                            responsive={responsive}
+                            controlsStrategy="alternate"
+                            autoPlay={true}
+                            infinite={true}
+                            autoPlayInterval={4000}
+                            keyboardNavigation={true}
+                            disableButtonsControls={true}
+                            disableDotsControls={false}
+                        />
+                    </div>
+                </Container>
             </div>
 
             <div className={styles.footer}>
