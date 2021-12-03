@@ -32,7 +32,7 @@ export function registerUser(register) {
             profile: register.profile,
           },
           withCredentials: true,
-          url: "https://gonzalo-eventy3.herokuapp.com/register",
+          url: "http://localhost:4000/register",
         });
         return dispatch({ type: "REGISTER", payload: json.data });
       } catch (error) {
@@ -51,7 +51,7 @@ export function login(login) {
           password: login.password,          
         },
         withCredentials: true,
-        url: "https://gonzalo-eventy3.herokuapp.com/login",
+        url: "http://localhost:4000/login",
       });
       return dispatch({ type: "LOGIN", payload: json.data });
     } catch (error) {
@@ -66,7 +66,7 @@ export function logout(login) {
       const json = await axios({
         method: "GET",
         withCredentials: true,
-        url: "https://gonzalo-eventy3.herokuapp.com/logout",
+        url: "http://localhost:4000/logout",
       });
       console.log('Usuario no logueado')
       return dispatch({ type: "LOGOUT", payload: json.data });
@@ -82,7 +82,7 @@ export function getUser() {
       const json = await axios({
         method: "GET",
         withCredentials: true,
-        url: "https://gonzalo-eventy3.herokuapp.com/user",
+        url: "http://localhost:4000/user",
       });
       return dispatch({ type: "GET_USER", payload: json.data });
     } catch (error) {
@@ -96,7 +96,7 @@ export function getEvent(name) {
     axios({
     method: "GET",
     withCredentials: true,
-    url: "https://gonzalo-eventy3.herokuapp.com/event/" + name,
+    url: "http://localhost:4000/event/" + name,
   })
   .then(resultado => dispatch({type: GET_EVENT, payload: resultado.data}))
   .then(resultado => console.log(resultado))
@@ -120,7 +120,7 @@ export function postEvent(event) {
           subcategory: event.subcategory
         },
         withCredentials: true,
-        url: "https://gonzalo-eventy3.herokuapp.com/event",
+        url: "http://localhost:4000/event",
       });
       return dispatch({ type: "POST_EVENT", payload: json.data });
     } catch (error) {
@@ -134,7 +134,7 @@ export function getAllEvents(){
       axios({
       method: "GET",
       withCredentials: true,
-      url:"https://gonzalo-eventy3.herokuapp.com/allEvents",
+      url: "http://localhost:4000/allEvents",
     })
     .then(resultado => dispatch({type: GET_ALL_EVENTS, payload: resultado.data}))
     .catch(err => alert(err))
@@ -146,7 +146,7 @@ export function findEvent (parametro){
       axios({
       method: "GET",
       withCredentials: true,
-      url: "https://gonzalo-eventy3.herokuapp.com/eventsAll/" + parametro,
+      url: "http://localhost:4000/eventsAll/" + parametro,
     })
     .then(resultado => dispatch({type: FIND_EVENT, payload: resultado}))
     .catch(err => alert(err))
@@ -159,7 +159,7 @@ export function getNearbyEvents(parametro){
       axios({
       method: "GET",
       withCredentials: true,
-      url: "https://gonzalo-eventy3.herokuapp.com/eventsAll/" + parametro,
+      url: "http://localhost:4000/eventsAll/" + parametro,
     })
     .then(resultado => dispatch({type: GET_NEARBY_EVENTS, payload: resultado.data}))
     .catch(err => alert(err))
@@ -172,7 +172,7 @@ export function getEventosLandingPage(){
     axios({
     method: "GET",
     withCredentials: false,
-    url: "https://back-eventy.herokuapp.com/lp-events/",
+    url: "http://localhost:4000/lp-events/",
   })
   .then(resultado => dispatch({type: GET_EVENTS_LP, payload: resultado.data}))
   .catch(err => alert(err))
@@ -185,7 +185,7 @@ export function putUser(user){
     axios({
       method: "PUT",
       withCredentials: true,
-      url: "https://gonzalo-eventy3.herokuapp.com/user_update",
+      url: "http://localhost:4000/user_update",
       data: {
         username:user.username,
         profile:{...user.profile}
@@ -206,7 +206,7 @@ export function findEventByCategory (category){
       axios({
         method: "GET",
         withCredentials: true,
-        url: "https://gonzalo-eventy3.herokuapp.com/socialEvents",
+        url: "http://localhost:4000/socialEvents",
       })
       .then(resultado => dispatch({type: FIND_EVENT_CATEGORY, payload: resultado.data}))
       .catch(err => alert(err))
@@ -216,7 +216,7 @@ export function findEventByCategory (category){
       axios({
         method: "GET",
         withCredentials: true,
-        url: "https://gonzalo-eventy3.herokuapp.com/sportEvents",
+        url: "http://localhost:4000/sportEvents",
       })
       .then(resultado => dispatch({type: FIND_EVENT_CATEGORY, payload: resultado.data}))
       .catch(err => alert(err))
@@ -229,7 +229,7 @@ export function findEventSub(subcategory){
     axios({
       method: "GET",
       withCredentials: true,
-      url: "https://gonzalo-eventy3.herokuapp.com/Events",
+      url: "http://localhost:4000/allEvents",
     })
     .then(resultado => dispatch({type: FIND_EVENT_SUB, payload: resultado.data, sub: subcategory}))
     .catch(err => alert(err))
@@ -267,7 +267,7 @@ export function postPreference(preference){
         quantity: preference.quantity
       },
       withCredentials: true,
-      url: "https://back-eventy.herokuapp.com/create_preference",
+      url: "http://localhost:4000/create_preference",
     })
     .then(resultado => dispatch({type: POST_PREFERENCE, payload: resultado.data}))
     .catch(err => alert(err))
@@ -280,7 +280,7 @@ export function putEvent(edit, id){
       method:"PUT",
       data: edit,
       withCredentials: true,
-      url: "https://back-eventy.herokuapp.com/editarEvento/" + id,
+      url: "http://localhost:4000/editarEvento/" + id,
     })
     .then(resultado => dispatch({type: PUT_EVENT, payload: resultado.data}))
     .catch(err => alert(err))
