@@ -1,215 +1,110 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 //import deportesImg from './images/categoria-deportes.png'
 import logoBlanco from './images/logo-blanco.png'
 import styles from './home.module.css'
-//import Boton from '../components/Boton/Boton'
+import Boton from '../components/Boton/Boton'
 import botonStyles from "../components/Boton/Boton.module.css"
 import Card from '../components/CardEvent'
-import {FontAwesomeIcon}from '@fortawesome/react-fontawesome'
-import {faCircle } from '@fortawesome/free-solid-svg-icons'
-import{faUser}from '@fortawesome/free-regular-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser }from '@fortawesome/free-regular-svg-icons'
 import { Link } from 'react-router-dom'
 import Container from '../components/Container/Container'
-
-
-//COMIENZO DE ZONA DE HARDCODEO
-const pruebaEventos = [
-    {
-    name: 'LollaPalooza 2022',
-    id: 1,
-    location: 'San Isidro, Argentina',
-    date: 'Marzo 18, 19 y 20 | 2022',
-    img: 'https://i.pinimg.com/564x/e6/e1/58/e6e158eba9ba9208b4abb6fec41e2aeb.jpg'
-},
-{
-    name: 'Festival Intenacional de Cine de Mar del Plata',
-    id: 2,
-    location: 'Mar del Plata, Argentina',
-    date: 'Noviembre 18 al 28 | 2021',
-    img: 'https://www.mardelplatafilmfest.com/beta36/images/news/36-festival-internacional-de-cine-de-mar-del-plata-imagen1_9.jpg'
-},
-{
-    name: 'Festival La Nueva Generación (LNG) 2022',
-    id: 3,
-    location: 'Córdoba, Argentina',
-    date: 'Noviembre 11, 12, 13 | 2022',
-    img: 'https://indiehoy.com/wp-content/uploads/2019/10/la-nueva-generacion.jpg'
+import { getEventosLandingPage } from '../redux/actions'
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css';
+const responsive = {
+    0: {
+        items: 1,
+    },
+    1024:  {
+        items: 3,
+    },
 }
-]
-
-//FIN DE LA ZONA DE HARDCODEO. (Esto se reemplaza con los eventos que se traen de la DB)
 
 export default function Home(){
+
+    const dispatch = useDispatch();
+    const eventos = useSelector(state => state.EventosLandingPage) 
+
+    useEffect(()=>{
+        dispatch(getEventosLandingPage())
+    }, [dispatch]);
 
     
 
     return(
-        <div className={styles.container}>
+        <div className={styles.cont_landingpage}>
             <div className={styles.navBar}>
-                <img className={styles.navLogo} src={logoBlanco} alt=''/>
+                <img className={styles.navLogo} src={logoBlanco} alt='Eventy'/>
                 <div className={styles.acceder}>
-                    <div className={styles.elipsis}>
-                    <FontAwesomeIcon icon={faCircle}/>
-                    <FontAwesomeIcon icon={faCircle}/>
-                    <FontAwesomeIcon icon={faCircle}/>
-                    </div>
                     <Link to = '/login'>
-                    <button className={`${botonStyles.btn} ${botonStyles.btn_azul} ${styles.navBarButon}`}>  
-                        <FontAwesomeIcon icon={faUser}/>
-                        <span>ACCEDER</span>
-                    </button>
+                        <Boton colorBtn='btn_azul'>
+                            <FontAwesomeIcon icon={faUser}/> ACCEDER
+                        </Boton> 
                     </Link>
                 </div>
             </div>
             <div className={styles.principalBanner}>
-                <div>
-                    <span className={styles.P1}>SIGUE</span>
-                    <span className={styles.P2}>LOS EVENTOS</span>
-                    <span className={styles.P3}>CERCANOS A TI</span>
-                <Link to = '/login'>
-                <button className={`${botonStyles.btn} ${botonStyles.btn_azul} ${styles.bannerBoton}`}> ACCEDER</button>
-                </Link>
+                <div className={styles.cont_banner}>
+                    <h1>SIGUE <span>LOS EVENTOS</span> CERCANOS A TI</h1>
+                    <Link to='/login'>
+                        <Boton colorBtn='btn_azul'>ACCEDER</Boton>
+                    </Link>
                 </div>
             </div>
-            <div className={styles.clases}>
+            <div className={styles.cont_categorias}>
                 <div className={styles.clasesContainer}>
                     <div className={styles.sociales}>
-                        <p className= {styles.nombreClase}>
-                            SOCIALES
-                        </p>
+                        <h3>SOCIALES</h3>
                         <Link to = '/login'>
-                        <button className={`${styles.boton} ${botonStyles.btn} ${botonStyles.btn_naranja} `}>VER EVENTOS</button>
-                        {/* <Boton className={styles.boton} colorBtn='naranja'> VER EVENTOS</Boton> */}
+                            <Boton colorBtn='btn_naranja'>VER EVENTOS</Boton>
                         </Link>
                     </div>
 
                 </div>
                 <div className={styles.clasesContainer}>
                     <div className={styles.deportes}>
-                        <p className= {styles.nombreClase}>
-                            DEPORTES
-                        </p>
+                        <h3>DEPORTES</h3>
                         <Link to = '/login'>
-                        <button className={`${botonStyles.btn} ${botonStyles.btn_azul} ${styles.boton}`}>VER EVENTOS</button>
+                            <Boton colorBtn='btn_azul'>VER EVENTOS</Boton>
                         </Link>
-                        
                     </div>
                 </div>
             </div>
-
-
-
 
             <div className={styles.events}>
-                <h1 className={styles.eventsTitle}>EVENTOS DESTACADOS</h1>
-                <div className={styles.carrusel}>
-                    <Container>
-                        <div id='CarrouselEventos' className = {styles.cardsEvents}>
-                        {
-                            pruebaEventos && pruebaEventos.map((el)=>{
+                <h2 className={styles.eventsTitle}>EVENTOS DESTACADOS</h2>
+                <div className={styles.cont_carrusel}>
+                    <AliceCarousel
+                        mouseTracking
+                        items={
+                            eventos && eventos.map( evento => {
                                 return(
-                                <Card key={el.name} img = {el.img} name = {el.name} location = {el.location} date = {el.date} id = {el.id} buttonColor='naranja'/>
-                                )
+                                    <Card
+                                        name={evento.name}
+                                        img={evento.info.imagen}
+                                        location={evento.location}
+                                        date={evento.date.slice(8,10)+'/'+evento.date.slice(5,7)}
+                                        id={evento._id}
+                                        buttonColor='naranja'
+                                    />
+                                );
                             })
                         }
-                        </div>
-                    </Container>
-                    {document.defaultView.window.outerWidth> 768  ?
-                    // document.getElementById('CarrouselEventos').style.transform= `translateX(0)`
-                    console.log('hola')
-                    :null}
-                    {/* {console.log(document.getElementById('CarrouselEventos'))} */}
-                    <div>
-                        <button  className= {`${botonStyles.btn} ${botonStyles.btn_naranja} ${styles.carruselButton}`} onClick={()=>{
-                            if(document.getElementById('CarrouselEventos').style.transform === ''){
-                                document.getElementById('CarrouselEventos').style.transform=`translateX(+33.3%)`
-                            }else{
-                                let hola = parseFloat(document.getElementById('CarrouselEventos').style.transform.split('(')[1].split(')')[0])
-                                if (hola===0) {
-                                    
-                                }else{
-                                    document.getElementById('CarrouselEventos').style.transform= `translateX(${hola +33.3}%)`
-
-                                }
-                            }
-                            
-                        }}>
-                            {'<'}
-                        </button>
-                        <button className= {`${botonStyles.btn} ${botonStyles.btn_naranja} ${styles.carruselButton}`} onClick={async()=>{
-                            if(document.getElementById('CarrouselEventos').style.transform === ''){
-                                document.getElementById('CarrouselEventos').style.transform=`translateX(-33.3%)`
-                            }else{
-                                
-                                let hola = parseFloat(document.getElementById('CarrouselEventos').style.transform.split('(')[1].split(')')[0])
-                                if (hola>-60) {
-                                    document.getElementById('CarrouselEventos').style.transform= `translateX(${hola -33.3}%)`
-                                } 
-                            }
-                        }}>
-                            {'>'}
-                        </button>
-                    </div>
-
+                        responsive={responsive}
+                        controlsStrategy="alternate"
+                        autoPlay={true}
+                        infinite={true}
+                        autoPlayInterval={4000}
+                        keyboardNavigation={true}
+                        disableButtonsControls={true}
+                        disableDotsControls={false}
+                    />
                 </div>
             </div>
 
-
-
-
-            <div className={styles.noticias}>
-                <h1 className={styles.noticiasTitle}>ULTIMAS NOTICIAS</h1>
-                <div>
-                <Container>
-                    <div className={styles.carrusel}>
-                        <div id='CarrouselNoticias' className = {styles.cardsEvents}>
-                        {
-                            pruebaEventos && pruebaEventos.map((el)=>{
-                                return(
-                                <Card key = {el.name} img = {el.img} name = {el.name} location = {el.location} date = {el.date} id = {el.id} buttonColor= 'azul'/>
-                                )
-                            })
-                        }
-                        </div>
-
-                        <div>
-                            <button className= {`${botonStyles.btn} ${botonStyles.btn_azul} ${styles.carruselButton}`} onClick={()=>{
-                                if(document.getElementById('CarrouselNoticias').style.transform === ''){
-                                    document.getElementById('CarrouselNoticias').style.transform=`translateX(33.3%)`
-                                }else{
-                                    let hola = parseFloat(document.getElementById('CarrouselNoticias').style.transform.split('(')[1].split(')')[0])
-                                    if (hola===0) {
-                                        
-                                    }else{
-                                        document.getElementById('CarrouselNoticias').style.transform= `translateX(${hola +33.3}%)`
-
-                                    }
-                                }
-                                
-                            }}>
-                                {'<'}
-                            </button>
-                            <button className= {`${botonStyles.btn} ${botonStyles.btn_azul} ${styles.carruselButton}`} onClick={async()=>{
-                                if(document.getElementById('CarrouselNoticias').style.transform === ''){
-                                    document.getElementById('CarrouselNoticias').style.transform=`translateX(-33.3%)`
-                                }else{
-                                    
-                                    let hola = parseFloat(document.getElementById('CarrouselNoticias').style.transform.split('(')[1].split(')')[0])
-                                    if (hola>-60) {
-                                        document.getElementById('CarrouselNoticias').style.transform= `translateX(${hola -33.3}%)`
-                                    } 
-                                }
-                            }}>
-                                {'>'}
-                            </button>
-                        </div>
-
-
-                    </div>
-                </Container>
-                </div>
-            </div>
-            <div className={styles.sideBar}>
+            <div className={styles.footer}>
                     <span>Eventy - 2021 | Soy Henry</span>
             </div>
         </div>

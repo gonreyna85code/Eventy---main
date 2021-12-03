@@ -13,6 +13,7 @@ import {
   GET_ALL_CITIES,
   POST_PREFERENCE,
   PUT_EVENT,
+  GET_EVENTS_LP
 } from "./actions.js";
 
 //========================
@@ -62,7 +63,8 @@ const initialState = {
   Filtrados2: [],
   AllEvents: [],
   Cities: [],
-  PrefereneceId:[]
+  PrefereneceId:[],
+  EventosLandingPage:[], //estos son los eventos que se muestran en la landing page
 };
 
 
@@ -175,6 +177,13 @@ function rootReducer(state = initialState, action) {
     return{
       ...state,
       Event : action.payload
+    }
+  }
+
+  if(action.type === GET_EVENTS_LP ){
+    return{
+      ...state,
+      EventosLandingPage: action.payload
     }
   }
 

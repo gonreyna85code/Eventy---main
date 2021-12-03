@@ -1,208 +1,129 @@
-*{
-    padding: 0;
+.cont_landingpage button{
     margin: 0;
+    font-size: 25px;
 }
-.container{
-    width: 100%;
-    display: grid;
+
+
+/* HEADER / NAVBAR */
+.navBar{
+    background-color: var(--naranja);
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    justify-content: space-between;
 }
+.navLogo{
+    width:  160px;
+}
+
+
+
+/* BANNER PRINCIPAL */
+
 .principalBanner{
-    width: 100%;
-    max-width: 100%;
+    display: flex;
     background-image: url('./images/banner-home.png');
     background-repeat: no-repeat;
-    background-size:cover;
-    display: grid;
-}
-.principalBanner div{
-    padding: 20%;
-    display: grid;
-    padding-left: 10%;
-    justify-items: left;
-}
-.bannerBoton{
-    margin: 2% 0% 2% 0%;
-}
-.principalBanner div span{
-    font-family: var(--fonttitle);
-    color: var(--blanco);
-    padding: 0;
-    margin: 0;
-    font-size: 300%;
-}
-.P1{
-    font-size: 20pt ;
-}
-.P2{
-    font-size: 30pt;
-}
-.P3{
-    font-size: 25pt;
-}
-
-.navBar{
-    background-color: #ED8B26;
-    display: grid;
+    background-size: cover;
+    height: 600px;
     align-items: center;
-    height: auto;
-    width: 100%;
-    grid-template-columns: auto auto;
-
+    justify-content: flex-start;
+    padding: 50px;
+    background-attachment: fixed;
 }
 
-.navLogo{
-    padding: 2%;
-    width: 20%;
-    padding-left: 5%;
-    
-}
-.acceder{
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 5%;
-    justify-self: right;
-    padding-right: 20px;
-}
-.navBarButon{
-    justify-self: left;
-    font-size: 157%;
-    display: grid;
-    grid-template-columns: auto auto;
-    padding: 10px 15px 10px 15px;
-    justify-items: center;
-    align-items: center;
-    gap: 10px;
-}
-.navBarButon svg {
-    margin: 0 5px 0 5px;
-}
-.elipsis {
-    color: var(--azul);
-    width: max-content;
-    transform:  rotate(90deg);
-    font-size: 11pt;
 
-    
+.cont_banner{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
-.elipsis svg{
-    margin: 1px;
+
+.cont_banner h1{
+    font-size: 90px;
+    line-height: 1;
+    color: #fff;
+    text-align: left;
+    margin-bottom: 40px;
 }
-.clases{
-    display: grid;
-    grid-template-columns: 50% 50%;
+.cont_banner h1 span{
+    display: block;
+}
+/* CATEGORIAS  */
+.cont_categorias{
+    display: flex;
     background-image: url('./images/categorias-home.png');
-    background-size:cover;
-    background-repeat:no-repeat ;
-    -background-size:100% 100%;
-    height: auto;
-    width: 100%;
-
+    background-size: cover;
+    background-repeat: no-repeat;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-block: 70px;
 }
-.deportes,.sociales{
-    display: grid;
-    justify-items: center;
-    align-items: center;
-    margin: 20%;
-
+.cont_categorias :is(.deportes, .sociales){
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
 }
 
-.nombreClase{
-    font-size: 250%;
-    font-family: var(--fonttitle);
-    color: white;
+.cont_categorias :is(.deportes, .sociales) h3{
+    margin-bottom: 20px;
+    font-size: 65px;
+    color: #fff;
 }
+
 .events{
-    width: 100%;
-    padding-bottom:5% ;
+    padding: 80px 20px;
 }
-.eventsTitle{
+.events h2{
     color: var(--azul);
-    padding: 5% 0 5% 0 ;
-    letter-spacing:.5vw;
-}
-.boton{
-    padding: 3%;
-    margin: 0;
-    font-size: 150%;
-}
-.carrusel{
-    width: 100vw;
-    overflow: hidden;
-}
-.cardsEvents{
-    width: 300%;
-    display: grid;
-    grid-template-columns: 100vw 100vw 100vw;
-    justify-items: center;
-    transition: all 1s; 
-}
-.noticiasTitle{
-    padding: 5% 0 5% 0 ;
-    color: var(--blanco);
-    letter-spacing:.5vw;
-}
-.noticias{
-    background-color: var(--naranja);
-    padding-bottom:5% ;
-}
-.sideBar{
-    font-family: var(--font);
-    padding: 3%;
-    background-color: var(--azul);
-}
-.sideBar a{
-    color: var(--blanco);
-}
-.hola{
-    width: 50px;
-    height: 50px;
-    color: var(--naranja);
+    text-align: center;
+    line-height: 1;
+    font-size: 65px;
+    margin-bottom: 30px;
 }
 
-@media (width > 768px) {
-    .sideBar{
-        padding: 2%;
+.footer{
+    background: var(--azul);
+    color: #fff;
+    text-align: center;
+    padding: 15px
+}
+
+@media(max-width:992px){
+    .cont_categorias{
+        flex-direction: column;
+        background-image: none;
+        padding-block: 0;
     }
+
+    .cont_categorias .deportes{
+        background-image: url('./images/movil-deporte.jpg');
+    }
+
+    .cont_categorias .sociales{
+        background-image: url('./images/movil-social.jpg');
+    }
+
+    .cont_categorias :is(.deportes, .sociales) {
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding-block: 90px 100px;
+    }
+}
+
+
+@media(max-width:425px){
     .navLogo{
-        width: 15%;
-        padding: 1.5% 0 1.5% 3%;
+        width:  120px;
     }
-    .principalBanner div{
-        padding: 15% 0 15% 10%;
+    .principalBanner{
+        padding: 50px 30px;
     }
-    .principalBanner div a{
-        font-size: 400%;
+    .cont_banner h1{
+        font-size: 65px;
     }
-    .bannerBoton{
-        margin: 2% 0% 2% 0%;
-        font-size: 200%;
+    .cont_categorias :is(.deportes, .sociales) h3, .events h2{
+        font-size: 55px;
     }
-    .nombreClase{
-        font-size: 400%;
-    }
-    .boton{
-        font-size: 200%;
-    }
-    .eventsTitle{
-        font-size: 350%;
-    }
-    .noticiasTitle{
-        font-size: 350%;
-    }
-    .carrusel{ 
-        overflow: visible;
-        width: 100%;
-        /* padding: 5%; */
-    }
-    .cardsEvents{
-        display:flex;
-        grid-template-columns: auto auto auto;
-        width: 100%;
-        margin-bottom: 5%;
-        /* transform: translateX(50%) */
-    }
-    .carruselButton{
-        display: none;
-    }
-
 }

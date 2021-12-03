@@ -17,6 +17,7 @@ export const ORDEN_BY_NAME = 'ORDEN_BY_NAME';
 export const GET_ALL_CITIES = 'GET_ALL_CITIES';
 export const POST_PREFERENCE = 'POST_PREFERENCE';
 export const PUT_EVENT = 'PUT_EVENT';
+export const GET_EVENTS_LP = 'GET_EVENTS_LP' //Eventos landing page
 
 
 export function registerUser(register) {
@@ -162,6 +163,20 @@ export function getNearbyEvents(parametro){
     .then(resultado => dispatch({type: GET_NEARBY_EVENTS, payload: resultado.data}))
     .catch(err => alert(err))
   }
+}
+
+//trae los eventos que iran a la landing page
+export function getEventosLandingPage(){
+  return function (dispatch){
+    axios({
+    method: "GET",
+    withCredentials: false,
+    url: "http://localhost:4000/lp-events/",
+  })
+  .then(resultado => dispatch({type: GET_EVENTS_LP, payload: resultado.data}))
+  .catch(err => alert(err))
+}
+
 }
 
 export function putUser(user){

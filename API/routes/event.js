@@ -126,12 +126,22 @@ var response = await Event.find({category: 'sports'});
   res.status(404).send('No hay eventos')
 })
 
-router.get('/allEvents', async(req,res)=>{
+router.get('/allEvents', isAuthenticated, async(req,res)=>{
   var response = await Event.find();
   response.length > 0 ?
   res.status(200).send(response) :
   res.status(404).send('No hay Eventos')
 })
+
+
+//Ruta para traer los eventos que iran en la landing page
+router.get('/lp-events', async(req,res)=>{
+  var response = await Event.find({}, 'name location date info.imagen').limit(6);
+  response.length > 0 ?
+  res.status(200).send(response) :
+  res.status(404).send('No hay Eventos')
+})
+
 
 router.post("/create_preference", (req, res) => {
 

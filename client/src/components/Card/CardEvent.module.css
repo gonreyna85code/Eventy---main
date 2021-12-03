@@ -1,16 +1,13 @@
-
-
-
 .contenedor{
     border: 3px solid rgb(1, 56, 95);
     padding: 5px;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    width: calc(100% - 100px);
     margin-inline: 20px;
     margin-bottom: 20px;
     background-color: #fff;
+    width: calc(100% - 50px);
 }
 
 .contenedor:hover{
@@ -43,21 +40,13 @@
 
 .locationCard{
     color: black;
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
-    
+    text-transform: capitalize;
 }
 
 .dateCard{
     color: black;
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
     
 }
 .cont_info{
     margin-block: 5px;
-}
-
-@media (width > 768px) {
-    .contenedor{
-        -width: 70%;
-    }
 }

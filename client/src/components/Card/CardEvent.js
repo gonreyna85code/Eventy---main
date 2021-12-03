@@ -20,15 +20,9 @@ export default function Card({name, id, location, date, img,buttonColor}){
     }
     return(
         <div className = {styles.contenedor} key = {name}>
-            { img ?
-            <div className={styles.cont_img} style={{backgroundImage:`url(${img})`}}>
-                {/* <img className = {styles.imagen} src = {img} alt={name} /> */}
+            
+            <div className={styles.cont_img} style={{backgroundImage:`url(${img ? img : `https://i.pinimg.com/564x/40/b1/3b/40b13b8551695223454663c0d26caaa3.jpg`})`}}>
             </div>
-            :
-            <div>
-                <img className = {styles.cont_img} src = 'https://i.pinimg.com/564x/40/b1/3b/40b13b8551695223454663c0d26caaa3.jpg' alt=''></img>
-            </div>    
-            }
             <div>
                 <h3 className = {styles.nameCard}>{name}</h3>
             </div>
