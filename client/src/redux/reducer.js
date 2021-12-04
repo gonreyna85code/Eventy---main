@@ -13,7 +13,9 @@ import {
   GET_ALL_CITIES,
   POST_PREFERENCE,
   PUT_EVENT,
-  GET_EVENTS_LP
+  GET_EVENTS_LP,
+  CHANGE_USER_CITY,
+  CHANGE_EVENT_CITY
 } from "./actions.js";
 
 //========================
@@ -65,6 +67,8 @@ const initialState = {
   Cities: [],
   PrefereneceId:[],
   EventosLandingPage:[], //estos son los eventos que se muestran en la landing page
+  UserCity:{},
+  EventCity:{}
 };
 
 
@@ -186,7 +190,18 @@ function rootReducer(state = initialState, action) {
       EventosLandingPage: action.payload
     }
   }
-
+  if (action.type === CHANGE_USER_CITY) {
+    return{
+      state,
+      UserCity:{cityName:action.payload.cityName, cityCords: action.payload.cityCords}
+    }
+  }
+  if (action.type === CHANGE_EVENT_CITY) {
+    return{
+      state,
+      EventCity:{cityName:action.payload.cityName, cityCords: action.payload.cityCords}
+    }
+  }
   return state;
 }
 

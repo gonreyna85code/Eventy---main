@@ -5,20 +5,20 @@
     justify-content: space-around;
 }
 
-.info_detail{
+.infoDetail{
 display: flex;
 justify-content: center;
 flex-direction: column;
 }
 
-.imagen_detail{
+.imagenDetail{
     width: 500px;
     height: 250px;
     border-radius: 30px;
     margin: 25px;
 }
 
-.nombre_evento{
+.nombreEvento{
     font-size:  50px;
     color: white;
 }
@@ -31,17 +31,16 @@ flex-direction: column;
     color: white;
 }
 
-.data_content{
-    display: flex;
-    flex-direction: row;
+.dataContent{
+    display: grid;
+    grid-template-columns: 50% 50%;
     background-color: rgb(237, 139, 38);
-    justify-content: space-around;
 }
 
-.data_info{
+.dataInfo{
     margin: 15px;
 }
-.data_info_p{
+.dataInfoP{
     margin:25px
 }
 

@@ -1,22 +1,23 @@
 import React, {useEffect, useState} from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getEvent, postPreference, getUser } from "../redux/actions";
-import './DetailEvents.css';
-import Boton from "../components/Boton/Boton";
+import { getEvent, postPreference, getUser } from "../../redux/actions";
+import style from'./DetailEvents.module.css';
 import {FontAwesomeIcon}from '@fortawesome/react-fontawesome';
 import {faCalendarAlt, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons';
 import './Ubicación.PNG';
 import { useMercadopago } from 'react-sdk-mercadopago';
-import Input from '../components/Input/Input'
-import Loading from '../components/Loading/Loading'
+import Input from '../../components/Input/Input'
+import Loading from '../../components/Loading/Loading'
+import Map from "../../components/Maps/Map";
+import Warning from "../../components/Warning.js/Warning";
+import Boton from "../../components/Boton/Boton";
 
 
 
 export default function DetailEvet(){
     
     const{name} = useParams();
-    const navegate = useNavigate();
     const dispatch = useDispatch();
 
     const [cantidad, setCantidad] = useState(1);
@@ -42,8 +43,7 @@ export default function DetailEvet(){
    
     
   
-    const Evento = Events.filter(el => el.name === name); 
-    const theEvent = Evento[0]; 
+    const theEvent = Events[0]; 
 
   
     useEffect(()=>{
@@ -67,7 +67,6 @@ export default function DetailEvet(){
     }
 
 
-    console.log(theEvent);
 
     const mercadopago = useMercadopago.v2('TEST-73717f29-d26d-4a49-aec6-3f75b4872625', {
         locale: 'es-AR'
@@ -91,20 +90,20 @@ export default function DetailEvet(){
     return(
         <div>
             { user && !user._id ?
-                navegate('/login')
+            <Warning/>
             :
             <div>
                 {
                     theEvent?
                     <div>
-                            <div className = 'fondo'>
-                                <div className = 'info_detail'>
-                                    <h1 className = 'nombre_evento'>{theEvent.name}</h1>
+                            <div className = {style.fondo}>
+                                <div className = {style.info_detail}>
+                                    <h1 className = {style.nombreEvento}>{theEvent.name}</h1>
                                     <div>
-                                        <FontAwesomeIcon className = 'icono' icon={faMapMarkerAlt} /> <span className = 'info'>{theEvent.location}</span>
+                                        <FontAwesomeIcon className = {style.icono} icon={faMapMarkerAlt} /> <span className = {style.info}>{theEvent.location.cityName}</span>
                                     </div>
                                     <div>
-                                        <FontAwesomeIcon className = 'icono' icon={faCalendarAlt} /> <span className = 'info'>{theEvent.date.slice(8,10)+'/'+theEvent.date.slice(5,7)+'/'+theEvent.date.slice(2,4)}</span>
+                                        <FontAwesomeIcon className = {style.icono} icon={faCalendarAlt} /> <span className = {style.info}>{theEvent.date.slice(8,10)+'/'+theEvent.date.slice(5,7)+'/'+theEvent.date.slice(2,4)}</span>
                                     </div>
                                     <div>
                                     <Boton colorBtn='btn_naranja'>Asistiré</Boton>
@@ -116,21 +115,28 @@ export default function DetailEvet(){
                                 </div>   
                                 <div>
                                         {theEvent.info.imagen ?
-                                        <img className = 'imagen_detail' src = {theEvent.info.imagen} alt=''></img>
+                                        <img className = {style.imagenDetail} src = {theEvent.info.imagen} alt=''></img>
                                         :
-                                        <img className = 'imagen_detail' src = {'https://www.masquenegocio.com/wp-content/uploads/2018/03/evento-concierto-874x492.jpg'} alt=''></img>
+                                        <img className = {style.imagenDetail} src = {'https://www.masquenegocio.com/wp-content/uploads/2018/03/evento-concierto-874x492.jpg'} alt=''></img>
                                         }
                                 </div>
                         </div>
-                        <div className = 'data_content'>
-                            <div className = 'data_info'>
+                        <div className = {style.dataContent}>
+                            <div className = {style.dataInfo}>
                                 <h1>Información del evento:</h1>
-                                <p className = 'data_info_p'>{theEvent.info.description}</p>
-                                <h4> El mapa es solo ilustrativo.</h4>
+                                <p className = {style.dataInfoP}>{theEvent.info.description}</p>
+                               
                             </div>
-                            <div className = 'data_info'>
+                            <div className = {style.dataInfo}>
                                 <h1>Mapa:</h1>
-                                <img className = 'mapa' src = 'https://i.pinimg.com/564x/a4/40/e4/a440e408502b6aa3e290e030540ea6dc.jpg' alt=''/>
+                                <div>
+                                    {console.log(theEvent)}
+                                <Map 
+                                    coords = {theEvent.location.cityCords}
+                                    LabelName='Ciudad'
+                                />
+                                
+                            </div>
                             </div>
                         </div>
                         <div>
@@ -159,7 +165,7 @@ export default function DetailEvet(){
                     :
                     <Loading/>
                 }
-                <div className = 'home'>
+                <div className = {style.home}>
                 <Link to ='/'>
                 <Boton colorBtn='btn_azul'>Volver al Home</Boton>
                 </Link>

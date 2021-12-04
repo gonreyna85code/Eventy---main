@@ -2,9 +2,10 @@ import React, {useEffect} from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { findEventSub } from "../../../redux/actions";
-import Card from "../../../components/CardEvent";
 import botonStyles from '../../../components/Boton/Boton.module.css';
 import Boton from '../../../components/Boton/Boton'
+import Card from "../../../components/CardEvent/CardEvent";
+
 
 export default function SubCategory(){
 
@@ -27,7 +28,7 @@ export default function SubCategory(){
             {
                         eventos.length > 0 ? eventos.map((el)=>{
                             return(
-                            <Card key={el.name} img = {el.info.imagen} name = {el.name} location = {el.location} date = {el.date} id = {el.id} buttonColor='naranja'/>
+                            <Card key={el.name} img = {el.info.imagen} name = {el.name} location = {el.location.cityName} date = {el.date} id = {el.id} buttonColor='naranja'/>
                             )
                         })
                         :

@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import logoBlanco from './images/logo-blanco.png'
+import logoBlanco from '../images/logo-blanco.png'
 import styles from './home.module.css'
-import Boton from '../components/Boton/Boton'
-import Card from '../components/CardEvent'
+import Boton from '../../components/Boton/Boton'
+import Card from '../../components/CardEvent/CardEvent'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser }from '@fortawesome/free-regular-svg-icons'
 import { Link } from 'react-router-dom'
-import Container from '../components/Container/Container'
-import { getEventosLandingPage } from '../redux/actions'
+import Container from '../../components/Container/Container'
+import { getEventosLandingPage } from '../../redux/actions'
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 const responsive = {
@@ -85,7 +85,7 @@ export default function Home(){
                                         <Card
                                             name={evento.name}
                                             img={evento.info.imagen}
-                                            location={evento.location}
+                                            location={evento.location.cityName}
                                             date={evento.date.slice(8,10)+'/'+evento.date.slice(5,7)}
                                             id={evento._id}
                                             buttonColor='naranja'

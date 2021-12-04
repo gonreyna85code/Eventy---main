@@ -19,7 +19,21 @@ export const GET_ALL_CITIES = 'GET_ALL_CITIES';
 export const POST_PREFERENCE = 'POST_PREFERENCE';
 export const PUT_EVENT = 'PUT_EVENT';
 export const GET_EVENTS_LP = 'GET_EVENTS_LP' //Eventos landing page
+export const CHANGE_USER_CITY= 'CHANGE_USER_CITY'
+export const CHANGE_EVENT_CITY= 'CHANGE_EVENT_CITY'
 
+
+
+export function changeUserCity(cityDates){
+  return function(dispatch){
+    return dispatch({type: CHANGE_USER_CITY, payload:cityDates})
+  }
+}
+export function changeEventCity(eventDates){
+  return function(dispatch){
+    return dispatch({type:CHANGE_EVENT_CITY, payload:eventDates})
+  }
+}
 
 export function registerUser(register) {
     return async function (dispatch) {

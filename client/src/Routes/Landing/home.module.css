@@ -16,7 +16,7 @@
 
 .principalBanner{
     display: flex;
-    background-image: url('./images/banner-home.png');
+    background-image: url('../images/banner-home.png');
     background-repeat: no-repeat;
     background-size: cover;
     height: 600px;
@@ -46,7 +46,7 @@
 /* CATEGORIAS  */
 .cont_categorias{
     display: flex;
-    background-image: url('./images/categorias-home.png');
+    background-image: url('../images/categorias-home.png');
     background-size: cover;
     background-repeat: no-repeat;
     flex-direction: row;
@@ -96,11 +96,11 @@
     }
 
     .cont_categorias .deportes{
-        background-image: url('./images/movil-deporte.jpg');
+        background-image: url('../images/movil-deporte.jpg');
     }
 
     .cont_categorias .sociales{
-        background-image: url('./images/movil-social.jpg');
+        background-image: url('../images/movil-social.jpg');
     }
 
     .cont_categorias :is(.deportes, .sociales) {
