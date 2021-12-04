@@ -52,7 +52,7 @@ router.get("/eventsAll/:parametro",isAuthenticated, async (req,res)=> {
   var response = await Event.find(); //Aqui se piden todos los datos de la base de datos
   //Aqui se compara el paremetro de busqueda con los tres principales parametros de cada evento con el fin de encontrar lo que le cliente busca
   nombre = response.filter(evento => {return evento.name.toLowerCase().includes(parametro)}); 
-  lugar = response.filter(evento => {return evento.location.toLowerCase().includes(parametro)}); 
+  lugar = response.filter(evento => {return evento.location.cityName.toLowerCase().includes(parametro)}); 
   info = response.filter(evento => {if (evento.info && evento.info.description)return evento.info.description.toLowerCase().includes(parametro)})
 
   var resultado = nombre.concat(lugar.concat(info)); 

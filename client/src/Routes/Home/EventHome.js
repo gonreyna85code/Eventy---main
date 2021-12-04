@@ -9,7 +9,7 @@ const EventHome = ({name, img, location, date, id}) => {
                     <div>
                         <h3>{name}</h3>
                         <ul>
-                            <li key={`${id}LL`}>{location}</li>
+                            <li key={`${id}LL`}>{location.cityName}</li>
                             <li key={`${id}DD`}>{date}</li>
                         </ul>
                     </div>

@@ -38,6 +38,7 @@ const Home = () => {
     
     const dispatch = useDispatch();
     const user = useSelector( state => state.User );
+    console.log(user);
 
 
     useEffect(()=>{
@@ -63,7 +64,7 @@ const Home = () => {
                                     <EventHome
                                     name={evento.name}
                                     img={evento.info.imagen}
-                                    location={evento.location}
+                                    location={evento.location.cityName}
                                     date={evento.date.slice(8,10)+'/'+evento.date.slice(5,7)}
                                     id={evento._id}
                                     />
@@ -122,7 +123,7 @@ const Home = () => {
                                         <CardEvent
                                             name={evento.name}
                                             img={evento.info.imagen ? evento.info.imagen : 'https://www.chefandparty.com/wp-content/uploads/2020/07/Sociales.jpg'}
-                                            location={evento.location}
+                                            location={evento.location.cityName}
                                             date={evento.date}
                                             id={evento._id}
                                             buttonColor='naranja'
@@ -158,7 +159,7 @@ const Home = () => {
                                             <CardEvent
                                                 name={evento.name}
                                                 img= {evento.info.imagen ? evento.info.imagen :'https://blog.jeep.com.ec/hubfs/7%20deportes%20extremos%20para%20realizar%20outdoor%20despu%C3%A9s%20de%20la%20cuarentena-4.png'}
-                                                location={evento.location}
+                                                location={evento.location.cityName}
                                                 date={evento.date}
                                                 id={evento._id}
                                                 buttonColor='naranja'
@@ -202,7 +203,7 @@ const Home = () => {
                                             <CardEvent
                                                 name={evento.name}
                                                 img={evento.info.imagen ? evento.info.imagen :'https://blog.jeep.com.ec/hubfs/7%20deportes%20extremos%20para%20realizar%20outdoor%20despu%C3%A9s%20de%20la%20cuarentena-4.png'}
-                                                location={evento.location}
+                                                location={evento.location.cityName}
                                                 date={evento.date}
                                                 id={evento._id}
                                                 buttonColor='naranja'

@@ -106,7 +106,7 @@ export default function Home(){
                         {
                             pruebaEventos && pruebaEventos.map((el)=>{
                                 return(
-                                <Card key={el.name} img = {el.img} name = {el.name} location = {el.location} date = {el.date} id = {el.id} buttonColor='naranja'/>
+                                <Card key={el.name} img = {el.img} name = {el.name} location = {el.location.cityName} date = {el.date} id = {el.id} buttonColor='naranja'/>
                                 )
                             })
                         }
@@ -159,7 +159,7 @@ export default function Home(){
                         {
                             pruebaEventos && pruebaEventos.map((el)=>{
                                 return(
-                                <Card key = {el.name} img = {el.img} name = {el.name} location = {el.location} date = {el.date} id = {el.id} buttonColor= 'azul'/>
+                                <Card key = {el.name} img = {el.img} name = {el.name} location = {el.location.cityName} date = {el.date} id = {el.id} buttonColor= 'azul'/>
                                 )
                             })
                         }

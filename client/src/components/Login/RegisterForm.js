@@ -3,33 +3,31 @@ import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../redux/actions";
 import Input from "../Input/Input";
 import Boton from "../Boton/Boton";
-import { Link } from "react-router-dom";
-
-
-
+import { useNavigate } from 'react-router';
+import Map from "../Maps/Map";
+import styles from './RegisterForm.module.css'
 
 export default function RegisterForm(){
   const dispatch = useDispatch()
-  
+  const navigate = useNavigate()
   const[name, setNombre]=useState('')
   const[surname, setApellido]=useState('')
   const[username, setUsuario]=useState('')
   const[password, setContraseña]=useState('')
   const[age, setEdad]=useState('')
   const[email, setEmail]=useState('')
-  const[city, setCiudad]=useState('')
+
+  const UserCity = useSelector(state=> state.UserCity)
+ 
+ 
+
   
   
-  function hola() {
-    return(
-      <div>hola</div>
-    )
-  }
   
   
 
   return(
-  <div className='cont-center'>
+  <div className={styles.container}>
     <h1>Crear nuevo Usuario</h1>
     <form>
       <div>
@@ -41,7 +39,7 @@ export default function RegisterForm(){
             }}
           />
       </div>
-      <div className="input">
+      <div className={styles.Input}>
       <Input
           label='Apellido:'
           type='text'
@@ -50,7 +48,7 @@ export default function RegisterForm(){
           }}
       />
       </div>
-      <div className="input">
+      <div className={styles.Input}>
       <Input
           label='Usuario:'
           type='text'
@@ -60,7 +58,7 @@ export default function RegisterForm(){
           }}
       />
       </div>
-      <div className="input">
+      <div className={styles.Input}>
       <Input
           label='Contraseña:'
           type='password'
@@ -69,7 +67,7 @@ export default function RegisterForm(){
           }}
         />
       </div>
-      <div className="input">
+      <div className={styles.Input}>
       <Input
           label='Edad:'
           type='number'
@@ -78,7 +76,7 @@ export default function RegisterForm(){
           }}
       />
       </div>
-      <div className="input">
+      <div className={styles.Input}>
       <Input
           label='Email:'
           type='text'
@@ -87,20 +85,19 @@ export default function RegisterForm(){
           }}
       />
       </div>
-      <div className="input">
-      <Input
-          label='Ciudad:'
-          type='text'
-          onChange={(e)=>{
-            setCiudad(e.target.value)
-          }}
+      
+      <Map 
+      type='user'
+      places ={true}
+      coords={UserCity.cityCords}
+      LabelName='Ciudad'
       />
-      </div>
-      <div className="divcrear">
-        {name !=='' && surname !=='' && username !=='' && password !=='' && age !=='' && email !=='' && city!=='' ?
-        <Link to='/login'>
+
+      <div className ={styles.hola}>
+        {name !=='' && surname !=='' && username !=='' && password !=='' && age !=='' && email !=='' && UserCity.cityCords ?
         <Boton colorBtn='btn_azul'
-        onClick={()=>{
+        
+        onClick={(e)=>{
           let register= {
             username,
             password,
@@ -109,18 +106,19 @@ export default function RegisterForm(){
               surname,
               age,
               email,
-              city,
+              city:UserCity,
             },
           }
           dispatch(registerUser(register))
+          
+          navigate('/login')
+          e.preventDefault()
+          console.log(register);
         }}
+        // {...console.log(UserCity)}
         >
           Crear Usuario
           </Boton>
-
-        </Link>
-        
-        
         :null}
         
       </div>

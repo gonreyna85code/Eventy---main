@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import './App.css';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import LogingForm from './Routes/LogingForm';
+import LogingForm from './components/Login/LogingForm';
 import Landing from './Routes/Landing';
 import CrearEventos from './Routes/CrearEventos/CrearEventos';
 import DetailEvet from './Routes/DetailEvent';
