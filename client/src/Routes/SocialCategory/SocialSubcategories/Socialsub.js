@@ -41,9 +41,15 @@ export default function SubCategory(){
                         </div>
                     }
             </div>
-            <div className = 'fondo'>
-            <Boton colorBtn='btn_naranja'>Seguir Hobby</Boton>
-            </div>
+            <div className = 'boton_seguir'>
+                        <Boton  colorBtn='btn_naranja'>Seguir Hobby</Boton>
+                    </div>
+                <div className = 'fondosub'>
+                    <div className = 'siguenos'>
+                        <h1>¡Síguenos en nuestro servidor de Discord y encuentra gente con tus mismos intereses!</h1>
+                    </div>
+                    <iframe className = 'discord' src="https://discordapp.com/widget?id=916403266538074232&theme=dark" width="350" height="350" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                </div>
         </div>
     )
 }

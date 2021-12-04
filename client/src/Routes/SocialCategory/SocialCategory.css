@@ -39,3 +39,19 @@
     margin-top: 10px;
     margin-left: 10px;
 }
+
+.fondosub{
+    background-color:rgb(1, 56, 95);
+    display: flex;
+    justify-content: center;
+}
+
+.siguenos{
+    color: white;
+    margin: 75px 10% 20px 10%;
+    font-size: 22px;
+}
+
+.discord{
+    margin: 15px 10% 15px 10%
+}
