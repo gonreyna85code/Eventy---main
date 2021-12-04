@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "../../redux/actions";
-import Input from "../Input/Input";
-import Boton from "../Boton/Boton";
+import { changeUserCity, registerUser } from "../../redux/actions";
+import Input from "../../components/Input/Input";
+import Boton from "../../components/Boton/Boton";
 import { useNavigate } from 'react-router';
-import Map from "../Maps/Map";
+import Map from "../../components/Maps/Map";
 import styles from './RegisterForm.module.css'
 
 export default function RegisterForm(){
@@ -98,6 +98,7 @@ export default function RegisterForm(){
         <Boton colorBtn='btn_azul'
         
         onClick={(e)=>{
+          e.preventDefault()
           let register= {
             username,
             password,
@@ -110,9 +111,8 @@ export default function RegisterForm(){
             },
           }
           dispatch(registerUser(register))
-          
+          dispatch(changeUserCity({}))
           navigate('/login')
-          e.preventDefault()
           console.log(register);
         }}
         // {...console.log(UserCity)}

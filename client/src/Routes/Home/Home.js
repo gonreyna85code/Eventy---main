@@ -11,7 +11,8 @@ import './HomeCarrusel.css';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import Container from '../../components/Container/Container';
 import Boton from '../../components/Boton/Boton';
-import CardEvent from '../../components/CardEvent'
+import CardEvent from '../../components/CardEvent/CardEvent';
+
 
 const responsivePrincipal = {
     0: {
@@ -38,7 +39,6 @@ const Home = () => {
     
     const dispatch = useDispatch();
     const user = useSelector( state => state.User );
-    console.log(user);
 
 
     useEffect(()=>{

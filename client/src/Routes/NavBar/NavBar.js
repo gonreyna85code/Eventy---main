@@ -7,7 +7,6 @@ import logo from '../../Routes/images/logo-blanco.png'
 import {FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faUser} from '@fortawesome/free-solid-svg-icons';
 import { logout } from "../../redux/actions";
-import botonStyles from "../../components/Boton/Boton.module.css"
 import styles from './NavBar.module.css'
 
 

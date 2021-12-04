@@ -2,10 +2,11 @@ import { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import './App.css';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import LogingForm from './components/Login/LogingForm';
-import Landing from './Routes/Landing';
+// import LogingForm from './components/Login/LogingForm';
+import LogingForm from './Routes/Login/LogingForm'
+import Landing from './Routes/Landing/Landing';
 import CrearEventos from './Routes/CrearEventos/CrearEventos';
-import DetailEvet from './Routes/DetailEvent';
+import DetailEvet from './Routes/DetaliEvent/DetailEvent';
 import EventEditor from './Routes/EventEditor/EventEditor';
 import Profile from './Routes/Profile/Profile';
 import NavBar from "./Routes/NavBar/NavBar"

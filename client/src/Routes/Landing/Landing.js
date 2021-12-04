@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import logoBlanco from './images/logo-blanco.png'
+import logoBlanco from '../images/logo-blanco.png'
 import styles from './home.module.css'
-import Boton from '../components/Boton/Boton'
-import Card from '../components/CardEvent'
+import Boton from '../../components/Boton/Boton'
+import Card from '../../components/CardEvent/CardEvent'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser }from '@fortawesome/free-regular-svg-icons'
 import { Link } from 'react-router-dom'
-import Container from '../components/Container/Container'
-import { getEventosLandingPage } from '../redux/actions'
+import Container from '../../components/Container/Container'
+import { getEventosLandingPage } from '../../redux/actions'
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 const responsive = {

@@ -1,12 +1,10 @@
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import React, { useState} from "react";
+import {useDispatch} from "react-redux";
 import { changeUserCity , changeEventCity} from "../../redux/actions";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
-// import GoogleApiWrapper  from 'google-maps-react'
-// import {Loader} from "@googlemaps/js-api-loader"
 import styles from "./styles";
 
 

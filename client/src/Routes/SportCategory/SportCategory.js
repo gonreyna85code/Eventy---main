@@ -3,9 +3,9 @@ import { useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import { Link } from "react-router-dom";
 import { findEventByCategory } from "../../redux/actions";
-import Card from "../../components/CardEvent";
 import '../SocialCategory/SocialCategory.css'
 import botonStyles from "../../components/Boton/Boton.module.css"
+import Card from "../../components/CardEvent/CardEvent";
 
 export default function SportCategory(){
     const dispatch = useDispatch();

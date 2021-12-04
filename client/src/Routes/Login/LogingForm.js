@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../redux/actions";
 import {login} from "../../redux/actions";
 import Boton from "../../components/Boton/Boton";
@@ -8,7 +8,9 @@ import Input from "../../components/Input/Input";
 import { useNavigate } from "react-router";
 import RegisterForm from "./RegisterForm";
 import estilos from './RegisterForm.module.css'
-import logo from '../Landing/images/logo-blanco.png'
+import logo from '../images/logo-blanco.png'
+
+
 
 
 
@@ -19,6 +21,14 @@ export default function Loginform() {
   const [password, setPasword]= useState('')
   const [activeFrom, setActiveFrom ] = useState(false)
   const navigate = useNavigate()
+  const user = useSelector( state => state.User );
+
+
+  console.log(user);
+  if (user && user._id) {
+    navigate('/')
+  }
+  
   return (
     <dvi>
 

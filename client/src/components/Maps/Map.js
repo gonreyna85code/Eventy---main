@@ -1,7 +1,6 @@
-import React,{Component, useState} from 'react';
-import  {GoogleApiWrapper, Map,Marker, InfoWindow} from 'google-maps-react'
+import React,{ useState} from 'react';
+import  {GoogleApiWrapper, Map,Marker} from 'google-maps-react'
 import Places from './Places';
-import { useSelector } from 'react-redux';
 import styles from './styles';
 
 

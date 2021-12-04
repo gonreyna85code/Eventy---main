@@ -1,17 +1,17 @@
 import React, {useEffect, useState} from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getEvent, postPreference, getUser } from "../redux/actions";
+import { getEvent, postPreference, getUser } from "../../redux/actions";
 import style from'./DetailEvents.module.css';
-import Boton from "../components/Boton/Boton";
 import {FontAwesomeIcon}from '@fortawesome/react-fontawesome';
 import {faCalendarAlt, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons';
 import './Ubicación.PNG';
 import { useMercadopago } from 'react-sdk-mercadopago';
-import Input from '../components/Input/Input'
-import Loading from '../components/Loading/Loading'
-import Map from "../components/Maps/Map";
-import Warning from "../components/Warning.js/Warning";
+import Input from '../../components/Input/Input'
+import Loading from '../../components/Loading/Loading'
+import Map from "../../components/Maps/Map";
+import Warning from "../../components/Warning.js/Warning";
+import Boton from "../../components/Boton/Boton";
 
 
 

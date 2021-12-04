@@ -6,7 +6,7 @@ import Input from "../../components/Input/Input";
 import Select from "../../components/Select/Select";
 import Container from '../../components/Container/Container'
 import styles from "../CrearEventos/CrearEventos.module.css";
-import { putEvent, getUser, getEvent } from "../../redux/actions";
+import { putEvent, getUser, getEvent, changeEventCity } from "../../redux/actions";
 import Map from "../../components/Maps/Map";
 import Warning from "../../components/Warning.js/Warning";
 
@@ -55,6 +55,7 @@ const EventEditor = () => {
     }
     e.preventDefault()
     dispatch(putEvent(event,name));
+    dispatch(changeEventCity({}))
     console.log(event);
     alert('Evento editado con exito')
   }

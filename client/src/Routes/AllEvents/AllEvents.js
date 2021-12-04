@@ -3,8 +3,8 @@ import {useSelector, useDispatch} from 'react-redux';
 import styles from './AllEvents.module.css';
 import FilterEvents from '../../components/FilterEvents/FilterEvents';
 import {getAllEvents, getByCat, getBySub, getByCity, filterByName, getAllCities} from '../../redux/actions';
-import CardEvent from '../../components/CardEvent';
-import Loading from '../../components/Landing/Landing';
+import CardEvent from '../../components/CardEvent/CardEvent';
+import Loading from '../../components/Loading/Loading';
 import Container from '../../components/Container/Container';
 
 
