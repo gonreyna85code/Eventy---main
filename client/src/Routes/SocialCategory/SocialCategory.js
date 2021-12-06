@@ -31,7 +31,7 @@ export default function SocialCategory(){
             {
                         socialEvents && socialEvents.map((el)=>{
                             return(
-                            <Card key={el.name} img = {el.info.imagen} name = {el.name} location = {el.location} date = {el.date} id = {el.id} buttonColor='naranja'/>
+                            <Card key={el.name} img = {el.info.imagen} name = {el.name} location = {el.location.cityName} date = {el.date} id = {el.id} buttonColor='naranja'/>
                             )
                         })
                     }
