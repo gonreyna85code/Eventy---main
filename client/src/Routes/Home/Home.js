@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styles from './Home.module.css';
 import NavBar from '../NavBar/NavBar';
 import EventHome from './EventHome';
-import { getUser } from '../../redux/actions';
+import { getUser, getAllEvents } from '../../redux/actions';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import './HomeCarrusel.css';
@@ -25,7 +25,10 @@ const responsivePrincipal = {
 
 const responsive = {
     0: {
-        items: 2,
+        items: 1,
+    },
+    768:{
+        items: 2
     },
     1024:  {
         items: 3,
@@ -39,11 +42,31 @@ const Home = () => {
     
     const dispatch = useDispatch();
     const user = useSelector( state => state.User );
+    const allEvents = useSelector ( state => state.AllEvents);
+    const [eventos, setEventos] = useState([]);
+    const [eventosDeportes, setEventosDeportes] = useState([]);
+    const [eventosSociales, setEventosSociales] = useState([]);
 
 
     useEffect(()=>{
         dispatch(getUser());
     }, [dispatch]);
+
+    useEffect(()=>{
+        dispatch(getAllEvents())
+    }, [dispatch])
+
+    useEffect(()=>{
+        if(allEvents && allEvents.length > 0){
+            let filterEvento = allEvents.filter( e => e.location.cityName === user.profile.city)
+            setEventos(filterEvento)
+
+            let filterDeportes = allEvents.filter(e => e.category === 'sports')
+            setEventosDeportes(filterDeportes)
+            let filterSocial = allEvents.filter(e => e.category === 'social')
+            setEventosSociales(filterSocial)    
+        }
+    }, [dispatch, allEvents, user]) 
 
     
     return(
@@ -59,7 +82,7 @@ const Home = () => {
                     <AliceCarousel
                         mouseTracking
                         items={
-                            user.near && user.near.map( evento => {
+                            eventos && eventos.map( evento => {
                                 return(
                                     <EventHome
                                     name={evento.name}
@@ -114,7 +137,7 @@ const Home = () => {
                     <AliceCarousel
                         mouseTracking
                         items={
-                            user.events && user.events.map( evento => {
+                            eventosSociales && eventosSociales.map( evento => {
                                 
                                 return(
                                     <div>
@@ -149,7 +172,7 @@ const Home = () => {
                     <AliceCarousel
                         mouseTracking
                         items={
-                            user.events && user.events.map( evento => {
+                            eventosDeportes && eventosDeportes.map( evento => {
                                 
                                 return(
                                     <div>

@@ -47,6 +47,7 @@
     max-width: 850px;
     display: block;
     margin-inline: auto;
+    width: 100%;
 }
 
 .cont_searchBar > div > input {
@@ -148,6 +149,18 @@
 
     .cont_categoria_home :is(.cont_info_categoria_home, .cont_carrusel_categoria_home){
         width: 100%;
+        padding: 0 0 30px;
+    }
+    .cont_categoria_home :is(.cont_info_categoria_home, .cont_carrusel_categoria_home) h2{
+        margin-bottom: 0;
+    }
+    .cont_home :is(h1, h2){
+        font-size: 60px;
     }
 
+}
+@media(max-width:425px){
+    .cont_home > div{
+        padding-inline: 10px
+    }
 }

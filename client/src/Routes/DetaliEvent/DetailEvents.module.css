@@ -1,8 +1,15 @@
 .fondo{
-    background-color: rgb(1, 56, 95);
+    background-position: center!important;
+    background-repeat: no-repeat!important;
+    background-size: cover!important;
+    min-height: 500px;
+}
+
+.fondo > div{
     display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 550px;
 }
 
 .infoDetail{

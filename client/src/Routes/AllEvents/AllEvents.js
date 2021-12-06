@@ -71,7 +71,7 @@ const AllEvents = () => {
                                                                 <CardEvent
                                                                     name={evento.name}
                                                                     img={evento.info.hasOwnProperty('image') ? evento.info.image : ``}
-                                                                    location={evento.location}
+                                                                    location={evento.location.cityName}
                                                                     date={evento.date}
                                                                     id={evento._id}
                                                                     buttonColor='naranja'

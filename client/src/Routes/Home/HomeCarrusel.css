@@ -100,3 +100,12 @@
         box-shadow: 0 0 10px rgba(1,56,95,0.8);
     }
 }
+
+@media(max-width:425px){
+    .cont-carrusel .alice-carousel__next-btn {
+        right: -20px;
+    }
+    .cont-carrusel .alice-carousel__prev-btn{
+        left: -35px;
+    }
+}
