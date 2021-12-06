@@ -79,6 +79,7 @@
 .p{
     margin-top: 16px;
     margin-bottom: 16px;
+    cursor: pointer;
 }
 .photoi{
     width: 50px;

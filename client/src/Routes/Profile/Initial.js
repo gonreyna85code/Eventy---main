@@ -26,7 +26,7 @@ export default function Initial({user}){
                 <img src={user.profile?.photo?user.profile?.photo:photo} id={styles.photop} alt='photop' />
                 <section id={styles.name}>
                     <h1 className={styles.fullname}>{`${user.profile?.name} ${user.profile?.surname}`}</h1>
-                    <h5>User: {user.username}</h5>
+                    
                 </section>
                 <section id={styles.setting} >
                     <Boton colorBtn='btn_azul' children={toRoute} onClick={handleClick}  />
