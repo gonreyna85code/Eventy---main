@@ -33,7 +33,7 @@ export default function Card({name, id, location, date, img,buttonColor}){
                     <FontAwesomeIcon  className={`${colorIcon}`} icon={faMapMarkerAlt} /> <span className = {styles.locationCard}>{location}</span>
                 </div>
                 <div>
-                    <FontAwesomeIcon className={`${colorIcon}`}  icon={faCalendarAlt} /> <span className = {styles.dateCard}>{date}{/* .slice(8,10)+'/'+date.slice(5,7) */}</span>
+                    <FontAwesomeIcon className={`${colorIcon}`}  icon={faCalendarAlt} /> <span className = {styles.dateCard}>{date.slice(8,10)+'/'+date.slice(5,7)+'/'+date.slice(2,4)}{/* .slice(8,10)+'/'+date.slice(5,7) */}</span>
                 </div>
             </div>
             <Link to = {'/detailEvent/' + name}>
