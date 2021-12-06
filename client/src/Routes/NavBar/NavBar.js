@@ -46,7 +46,7 @@ export default function NavBar(){
                 </div>
                 <div className={styles.cont_user}>
                     <Link to="/profile">
-                        {user.username}
+                        {user? user.username:null}
                         <FontAwesomeIcon icon={faUser}/>
                     </Link>
                 </div>
