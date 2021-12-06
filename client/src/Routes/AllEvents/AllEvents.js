@@ -70,7 +70,7 @@ const AllEvents = () => {
                                                             ?
                                                                 <CardEvent
                                                                     name={evento.name}
-                                                                    img={evento.info.hasOwnProperty('image') ? evento.info.image : ``}
+                                                                    img={evento.info.hasOwnProperty('imagen') ? evento.info.imagen : ``}
                                                                     location={evento.location.cityName}
                                                                     date={evento.date}
                                                                     id={evento._id}
