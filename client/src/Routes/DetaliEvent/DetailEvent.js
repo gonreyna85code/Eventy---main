@@ -80,7 +80,7 @@ export default function DetailEvet(){
                 },
                 render: {
                     container: '.pago',
-                    label: 'Pay',
+                    label: 'Pagar',
                 }
             })
         }
@@ -149,20 +149,25 @@ export default function DetailEvet(){
                         </div>
                         <div>
                             <Container>
-                                <div className = 'pago'>   
+                                <div className = {`pago ${style.cont_pagos}`}>   
                                 {
                                     theEvent.event_pay === true ?
                                     <div>
-                                    <h1>Comprar entradas:</h1>
-                                    <h3>Precio general: {theEvent.info.fee}$</h3>
-                                    <Input
-                                        label="Cantidad de entradas"
-                                        type="number"
-                                        name="quantity"
-                                        min = {1}
-                                        onChange={(e)=>handleChange(e)}
-                                    />
-                                    <Boton onClick = {(e)=>handleClick(e)}>Aplicar Cantidad</Boton>
+                                        <h1>Comprar entradas:</h1>
+                                        <div className={style.cont_datospago}>
+                                            
+                                            <h3>Precio general: {theEvent.info.fee}$</h3>
+                                            <div>
+                                                <Input
+                                                    label="Cantidad de entradas"
+                                                    type="number"
+                                                    name="quantity"
+                                                    min = {1}
+                                                    onChange={(e)=>handleChange(e)}
+                                                />
+                                                <Boton colorBtn='btn_azul' onClick = {(e)=>handleClick(e)}>Aplicar Cantidad</Boton>
+                                            </div>
+                                        </div>
                                     </div>
                                     :
                                     <p>Este evento es GRATUITO.</p>
