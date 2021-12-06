@@ -36,14 +36,15 @@ const CrearEventos = () => {
       category,
       date,
       event_pay,
-      ticketPrice:ticketPrice?ticketPrice:'El evento no vende entradas',
+      
       location:EventCity,
       name:eventName,
       subcategory: subCategory,
       user:user?._id,
       info:{
         imagen:imgUrl,
-        description
+        description,
+        ticketPrice:ticketPrice?ticketPrice:'El evento no vende entradas',
       }
     }
     e.preventDefault()
