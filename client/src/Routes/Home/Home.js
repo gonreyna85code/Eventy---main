@@ -58,7 +58,7 @@ const Home = () => {
 
     useEffect(()=>{
         if(allEvents && allEvents.length > 0){
-            let filterEvento = allEvents.filter( e => e.location.cityName === user.profile.city)
+            let filterEvento = allEvents.filter( e => e.location?.cityName === user.profile?.city)
             setEventos(filterEvento)
 
             let filterDeportes = allEvents.filter(e => e.category === 'sports')
