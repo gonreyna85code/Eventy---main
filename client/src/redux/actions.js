@@ -21,6 +21,12 @@ export const PUT_EVENT = 'PUT_EVENT';
 export const GET_EVENTS_LP = 'GET_EVENTS_LP' //Eventos landing page
 export const CHANGE_USER_CITY= 'CHANGE_USER_CITY'
 export const CHANGE_EVENT_CITY= 'CHANGE_EVENT_CITY'
+export const DELETE_FOLLOW = 'DELETE_FOLLOW'
+export const DELETE_SUBSCRIPTION = 'DELETE_SUBSCRIPTION'
+export const FIND_USER = 'FIND_USER'
+export const POST_FOLLOW = 'POST_FOLLOW'
+export const POST_SUBSCRIPTION = 'POST_SUBSCRIPTION'
+
 
 axios.defaults.withCrendentails = true;
 axios.defaults.Credentials = "includes";
