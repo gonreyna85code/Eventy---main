@@ -18,7 +18,7 @@ import Setting from './Routes/Setting/Setting';
 import Resultado from './Routes/Resultado/Resultado.js';
 import SubCategory from './Routes/SocialCategory/SocialSubcategories/Socialsub';
 import AllEvents from './Routes/AllEvents/AllEvents';
-
+import User from './Routes/User/User';
 
 function App() {
 
@@ -47,7 +47,7 @@ function App() {
           <Route exact path = '/subcategory/:subcategory' element = {<div><NavBar/><SubCategory/></div>}/>
           <Route exact path = '/result' element = {<div><NavBar/><Resultado/></div>}/>
           <Route exact path = '/all-events' element = {<div><NavBar/><AllEvents/></div>}/>
-         
+          <Route exact path = '/user/:fullname' element = {<div><NavBar/><User /></div>}/>
         </Routes>
       </div>
     </BrowserRouter>

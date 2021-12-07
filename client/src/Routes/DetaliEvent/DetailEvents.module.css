@@ -17,9 +17,9 @@
 }
 
 .infoDetail{
-display: flex;
-justify-content: center;
-flex-direction: column;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .imagenDetail{
@@ -70,7 +70,7 @@ flex-direction: column;
 }
 
 .home{
-background-color: rgb(237, 139, 38);
+    background-color: rgb(237, 139, 38);
 }
 .cont_pagos{
     padding-block: 50px;
@@ -88,4 +88,14 @@ background-color: rgb(237, 139, 38);
 }
 .cont_datospago > div > div{
     margin-bottom: 0
+}
+
+.creator{
+    padding: 10px;
+    background-color: rgb(237, 139, 38);
+    font-family: var(--fonttitle);
+    font-size: 17px;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    color: white;
 }

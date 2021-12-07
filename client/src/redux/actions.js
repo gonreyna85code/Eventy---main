@@ -19,9 +19,13 @@ export const GET_ALL_CITIES = 'GET_ALL_CITIES';
 export const POST_PREFERENCE = 'POST_PREFERENCE';
 export const PUT_EVENT = 'PUT_EVENT';
 export const GET_EVENTS_LP = 'GET_EVENTS_LP' //Eventos landing page
-export const CHANGE_USER_CITY= 'CHANGE_USER_CITY'
-export const CHANGE_EVENT_CITY= 'CHANGE_EVENT_CITY'
-
+export const CHANGE_USER_CITY= 'CHANGE_USER_CITY';
+export const CHANGE_EVENT_CITY= 'CHANGE_EVENT_CITY';
+export const POST_SUBSCRIPTION = 'POST_SUBSCRIPTION';
+export const DELETE_SUBSCRIPTION = 'DELETE_SUBSCRIPTION';
+export const FIND_USER= 'FIND_USER'; //other users
+export const POST_FOLLOW = 'POST_FOLLOW';
+export const DELETE_FOLLOW = 'DELETE_FOLLOW';
 
 
 export function changeUserCity(cityDates){
@@ -36,24 +40,24 @@ export function changeEventCity(eventDates){
 }
 
 export function registerUser(register) {
-    return async function (dispatch) {
-      try {
-        const json = await axios({
-          method: "POST",
-          data: {
-            username: register.username,
-            password: register.password,
-            profile: register.profile,
-          },
-          withCredentials: true,
-          url: "http://localhost:4000/register",
-        });
-        return dispatch({ type: "REGISTER", payload: json.data });
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  }
+  return async function (dispatch) {
+    try {
+      const json = await axios({
+        method: "POST",
+        data: {
+          username: register.username,
+          password: register.password,
+          profile: register.profile,
+        },
+        withCredentials: true,
+        url: "http://localhost:4000/register",
+      });
+      return dispatch({ type: "REGISTER", payload: json.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
 
 export function login(login) {
   return async function (dispatch) {
@@ -108,14 +112,14 @@ export function getUser() {
 export function getEvent(name) {
   return function (dispatch){
     axios({
-    method: "GET",
-    withCredentials: true,
-    url: "http://localhost:4000/event/" + name,
-  })
-  .then(resultado => dispatch({type: GET_EVENT, payload: resultado.data}))
-  .then(resultado => console.log(resultado))
-  .catch(err => alert(err))
-}
+      method: "GET",
+      withCredentials: true,
+      url: "http://localhost:4000/event/" + name,
+    })
+    .then(resultado => dispatch({type: GET_EVENT, payload: resultado.data}))
+    .then(resultado => console.log(resultado))
+    .catch(err => alert(err))
+  }
 }
 
 export function postEvent(event) {
@@ -184,14 +188,13 @@ export function getNearbyEvents(parametro){
 export function getEventosLandingPage(){
   return function (dispatch){
     axios({
-    method: "GET",
-    withCredentials: false,
-    url: "http://localhost:4000/lp-events/",
-  })
-  .then(resultado => dispatch({type: GET_EVENTS_LP, payload: resultado.data}))
-  .catch(err => alert(err))
-}
-
+      method: "GET",
+      withCredentials: false,
+      url: "http://localhost:4000/lp-events/",
+    })
+    .then(resultado => dispatch({type: GET_EVENTS_LP, payload: resultado.data}))
+    .catch(err => alert(err))
+  }
 }
 
 export function putUser(user){
@@ -297,6 +300,97 @@ export function putEvent(edit, id){
       url: "http://localhost:4000/editarEvento/" + id,
     })
     .then(resultado => dispatch({type: PUT_EVENT, payload: resultado.data}))
+    .catch(err => alert(err))
+  }
+}
+
+export function subscription(username,data){
+  return function (dispatch){
+    axios({
+      method:"POST",
+      url: "http://localhost:4000/subscriptions",
+      withCredentials: true,
+      data:{
+        username,
+        data,
+      }
+    })
+    .then(resultado => dispatch({type: POST_SUBSCRIPTION, payload:resultado.data.data}))
+    .catch(err => alert(err))
+  }
+}
+
+export function unsubscription(username,data){
+  return function (dispatch){
+    axios({
+      method:"DELETE",
+      url: "http://localhost:4000/subscriptions",
+      withCredentials: true,
+      data:{
+        username,
+        data,
+      }
+    })
+    .then(resultado => dispatch({type: DELETE_SUBSCRIPTION, payload:resultado.data.data}))
+    .catch(err => alert(err))
+  }
+}
+
+export function allUnsuscription(username){
+  return function (dispatch){
+    axios({
+      method:"DELETE",
+      url: "http://localhost:4000/subscriptions/all",
+      withCredentials: true,
+      data:{
+        username,
+      }
+    })
+    .then(resultado => dispatch({type: DELETE_SUBSCRIPTION, payload:resultado.data.data}))
+    .catch(err => alert(err))
+  }
+}
+
+export function findUser(id){
+  return function (dispatch){
+    axios({
+      method:"GET",
+      url: "http://localhost:4000/other-user/" + id,
+      withCredentials: true
+    })
+    .then(resultado => dispatch({type: FIND_USER, payload:resultado.data}))
+    .catch(err => alert(err))
+  }
+}
+
+export function follow(username,data){
+  return function (dispatch){
+    axios({
+      method:"POST",
+      url: "http://localhost:4000/follows",
+      withCredentials: true,
+      data:{
+        username,
+        data,
+      }
+    })
+    .then(resultado => dispatch({type: POST_FOLLOW, payload:resultado.data.data}))
+    .catch(err => alert(err))
+  }
+}
+
+export function unfollow(username,data){
+  return function (dispatch){
+    axios({
+      method:"DELETE",
+      url: "http://localhost:4000/follows",
+      withCredentials: true,
+      data:{
+        username,
+        data,
+      }
+    })
+    .then(resultado => dispatch({type: DELETE_FOLLOW, payload:resultado.data.data}))
     .catch(err => alert(err))
   }
 }
