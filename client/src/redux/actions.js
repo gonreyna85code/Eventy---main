@@ -53,7 +53,7 @@ export function registerUser(register) {
             password: register.password,
             profile: register.profile,
           },
-          url: "https://gonzalo-eventy3.herokuapp.com/register" || "http://localhost:4000/register",
+          url: "https://gonzalo-eventy3.herokuapp.com/register",
         });
         return dispatch({ type: "REGISTER", payload: json.data });
       } catch (error) {
@@ -71,7 +71,7 @@ export function login(login) {
           username: login.username,
           password: login.password,          
         },
-        url: "https://gonzalo-eventy3.herokuapp.com/login" || "http://localhost:4000/login",
+        url: "https://gonzalo-eventy3.herokuapp.com/login",
       });
       const token = json.data.token;
       window.localStorage.setItem('Token', token);
@@ -90,7 +90,7 @@ export function logout() {
       const json = await axios({
         method: "GET",
         withCredentials: true,
-        url: "https://gonzalo-eventy3.herokuapp.com/logout" || "http://localhost:4000/logout",
+        url: "https://gonzalo-eventy3.herokuapp.com/logout",
       });
       console.log('Usuario no logueado')
       return dispatch({ type: "LOGOUT", payload: json.data });
@@ -105,7 +105,7 @@ export function getUser() {
     try {
       const json = await axios({
         method: "GET",
-        url: "https://gonzalo-eventy3.herokuapp.com/user" || "http://localhost:4000/user",
+        url: "https://gonzalo-eventy3.herokuapp.com/user",
       });
       console.log(json.data)
       console.log(window.localStorage.getItem('Token'))
@@ -120,7 +120,7 @@ export function getEvent(name) {
   return function (dispatch){
     axios({
     method: "GET",
-    url: "https://gonzalo-eventy3.herokuapp.com/event"+name || "http://localhost:4000/event/" + name,
+    url: "https://gonzalo-eventy3.herokuapp.com/event"+name,
   })
   .then(resultado => dispatch({type: GET_EVENT, payload: resultado.data}))
   .then(resultado => console.log(resultado))
@@ -143,7 +143,7 @@ export function postEvent(event) {
           category: event.category,
           subcategory: event.subcategory
         },
-        url: "https://gonzalo-eventy3.herokuapp.com/event" || "http://localhost:4000/event",
+        url: "https://gonzalo-eventy3.herokuapp.com/event",
       });
       return dispatch({ type: "POST_EVENT", payload: json.data });
     } catch (error) {
@@ -156,7 +156,7 @@ export function getAllEvents(){
   return function (dispatch){
       axios({
       method: "GET",
-      url: "https://gonzalo-eventy3.herokuapp.com/allEvents" || "http://localhost:4000/allEvents",
+      url: "https://gonzalo-eventy3.herokuapp.com/allEvents",
     })
     .then(resultado => dispatch({type: GET_ALL_EVENTS, payload: resultado.data}))
     .catch(err => alert(err))
@@ -167,7 +167,7 @@ export function findEvent (parametro){
   return function (dispatch){
       axios({
       method: "GET",
-      url: "https://gonzalo-eventy3.herokuapp.com/eventsAll"+parametro || "http://localhost:4000/eventsAll/" + parametro,
+      url: "https://gonzalo-eventy3.herokuapp.com/eventsAll"+parametro,
     })
     .then(resultado => dispatch({type: FIND_EVENT, payload: resultado}))
     .catch(err => alert(err))
@@ -179,7 +179,7 @@ export function getNearbyEvents(parametro){
   return function (dispatch){
       axios({
       method: "GET",
-      url: "https://gonzalo-eventy3.herokuapp.com/eventsAll"+parametro || "http://localhost:4000/eventsAll/" + parametro,
+      url: "https://gonzalo-eventy3.herokuapp.com/eventsAll"+parametro,
     })
     .then(resultado => dispatch({type: GET_NEARBY_EVENTS, payload: resultado.data}))
     .catch(err => alert(err))
@@ -191,7 +191,7 @@ export function getEventosLandingPage(){
   return function (dispatch){
     axios({
     method: "GET",
-    url: "https://gonzalo-eventy3.herokuapp.com/lp-events" || "http://localhost:4000/lp-events/",
+    url: "https://gonzalo-eventy3.herokuapp.com/lp-events",
   })
   .then(resultado => dispatch({type: GET_EVENTS_LP, payload: resultado.data}))
   .catch(err => alert(err))
@@ -203,7 +203,7 @@ export function putUser(user){
   return function(dispatch){
     axios({
       method: "PUT",
-      url: "https://gonzalo-eventy3.herokuapp.com/user_update" || "http://localhost:4000/user_update",
+      url: "https://gonzalo-eventy3.herokuapp.com/user_update",
       data: {
         username:user.username,
         profile:{...user.profile}
@@ -223,7 +223,7 @@ export function findEventByCategory (category){
     return function (dispatch){
       axios({
         method: "GET",
-        url: "https://gonzalo-eventy3.herokuapp.com/socialEvents" || "http://localhost:4000/socialEvents",
+        url: "https://gonzalo-eventy3.herokuapp.com/socialEvents",
       })
       .then(resultado => dispatch({type: FIND_EVENT_CATEGORY, payload: resultado.data}))
       .catch(err => alert(err))
@@ -232,7 +232,7 @@ export function findEventByCategory (category){
     return function (dispatch){
       axios({
         method: "GET",
-        url: "https://gonzalo-eventy3.herokuapp.com/sportEvents" || "http://localhost:4000/sportEvents",
+        url: "https://gonzalo-eventy3.herokuapp.com/sportEvents",
       })
       .then(resultado => dispatch({type: FIND_EVENT_CATEGORY, payload: resultado.data}))
       .catch(err => alert(err))
@@ -244,7 +244,7 @@ export function findEventSub(subcategory){
   return function (dispatch){
     axios({
       method: "GET",
-      url: "https://gonzalo-eventy3.herokuapp.com/allEvents" || "http://localhost:4000/allEvents",
+      url: "https://gonzalo-eventy3.herokuapp.com/allEvents",
     })
     .then(resultado => dispatch({type: FIND_EVENT_SUB, payload: resultado.data, sub: subcategory}))
     .catch(err => alert(err))
@@ -281,7 +281,7 @@ export function postPreference(preference){
         price: preference.price,
         quantity: preference.quantity
       },
-      url: "https://gonzalo-eventy3.herokuapp.com/create_preference" || "http://localhost:4000/create_preference",
+      url: "https://gonzalo-eventy3.herokuapp.com/create_preference",
     })
     .then(resultado => dispatch({type: POST_PREFERENCE, payload: resultado.data}))
     .catch(err => alert(err))
@@ -293,7 +293,7 @@ export function putEvent(edit, id){
     axios({
       method:"PUT",
       data: edit,
-      url: "https://gonzalo-eventy3.herokuapp.com/editarEvento"+id || "http://localhost:4000/editarEvento/" + id,
+      url: "https://gonzalo-eventy3.herokuapp.com/editarEvento"+id,
     })
     .then(resultado => dispatch({type: PUT_EVENT, payload: resultado.data}))
     .catch(err => alert(err))
@@ -304,7 +304,7 @@ export function subscription(username,data){
   return function (dispatch){
     axios({
       method:"POST",
-      url: "https://gonzalo-eventy3.herokuapp.com/subscriptions" || "http://localhost:4000/subscriptions",
+      url: "https://gonzalo-eventy3.herokuapp.com/subscriptions",
       data:{
         username,
         data,
@@ -319,7 +319,7 @@ export function unsubscription(username,data){
   return function (dispatch){
     axios({
       method:"DELETE",
-      url: "https://gonzalo-eventy3.herokuapp.com/subscriptions" || "http://localhost:4000/subscriptions",
+      url: "https://gonzalo-eventy3.herokuapp.com/subscriptions",
       data:{
         username,
         data,
@@ -334,7 +334,7 @@ export function allUnsuscription(username){
   return function (dispatch){
     axios({
       method:"DELETE",
-      url: "https://gonzalo-eventy3.herokuapp.com/subscriptions/all" || "http://localhost:4000/subscriptions/all",
+      url: "https://gonzalo-eventy3.herokuapp.com/subscriptions/all",
       data:{
         username,
       }
@@ -348,7 +348,7 @@ export function findUser(id){
   return function (dispatch){
     axios({
       method:"GET",
-      url: "https://gonzalo-eventy3.herokuapp.com/other-user/"+id || "http://localhost:4000/other-user/" + id,
+      url: "https://gonzalo-eventy3.herokuapp.com/other-user/"+id,
     })
     .then(resultado => dispatch({type: FIND_USER, payload:resultado.data}))
     .catch(err => alert(err))
@@ -359,7 +359,7 @@ export function follow(username,data){
   return function (dispatch){
     axios({
       method:"POST",
-      url: "https://gonzalo-eventy3.herokuapp.com/follows" || "http://localhost:4000/follows",
+      url: "https://gonzalo-eventy3.herokuapp.com/follows" ,
       data:{
         username,
         data,
@@ -374,7 +374,7 @@ export function unfollow(username,data){
   return function (dispatch){
     axios({
       method:"DELETE",
-      url: "https://gonzalo-eventy3.herokuapp.com/follows" || "http://localhost:4000/follows",
+      url: "https://gonzalo-eventy3.herokuapp.com/follows" ,
       data:{
         username,
         data,
