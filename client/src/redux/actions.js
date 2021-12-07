@@ -71,6 +71,8 @@ export function login(login) {
         withCredentials: true,
         url: "http://localhost:4000/login",
       });
+      const token = res.data.token;
+      axios.defaults.headers.common["secret_token"] = token;
       return dispatch({ type: "LOGIN", payload: json.data });
     } catch (error) {
       console.log(error);
