@@ -80,13 +80,13 @@ export default function Home(){
                         <AliceCarousel
                             mouseTracking
                             items={
-                                eventos && eventos.map( evento => {
+                                eventos && eventos?.map( evento => {
                                     return(
                                         <Card
                                             name={evento.name}
-                                            img={evento.info.imagen}
-                                            location={evento.location.cityName}
-                                            date={evento.date.slice(8,10)+'/'+evento.date.slice(5,7)}
+                                            img={evento.info?.imagen}
+                                            location={evento.location?.cityName}
+                                            date={evento?.date.slice(8,10)+'/'+evento?.date.slice(5,7)}
                                             id={evento._id}
                                             buttonColor='naranja'
                                         />
