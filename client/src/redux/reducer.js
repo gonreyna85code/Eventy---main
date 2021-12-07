@@ -1,5 +1,3 @@
-import { FIND_EVENT_CATEGORY, GET_USER } from "./actions.js";
-import { FIND_EVENT } from "./actions.js";
 import {
   GET_EVENT,
   GET_NEARBY_EVENTS,
@@ -15,7 +13,15 @@ import {
   PUT_EVENT,
   GET_EVENTS_LP,
   CHANGE_USER_CITY,
-  CHANGE_EVENT_CITY
+  CHANGE_EVENT_CITY,
+  FIND_EVENT_CATEGORY, 
+  GET_USER,
+  FIND_EVENT,
+  POST_SUBSCRIPTION,
+  DELETE_SUBSCRIPTION,
+  FIND_USER,
+  POST_FOLLOW,
+  DELETE_FOLLOW
 } from "./actions.js";
 
 //========================
@@ -202,6 +208,42 @@ function rootReducer(state = initialState, action) {
       EventCity:{cityName:action.payload.cityName, cityCords: action.payload.cityCords}
     }
   }
+
+  if(action.type === POST_SUBSCRIPTION){
+    return {
+      ...state,
+      User: {...state.User,subscriptions:action.payload}
+    }
+  }
+
+  if(action.type === DELETE_SUBSCRIPTION){
+    return {
+      ...state,
+      User: {...state.User,subscriptions:action.payload}
+    }
+  }
+
+  if(action.type === FIND_USER){
+    return {
+      ...state,
+      OtherUsers:action.payload
+    }
+  }
+
+  if(action.type === POST_FOLLOW){
+    return {
+      ...state,
+      User: {...state.User,follows:action.payload}
+    }
+  }
+
+  if(action.type === DELETE_FOLLOW){
+    return {
+      ...state,
+      User: {...state.User,follows:action.payload}
+    }
+  }
+  
   return state;
 }
 

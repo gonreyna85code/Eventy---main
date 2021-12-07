@@ -5,7 +5,7 @@ import Boton from '../../components/Boton/Boton';
 import Select from '../../components/Select/Select';
 import Warning from '../../components/Warning.js/Warning';
 import Initial from '../Profile/Initial';
-import { putUser, getUser } from '../../redux/actions';
+import { putUser, getUser, allUnsuscription } from '../../redux/actions';
 import styles from './Setting.module.css';
 
 export default function Setting(){
@@ -25,18 +25,6 @@ export default function Setting(){
 
     var gender=[{value:'Mujer',name:'Mujer'},{value:'Hombre',name:'Hombre'},{value:'No binario',name:'No binario'}]
 
-    function handleChange(e){
-        setProfile({
-            ...profile,
-            [e.target.name]:e.target.value
-        })
-    }
-
-    function handleSubmit(e){
-        e.preventDefault()
-        dispatch(putUser({profile:profile,username:user.username}))
-    }
-
     useEffect(() => {
         dispatch(getUser());
     }, [dispatch]);
@@ -53,6 +41,23 @@ export default function Setting(){
             gender:user.profile?.gender?user.profile?.gender:'',
         })
     },[user])
+
+    function handleClick(e){
+        e.preventDefault();
+        dispatch(allUnsuscription(user.username));
+    }
+
+    function handleChange(e){
+        setProfile({
+            ...profile,
+            [e.target.name]:e.target.value
+        })
+    }
+
+    function handleSubmit(e){
+        e.preventDefault()
+        dispatch(putUser({profile:profile,username:user.username}))
+    }
 
     if(user==="Usuario no logueado"){
         return (
@@ -74,6 +79,7 @@ export default function Setting(){
                     <Input label='Link foto portada' type='portada' name='surname' value={profile.portada} onChange={handleChange} />
                     <Input label='Link foto de perfil' type='link' name='photo' value={profile.photo} onChange={handleChange} />
                     <Select name='gender' onchange={handleChange} default_value={1} default_name='Genero' options={gender}/><br/>
+                    <Boton colorBtn='btn_azul' children='Cancelar todas las suscripciones' onClick={handleClick} /><br/>
                     <Boton colorBtn='btn_naranja' children='Guardar' onClick={handleSubmit} />
                 </form>
             </div>

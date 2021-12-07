@@ -238,7 +238,6 @@ export function findEventSub(subcategory){
   return function (dispatch){
     axios({
       method: "GET",
-      withCredentials: true,
       url: process.env.AXIOS+"/allEvents" || "http://localhost:4000/allEvents",
     })
     .then(resultado => dispatch({type: FIND_EVENT_SUB, payload: resultado.data, sub: subcategory}))
@@ -276,7 +275,6 @@ export function postPreference(preference){
         price: preference.price,
         quantity: preference.quantity
       },
-      withCredentials: true,
       url: process.env.AXIOS+"/create_preference" || "http://localhost:4000/create_preference",
     })
     .then(resultado => dispatch({type: POST_PREFERENCE, payload: resultado.data}))
@@ -289,10 +287,94 @@ export function putEvent(edit, id){
     axios({
       method:"PUT",
       data: edit,
-      withCredentials: true,
       url: process.env.AXIOS+"/editarEvento"+id || "http://localhost:4000/editarEvento/" + id,
     })
     .then(resultado => dispatch({type: PUT_EVENT, payload: resultado.data}))
+    .catch(err => alert(err))
+  }
+}
+
+export function subscription(username,data){
+  return function (dispatch){
+    axios({
+      method:"POST",
+      url: process.env.AXIOS+"/subscriptions" || "http://localhost:4000/subscriptions",
+      data:{
+        username,
+        data,
+      }
+    })
+    .then(resultado => dispatch({type: POST_SUBSCRIPTION, payload:resultado.data.data}))
+    .catch(err => alert(err))
+  }
+}
+
+export function unsubscription(username,data){
+  return function (dispatch){
+    axios({
+      method:"DELETE",
+      url: process.env.AXIOS+"/subscriptions" || "http://localhost:4000/subscriptions",
+      data:{
+        username,
+        data,
+      }
+    })
+    .then(resultado => dispatch({type: DELETE_SUBSCRIPTION, payload:resultado.data.data}))
+    .catch(err => alert(err))
+  }
+}
+
+export function allUnsuscription(username){
+  return function (dispatch){
+    axios({
+      method:"DELETE",
+      url: process.env.AXIOS+"/subscriptions/all" || "http://localhost:4000/subscriptions/all",
+      data:{
+        username,
+      }
+    })
+    .then(resultado => dispatch({type: DELETE_SUBSCRIPTION, payload:resultado.data.data}))
+    .catch(err => alert(err))
+  }
+}
+
+export function findUser(id){
+  return function (dispatch){
+    axios({
+      method:"GET",
+      url: process.env.AXIOS+"/other-user/"+id || "http://localhost:4000/other-user/" + id,
+    })
+    .then(resultado => dispatch({type: FIND_USER, payload:resultado.data}))
+    .catch(err => alert(err))
+  }
+}
+
+export function follow(username,data){
+  return function (dispatch){
+    axios({
+      method:"POST",
+      url: process.env.AXIOS+"/follows" || "http://localhost:4000/follows",
+      data:{
+        username,
+        data,
+      }
+    })
+    .then(resultado => dispatch({type: POST_FOLLOW, payload:resultado.data.data}))
+    .catch(err => alert(err))
+  }
+}
+
+export function unfollow(username,data){
+  return function (dispatch){
+    axios({
+      method:"DELETE",
+      url: process.env.AXIOS+"/follows" || "http://localhost:4000/follows",
+      data:{
+        username,
+        data,
+      }
+    })
+    .then(resultado => dispatch({type: DELETE_FOLLOW, payload:resultado.data.data}))
     .catch(err => alert(err))
   }
 }

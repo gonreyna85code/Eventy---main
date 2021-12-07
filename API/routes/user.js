@@ -75,4 +75,86 @@ router.put("/user_update", (req, res, next) => {
   });
 });
 
+router.post("/subscriptions", (req,res,next) => {
+  User.findOne({username:req.body.username}, async (err,doc) => {
+    if (err) throw err;
+    if (!doc) res.send("User Not found");
+    if (doc) {
+      doc.subscriptions=[...doc.subscriptions,req.body.data];
+      await doc.save().then((r)=>{
+        console.log(doc)
+        res.send({Successfull:"User subscribed",data:r.subscriptions});
+      })
+    }
+  });
+});
+
+router.delete("/subscriptions", (req,res,next) =>{
+  User.findOne({username:req.body.username}, async (err,doc) => {
+    if (err) throw err;
+    if (!doc) res.send("User Not found");
+    if (doc) {
+      doc.subscriptions=doc.subscriptions.filter((s)=>s!==req.body.data);
+      await doc.save().then((r)=>{
+        console.log(doc)
+        res.send({Successfull:"User unsubscribed",data:r.subscriptions});
+      })
+    }
+  });
+});
+
+router.delete("/subscriptions/all", (req,res,next) =>{
+  User.findOne({username:req.body.username}, async (err,doc) => {
+    if (err) throw err;
+    if (!doc) res.send("User Not found");
+    if (doc) {
+      doc.subscriptions=[];
+      await doc.save().then((r)=>{
+        console.log(doc)
+        res.send({Successfull:"User unsubscribed",data:r.subscriptions});
+      })
+    }
+  });
+});
+
+router.get("/other-user/:id", (req,res,next)=>{
+  User.findOne({_id:req.params.id}, async (err,doc) => {
+    if (err) throw err;
+    if (!doc) res.send("User Not found");
+    if (doc) {
+      var info={id:req.params.id,follows:doc.follows,profile:doc.profile}
+      res.send(info);
+    }
+  });
+});
+
+router.post("/follows", (req,res,next) => {
+  User.findOne({username:req.body.username}, async (err,doc) => {
+    if (err) throw err;
+    if (!doc) res.send("User Not found");
+    if (doc) {
+      doc.follows=[...doc.follows,req.body.data];
+      await doc.save().then((r)=>{
+        console.log(doc)
+        res.send({Successfull:"User followed",data:r.follows});
+      })
+    }
+  });
+});
+
+router.delete("/follows", (req,res,next) =>{
+  User.findOne({username:req.body.username}, async (err,doc) => {
+    if (err) throw err;
+    if (!doc) res.send("User Not found");
+    if (doc) {
+      let index=doc.follows.indexOf(req.body.data);
+      doc.follows.splice(index,1)
+      await doc.save().then((r)=>{
+        console.log(doc)
+        res.send({Successfull:"User unfollowed",data:r.follows});
+      })
+    }
+  });
+});
+
 module.exports = router;
