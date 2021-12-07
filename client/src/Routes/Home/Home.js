@@ -145,8 +145,8 @@ const Home = () => {
                                         
                                         <CardEvent
                                             name={evento.name}
-                                            img={evento.info.imagen ? evento.info.imagen : 'https://www.chefandparty.com/wp-content/uploads/2020/07/Sociales.jpg'}
-                                            location={evento.location.cityName}
+                                            img={evento.info?.imagen ? evento.info?.imagen : 'https://www.chefandparty.com/wp-content/uploads/2020/07/Sociales.jpg'}
+                                            location={evento.location?.cityName}
                                             date={evento.date}
                                             id={evento._id}
                                             buttonColor='naranja'
@@ -172,7 +172,7 @@ const Home = () => {
                     <AliceCarousel
                         mouseTracking
                         items={
-                            eventosDeportes && eventosDeportes.map( evento => {
+                            eventosDeportes && eventosDeportes?.map( evento => {
                                 
                                 return(
                                     <div>
@@ -181,8 +181,8 @@ const Home = () => {
                                         
                                             <CardEvent
                                                 name={evento.name}
-                                                img= {evento.info.imagen ? evento.info.imagen :'https://blog.jeep.com.ec/hubfs/7%20deportes%20extremos%20para%20realizar%20outdoor%20despu%C3%A9s%20de%20la%20cuarentena-4.png'}
-                                                location={evento.location.cityName}
+                                                img= {evento.info?.imagen ? evento.info?.imagen :'https://blog.jeep.com.ec/hubfs/7%20deportes%20extremos%20para%20realizar%20outdoor%20despu%C3%A9s%20de%20la%20cuarentena-4.png'}
+                                                location={evento.location?.cityName}
                                                 date={evento.date}
                                                 id={evento._id}
                                                 buttonColor='naranja'
@@ -217,7 +217,7 @@ const Home = () => {
                         <AliceCarousel
                             mouseTracking
                             items={
-                                user.events && user.events.map( evento => {
+                                user.events && user.events?.map( evento => {
                                     
                                     return(
                                         <div>
@@ -225,8 +225,8 @@ const Home = () => {
                                             
                                             <CardEvent
                                                 name={evento.name}
-                                                img={evento.info.imagen ? evento.info.imagen :'https://blog.jeep.com.ec/hubfs/7%20deportes%20extremos%20para%20realizar%20outdoor%20despu%C3%A9s%20de%20la%20cuarentena-4.png'}
-                                                location={evento.location.cityName}
+                                                img={evento.info?.imagen ? evento.info?.imagen :'https://blog.jeep.com.ec/hubfs/7%20deportes%20extremos%20para%20realizar%20outdoor%20despu%C3%A9s%20de%20la%20cuarentena-4.png'}
+                                                location={evento.location?.cityName}
                                                 date={evento.date}
                                                 id={evento._id}
                                                 buttonColor='naranja'
