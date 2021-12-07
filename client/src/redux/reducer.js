@@ -154,7 +154,7 @@ function rootReducer(state = initialState, action) {
     return {
       ...state,
       Filtrados: action.payload === '1' ? [...state.AllEvents] : [...state.AllEvents].filter((d) =>
-        d.location.cityName === action.payload
+        d.location?.cityName === action.payload
       ),
     };
   }
@@ -168,7 +168,7 @@ function rootReducer(state = initialState, action) {
 
   if(action.type === GET_ALL_CITIES){
 
-    const array = [...state.AllEvents].map( e => e.location.cityName)
+    const array = [...state.AllEvents].map( e => e.location?.cityName)
     const unique = [...new Set(array)]
     return{
       ...state,
