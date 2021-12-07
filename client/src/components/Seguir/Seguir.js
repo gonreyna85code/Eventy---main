@@ -14,7 +14,7 @@ export default function Seguir({ouser}){
                 setParams('Dejar de seguir');
             }
         }
-    },[params,user]);
+    },[params,user,ouser]);
 
     function handleClick(e){
         if(e.target.textContent==='Seguir'){

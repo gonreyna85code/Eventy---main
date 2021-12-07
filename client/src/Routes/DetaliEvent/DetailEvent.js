@@ -98,7 +98,7 @@ export default function DetailEvet(){
                 dispatch(findUser(theEvent.user));
             }
         }
-    },[theEvent]);
+    },[theEvent, dispatch, user]);
 
     var creator=useSelector(state=>state.OtherUsers);
     if(creator){

@@ -39,7 +39,7 @@ export default function SocialCategory(){
                 }
             });
         }
-    },[user]);
+    },[user,statusubs]);
 
     function subscribe(e){
         if(e.target.textContent==='Suscribirse'){

@@ -30,7 +30,7 @@ export default function SubCategory(){
                 setStatusubs('Cancelar suscribción');
             }
         }
-    },[user]);
+    },[user,subcategory]);
 
     function subscribe(e){
         if(e.target.textContent==='Suscribirse'){

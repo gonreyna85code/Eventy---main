@@ -1,5 +1,5 @@
 import styles from '../Profile/Profile.module.css';
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import Initial from "../Profile/Initial";
 import Warning from '../../components/Warning.js/Warning';

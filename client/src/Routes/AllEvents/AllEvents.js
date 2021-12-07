@@ -29,7 +29,7 @@ const AllEvents = () => {
     const eventos = useSelector(state => state.Filtrados);
     const [filtros, setFiltros] = useState(filtrosInicialState);
     const cities = useSelector(state => state.Cities);
-    const [citiesFormateadas, setCitiesFormateas] = useState([])
+    //const [citiesFormateadas, setCitiesFormateas] = useState([])
 
     useEffect(()=>{
         dispatch(getAllEvents());

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeUserCity, registerUser } from "../../redux/actions";
 import Input from "../../components/Input/Input";
