@@ -30,7 +30,7 @@ export default function Loginform() {
   }
   
   return (
-    <dvi>
+    <div>
 
     <div className={activeFrom?estilos.ContenedorActive: estilos.Contenedor }>
       <div className ={estilos.Banner}>
@@ -97,6 +97,6 @@ export default function Loginform() {
 
 
           :null}
-    </dvi>
+    </div>
   );
 }
