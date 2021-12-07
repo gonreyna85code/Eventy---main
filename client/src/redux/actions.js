@@ -22,7 +22,9 @@ export const GET_EVENTS_LP = 'GET_EVENTS_LP' //Eventos landing page
 export const CHANGE_USER_CITY= 'CHANGE_USER_CITY'
 export const CHANGE_EVENT_CITY= 'CHANGE_EVENT_CITY'
 
-
+axios.defaults.withCrendentails = true;
+axios.defaults.Credentials = "includes";
+axios.defaults.headers.common["secret_token"] = window.localStorage.getItem('Token');
 
 export function changeUserCity(cityDates){
   return function(dispatch){
@@ -45,8 +47,7 @@ export function registerUser(register) {
             password: register.password,
             profile: register.profile,
           },
-          withCredentials: true,
-          url: "http://localhost:4000/register",
+          url: process.env.AXIOS+"/register" || "http://localhost:4000/register",
         });
         return dispatch({ type: "REGISTER", payload: json.data });
       } catch (error) {
@@ -64,11 +65,11 @@ export function login(login) {
           username: login.username,
           password: login.password,          
         },
-        withCredentials: true,
-        url: "http://localhost:4000/login",
+        url: process.env.AXIOS+"/login" || "http://localhost:4000/login",
       });
-      const token = res.data.token;
-      axios.defaults.headers.common["secret_token"] = token;
+      const token = json.data.token;
+      window.localStorage.setItem('Token', token);
+      axios.defaults.headers.common["secret_token"] = window.localStorage.getItem('Token');
       return dispatch({ type: "LOGIN", payload: json.data });
     } catch (error) {
       console.log(error);
@@ -76,13 +77,14 @@ export function login(login) {
   };
 }
 
-export function logout(login) {
+export function logout() {
+  window.localStorage.clear();
   return async function (dispatch) {
     try {
       const json = await axios({
         method: "GET",
         withCredentials: true,
-        url: "http://localhost:4000/logout",
+        url: process.env.AXIOS+"/logout" || "http://localhost:4000/logout",
       });
       console.log('Usuario no logueado')
       return dispatch({ type: "LOGOUT", payload: json.data });
@@ -97,9 +99,10 @@ export function getUser() {
     try {
       const json = await axios({
         method: "GET",
-        withCredentials: true,
-        url: "http://localhost:4000/user",
+        url: process.env.AXIOS+"/user" || "http://localhost:4000/user",
       });
+      console.log(json.data)
+      console.log(window.localStorage.getItem('Token'))
       return dispatch({ type: "GET_USER", payload: json.data });
     } catch (error) {
       console.log(error);
@@ -111,8 +114,7 @@ export function getEvent(name) {
   return function (dispatch){
     axios({
     method: "GET",
-    withCredentials: true,
-    url: "http://localhost:4000/event/" + name,
+    url: process.env.AXIOS+"/event"+name || "http://localhost:4000/event/" + name,
   })
   .then(resultado => dispatch({type: GET_EVENT, payload: resultado.data}))
   .then(resultado => console.log(resultado))
@@ -135,8 +137,7 @@ export function postEvent(event) {
           category: event.category,
           subcategory: event.subcategory
         },
-        withCredentials: true,
-        url: "http://localhost:4000/event",
+        url: process.env.AXIOS+"/event" || "http://localhost:4000/event",
       });
       return dispatch({ type: "POST_EVENT", payload: json.data });
     } catch (error) {
@@ -149,8 +150,7 @@ export function getAllEvents(){
   return function (dispatch){
       axios({
       method: "GET",
-      withCredentials: true,
-      url: "http://localhost:4000/allEvents",
+      url: process.env.AXIOS+"/allEvents" || "http://localhost:4000/allEvents",
     })
     .then(resultado => dispatch({type: GET_ALL_EVENTS, payload: resultado.data}))
     .catch(err => alert(err))
@@ -161,8 +161,7 @@ export function findEvent (parametro){
   return function (dispatch){
       axios({
       method: "GET",
-      withCredentials: true,
-      url: "http://localhost:4000/eventsAll/" + parametro,
+      url: process.env.AXIOS+"/eventsAll"+parametro || "http://localhost:4000/eventsAll/" + parametro,
     })
     .then(resultado => dispatch({type: FIND_EVENT, payload: resultado}))
     .catch(err => alert(err))
@@ -174,8 +173,7 @@ export function getNearbyEvents(parametro){
   return function (dispatch){
       axios({
       method: "GET",
-      withCredentials: true,
-      url: "http://localhost:4000/eventsAll/" + parametro,
+      url: process.env.AXIOS+"/eventsAll"+parametro || "http://localhost:4000/eventsAll/" + parametro,
     })
     .then(resultado => dispatch({type: GET_NEARBY_EVENTS, payload: resultado.data}))
     .catch(err => alert(err))
@@ -187,8 +185,7 @@ export function getEventosLandingPage(){
   return function (dispatch){
     axios({
     method: "GET",
-    withCredentials: false,
-    url: "http://localhost:4000/lp-events/",
+    url: process.env.AXIOS+"/lp-events" || "http://localhost:4000/lp-events/",
   })
   .then(resultado => dispatch({type: GET_EVENTS_LP, payload: resultado.data}))
   .catch(err => alert(err))
@@ -200,8 +197,7 @@ export function putUser(user){
   return function(dispatch){
     axios({
       method: "PUT",
-      withCredentials: true,
-      url: "http://localhost:4000/user_update",
+      url: process.env.AXIOS+"/user_update" || "http://localhost:4000/user_update",
       data: {
         username:user.username,
         profile:{...user.profile}
@@ -221,8 +217,7 @@ export function findEventByCategory (category){
     return function (dispatch){
       axios({
         method: "GET",
-        withCredentials: true,
-        url: "http://localhost:4000/socialEvents",
+        url: process.env.AXIOS+"/socialEvents" || "http://localhost:4000/socialEvents",
       })
       .then(resultado => dispatch({type: FIND_EVENT_CATEGORY, payload: resultado.data}))
       .catch(err => alert(err))
@@ -231,8 +226,7 @@ export function findEventByCategory (category){
     return function (dispatch){
       axios({
         method: "GET",
-        withCredentials: true,
-        url: "http://localhost:4000/sportEvents",
+        url: process.env.AXIOS+"/sportEvents" || "http://localhost:4000/sportEvents",
       })
       .then(resultado => dispatch({type: FIND_EVENT_CATEGORY, payload: resultado.data}))
       .catch(err => alert(err))
@@ -245,7 +239,7 @@ export function findEventSub(subcategory){
     axios({
       method: "GET",
       withCredentials: true,
-      url: "http://localhost:4000/allEvents",
+      url: process.env.AXIOS+"/allEvents" || "http://localhost:4000/allEvents",
     })
     .then(resultado => dispatch({type: FIND_EVENT_SUB, payload: resultado.data, sub: subcategory}))
     .catch(err => alert(err))
@@ -283,7 +277,7 @@ export function postPreference(preference){
         quantity: preference.quantity
       },
       withCredentials: true,
-      url: "http://localhost:4000/create_preference",
+      url: process.env.AXIOS+"/create_preference" || "http://localhost:4000/create_preference",
     })
     .then(resultado => dispatch({type: POST_PREFERENCE, payload: resultado.data}))
     .catch(err => alert(err))
@@ -296,7 +290,7 @@ export function putEvent(edit, id){
       method:"PUT",
       data: edit,
       withCredentials: true,
-      url: "http://localhost:4000/editarEvento/" + id,
+      url: process.env.AXIOS+"/editarEvento"+id || "http://localhost:4000/editarEvento/" + id,
     })
     .then(resultado => dispatch({type: PUT_EVENT, payload: resultado.data}))
     .catch(err => alert(err))
