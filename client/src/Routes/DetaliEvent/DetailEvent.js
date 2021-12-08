@@ -129,7 +129,7 @@ export default function DetailEvet(){
                                     <h1 className = {style.nombreEvento}>{theEvent.name}</h1>
                                     <div>
                                         <FontAwesomeIcon className = {style.icono} icon={faMapMarkerAlt} />
-                                        <span className = {style.info}>{theEvent.location.cityName}</span>
+                                        <span className = {style.info}>{theEvent.location?.cityName}</span>
                                     </div>
                                     <div>
                                         <FontAwesomeIcon className = {style.icono} icon={faCalendarAlt} />
@@ -157,14 +157,14 @@ export default function DetailEvet(){
                             <Container>
                                 <div className = {style.dataInfo}>
                                     <h2>Información del evento:</h2>
-                                    <p className = {style.dataInfoP}>{theEvent.info.description}</p>
+                                    <p className = {style.dataInfoP}>{theEvent.info?.description}</p>
                                 
                                 </div>
                                 <div className = {style.dataInfo}>
                                     <div>
                                         {console.log(theEvent)}
                                         <Map 
-                                            coords = {theEvent.location.cityCords}
+                                            coords = {theEvent.location?.cityCords}
                                             LabelName='Ciudad'
                                         />
                                         
@@ -181,7 +181,7 @@ export default function DetailEvet(){
                                         <h1>Comprar entradas:</h1>
                                         <div className={style.cont_datospago}>
                                             
-                                            <h3>Precio general: {theEvent.info.fee}$</h3>
+                                            <h3>Precio general: {theEvent.info?.fee}$</h3>
                                             <div>
                                                 <Input
                                                     label="Cantidad de entradas"
