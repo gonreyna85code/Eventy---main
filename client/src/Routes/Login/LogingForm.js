@@ -40,6 +40,7 @@ export default function Loginform() {
         <Link to="/">
         <Boton colorBtn='btn_naranja'>Volver al Home</Boton>
         </Link>
+        <a href="/auth/google">Sign In with Google</a>
         <h1>Por favor, Ingrese su Usuario y Contraseña</h1>
         <form>
           <div className="input">
@@ -89,11 +90,12 @@ export default function Loginform() {
               <div  className={estilos.RegisterForm} >
                 <div className = {estilos.boton}>
                 <Boton colorBtn='btn_naranja' onClick={e=>setActiveFrom(false)} >X</Boton>
-
+                
                 </div>
                 <RegisterForm/>
+                
               </div>
-
+              
           </div>
 
 
