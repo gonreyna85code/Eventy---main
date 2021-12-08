@@ -117,6 +117,7 @@ export function getUser() {
 export function getEvent(name) {
   return function (dispatch){
     axios({
+      withCredentials: true,
     method: "GET",
     url:  "http://localhost:4000/event/" + name,
   })
@@ -141,6 +142,7 @@ export function postEvent(event) {
           category: event.category,
           subcategory: event.subcategory
         },
+        withCredentials: true,
         url:  "http://localhost:4000/event",
       });
       return dispatch({ type: "POST_EVENT", payload: json.data });
@@ -154,6 +156,7 @@ export function getAllEvents(){
   return function (dispatch){
       axios({
       method: "GET",
+      withCredentials: true,
       url:  "http://localhost:4000/allEvents",
     })
     .then(resultado => dispatch({type: GET_ALL_EVENTS, payload: resultado.data}))
@@ -165,6 +168,7 @@ export function findEvent (parametro){
   return function (dispatch){
       axios({
       method: "GET",
+      withCredentials: true,
       url:  "http://localhost:4000/eventsAll/" + parametro,
     })
     .then(resultado => dispatch({type: FIND_EVENT, payload: resultado}))
@@ -177,6 +181,7 @@ export function getNearbyEvents(parametro){
   return function (dispatch){
       axios({
       method: "GET",
+      withCredentials: true,
       url: "http://localhost:4000/eventsAll/" + parametro,
     })
     .then(resultado => dispatch({type: GET_NEARBY_EVENTS, payload: resultado.data}))
@@ -189,6 +194,7 @@ export function getEventosLandingPage(){
   return function (dispatch){
     axios({
     method: "GET",
+    withCredentials: true,
     url: "http://localhost:4000/lp-events/",
   })
   .then(resultado => dispatch({type: GET_EVENTS_LP, payload: resultado.data}))
@@ -201,6 +207,7 @@ export function putUser(user){
   return function(dispatch){
     axios({
       method: "PUT",
+      withCredentials: true,
       url: "http://localhost:4000/user_update",
       data: {
         username:user.username,
@@ -221,6 +228,7 @@ export function findEventByCategory (category){
     return function (dispatch){
       axios({
         method: "GET",
+        withCredentials: true,
         url: "http://localhost:4000/socialEvents",
       })
       .then(resultado => dispatch({type: FIND_EVENT_CATEGORY, payload: resultado.data}))
@@ -230,6 +238,7 @@ export function findEventByCategory (category){
     return function (dispatch){
       axios({
         method: "GET",
+        withCredentials: true,
         url: "http://localhost:4000/sportEvents",
       })
       .then(resultado => dispatch({type: FIND_EVENT_CATEGORY, payload: resultado.data}))
@@ -242,6 +251,7 @@ export function findEventSub(subcategory){
   return function (dispatch){
     axios({
       method: "GET",
+      withCredentials: true,
       url: "http://localhost:4000/allEvents",
     })
     .then(resultado => dispatch({type: FIND_EVENT_SUB, payload: resultado.data, sub: subcategory}))
@@ -274,6 +284,7 @@ export function postPreference(preference){
   return function (dispatch){
     axios({
       method: "POST",
+      withCredentials: true,
       data: {
         title: preference.title,
         price: preference.price,
@@ -290,6 +301,7 @@ export function putEvent(edit, id){
   return function (dispatch){
     axios({
       method:"PUT",
+      withCredentials: true,
       data: edit,
       url: "http://localhost:4000/editarEvento/" + id,
     })
@@ -302,6 +314,7 @@ export function subscription(username,data){
   return function (dispatch){
     axios({
       method:"POST",
+      withCredentials: true,
       url: "http://localhost:4000/subscriptions",
       data:{
         username,
@@ -317,6 +330,7 @@ export function unsubscription(username,data){
   return function (dispatch){
     axios({
       method:"DELETE",
+      withCredentials: true,
       url: "http://localhost:4000/subscriptions",
       data:{
         username,
@@ -332,6 +346,7 @@ export function allUnsuscription(username){
   return function (dispatch){
     axios({
       method:"DELETE",
+      withCredentials: true,
       url: "http://localhost:4000/subscriptions/all",
       data:{
         username,
@@ -346,6 +361,7 @@ export function findUser(id){
   return function (dispatch){
     axios({
       method:"GET",
+      withCredentials: true,
       url: "http://localhost:4000/other-user/" + id,
     })
     .then(resultado => dispatch({type: FIND_USER, payload:resultado.data}))
@@ -357,6 +373,7 @@ export function follow(username,data){
   return function (dispatch){
     axios({
       method:"POST",
+      withCredentials: true,
       url: "http://localhost:4000/follows",
       data:{
         username,
@@ -372,6 +389,7 @@ export function unfollow(username,data){
   return function (dispatch){
     axios({
       method:"DELETE",
+      withCredentials: true,
       url: "http://localhost:4000/follows",
       data:{
         username,
