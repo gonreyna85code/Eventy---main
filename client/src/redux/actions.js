@@ -120,7 +120,7 @@ export function getEvent(name) {
   return function (dispatch){
     axios({
     method: "GET",
-    url: "https://gonzalo-eventy3.herokuapp.com/event"+name,
+    url: "https://gonzalo-eventy3.herokuapp.com/event/"+name,
   })
   .then(resultado => dispatch({type: GET_EVENT, payload: resultado.data}))
   .then(resultado => console.log(resultado))
@@ -167,7 +167,7 @@ export function findEvent (parametro){
   return function (dispatch){
       axios({
       method: "GET",
-      url: "https://gonzalo-eventy3.herokuapp.com/eventsAll"+parametro,
+      url: "https://gonzalo-eventy3.herokuapp.com/eventsAll/"+parametro,
     })
     .then(resultado => dispatch({type: FIND_EVENT, payload: resultado}))
     .catch(err => alert(err))
@@ -179,7 +179,7 @@ export function getNearbyEvents(parametro){
   return function (dispatch){
       axios({
       method: "GET",
-      url: "https://gonzalo-eventy3.herokuapp.com/eventsAll"+parametro,
+      url: "https://gonzalo-eventy3.herokuapp.com/eventsAll/"+parametro,
     })
     .then(resultado => dispatch({type: GET_NEARBY_EVENTS, payload: resultado.data}))
     .catch(err => alert(err))
@@ -293,7 +293,7 @@ export function putEvent(edit, id){
     axios({
       method:"PUT",
       data: edit,
-      url: "https://gonzalo-eventy3.herokuapp.com/editarEvento"+id,
+      url: "https://gonzalo-eventy3.herokuapp.com/editarEvento/"+id,
     })
     .then(resultado => dispatch({type: PUT_EVENT, payload: resultado.data}))
     .catch(err => alert(err))
