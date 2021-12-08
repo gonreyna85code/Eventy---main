@@ -40,8 +40,6 @@ export default function Loginform() {
         <Link to="/">
         <Boton colorBtn='btn_naranja'>Volver al Home</Boton>
         </Link>
-        <a href="https://gonzalo-eventy3.herokuapp.com/auth/google">Sign In with Google</a>
-        <a href="https://gonzalo-eventy3.herokuapp.com/auth/provider">Log In with OAuth Provider</a>
         <h1>Por favor, Ingrese su Usuario y Contraseña</h1>
         <form>
           <div className="input">
