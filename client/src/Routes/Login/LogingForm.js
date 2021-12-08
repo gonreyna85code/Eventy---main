@@ -73,7 +73,8 @@ export default function Loginform() {
             alert("Usuario Confirmado, Bienvenido a Eventy");
             dispatch(getUser());
             navigate('/');
-            window.location.reload();
+            setTimeout(function(){ window.location.reload(); }, 3000);
+            
             
           }}> INGRESAR </Boton>
         </div>
