@@ -30,7 +30,7 @@ export const POST_SUBSCRIPTION = 'POST_SUBSCRIPTION'
 
 axios.defaults.withCrendentails = true;
 axios.defaults.Credentials = "includes";
-axios.defaults.headers.common["secret_token"] = window.localStorage.getItem('Token');
+
 
 export function changeUserCity(cityDates){
   return function(dispatch){
@@ -53,6 +53,7 @@ export function registerUser(register) {
             password: register.password,
             profile: register.profile,
           },
+          withCredentials: true,
           url:  "http://localhost:4000/register",
         });
         return dispatch({ type: "REGISTER", payload: json.data });
@@ -71,11 +72,9 @@ export function login(login) {
           username: login.username,
           password: login.password,          
         },
+        withCredentials: true,
         url:  "http://localhost:4000/login",
-      });
-      const token = json.data.token;
-      window.localStorage.setItem('Token', token);
-      axios.defaults.headers.common["secret_token"] = window.localStorage.getItem('Token');
+      });      
       return dispatch({ type: "LOGIN", payload: json.data });
     } catch (error) {
       console.log(error);
@@ -106,9 +105,8 @@ export function getUser() {
       const json = await axios({
         method: "GET",
         url: "http://localhost:4000/user",
+        withCredentials: true,
       });
-      console.log(json.data)
-      console.log(window.localStorage.getItem('Token'))
       return dispatch({ type: "GET_USER", payload: json.data });
     } catch (error) {
       console.log(error);
