@@ -34,7 +34,7 @@ axios.defaults.withCrendentails = true;
 axios.defaults.Credentials = "includes";
 
 const local = "http://localhost:4000/"
-const public = "https://gonzalo-eventy3.herokuapp.com"
+const heroku = "https://gonzalo-eventy3.herokuapp.com"
 
 
 export function changeUserCity(cityDates){
@@ -59,7 +59,7 @@ export function registerUser(register) {
             profile: register.profile,
           },
           withCredentials: true,  
-          url:  development ? local + 'register' : public + "register",
+          url:  development ? local + 'register' : heroku + "register",
         });
         return dispatch({ type: "REGISTER", payload: json.data });
       } catch (error) {
@@ -78,7 +78,7 @@ export function login(login) {
           password: login.password,          
         },
         withCredentials: true,
-        url:  development ? local + 'login' : public + "login",
+        url:  development ? local + 'login' : heroku + "login",
       });      
       return dispatch({ type: "LOGIN", payload: json.data });
     } catch (error) {
@@ -94,7 +94,7 @@ export function logout() {
       const json = await axios({
         method: "GET",
         withCredentials: true,
-        url:  development ? local + 'logout' : public + "logout",
+        url:  development ? local + 'logout' : heroku + "logout",
       });
       console.log('Usuario no logueado')
       return dispatch({ type: "LOGOUT", payload: json.data });
@@ -109,7 +109,7 @@ export function getUser() {
     try {
       const json = await axios({
         method: "GET",
-        url:  development ? local + 'user' : public + "user",
+        url:  development ? local + 'user' : heroku + "user",
         withCredentials: true,
       });
       return dispatch({ type: "GET_USER", payload: json.data });
@@ -124,7 +124,7 @@ export function getEvent(name) {
     axios({
       withCredentials: true,
     method: "GET",
-    url:  development ? local + 'event' + name : public + "event" + name,
+    url:  development ? local + 'event' + name : heroku + "event" + name,
   })
   .then(resultado => dispatch({type: GET_EVENT, payload: resultado.data}))
   .then(resultado => console.log(resultado))
@@ -148,7 +148,7 @@ export function postEvent(event) {
           subcategory: event.subcategory
         },
         withCredentials: true,
-        url:  development ? local + 'event' : public + "event",
+        url:  development ? local + 'event' : heroku + "event",
       });
       return dispatch({ type: "POST_EVENT", payload: json.data });
     } catch (error) {
@@ -162,7 +162,7 @@ export function getAllEvents(){
       axios({
       method: "GET",
       withCredentials: true,
-      url:  development ? local + 'allEvents' : public + "allEvents",
+      url:  development ? local + 'allEvents' : heroku + "allEvents",
     })
     .then(resultado => dispatch({type: GET_ALL_EVENTS, payload: resultado.data}))
     .catch(err => alert(err))
@@ -174,7 +174,7 @@ export function findEvent (parametro){
       axios({
       method: "GET",
       withCredentials: true,
-      url:  development ? local + 'eventsAll/' + parametro : public + "eventsAll/" + parametro,
+      url:  development ? local + 'eventsAll/' + parametro : heroku + "eventsAll/" + parametro,
     })
     .then(resultado => dispatch({type: FIND_EVENT, payload: resultado}))
     .catch(err => alert(err))
@@ -187,7 +187,7 @@ export function getNearbyEvents(parametro){
       axios({
       method: "GET",
       withCredentials: true,
-      url:  development ? local + 'eventsAll/' + parametro : public + "eventsAll/" + parametro,
+      url:  development ? local + 'eventsAll/' + parametro : heroku + "eventsAll/" + parametro,
       
     })
     .then(resultado => dispatch({type: GET_NEARBY_EVENTS, payload: resultado.data}))
@@ -201,7 +201,7 @@ export function getEventosLandingPage(){
     axios({
     method: "GET",
     withCredentials: true,
-    url:  development ? local + 'lp-events/' : public + "lp-events/",
+    url:  development ? local + 'lp-events/' : heroku + "lp-events/",
   })
   .then(resultado => dispatch({type: GET_EVENTS_LP, payload: resultado.data}))
   .catch(err => alert(err))
@@ -214,7 +214,7 @@ export function putUser(user){
     axios({
       method: "PUT",
       withCredentials: true,
-      url:  development ? local + 'user_update' : public + "user_update",
+      url:  development ? local + 'user_update' : heroku + "user_update",
       data: {
         username:user.username,
         profile:{...user.profile}
@@ -235,7 +235,7 @@ export function findEventByCategory (category){
       axios({
         method: "GET",
         withCredentials: true,
-        url:  development ? local + 'socialEvents' : public + "socialEvents",
+        url:  development ? local + 'socialEvents' : heroku + "socialEvents",
       })
       .then(resultado => dispatch({type: FIND_EVENT_CATEGORY, payload: resultado.data}))
       .catch(err => alert(err))
@@ -245,7 +245,7 @@ export function findEventByCategory (category){
       axios({
         method: "GET",
         withCredentials: true,
-        url:  development ? local + 'sportEvents' : public + "sportEvents",
+        url:  development ? local + 'sportEvents' : heroku + "sportEvents",
       })
       .then(resultado => dispatch({type: FIND_EVENT_CATEGORY, payload: resultado.data}))
       .catch(err => alert(err))
@@ -258,7 +258,7 @@ export function findEventSub(subcategory){
     axios({
       method: "GET",
       withCredentials: true,
-      url:  development ? local + 'allEvents' : public + "allEvents",
+      url:  development ? local + 'allEvents' : heroku + "allEvents",
     })
     .then(resultado => dispatch({type: FIND_EVENT_SUB, payload: resultado.data, sub: subcategory}))
     .catch(err => alert(err))
@@ -296,7 +296,7 @@ export function postPreference(preference){
         price: preference.price,
         quantity: preference.quantity
       },
-      url:  development ? local + 'create_preference' : public + "create_preference",
+      url:  development ? local + 'create_preference' : heroku + "create_preference",
     })
     .then(resultado => dispatch({type: POST_PREFERENCE, payload: resultado.data}))
     .catch(err => alert(err))
@@ -309,7 +309,7 @@ export function putEvent(edit, id){
       method:"PUT",
       withCredentials: true,
       data: edit,
-      url:  development ? local + 'editarEvento/' + id : public + 'editarEvento/' + id,
+      url:  development ? local + 'editarEvento/' + id : heroku + 'editarEvento/' + id,
     })
     .then(resultado => dispatch({type: PUT_EVENT, payload: resultado.data}))
     .catch(err => alert(err))
@@ -321,7 +321,7 @@ export function subscription(username,data){
     axios({
       method:"POST",
       withCredentials: true,
-      url:  development ? local + 'subscriptions' : public + 'subscriptions',
+      url:  development ? local + 'subscriptions' : heroku + 'subscriptions',
       data:{
         username,
         data,
@@ -337,7 +337,7 @@ export function unsubscription(username,data){
     axios({
       method:"DELETE",
       withCredentials: true,
-      url:  development ? local + 'subscriptions' : public + 'subscriptions',
+      url:  development ? local + 'subscriptions' : heroku + 'subscriptions',
       data:{
         username,
         data,
@@ -353,7 +353,7 @@ export function allUnsuscription(username){
     axios({
       method:"DELETE",
       withCredentials: true,
-      url:  development ? local + 'subscriptions/all' : public + 'subscriptions/all',
+      url:  development ? local + 'subscriptions/all' : heroku + 'subscriptions/all',
       data:{
         username,
       }
@@ -368,7 +368,7 @@ export function findUser(id){
     axios({
       method:"GET",
       withCredentials: true,
-      url:  development ? local + 'other-user/' + id : public + 'other-user/' + id,
+      url:  development ? local + 'other-user/' + id : heroku + 'other-user/' + id,
     })
     .then(resultado => dispatch({type: FIND_USER, payload:resultado.data}))
     .catch(err => alert(err))
@@ -380,7 +380,7 @@ export function follow(username,data){
     axios({
       method:"POST",
       withCredentials: true,
-      url:  development ? local + 'follows' : public + 'follows',
+      url:  development ? local + 'follows' : heroku + 'follows',
       data:{
         username,
         data,
@@ -396,7 +396,7 @@ export function unfollow(username,data){
     axios({
       method:"DELETE",
       withCredentials: true,
-      url:  development ? local + 'follows' : public + 'follows',
+      url:  development ? local + 'follows' : heroku + 'follows',
       data:{
         username,
         data,
@@ -412,7 +412,7 @@ export function deleteEvent(name){
     axios({
       method:"DELETE",
       withCredentials:true,
-      url:  development ? local + 'event' : public + 'event',
+      url:  development ? local + 'event' : heroku + 'event',
       data:{
         name: name
       }
