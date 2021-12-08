@@ -26,6 +26,7 @@ export const DELETE_SUBSCRIPTION = 'DELETE_SUBSCRIPTION'
 export const FIND_USER = 'FIND_USER'
 export const POST_FOLLOW = 'POST_FOLLOW'
 export const POST_SUBSCRIPTION = 'POST_SUBSCRIPTION'
+export const DELETE_EVENT = 'DELETE_EVENT' //Eliminar evento.
 
 
 axios.defaults.withCrendentails = true;
@@ -397,6 +398,21 @@ export function unfollow(username,data){
       }
     })
     .then(resultado => dispatch({type: DELETE_FOLLOW, payload:resultado.data.data}))
+    .catch(err => alert(err))
+  }
+}
+
+export function deleteEvent(name){
+  return function (dispatch){
+    axios({
+      method:"DELETE",
+      withCredentials:true,
+      url: "http://localhost:4000/event",
+      data:{
+        name: name
+      }
+    })
+    .then(resultado => dispatch({type: DELETE_EVENT, payload: resultado.data}))
     .catch(err => alert(err))
   }
 }

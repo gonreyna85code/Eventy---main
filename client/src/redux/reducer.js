@@ -21,7 +21,8 @@ import {
   DELETE_SUBSCRIPTION,
   FIND_USER,
   POST_FOLLOW,
-  DELETE_FOLLOW
+  DELETE_FOLLOW,
+  DELETE_EVENT
 } from "./actions.js";
 
 //========================
@@ -241,6 +242,13 @@ function rootReducer(state = initialState, action) {
     return {
       ...state,
       User: {...state.User,follows:action.payload}
+    }
+  }
+
+  if(action.type === DELETE_EVENT){
+    console.log(action.payload)
+    return{
+      ...state
     }
   }
   

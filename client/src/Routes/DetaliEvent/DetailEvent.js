@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getEvent, postPreference, getUser, findUser } from "../../redux/actions";
+import { getEvent, postPreference, getUser, findUser, deleteEvent } from "../../redux/actions";
 import style from'./DetailEvents.module.css';
 import {FontAwesomeIcon}from '@fortawesome/react-fontawesome';
 import {faCalendarAlt, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons';
@@ -107,6 +107,13 @@ export default function DetailEvet(){
         }
     }
 
+    function handleDelete(e){
+        e.preventDefault();
+        dispatch(deleteEvent(theEvent.name));
+        alert('El evento ha sido eliminado');
+        navegate('/');
+    }
+
     return(
         <div>
             { user && !user._id ?
@@ -140,9 +147,12 @@ export default function DetailEvet(){
                                         <Boton colorBtn='btn_naranja'>Seguir Evento</Boton>
                                         {
                                             user._id===theEvent.user?
-                                            <Link to = {'/editar-evento/' + name}>
-                                                <Boton colorBtn='btn_naranja'>Editar Evento</Boton>
-                                            </Link>
+                                            <div>
+                                                <Link to = {'/editar-evento/' + name}> 
+                                                    <Boton colorBtn='btn_naranja'>Editar Evento</Boton>
+                                                </Link>
+                                                <Boton colorBtn='btn_naranja' onClick = {(e)=> handleDelete(e)}>Eliminar Evento</Boton>
+                                            </div>
                                             :
                                             <Link to={`/user/${creator?.profile.name+'-'+creator?.profile.surname}`}>
                                                 <span className={style.creator}>Creado por: {creatorr(creator?.profile.name,creator?.profile.surname)}</span>
@@ -181,7 +191,7 @@ export default function DetailEvet(){
                                         <h1>Comprar entradas:</h1>
                                         <div className={style.cont_datospago}>
                                             
-                                            <h3>Precio general: {theEvent.info.fee}$</h3>
+                                            <h3>Precio general: {theEvent.info.ticketPrice}$</h3>
                                             <div>
                                                 <Input
                                                     label="Cantidad de entradas"

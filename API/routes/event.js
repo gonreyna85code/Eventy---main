@@ -197,5 +197,12 @@ router.put('/editarEvento/:name', (req, res)=>{
     res.status(200).send(req.body)
 })
 
+router.delete('/event', (req, res)=>{
+  const {name} = req.body;
+  Event.deleteOne({name: name})
+  .then(res.send('el evento ' + name + ' ha sido eliminado'))
+  .catch(res.send('error'))
+})
+
 module.exports = router;
 
