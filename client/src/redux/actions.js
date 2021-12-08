@@ -130,7 +130,7 @@ export function getEvent(name) {
     axios({
       withCredentials: true,
     method: "GET",
-    url:  development ? local + 'event' + name : heroku + "event" + name,
+    url:  development ? local + 'event/' + name : heroku + "event/" + name,
   })
   .then(resultado => dispatch({type: GET_EVENT, payload: resultado.data}))
   .then(resultado => console.log(resultado))
