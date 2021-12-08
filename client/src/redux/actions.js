@@ -29,7 +29,7 @@ export const POST_SUBSCRIPTION = 'POST_SUBSCRIPTION'
 export const DELETE_EVENT = 'DELETE_EVENT' //Eliminar evento.
 
 const development = process.env.NODE_ENV !== 'production'
-
+!development ? axios.defaults.headers.common["secret_token"] = window.localStorage.getItem('Token') : null;
 axios.defaults.withCrendentails = true;
 axios.defaults.Credentials = "includes";
 
@@ -79,7 +79,10 @@ export function login(login) {
         },
         withCredentials: true,
         url:  development ? local + 'login' : heroku + "login",
-      });      
+      });     
+      const token = !development ? json.data.token : null; 
+      !development ? window.localStorage.setItem('Token', token) : null;
+      !development ? axios.defaults.headers.common["secret_token"] = window.localStorage.getItem('Token') : null;
       return dispatch({ type: "LOGIN", payload: json.data });
     } catch (error) {
       console.log(error);
@@ -88,7 +91,7 @@ export function login(login) {
 }
 
 export function logout() {
-  window.localStorage.clear();
+  !development ? window.localStorage.clear() : null;
   return async function (dispatch) {
     try {
       const json = await axios({
