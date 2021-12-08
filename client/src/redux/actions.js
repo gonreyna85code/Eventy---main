@@ -34,7 +34,7 @@ axios.defaults.withCrendentails = true;
 axios.defaults.Credentials = "includes";
 
 const local = "http://localhost:4000/"
-const heroku = "https://gonzalo-eventy3.herokuapp.com"
+const heroku = "https://gonzalo-eventy3.herokuapp.com/"
 
 
 export function changeUserCity(cityDates){
