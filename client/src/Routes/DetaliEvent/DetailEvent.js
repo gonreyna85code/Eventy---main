@@ -30,7 +30,8 @@ export default function DetailEvet(){
     const user = useSelector(state => state.User);
     const Events = useSelector((state) => state.Event);
     const PreferenceId = useSelector((state)=>state.PreferenceId)
-
+    const [credential, setCredential] = useState('')
+   
     
 
     useEffect(()=>{ 
@@ -44,22 +45,21 @@ export default function DetailEvet(){
     dispatch(getUser());
 
     }, [dispatch]);
-
-   
     
   
     const theEvent = Events[0]; 
+
+    console.log(theEvent)
     console.log(user)
-  
+
+
     useEffect(()=>{
         if(theEvent && user){
-        const fee = theEvent.info.hasOwnProperty('fee') ? theEvent.info.fee : 3
+        const fee = theEvent.info.hasOwnProperty('ticketPrice') ? theEvent.info.ticketPrice : 3
         setPreference({
-            items: [{
-                   title: 'Entradas de '+ theEvent.name,
-                   price: fee,
-                   quantity: cantidad
-                   }],
+            title: 'Entradas de '+ theEvent.name,
+            price: fee,
+            quantity: cantidad,    
             payer:{
                    name: user.profile.name,
                    surname: user.profile.surname,
@@ -73,6 +73,7 @@ export default function DetailEvet(){
        })
     }
     }, [theEvent, cantidad, user])
+
     
     function handleChange(e){
         setCantidad(e.target.value);
@@ -85,7 +86,7 @@ export default function DetailEvet(){
 
 
 
-    const mercadopago = useMercadopago.v2('TEST-73717f29-d26d-4a49-aec6-3f75b4872625', {
+    const mercadopago = useMercadopago.v2(credential, {
         locale: 'es-AR'
     });
 
@@ -184,7 +185,6 @@ export default function DetailEvet(){
                                 </div>
                                 <div className = {style.dataInfo}>
                                     <div>
-                                        {console.log(theEvent)}
                                         <Map 
                                             coords = {theEvent.location.cityCords}
                                             LabelName='Ciudad'
