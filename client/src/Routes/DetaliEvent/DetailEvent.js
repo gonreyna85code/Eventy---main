@@ -49,18 +49,30 @@ export default function DetailEvet(){
     
   
     const theEvent = Events[0]; 
-
+    console.log(user)
   
     useEffect(()=>{
-        if(theEvent){
+        if(theEvent && user){
         const fee = theEvent.info.hasOwnProperty('fee') ? theEvent.info.fee : 3
         setPreference({
-            title: 'Entradas de '+ theEvent.name,
-            price: fee,
-            quantity: cantidad
+            items: [{
+                   title: 'Entradas de '+ theEvent.name,
+                   price: fee,
+                   quantity: cantidad
+                   }],
+            payer:{
+                   name: user.profile.name,
+                   surname: user.profile.surname,
+                   email: user.profile.email,
+                   city: user.profile.city
+                  },
+            statement_descriptor: "Eventy Entradas",
+            expires: true,
+            expiration_date_from: "2021-12-01T12:00:00.000-04:00",
+            expiration_date_to: theEvent.date
        })
     }
-    }, [theEvent, cantidad])
+    }, [theEvent, cantidad, user])
     
     function handleChange(e){
         setCantidad(e.target.value);
@@ -215,6 +227,27 @@ export default function DetailEvet(){
                     :
                     <Loading/>
                 }
+                <div className = {style.discus}>
+                <div id="disqus_thread"></div>
+{
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://eventy.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })()
+}
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                </div>
                 <div className = {style.home}>
                 <Link to ='/'>
                 <Boton colorBtn='btn_azul'>Volver al Home</Boton>
