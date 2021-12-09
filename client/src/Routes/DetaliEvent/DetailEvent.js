@@ -49,18 +49,30 @@ export default function DetailEvet(){
     
   
     const theEvent = Events[0]; 
-
+    console.log(user)
   
     useEffect(()=>{
-        if(theEvent){
+        if(theEvent && user){
         const fee = theEvent.info.hasOwnProperty('fee') ? theEvent.info.fee : 3
         setPreference({
-            title: 'Entradas de '+ theEvent.name,
-            price: fee,
-            quantity: cantidad
+            items: [{
+                   title: 'Entradas de '+ theEvent.name,
+                   price: fee,
+                   quantity: cantidad
+                   }],
+            payer:{
+                   name: user.profile.name,
+                   surname: user.profile.surname,
+                   email: user.profile.email,
+                   city: user.profile.city
+                  },
+            statement_descriptor: "Eventy Entradas",
+            expires: true,
+            expiration_date_from: "2021-12-01T12:00:00.000-04:00",
+            expiration_date_to: theEvent.date
        })
     }
-    }, [theEvent, cantidad])
+    }, [theEvent, cantidad, user])
     
     function handleChange(e){
         setCantidad(e.target.value);
