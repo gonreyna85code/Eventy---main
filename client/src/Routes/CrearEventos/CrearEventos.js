@@ -8,35 +8,48 @@ import styles from "./CrearEventos.module.css";
 import { postEvent, getUser, changeEventCity } from "../../redux/actions";
 import Map from "../../components/Maps/Map";
 import Warning from "../../components/Warning.js/Warning";
+import useImage from "../../hooks/useImage";
+
+
+const categories = [{value:"sports",name:"Deportes"},{value:"social",name:"Social"}]
+const subcategories=[
+  {herencia:"sports",option:[{value:"Maraton"}, {value:"Aeromodelismo"}, {value:"Futbol"}, {value:"Tenis"}, {value:"Handball"}]},
+  {herencia:"social",option:[{value:"Fiesta"}, {value:"Reunion"}, {value:"Protesta"}, {value:"Concierto"}]}
+];
 
 
 
 const CrearEventos = () => {
+
   const dispatch = useDispatch();
+  const uploadImage = useImage();
+
+  const user = useSelector((state) => state.User);
+  const EventCity = useSelector(state=> state.EventCity)
+  const [eventName, setEventName]= useState('')
+  const [category, setCategory] = useState('')
+  const [subCategory, setSubCategory] = useState('')
+  const [date, setDate]= useState('')
+  const [imgUrl, setImgUrl]= useState(null)
+  const [description, setDescription] = useState('')
+  const [event_pay, setEventPay]= useState(false)
+  const [ticketPrice, setTicketPrice]=useState(0)
   
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
 
-  const categories = [{value:"sports",name:"Deportes"},{value:"social",name:"Social"}]
-  const subcategories=[
-    {herencia:"sports",option:[{value:"Maraton"}, {value:"Aeromodelismo"}, {value:"Futbol"}, {value:"Tenis"}, {value:"Handball"}]},
-    {herencia:"social",option:[{value:"Fiesta"}, {value:"Reunion"}, {value:"Protesta"}, {value:"Concierto"}]}
-  ];
-  const user = useSelector((state) => state.User);
+  
+  
   if(!user){
     dispatch(getUser());
   }
-
-
-  
 
   function crearEvento(e){
     let event={
       category,
       date,
       event_pay,
-      
       location:EventCity,
       name:eventName,
       subcategory: subCategory,
@@ -53,16 +66,10 @@ const CrearEventos = () => {
     console.log(event);
     alert('Evento creado con exito')
   }
-  const EventCity = useSelector(state=> state.EventCity)
-  const[eventName, setEventName]= useState('')
-  const[category, setCategory] = useState('')
-  const [subCategory, setSubCategory] = useState('')
-  const[date, setDate]= useState('')
-  const [imgUrl, setImgUrl]= useState('')
-  const[description, setDescription] = useState('')
-  const [event_pay, setEventPay]= useState(false)
-  const [ticketPrice, setTicketPrice]=useState(0)
+ 
   
+  
+
   if (user === 'Usuario no logueado') {
     return(<Warning/>)
   }
@@ -108,12 +115,22 @@ const CrearEventos = () => {
             name="date"
             onChange={e=> setDate(e.target.value)}
           />
+
           <Input
-            label="Imagen del Evento (url)"
-            type="url"
-            name="imagen"
-            onChange={e=>setImgUrl(e.target.value)}
+            label="Imagen del Evento"
+            type="file"
+            name="imagenArchivo"
+            onChange={ async (e)=> setImgUrl( await uploadImage(e.target.files[0]) )}
           />
+          <div>
+          { imgUrl ?  
+
+            <img src={imgUrl} />
+
+            : null
+
+          }
+          </div>
           <div className={styles.item_textarea}>
             <label>Descripción del evento</label>
             <textarea
@@ -135,17 +152,17 @@ const CrearEventos = () => {
             event_pay === true ?
             <div>
               <Input
-            label="Precio de las entradas"
-            type="text"
-            name="fee"
-            onChange={e=>setTicketPrice(e.target.value)}
-          />
+                label="Precio de las entradas"
+                type="text"
+                name="fee"
+                onChange={e=>setTicketPrice(e.target.value)}
+              />
             </div>
             :
             <p>Marque la casilla si se venden entradas para su evento. De lo contrario, precione 'Crear Evento'</p>
           }
           </div>
-          {date && EventCity.cityCords && category && category!== '1' && subCategory && subCategory !== '1' && imgUrl && eventName && description
+          {date && EventCity.cityCords && category && category!== '1' && subCategory && subCategory !== '1' && eventName && description
             ?<Boton onClick={crearEvento} colorBtn="btn_azul">Crear Evento</Boton>
             :null
           }

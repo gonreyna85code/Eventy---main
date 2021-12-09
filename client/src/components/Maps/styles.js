@@ -3,7 +3,7 @@ const styles ={
     display:'grid',
     position: 'relative',  
     width: '100%',
-    height: '50vh',
+    height: '220px',
     'justifyItems': 'center'
   },
   mapStyle:{
