@@ -1,0 +1,162 @@
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import Boton from "../../components/Boton/Boton";
+import Input from "../../components/Input/Input";
+import Select from "../../components/Select/Select";
+import { postEvent, changeEventCity } from "../../redux/actions";
+import Map from "../../components/Maps/Map";
+import useImage from "../../hooks/useImage";
+import styles from './Home.module.css'
+
+
+const categories = [{value:"sports",name:"Deportes"},{value:"social",name:"Social"}]
+const subcategories=[
+  {herencia:"sports",option:[{value:"Maraton"}, {value:"Aeromodelismo"}, {value:"Futbol"}, {value:"Tenis"}, {value:"Handball"}]},
+  {herencia:"social",option:[{value:"Fiesta"}, {value:"Reunion"}, {value:"Protesta"}, {value:"Concierto"}]}
+];
+
+
+
+const CrearEventoHome = ({nombre}) => {
+
+  const dispatch = useDispatch();
+  const uploadImage = useImage();
+
+  const user = useSelector((state) => state.User);
+  const EventCity = useSelector(state=> state.EventCity)
+  const [eventName, setEventName]= useState('')
+  const [category, setCategory] = useState('')
+  const [subCategory, setSubCategory] = useState('')
+  const [date, setDate]= useState('')
+  const [imgUrl, setImgUrl]= useState(null)
+  const [description, setDescription] = useState('')
+  const [event_pay, setEventPay]= useState(false)
+  const [ticketPrice, setTicketPrice]=useState(0)
+  const [estatusCreacion, setEstatusCreacion] = useState(false)
+  
+  const handleSubmit = (e) => {
+
+    e.preventDefault();
+
+    let event={
+      category,
+      date,
+      event_pay,
+      location:EventCity,
+      name:eventName,
+      subcategory: subCategory,
+      user:user?._id,
+      info:{
+        imagen:imgUrl,
+        description,
+        ticketPrice:ticketPrice?ticketPrice:'El evento no vende entradas',
+      }
+    }
+
+    dispatch(postEvent(event));
+    dispatch(changeEventCity({}));
+    setEstatusCreacion(true)
+    
+  }
+ 
+  return (
+    <div className={styles.cont_form_crear_evento}>
+
+        <form className={styles.form} onSubmit={handleSubmit}>
+
+            <Input
+                label="Nombre del Evento"
+                type="text"
+                name="name"
+                value={nombre}
+                onChange={e=>setEventName(e.target.value)}
+            />
+            <div className={styles.map}>
+                <Map
+                    type ='event'
+                    places={true}
+                    coords={EventCity.cityCords}
+                    LabelName='Direccion'
+                />
+            </div>
+            <Select
+                name="category"
+                onchange={e=>setCategory(e.target.value)}
+                default_value="1"
+                default_name='Selecciona una Categoría'
+                options={categories}  
+            />
+            {
+                category === 'social' || category === 'sports'
+                ?
+                    <Select
+                    type="a"
+                    name="subcategory"
+                    onchange={e=>setSubCategory(e.target.value)}
+                    default_value="1"
+                    default_name='Selecciona una Subcategoría'
+                    herencia={category} options={subcategories}/>
+
+                : null
+            }
+
+            <Input
+                label="Fecha"
+                type="date"
+                name="date"
+                onChange={e=> setDate(e.target.value)}
+            />
+
+            <Input
+                label="Imagen del Evento"
+                type="file"
+                name="imagenArchivo"
+                onChange={ async (e)=> setImgUrl( await uploadImage(e.target.files[0]) )}
+            />
+
+            { imgUrl && <img src={imgUrl} className={styles.imagenCrearEvento}/> }
+
+            <div className={styles.item_textarea}>
+                <label>Descripción del evento</label>
+                <textarea
+                name="description"
+                rows="2"
+                onChange={e=>setDescription(e.target.value)}
+                >
+                </textarea>
+            </div>
+            <div>
+                <label>
+                    <input
+                        type = 'checkbox'
+                        name = 'event_pay'
+                        onChange = {(e)=> setEventPay(e.target.checked)}
+                    />
+                    ¿Es un evento pago?
+                </label>
+                {
+                    event_pay === true ?
+                        <div>
+                            <Input
+                                label="Precio de las entradas"
+                                type="text"
+                                name="fee"
+                                onChange={e=>setTicketPrice(e.target.value)}
+                            />
+                        </div>
+                    :
+                    <p>Marque la casilla si se venden entradas para su evento. De lo contrario, precione 'Crear Evento'</p>
+                }
+            </div>
+
+            { date && EventCity.cityCords && category && category !== '1' && subCategory && subCategory !== '1' && imgUrl && eventName && description
+                ? <Boton colorBtn="btn_azul">Crear Evento</Boton>
+                : null
+          }
+          
+        </form>
+    </div>
+  )
+}
+
+export default CrearEventoHome;

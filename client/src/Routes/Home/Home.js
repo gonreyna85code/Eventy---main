@@ -12,7 +12,9 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import Container from '../../components/Container/Container';
 import Boton from '../../components/Boton/Boton';
 import CardEvent from '../../components/CardEvent/CardEvent';
-
+import PopUp from '../../components/PopUp/PopUp';
+import CrearEventoHome from './CrearEventoHome';
+import Input from '../../components/Input/Input';
 
 const responsivePrincipal = {
     0: {
@@ -47,6 +49,10 @@ const Home = () => {
     const [eventosDeportes, setEventosDeportes] = useState([]);
     const [eventosSociales, setEventosSociales] = useState([]);
 
+    const [estatusPopup, setEstatusPopup] = useState(false);
+    const [nombreEvento, setNombreEvento] = useState('');
+
+
 
     useEffect(()=>{
         dispatch(getUser());
@@ -68,6 +74,14 @@ const Home = () => {
         }
     }, [dispatch, allEvents, user]) 
 
+    const handleChangeCrearEvento = (e) => {
+        setNombreEvento(e.target.value);
+        setEstatusPopup(true)
+    }
+
+    const handleClickPopup = () => {
+        setEstatusPopup(false)
+    }
     
     return(
         <div className={styles.cont_home}>
@@ -105,24 +119,15 @@ const Home = () => {
                     />
                 </div>
             </div>
-            <div className={styles.cont_busqueda}>
+            <div className={styles.cont_crear_evento}>
                 <Container>
                     <div className={styles.cont_info_busqueda}>
-                        <h2>Busca un Evento de tu Interes</h2>
-                        <div className={styles.cont_searchBar}>
-                            <SearchBar/>
-                        </div>
-                        <div className={styles.subcategorias}>
-                            <ul>
-                                {
-                                    subcategorias && subcategorias.map( subcategoria => {
-                                        return(
-                                            <li key={subcategoria}><Link to={`/subcategory/${subcategoria}`}>{subcategoria}</Link></li>
-                                        )
-                                    })
-                                }
-                            </ul>
-                        </div>
+                        <h2>¿Estas Planeando un Nuevo evento?</h2>
+                        <span>Compártelo!</span>
+                        <input type='text' onChange={handleChangeCrearEvento} placeholder='¿Como se llama tu evento?'/>
+                        <PopUp estatus={estatusPopup} onClick={handleClickPopup}>
+                            <CrearEventoHome nombre={nombreEvento}/> 
+                        </PopUp>
                     </div>
                 </Container>
             </div>
