@@ -145,7 +145,7 @@ const CrearEventos = () => {
             <p>Marque la casilla si se venden entradas para su evento. De lo contrario, precione 'Crear Evento'</p>
           }
           </div>
-          {date && EventCity.cityCords && category && category!== '1' && subCategory && subCategory !== '1' && imgUrl && eventName && description
+          {date && EventCity.cityCords && category && category!== '1' && subCategory && subCategory !== '1' && eventName && description
             ?<Boton onClick={crearEvento} colorBtn="btn_azul">Crear Evento</Boton>
             :null
           }
