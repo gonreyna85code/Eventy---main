@@ -8,7 +8,7 @@ const useImage = () => {
         formData.append('file', file);
         formData.append('upload_preset', 'e2dcxjtm')
 
-        let dataimg = await axios.post( 'https://api.cloudinary.com/v1_1/e2dcxjtm/image/upload', formData );
+        let dataimg = await axios.post( 'https://api.cloudinary.com/v1_1/dbzyomisc/image/upload', formData );
         return dataimg.data.url;
     }
 
