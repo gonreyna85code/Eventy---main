@@ -30,6 +30,7 @@ router.post("/register", (req, res) => {
       const newUser = new User({
         username: req.body.username,
         password: hashedPassword,
+        email: req.body.profile?.email,
         profile: req.body.profile,
       });
       await newUser.save();
