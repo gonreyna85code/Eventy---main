@@ -17,12 +17,12 @@ const subcategories=[
 
 
 
-const CrearEventoHome = ({nombre}) => {
+const CrearEventoHome = ({form, error, handleSubmit, handleChange}) => {
 
   const dispatch = useDispatch();
   const uploadImage = useImage();
 
-  const user = useSelector((state) => state.User);
+  
   const EventCity = useSelector(state=> state.EventCity)
   const [eventName, setEventName]= useState('')
   const [category, setCategory] = useState('')
@@ -34,30 +34,7 @@ const CrearEventoHome = ({nombre}) => {
   const [ticketPrice, setTicketPrice]=useState(0)
   const [estatusCreacion, setEstatusCreacion] = useState(false)
   
-  const handleSubmit = (e) => {
 
-    e.preventDefault();
-
-    let event={
-      category,
-      date,
-      event_pay,
-      location:EventCity,
-      name:eventName,
-      subcategory: subCategory,
-      user:user?._id,
-      info:{
-        imagen:imgUrl,
-        description,
-        ticketPrice:ticketPrice?ticketPrice:'El evento no vende entradas',
-      }
-    }
-
-    dispatch(postEvent(event));
-    dispatch(changeEventCity({}));
-    setEstatusCreacion(true)
-    
-  }
  
   return (
     <div className={styles.cont_form_crear_evento}>
@@ -68,8 +45,8 @@ const CrearEventoHome = ({nombre}) => {
                 label="Nombre del Evento"
                 type="text"
                 name="name"
-                value={nombre}
-                onChange={e=>setEventName(e.target.value)}
+                value={form.name}
+                onChange={ (e) => handleChange(e) }
             />
             <div className={styles.map}>
                 <Map
@@ -81,7 +58,7 @@ const CrearEventoHome = ({nombre}) => {
             </div>
             <Select
                 name="category"
-                onchange={e=>setCategory(e.target.value)}
+                onchange={ (e) => handleChange(e) }
                 default_value="1"
                 default_name='Selecciona una Categoría'
                 options={categories}  
@@ -92,7 +69,7 @@ const CrearEventoHome = ({nombre}) => {
                     <Select
                     type="a"
                     name="subcategory"
-                    onchange={e=>setSubCategory(e.target.value)}
+                    onchange={ (e) => handleChange(e) }
                     default_value="1"
                     default_name='Selecciona una Subcategoría'
                     herencia={category} options={subcategories}/>
@@ -104,25 +81,27 @@ const CrearEventoHome = ({nombre}) => {
                 label="Fecha"
                 type="date"
                 name="date"
-                onChange={e=> setDate(e.target.value)}
+                value={form.date}
+                onChange={ (e) => handleChange(e) }
             />
 
             <Input
                 label="Imagen del Evento"
                 type="file"
-                name="imagenArchivo"
-                onChange={ async (e)=> setImgUrl( await uploadImage(e.target.files[0]) )}
+                name="imagen"
+                value={form.info.imagen}
+                onChange={ async (e)=> handleChange(e) }
             />
 
-            { imgUrl && <img src={imgUrl} className={styles.imagenCrearEvento}/> }
+            { imgUrl && <img src={form.info.imagen} className={styles.imagenCrearEvento}/> }
 
             <div className={styles.item_textarea}>
                 <label>Descripción del evento</label>
                 <textarea
                 name="description"
                 rows="2"
-                onChange={e=>setDescription(e.target.value)}
-                >
+                onChange={ (e) => handleChange(e) }
+                >{form.info.description}
                 </textarea>
             </div>
             <div>
@@ -130,7 +109,7 @@ const CrearEventoHome = ({nombre}) => {
                     <input
                         type = 'checkbox'
                         name = 'event_pay'
-                        onChange = {(e)=> setEventPay(e.target.checked)}
+                        onChange = { (e) => handleChange(e) }
                     />
                     ¿Es un evento pago?
                 </label>
@@ -141,7 +120,7 @@ const CrearEventoHome = ({nombre}) => {
                                 label="Precio de las entradas"
                                 type="text"
                                 name="fee"
-                                onChange={e=>setTicketPrice(e.target.value)}
+                                onChange={ (e) => handleChange(e) }
                             />
                         </div>
                     :

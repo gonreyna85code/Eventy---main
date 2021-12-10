@@ -6,12 +6,15 @@ const useImage = () => {
         
         const formData = new FormData();
         formData.append('file', file);
-        formData.append('upload_preset', 'pb6t9xfh');
-        formData.append("api_key", "228598698159782");
-        formData.append("api_secret", "oHVjRT-xz5T6GP7Uq-82NaW1Ybc");
+        formData.append('upload_preset', 'e2dcxjtm');
+        //formData.append("api_key", "228598698159782");
+        //formData.append("api_secret", "228598698159782");
+        
 
         let dataimg = await axios.post( 'https://api.cloudinary.com/v1_1/dbzyomisc/image/upload', formData, {
-            headers: { 'Content-Type': 'multipart/formdata', 'Access-Control-Allow-Origin': '*', "contentType": "Application/json", "crossDomain": true }} );
+            withCredentials: true,
+            Credentials: 'includes',
+        });
         return dataimg.data.url;
     }
 

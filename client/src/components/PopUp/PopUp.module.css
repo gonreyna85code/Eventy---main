@@ -29,3 +29,25 @@
     height: 65vh;
     overflow-y: scroll;
 }
+
+
+.closeBtn{
+    display: flex;
+    justify-content: flex-end;
+    top: -15px;
+    right: -15px;
+    position: relative;
+}
+
+.closeBtn button{
+    border: 0;
+    padding: 10px 20px;
+    background: var(--naranja);
+    color: #fff;
+    transition: var(--trasition);
+    border-radius: 0 10px 0 0;
+}
+
+.closeBtn button:hover{
+    color: var(--azul)
+}

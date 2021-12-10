@@ -4,17 +4,18 @@ import { Link } from 'react-router-dom';
 import styles from './Home.module.css';
 import NavBar from '../NavBar/NavBar';
 import EventHome from './EventHome';
-import { getUser, getAllEvents } from '../../redux/actions';
+import { getUser, getAllEvents, postEvent } from '../../redux/actions';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import './HomeCarrusel.css';
-import SearchBar from '../../components/SearchBar/SearchBar';
+//import SearchBar from '../../components/SearchBar/SearchBar';
 import Container from '../../components/Container/Container';
 import Boton from '../../components/Boton/Boton';
 import CardEvent from '../../components/CardEvent/CardEvent';
 import PopUp from '../../components/PopUp/PopUp';
 import CrearEventoHome from './CrearEventoHome';
 import Input from '../../components/Input/Input';
+import useImage from "../../hooks/useImage";
 
 const responsivePrincipal = {
     0: {
@@ -40,9 +41,27 @@ const responsive = {
 const subcategorias = ["Maraton", "Aeromodelismo", "Futbol", "Tenis", "Handball", "Fiesta",
     "Reunion", "Protesta", "Concierto"];
 
+    
+const formInicialState ={
+        category : null,
+        date : null,
+        event_pay : null,
+        location : null,
+        name : null,
+        subcategory : null,
+        user:null,
+        info:{
+          imagen : null,
+          description : null,
+          ticketPrice : null
+        }
+      }
+  
+
 const Home = () => {
     
     const dispatch = useDispatch();
+    const uploadImage = useImage();
     const user = useSelector( state => state.User );
     const allEvents = useSelector ( state => state.AllEvents);
     const [eventos, setEventos] = useState([]);
@@ -52,6 +71,18 @@ const Home = () => {
     const [estatusPopup, setEstatusPopup] = useState(false);
     const [nombreEvento, setNombreEvento] = useState('');
 
+    const [form, setForm] = useState(formInicialState);
+    const [errorForm, setErrorForm] = useState();
+
+
+    /* 
+    
+    form
+    error
+    handleSubmit
+    handleChange
+
+    */
 
 
     useEffect(()=>{
@@ -75,14 +106,38 @@ const Home = () => {
     }, [dispatch, allEvents, user]) 
 
     const handleChangeCrearEvento = (e) => {
-        setNombreEvento(e.target.value);
+        setForm({...form, [e.target.name]: e.target.value });
         setEstatusPopup(true)
     }
 
     const handleClickPopup = () => {
         setEstatusPopup(false)
     }
-    
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setForm({...form,  user: user._id})
+        dispatch(postEvent(form));
+        alert("El evento se creó exitosamente");
+        setForm(formInicialState);
+    };
+
+    const handleChange = async (e) => {
+
+        let valueEvent;
+
+        if( e.target.name === "imagen" ){
+            valueEvent = {...form,  [e.target.name === "imagen"] : await uploadImage(e.target.files[0]) }
+        } else {
+
+            valueEvent = e.target.name === "description" || e.target.name === "event_pay"  
+                ? { ...form, info: { ...form.info, [e.target.name]: e.target.value } }
+                : { ...form, [e.target.name]: e.target.value };
+        }
+        setForm(valueEvent);
+    };
+
+
     return(
         <div className={styles.cont_home}>
             <NavBar/>
@@ -124,9 +179,14 @@ const Home = () => {
                     <div className={styles.cont_info_busqueda}>
                         <h2>¿Estas Planeando un Nuevo evento?</h2>
                         <span>Compártelo!</span>
-                        <input type='text' onChange={handleChangeCrearEvento} placeholder='¿Como se llama tu evento?'/>
+                        <input type='text' name='name' value={form.name} onChange={(e)=>handleChangeCrearEvento(e)} placeholder='¿Como se llama tu evento?'/>
                         <PopUp estatus={estatusPopup} onClick={handleClickPopup}>
-                            <CrearEventoHome nombre={nombreEvento}/> 
+                            <CrearEventoHome
+                                form={form}
+                                error={errorForm}
+                                handleSubmit={handleSubmit}
+                                handleChange={handleChange}
+                            /> 
                         </PopUp>
                     </div>
                 </Container>
@@ -222,7 +282,7 @@ const Home = () => {
                         <AliceCarousel
                             mouseTracking
                             items={
-                                user.events && user.events.map( evento => {
+                                user && user.events.map( evento => {
                                     
                                     return(
                                         <div>
