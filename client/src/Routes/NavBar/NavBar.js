@@ -26,6 +26,9 @@ export default function NavBar(){
     const handler = () => {
         dispatch(logout());
         navigate('/');
+        setTimeout(() => {
+            window.location.reload();
+        }, 2000);
     }
 
 
