@@ -26,7 +26,7 @@ module.exports = function (passport) {
       {
         clientID: '660766853123-10tfek3hfs64f0t7tpvqmg0l0olhg17v.apps.googleusercontent.com',
         clientSecret: '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',
-        callbackURL: "https://eventy-main.vercel.app/auth/google/callback",
+        callbackURL: "https://http://localhost:3000/auth/google/callback",
         passReqToCallback   : true
       },
       function (token, tokenSecret, profile, done) {
