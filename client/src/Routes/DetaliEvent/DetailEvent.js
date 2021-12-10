@@ -30,7 +30,7 @@ export default function DetailEvet(){
     const user = useSelector(state => state.User);
     const Events = useSelector((state) => state.Event);
     const PreferenceId = useSelector((state)=>state.PreferenceId)
-    const [credential, setCredential] = useState('')
+   
    
     
 
@@ -49,8 +49,11 @@ export default function DetailEvet(){
   
     const theEvent = Events[0]; 
 
+    
+
     console.log(theEvent)
     console.log(user)
+   
 
 
     useEffect(()=>{
@@ -82,13 +85,12 @@ export default function DetailEvet(){
 
     function handleClick(e){
         dispatch(postPreference(preference))
-    }
+        } 
 
 
-
-    const mercadopago = useMercadopago.v2(credential, {
-        locale: 'es-AR'
-    });
+        const mercadopago = useMercadopago.v2( theEvent && theEvent.hasOwnProperty('info') ? theEvent.info.credential : '', {
+            locale: 'es-AR'
+        });
 
     useEffect(() => {
         if (mercadopago && PreferenceId) {

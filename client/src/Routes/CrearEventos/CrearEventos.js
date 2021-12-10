@@ -180,7 +180,14 @@ const CrearEventos = () => {
                   name="fee"
                   onChange={(e) => setTicketPrice(e.target.value)}
                 />
-              </div>
+               <Input
+                 label="Public Key"
+                 type="text"
+                 name="credential"
+                 onChange={(e) => setCredential(e.target.value)}
+               />
+             </div>
+              
             ) : (
               <p>
                 Marque la casilla si se venden entradas para su evento. De lo
