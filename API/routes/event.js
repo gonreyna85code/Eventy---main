@@ -40,7 +40,7 @@ router.post("/event",isAuthenticated, function(req, res){
 });
 
 
-router.get('/eventosCercanos',  async(req, res)=>{
+router.get('/eventosCercanos',isAuthenticated,  async(req, res)=>{
 
   distance.key('AIzaSyCf8E0lXmJWdgTw6vgsHOcslcUZ4oidnE0')
   var origin = [`${req.query.lat},${req.query.lng}`];
