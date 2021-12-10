@@ -59,7 +59,7 @@ export default function Loginform() {
           <div>
               <h1> Google Login </h1>
               Click here to authenticate with Google
-              <form action="http://localhost:4000/auth/google" method="GET">
+              <form action="https://eventy-main.vercel.app/auth/google" method="GET">
                 <button type="submit"> GOOGLE BUTTON </button>
               </form>
             </div>
