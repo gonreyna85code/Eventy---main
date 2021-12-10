@@ -45,7 +45,13 @@ require("./passportConfig")(passport);
 app.use('/', user)
 app.use('/', event)
 
-
+app.get('/auth/google',
+  passport.authenticate('google', { scope: [ 'email', 'profile' ]
+}));
+app.get('/auth/google/callback', passport.authenticate( 'google', {
+   successRedirect: '/',
+   failureRedirect: '/login'
+}));
 
 
 app.listen(4000, () => {

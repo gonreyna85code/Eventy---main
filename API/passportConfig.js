@@ -1,6 +1,7 @@
 const User = require("./models/user");
 const bcrypt = require("bcryptjs");
 const localStrategy = require("passport-local").Strategy;
+const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
 
 module.exports = function (passport) {
   passport.use(
@@ -20,20 +21,25 @@ module.exports = function (passport) {
     })
   );
 
-  passport.serializeUser((user, cb) => {
-    cb(null, user.id);
+  passport.use(
+    new GoogleStrategy(
+      {
+        clientID: '660766853123-10tfek3hfs64f0t7tpvqmg0l0olhg17v.apps.googleusercontent.com',
+        clientSecret: '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',
+        callbackURL: "https://eventy-main.vercel.app/auth/google/callback",
+        passReqToCallback   : true
+      },
+      function (token, tokenSecret, profile, done) {
+        return done(null, profile);
+      }
+    )
+  );
+
+  passport.serializeUser((user, done) => {
+    done(null, user);
   });
-  passport.deserializeUser((id, cb) => {
-    User.findOne({ _id: id }, (err, user) => {
-      const userInformation = {
-        id: user._id,
-        username: user.username,
-        events: user.events,
-        profile: user.profile,
-        city: user.city,
-        subscriptions: user.subscriptions,
-      };
-      cb(err, userInformation);
-    });
+
+  passport.deserializeUser((user, done) => {
+    done(null, user);
   });
 };
