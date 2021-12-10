@@ -2,6 +2,9 @@ const Router = require("express");
 const Event = require("../models/event");
 const User = require("../models/user");
 const mercadopago = require ('mercadopago');
+const distance = require('google-distance-matrix');
+const { json } = require("body-parser");
+
 
 mercadopago.configure({
   access_token: 'TEST-7103077711305655-113021-c4a62acbbc30cccc0cfbc219280a11c8-274464234'
@@ -36,6 +39,49 @@ router.post("/event",isAuthenticated, function(req, res){
   });
 });
 
+
+router.get('/eventosCercanos',  async(req, res)=>{
+
+  distance.key('AIzaSyCf8E0lXmJWdgTw6vgsHOcslcUZ4oidnE0')
+  var origin = [`${req.query.lat},${req.query.lng}`];
+  var eventos = await Event.find()
+  var destinosCoords = eventos.map(event=>{
+    return `${event.location.cityCords.lat}, ${event.location.cityCords.lng}`
+  })
+  // destinos = destinos[0]
+  if(req.query && req.query.lat){
+    distance.matrix(origin, destinosCoords, async function (err, distances) {
+      if (err){
+        res.send(err)
+      }
+      let distancias= distances.rows[0].elements
+      let filtrado = distancias.map(dist=>{
+        if(dist.distance.value<=5000){
+          return  distancias.indexOf(dist)
+        }
+      })
+      filtrado = filtrado.filter(e=>{
+        if(e===undefined){
+          return
+        }
+        if(e || e===0){
+          return e.toString()
+        }
+      })
+  
+      let eventsSend = eventos.filter(event=>{
+        if(filtrado.includes(eventos.indexOf(event))){
+          return event
+        }
+      })
+      res.send(eventsSend)
+    })
+    
+  }else{
+    res.send([])
+  }
+
+})
 
 router.get("/event/:name", async (req, res) => {
   const {name} = req.params;

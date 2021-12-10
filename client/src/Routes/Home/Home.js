@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styles from './Home.module.css';
 import NavBar from '../NavBar/NavBar';
 import EventHome from './EventHome';
-import { getUser, getAllEvents, postEvent } from '../../redux/actions';
+import { getUser, getAllEvents, postEvent, getNearEvents } from '../../redux/actions';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import './HomeCarrusel.css';
@@ -43,17 +43,17 @@ const subcategorias = ["Maraton", "Aeromodelismo", "Futbol", "Tenis", "Handball"
 
     
 const formInicialState ={
-        category : null,
-        date : null,
-        event_pay : null,
-        location : null,
-        name : null,
-        subcategory : null,
-        user:null,
+        category : undefined,
+        date : undefined,
+        event_pay : undefined,
+        location : undefined,
+        name : undefined,
+        subcategory : undefined,
+        user:undefined,
         info:{
-          imagen : null,
-          description : null,
-          ticketPrice : null
+          imagen : undefined,
+          description : undefined,
+          ticketPrice : undefined
         }
       }
   
@@ -62,6 +62,7 @@ const Home = () => {
     
     const dispatch = useDispatch();
     const uploadImage = useImage();
+    const NearEvents = useSelector(state => state.NearEvents)
     const user = useSelector( state => state.User );
     const allEvents = useSelector ( state => state.AllEvents);
     const [eventos, setEventos] = useState([]);
@@ -73,7 +74,8 @@ const Home = () => {
 
     const [form, setForm] = useState(formInicialState);
     const [errorForm, setErrorForm] = useState();
-
+    
+    const [userCord, setUserCord] = useState(0)
 
     /* 
     
@@ -83,9 +85,16 @@ const Home = () => {
     handleChange
 
     */
-
-
+    function succes(position){
+      setUserCord({lat:position.coords.latitude, lng:position.coords.longitude})
+  
+    }
+    function error(e){
+      alert(e.message)
+    }
+    
     useEffect(()=>{
+        navigator.geolocation.getCurrentPosition(succes,error)
         dispatch(getUser());
     }, [dispatch]);
 
@@ -94,16 +103,21 @@ const Home = () => {
     }, [dispatch])
 
     useEffect(()=>{
+            dispatch(getNearEvents(userCord))
+        
+    }, [dispatch, userCord])
+    
+    useEffect(()=>{
         if(allEvents && allEvents.length > 0){
-            let filterEvento = allEvents.filter( e => e.location.cityName === user.profile.city)
-            setEventos(filterEvento)
-
             let filterDeportes = allEvents.filter(e => e.category === 'sports')
             setEventosDeportes(filterDeportes)
             let filterSocial = allEvents.filter(e => e.category === 'social')
             setEventosSociales(filterSocial)    
         }
-    }, [dispatch, allEvents, user]) 
+        if(NearEvents && NearEvents.length >0){
+            setEventos(NearEvents)
+        }
+    }, [dispatch, allEvents, user,NearEvents]) 
 
     const handleChangeCrearEvento = (e) => {
         setForm({...form, [e.target.name]: e.target.value });
@@ -146,7 +160,7 @@ const Home = () => {
                     <h1 className={styles.titulo}>Eventos Cercanos</h1>
                     <p>Encuentra eventos cercanos a tu ubicación</p>
                 </div>
-                
+                {/* {userCord? dispatch(getNearEvents(userCord)):null} */}
                 <div className={`cont-carrusel ${styles.cont_carrusel}`}>
                     <AliceCarousel
                         mouseTracking
