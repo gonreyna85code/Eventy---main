@@ -29,7 +29,7 @@ export const POST_FOLLOW = 'POST_FOLLOW'
 export const POST_SUBSCRIPTION = 'POST_SUBSCRIPTION'
 export const DELETE_EVENT = 'DELETE_EVENT' //Eliminar evento.
 
-
+const development = process.env.NODE_ENV !== 'production';
 axios.defaults.withCrendentails = true;
 axios.defaults.Credentials = "includes";
 
