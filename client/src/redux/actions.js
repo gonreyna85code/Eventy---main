@@ -6,6 +6,7 @@ export const LOGOUT = "LOGOUT";
 export const GET_USER = "GET_USER";
 export const FIND_EVENT = "FIND_EVENT"; 
 export const GET_EVENT = 'GET_EVENT';
+export const GET_NEAR_EVENTS = 'GET_NEAR_EVENTS' 
 export const GET_NEARBY_EVENTS = 'GET_NEARBY_EVENTS';
 export const PUT_USER = 'PUT_USER'
 export const FIND_EVENT_CATEGORY = 'FIND_EVENT_CATEGORY';
@@ -128,14 +129,29 @@ export function getUser() {
 export function getEvent(name) {
   return function (dispatch){
     axios({
-      withCredentials: true,
+    withCredentials: true,
     method: "GET",
     url:  development ? local + 'event/' + name : heroku + "event/" + name,
   })
   .then(resultado => dispatch({type: GET_EVENT, payload: resultado.data}))
   .then(resultado => console.log(resultado))
   .catch(err => alert(err))
-}
+}}
+
+export function getNearEvents(userLocation){
+  return function (dispatch){
+    axios({
+      withCredentials: true,
+      method: 'GET',
+      params:{
+        lat: userLocation.lat,
+        lng: userLocation.lng
+      },
+      url: development ? local +'eventosCercanos/' : heroku + 'eventosCercanos'
+    })
+    .then(resultado => dispatch({type: GET_NEAR_EVENTS, payload: resultado.data }))
+    .catch(err=>alert(err))
+  }
 }
 
 export function postEvent(event) {

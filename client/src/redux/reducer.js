@@ -1,5 +1,6 @@
 import {
   GET_EVENT,
+  GET_NEAR_EVENTS,
   GET_NEARBY_EVENTS,
   PUT_USER,
   FIND_EVENT_SUB,
@@ -75,7 +76,8 @@ const initialState = {
   PrefereneceId:[],
   EventosLandingPage:[], //estos son los eventos que se muestran en la landing page
   UserCity:{},
-  EventCity:{}
+  EventCity:{},
+  NearEvents:{}
 };
 
 
@@ -98,6 +100,12 @@ function rootReducer(state = initialState, action) {
       ...state,
       Event: action.payload,
     };
+  }
+  if (action.type === GET_NEAR_EVENTS) {
+    return{
+      ...state,
+      NearEvents: action.payload
+    }
   }
   if (action.type === GET_NEARBY_EVENTS) {
     return {
