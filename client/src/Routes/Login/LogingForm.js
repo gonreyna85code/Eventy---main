@@ -71,10 +71,7 @@ export default function Loginform() {
                 console.log(username, password);
                 alert("Usuario Confirmado, Bienvenido a Eventy");
                 dispatch(getUser());
-                navigate("/");
-                setTimeout(function () {
-                  window.location.reload();
-                }, 3000);
+                navigate("/");                
               }}
             >
               {" "}
