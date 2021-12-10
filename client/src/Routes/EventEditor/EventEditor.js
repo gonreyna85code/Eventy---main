@@ -33,6 +33,7 @@ const EventEditor = () => {
     {herencia:"social",option:[{value:"Fiesta"}, {value:"Reunion"}, {value:"Protesta"}, {value:"Concierto"}]}
   ];
   const user = useSelector((state) => state.User);
+  const [credential, setCredential] = useState('')
   if(!user){
     dispatch(getUser());
   }
@@ -43,14 +44,15 @@ const EventEditor = () => {
       category,
       date,
       event_pay,
-      ticketPrice:ticketPrice?ticketPrice:'El evento no vende entradas',
       location:EventCity,
       name:eventName,
       subcategory: subCategory,
       user:user?._id,
       info:{
         imagen:imgUrl,
-        description
+        description,
+        ticketPrice:ticketPrice?ticketPrice:'El evento no vende entradas',
+        credential: credential,
       }
     }
     e.preventDefault()
@@ -147,6 +149,21 @@ const EventEditor = () => {
             name="fee"
             onChange={e=>setTicketPrice(e.target.value)}
           />
+              <p>Es necesario que aporte su Public Key de Mercado Pago para que los pagos se depositen en su cuenta.</p>
+              <p>Esta información no será revelada de ninguna forma a otros usuarios o terceros.</p>
+              <p>Para obtener su Public Key realice lo siguiente:</p>
+              <p>1. Acceda a su cuenta de Mercado Pago a través de mercadopago.com.ar</p>
+              <p>2. En el menú a la izquierda, seleccione la pestaña 'Tu negocio' y luego 'Configuración'</p>
+              <p>3. En el apartado 'Gestión y administración' acceda a sus 'Credenciales'</p>
+              <p>4. Finalmente acceda a 'Credenciales de producción' y allí encontrará su 'Public Key'</p>
+              <p></p>
+              <p>Actualmente solo tenemos esta opción de pasarela de pagos, pero estamos trabajando para ofrecerle otras alternativas.</p>
+              <Input
+                label="Public Key"
+                type="text"
+                name="credential"
+                onChange={e=>setCredential(e.target.value)}
+              />
             </div>
             :
             <p>Marque la casilla si se venden entradas para su evento. De lo contrario, precione 'Editar Evento'</p>

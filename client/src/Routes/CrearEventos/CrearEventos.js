@@ -41,16 +41,17 @@ const CrearEventos = () => {
   const uploadImage = useImage();
 
   const user = useSelector((state) => state.User);
-  const EventCity = useSelector((state) => state.EventCity);
-  const [eventName, setEventName] = useState("");
-  const [category, setCategory] = useState("");
-  const [subCategory, setSubCategory] = useState("");
-  const [date, setDate] = useState("");
-  const [imgUrl, setImgUrl] = useState(null);
-  const [description, setDescription] = useState("");
-  const [event_pay, setEventPay] = useState(false);
-  const [ticketPrice, setTicketPrice] = useState(0);
-
+  const EventCity = useSelector(state=> state.EventCity)
+  const [eventName, setEventName]= useState('')
+  const [category, setCategory] = useState('')
+  const [subCategory, setSubCategory] = useState('')
+  const [date, setDate]= useState('')
+  const [imgUrl, setImgUrl]= useState(null)
+  const [description, setDescription] = useState('')
+  const [event_pay, setEventPay]= useState(false)
+  const [ticketPrice, setTicketPrice]=useState(0)
+  const [credential, setCredential] = useState('')
+  
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
@@ -83,10 +84,11 @@ const CrearEventos = () => {
       info: {
         imagen: imgUrl,
         description,
-        ticketPrice: ticketPrice ? ticketPrice : "El evento no vende entradas",
-      },
-    };
-    e.preventDefault();
+        ticketPrice:ticketPrice?ticketPrice:'El evento no vende entradas',
+        credential: credential,
+      }
+    }
+    e.preventDefault()
     dispatch(postEvent(event));
     dispatch(changeEventCity({}));
     console.log(event);

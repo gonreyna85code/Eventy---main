@@ -1,0 +1,53 @@
+.popup_active{
+    display: flex;
+    align-items: center;
+    z-index: 99999;
+    position: fixed;
+    background: rgba(0,0,0,0.8);
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    right: 0;
+}
+
+.popup_disabled{
+    display: none;
+}
+
+.popup{
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.4);
+    background: #fff;
+    padding: 15px;
+    display: table;
+    margin-inline: auto;
+    max-height: 80vh;
+    overflow-y: scroll;
+}
+
+.cont_popup{
+    height: 65vh;
+    overflow-y: scroll;
+}
+
+
+.closeBtn{
+    display: flex;
+    justify-content: flex-end;
+    top: -15px;
+    right: -15px;
+    position: relative;
+}
+
+.closeBtn button{
+    border: 0;
+    padding: 10px 20px;
+    background: var(--naranja);
+    color: #fff;
+    transition: var(--trasition);
+    border-radius: 0 10px 0 0;
+}
+
+.closeBtn button:hover{
+    color: var(--azul)
+}
