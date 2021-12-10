@@ -35,11 +35,20 @@ module.exports = function (passport) {
     )
   );
 
-  passport.serializeUser((user, done) => {
-    done(null, user);
+  passport.serializeUser((user, cb) => {
+    cb(null, user.id);
   });
-
-  passport.deserializeUser((user, done) => {
-    done(null, user);
+  passport.deserializeUser((id, cb) => {
+    User.findOne({ _id: id }, (err, user) => {
+      const userInformation = {
+        id: user._id,
+        username: user.username,
+        events: user.events,
+        profile: user.profile,
+        city: user.city,
+        subscriptions: user.subscriptions,
+      };
+      cb(err, userInformation);
+    });
   });
 };
