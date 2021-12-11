@@ -1,0 +1,10 @@
+.contenedorCompra{
+    background-color: rgb(1, 56, 95);
+    color:white
+}
+
+.QR{
+    padding: 20px;
+    background-color: white;
+    border-radius: 15px;
+}

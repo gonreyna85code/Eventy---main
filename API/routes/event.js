@@ -201,11 +201,11 @@ router.post("/create_preference", (req, res) => {
 				quantity: Number(quantity),
 			}
 		],
-		//back_urls: {
-		//	"success": "http://localhost:8080/feedback",
-		//	"failure": "http://localhost:8080/feedback",
+		back_urls: {
+			"success": "http://localhost:3000/compraExitosa/" + title,
+			"failure": "http://localhost:3000/",
 		//	"pending": "http://localhost:8080/feedback"
-		//},
+		},
 		//auto_return: "approved",
 	};
   console.log(preference)
