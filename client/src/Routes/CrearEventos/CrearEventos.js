@@ -63,6 +63,8 @@ const CrearEventos = () => {
   if(day.valueOf() < 10){
     day = "0" + day
     var fecha = (year + "-" + month + "-" +  day);
+  } else {
+    var fecha = (year + "-" + month + "-" +  day);
   }
   //day.lenght === 1 ? '0' + day : null;
   
