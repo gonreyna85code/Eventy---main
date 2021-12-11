@@ -1,59 +1,84 @@
+const morgan = require('morgan');
 const mongoose = require("mongoose");
 const express = require("express");
-const cors = require("cors");
+var session = require("express-session");
+const cookieParser = require("cookie-parser");
+const MongoStore = require("connect-mongo");
 const passport = require("passport");
 const passportLocal = require("passport-local").Strategy;
-const cookieParser = require("cookie-parser");
-const session = require("express-session");
 const bodyParser = require("body-parser");
-const app = express();
+const auth = require("./routes/auth");
 const user = require("./routes/user");
 const event = require("./routes/event");
-//hola
+const cors = require("cors");
+const app = express();
+
+app.name = "API";
+
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+
+app.set("trust proxy", 1);
+
+app.get("/", (req, res, next) => {
+  headers["Access-Control-Allow-Origin"] = "http://localhost:3000";
+  headers["Access-Control-Allow-Headers"] =
+    "Content-Type, Content-Length, Authorization, Accept, X-Requested-With";
+  headers["Access-Contrl-Allow-Methods"] = "PUT, POST, GET, DELETE, OPTIONS";
+  headers["Access-Control-Max-Age"] = "86400";
+  res.writeHead(200, headers);
+  if (req.method === "OPTIONS") {
+    console.log("OPTIONS SUCCESS");
+    res.end();
+  }
+});
 
 mongoose.connect(
-  "mongodb+srv://gonreyna85:gonreyna85@cluster0.bubyh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  },
+  'mongodb+srv://gonreyna85:gonreyna85@cluster0.bubyh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+  { useNewUrlParser: true, useUnifiedTopology: true },
   () => {
     console.log("Mongoose Is Connected");
   }
 );
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(
-  cors({
-    origin: "http://localhost:3000", 
-    credentials: true,
-  })
-);
+mongoose.set("useCreateIndex", true);
+
+app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(cookieParser());
+app.use(morgan("dev"));
+
 app.use(
   session({
     secret: "secretcode",
-    resave: true,
+    resave: false,
+    path: "/",
+    proxy: true,
     saveUninitialized: true,
+    store: MongoStore.create({ mongoUrl: 'mongodb+srv://gonreyna85:gonreyna85@cluster0.bubyh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority' }),
+    cookie: {
+      //httpOnly: true,
+      //sameSite: 'none',
+      //secure: true,
+      //maxAge: 60 * 60 * 1000 * 24 * 365,
+    },
   })
 );
-app.use(cookieParser("secretcode"));
+
+require("./passportConfig")(passport);
 app.use(passport.initialize());
 app.use(passport.session());
-require("./passportConfig")(passport);
+
+app.use("/", auth);
+app.use("/", user);
+app.use("/", event);
 
 
-app.use('/', user)
-app.use('/', event)
-
-app.get('/auth/google',
-  passport.authenticate('google', { scope: [ 'email', 'profile' ]
-}));
-app.get('/auth/google/callback', passport.authenticate( 'google', {
-   successRedirect: '/',
-   failureRedirect: '/login'
-}));
-
+app.use((err, req, res, next) => {
+  const status = err.status || 500;
+  const message = err.message || err;
+  console.error(err);
+  res.status(status).send(message);
+});
 
 app.listen(4000, () => {
-  console.log("Server Has Started");
+  console.log("Server Has Started on port " + 4000);
 });

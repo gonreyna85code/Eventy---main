@@ -67,14 +67,12 @@ export default function Loginform() {
             <Boton
               colorBtn="btn_azul"
               onClick={() => {
-                dispatch(login({ username, password }));
-                console.log(username, password);
-                alert("Usuario Confirmado, Bienvenido a Eventy");
-                dispatch(getUser());
-                navigate("/");
+                dispatch(login({ username, password }));            
+                dispatch(getUser());                
                 setTimeout(function () {
                   window.location.reload();
-                }, 3000);
+                }, 1000);
+                navigate("/");
               }}
             >
               {" "}

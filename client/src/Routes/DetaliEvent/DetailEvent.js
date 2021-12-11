@@ -155,7 +155,7 @@ export default function DetailEvet(){
                                     </div>
                                     <div>
                                         <FontAwesomeIcon className = {style.icono} icon={faCalendarAlt} />
-                                        <span className = {style.info}>{theEvent.date.slice(8,10)+'/'+theEvent.date.slice(5,7)+'/'+theEvent.date.slice(2,4)}</span>
+                                        <span className = {style.info}>{theEvent.date}</span>
                                     </div>
                                     <div>
                                         <Boton colorBtn='btn_naranja'>Asistiré</Boton>
@@ -169,8 +169,8 @@ export default function DetailEvet(){
                                                 <Boton colorBtn='btn_naranja' onClick = {(e)=> handleDelete(e)}>Eliminar Evento</Boton>
                                             </div>
                                             :
-                                            <Link to={`/user/${creator?.profile.name+'-'+creator?.profile.surname}`}>
-                                                <span className={style.creator}>Creado por: {creatorr(creator?.profile.name,creator?.profile.surname)}</span>
+                                            <Link to={`/user/${creator?.profile?.name+'-'+creator?.profile?.surname}`}>
+                                                <span className={style.creator}>Creado por: {creatorr(creator?.profile?.name,creator?.profile?.surname)}</span>
                                             </Link>
                                         }
                                     </div>
