@@ -67,9 +67,12 @@ export default function Loginform() {
             <Boton
               colorBtn="btn_azul"
               onClick={() => {
-                dispatch(login({ username, password }));               
-                dispatch(getUser());
-                navigate("/");                
+                dispatch(login({ username, password }));            
+                dispatch(getUser());                
+                setTimeout(function () {
+                  window.location.reload();
+                }, 1000);
+                navigate("/");
               }}
             >
               {" "}
