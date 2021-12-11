@@ -1,4 +1,4 @@
-
+const morgan = require('morgan');
 const mongoose = require("mongoose");
 const express = require("express");
 var session = require("express-session");
@@ -44,6 +44,7 @@ mongoose.set("useCreateIndex", true);
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(cookieParser());
+app.use(morgan("dev"));
 
 app.use(
   session({

@@ -18,26 +18,45 @@ const isAuthenticated = function (req, res, next) {
   res.sendStatus(401);
 }
 
-router.post("/event",isAuthenticated, function(req, res){
-  Event.findOne({ name: req.body.name }, async (err, doc) => {
-    if (err) throw err;
-    if (doc) res.send("Event Already Exists");
-    if (!doc) {
-      const newEvent = new Event({
-        name: req.body.name,
-        location: req.body.location,
-        info: req.body.info,
-        event_pay: req.body.event_pay,
-        date: req.body.date,
-        user: req.body.user,
-        category: req.body.category,
-        subcategory: req.body.subcategory,
-      });      
-      await User.updateOne({ _id: req.body.user }, { $push: { events: newEvent._id } });
-      await newEvent.save();
+router.post(
+  "/event",
+  isAuthenticated,
+  function (req, res) {
+    try {
+    Event.findOne({ name: req.body.name }, async (err, doc) => {
+      if (err) throw err;
+      if (doc) res.send("Event Already Exists");
+      if (!doc) {
+        const eventDate = new Date(req.body.date);
+        var year = eventDate.getFullYear();
+        var month = eventDate.getMonth();
+        var day = eventDate.getDate();
+        var fecha = day + "-" + month + "-" + year;
+        const newEvent = new Event({
+          name: req.body.name,
+          location: req.body.location,
+          info: req.body.info,
+          event_pay: req.body.event_pay,
+          date: fecha,
+          expired: false,
+          user: req.body.user,
+          category: req.body.category,
+          subcategory: req.body.subcategory,
+        });
+        await User.updateOne(
+          { _id: req.body.user },
+          { $push: { events: newEvent._id } }
+        );
+        await newEvent.save();
+      }
+    });
+    res.send("Event Created");
+    } catch (err) {
+      res.send(err);
     }
-  });
-});
+
+  }
+);
 
 
 router.get('/eventosCercanos',isAuthenticated,  async(req, res)=>{
@@ -83,7 +102,7 @@ router.get('/eventosCercanos',isAuthenticated,  async(req, res)=>{
 
 })
 
-router.get("/event/:name", async (req, res) => {
+router.get("/event/:name",isAuthenticated, async (req, res) => {
   const {name} = req.params;
   var response = await Event.find({ name: name });
   console.log(response);

@@ -20,6 +20,7 @@
     "google-distance-matrix": "^1.1.1",
     "mercadopago": "^1.5.9",
     "mongoose": "^5.9.12",
+    "morgan": "^1.10.0",
     "passport": "^0.4.1",
     "passport-google-oauth2": "^0.2.0",
     "passport-local": "^1.0.0",
