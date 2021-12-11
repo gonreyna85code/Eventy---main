@@ -48,6 +48,7 @@ function App() {
           <Route exact path = '/result' element = {<div><NavBar/><Resultado/></div>}/>
           <Route exact path = '/all-events' element = {<div><NavBar/><AllEvents/></div>}/>
           <Route exact path = '/user/:fullname' element = {<div><NavBar/><User /></div>}/>
+          {/* <Route exact path = '/reset/:id' element = {<div>"Reset Password"</div>}/> */}
         </Routes>
       </div>
     </BrowserRouter>
