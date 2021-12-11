@@ -169,8 +169,8 @@ export default function DetailEvet(){
                                                 <Boton colorBtn='btn_naranja' onClick = {(e)=> handleDelete(e)}>Eliminar Evento</Boton>
                                             </div>
                                             :
-                                            <Link to={`/user/${creator?.profile.name+'-'+creator?.profile.surname}`}>
-                                                <span className={style.creator}>Creado por: {creatorr(creator?.profile.name,creator?.profile.surname)}</span>
+                                            <Link to={`/user/${creator.profile?.name+'-'+creator.profile?.surname}`}>
+                                                <span className={style.creator}>Creado por: {creatorr(creator.profile?.name,creator.profile?.surname)}</span>
                                             </Link>
                                         }
                                     </div>
