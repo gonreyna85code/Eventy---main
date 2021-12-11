@@ -1,52 +1,24 @@
 const Router = require("express");
-const bcrypt = require("bcryptjs");
 const User = require("../models/user");
 const passport = require("passport");
 const Event = require("../models/event");
 
 const router = Router();
 
-router.post("/login", (req, res, next) => {
-  passport.authenticate("local", (err, user, info) => {
-    if (err) throw err;
-    if (!user) res.send("No User Exists");
-    else {
-      req.logIn(user, (err) => {
-        if (err) throw err;
-        res.send("Successfully Authenticated");
-        console.log(req.user);
-      });
-    }
-  })(req, res, next);
-});
+const isAuthenticated = function (req, res, next) {
+  if (req.isAuthenticated())
+    return next();
+  res.sendStatus(401);
+}
 
-router.post("/register", (req, res) => {
-  User.findOne({ username: req.body.username }, async (err, doc) => {
-    if (err) throw err;
-    if (doc) res.send("User Already Exists");
-    if (!doc) {
-      const hashedPassword = await bcrypt.hash(req.body.password, 10);
-      const newUser = new User({
-        username: req.body.username,
-        password: hashedPassword,
-        email: req.body.profile?.email,
-        profile: req.body.profile,
-      });
-      await newUser.save();
-      res.send("User Created");
-    }
-  });
-});
-router.get('/logout', function (req, res){
-  req.logOut()  // <-- not req.logout();
-  res.send('Usuario no logueado')
-});
+
 
 router.get("/user", async (req, res) => {
   const near = await Event.find({ location: req.user?.profile.city.cityName });
   const follows = await Event.find({ category: req.user?.subscriptions });
+  console.log(req.user)
   if (req.user) {
-    User.findOne({ _id: req.user.id }, async (err, doc) => {
+    User.findOne({ _id: req.user._id }, async (err, doc) => {
       if (err) throw err;
       if (!doc) res.send("User Not Found");
       if (doc) {
