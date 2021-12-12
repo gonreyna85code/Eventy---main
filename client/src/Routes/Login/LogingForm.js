@@ -57,13 +57,7 @@ export default function Loginform() {
               />
             </div>
           </form>
-          <div>
-              <h1> Google Login </h1>
-              Click here to authenticate with Google
-              <form action="https://gonzalo-eventy3.herokuapp.com/auth/google" method="GET">
-                <button type="submit"> GOOGLE BUTTON </button>
-              </form>
-            </div>
+          
           <div>
             <Boton
               colorBtn="btn_azul"
@@ -80,6 +74,12 @@ export default function Loginform() {
               INGRESAR{" "}
             </Boton>
           </div>
+          <div>              
+              <form action="https://gonzalo-eventy3.herokuapp.com/auth/google" method="GET">
+                <Boton colorBtn="btn_azul" type="submit"> GOOGLE BUTTON </Boton>
+              </form>
+              <br/>
+            </div>
           <div>
             <Link to = '/forgot'><Boton colorBtn= 'btn_naranja'>Olvidé mi contraseña</Boton></Link>
             <Boton onClick={() => setActiveFrom(true)} colorBtn="btn_naranja">
