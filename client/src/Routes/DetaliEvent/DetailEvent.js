@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import {
   getEvent,
   postPreference,
@@ -34,7 +35,7 @@ function creatorr(n = "", s = "") {
 export default function DetailEvet() {
   const { name } = useParams();
   const dispatch = useDispatch();
-  const navegate = useNavigate();
+  const navigate = useNavigate();
   const [cantidad, setCantidad] = useState(1);
   const [preference, setPreference] = useState({});
   const user = useSelector((state) => state.User);
@@ -135,7 +136,7 @@ export default function DetailEvet() {
   return (
     <div>
       {user && !user._id ? (
-        navegate("/login")
+        navigate("/login")
       ) : (
         <div>
           {theEvent ? (
