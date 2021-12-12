@@ -21,6 +21,7 @@ import AllEvents from './Routes/AllEvents/AllEvents';
 import User from './Routes/User/User';
 import Compra from './Routes/Compra/Compra';
 import ResetPassword from './Routes/ResetPassword';
+import Forgot from './Routes/Forgot';
 
 function App() {
 
@@ -50,7 +51,8 @@ function App() {
           <Route exact path = '/result' element = {<div><NavBar/><Resultado/></div>}/>
           <Route exact path = '/all-events' element = {<div><NavBar/><AllEvents/></div>}/>
           <Route exact path = '/user/:fullname' element = {<div><NavBar/><User /></div>}/>
-          <Route exact path = '/reset' element = {<div><NavBar/><ResetPassword/></div>}/>
+          <Route exact path = '/reset/:id' element = {<div><NavBar/><ResetPassword/></div>}/>
+          <Route exact path = '/forgot' element = {<div><NavBar/><Forgot/></div>}/>
           <Route exact path = '/compraExitosa/:title' element = {<div><NavBar/><Compra/></div>}/>
         </Routes>
       </div>

@@ -41,6 +41,7 @@ export default function Loginform() {
               <Input
                 label="Usuario"
                 type="text"
+                required
                 onChange={(e) => {
                   setUserName(e.target.value);
                 }}
@@ -80,8 +81,8 @@ export default function Loginform() {
             </Boton>
           </div>
           <div>
-            <Link to = '/reset'><Boton colorBtn= 'btn_naranja'>Olvidé mi contraseña</Boton></Link>
-            <Boton onClick={(e) => setActiveFrom(true)} colorBtn="btn_naranja">
+            <Link to = '/forgot'><Boton colorBtn= 'btn_naranja'>Olvidé mi contraseña</Boton></Link>
+            <Boton onClick={() => setActiveFrom(true)} colorBtn="btn_naranja">
               Aún no estoy registrado
             </Boton>
           </div>
