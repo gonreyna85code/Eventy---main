@@ -127,13 +127,14 @@ export function forgot(user) {
 export function reset(user) {
   return async function (dispatch) {
     try {
+      const id = user.id;
       const json = await axios({
         method: "POST",
         data: {
           password: user.password,          
         },
         withCredentials: true,
-        url:  development ? local + 'reset/' + user.id : heroku + "reset/" + user.id,
+        url:  development ? local + 'reset/' + id : heroku + "reset/" + id,
       });         
       return dispatch({ type: "RESET", payload: json.data });
     } catch (error) {
