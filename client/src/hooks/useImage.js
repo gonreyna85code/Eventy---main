@@ -21,7 +21,7 @@ const useImage = () => {
         } else {
 
             let dataimg = await axios.post( 'https://api.cloudinary.com/v1_1/dbzyomisc/image/upload', formData, {
-                withCredentials: false,
+                withCredentials: true,
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     "X-Requested-With": "XMLHttpRequest",
