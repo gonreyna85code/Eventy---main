@@ -29,7 +29,7 @@ const useImage = () => {
                 }
             });
 
-            img.url = dataimg.data.url;
+            img.url = dataimg.data.secure_url;
         }
         
        
