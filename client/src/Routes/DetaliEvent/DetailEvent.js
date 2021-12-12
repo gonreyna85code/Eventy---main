@@ -84,6 +84,7 @@ export default function DetailEvet() {
   }
 
   function handleClick(e) {
+    console.log(preference);
     dispatch(postPreference(preference));
   }
 
@@ -102,7 +103,7 @@ export default function DetailEvet() {
         },
         render: {
           container: ".pago",
-          label: "Pagar",
+          label: "Comprar " + cantidad + " entrada/s",
         },
       });
     }
@@ -258,7 +259,7 @@ export default function DetailEvet() {
                               colorBtn="btn_azul"
                               onClick={(e) => handleClick(e)}
                             >
-                              Aplicar Cantidad
+                              Comprar {cantidad} entrada/s
                             </Boton>
                           </div>
                         </div>
