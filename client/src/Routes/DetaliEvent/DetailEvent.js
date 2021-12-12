@@ -127,9 +127,9 @@ export default function DetailEvet() {
     dispatch(deleteEvent(theEvent.name));
     alert("El evento ha sido eliminado");
     setTimeout(function () {
-      window.location.reload();
-    }, 1000);
     navigate("/");
+    window.location.reload();
+    }, 2000);
   }
 
   return (
