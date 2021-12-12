@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Input from "../components/Input/Input";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
 import Boton from "../components/Boton/Boton";
 import { useNavigate } from "react-router";
 import {forgot} from "../redux/actions";

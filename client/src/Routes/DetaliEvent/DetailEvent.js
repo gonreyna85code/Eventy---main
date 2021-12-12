@@ -107,7 +107,7 @@ export default function DetailEvet() {
         },
       });
     }
-  }, [mercadopago, PreferenceId]);
+  }, [mercadopago, PreferenceId, cantidad]);
 
   useEffect(() => {
     if (Object.keys(user).length !== 0 && theEvent) {

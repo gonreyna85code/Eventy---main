@@ -49,7 +49,7 @@ if(day.valueOf() < 10){
   day = "0" + day
   var fecha = (year + "-" + month + "-" +  day);
 } else {
-  var fecha = (year + "-" + month + "-" +  day);
+   fecha = (year + "-" + month + "-" +  day);
 }
 
 
@@ -211,7 +211,7 @@ const handleClickTipoPago = () => {
                 onChange={ async (e) => handleImage (e.target.files[0]) }
             />
             { errorImg && <p className={styles.error}>{errorImg}</p>}
-            { imgUrl && <img src={imgUrl} className={styles.imagenCrearEvento}/> }
+            { imgUrl && <img src={imgUrl} alt='' className={styles.imagenCrearEvento}/> }
 
             <div className={styles.item_textarea}>
                 <label>Descripción del evento</label>

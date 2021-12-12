@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styles from './Home.module.css';
 import NavBar from '../NavBar/NavBar';
 import EventHome from './EventHome';
-import { getUser, getAllEvents, postEvent, getNearEvents } from '../../redux/actions';
+import { getUser, getAllEvents, getNearEvents } from '../../redux/actions';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import './HomeCarrusel.css';
@@ -14,8 +14,8 @@ import Boton from '../../components/Boton/Boton';
 import CardEvent from '../../components/CardEvent/CardEvent';
 import PopUp from '../../components/PopUp/PopUp';
 import CrearEventoHome from './CrearEventoHome';
-import Input from '../../components/Input/Input';
-import useImage from "../../hooks/useImage";
+//import Input from '../../components/Input/Input';
+//import useImage from "../../hooks/useImage";
 
 const responsivePrincipal = {
     0: {
@@ -38,8 +38,6 @@ const responsive = {
     },
 }
 
-const subcategorias = ["Maraton", "Aeromodelismo", "Futbol", "Tenis", "Handball", "Fiesta",
-    "Reunion", "Protesta", "Concierto"];
 
     
 
@@ -55,7 +53,7 @@ const Home = () => {
     const [eventosSociales, setEventosSociales] = useState([]);
 
     const [estatusPopup, setEstatusPopup] = useState(false);
-    const [nombreEvento, setNombreEvento] = useState('');
+   
 
     const [userCord, setUserCord] = useState(0)
 
