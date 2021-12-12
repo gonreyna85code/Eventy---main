@@ -42,26 +42,11 @@ const subcategorias = ["Maraton", "Aeromodelismo", "Futbol", "Tenis", "Handball"
     "Reunion", "Protesta", "Concierto"];
 
     
-const formInicialState ={
-        category : undefined,
-        date : undefined,
-        event_pay : undefined,
-        location : undefined,
-        name : undefined,
-        subcategory : undefined,
-        user:undefined,
-        info:{
-          imagen : undefined,
-          description : undefined,
-          ticketPrice : undefined
-        }
-      }
-  
+
 
 const Home = () => {
     
     const dispatch = useDispatch();
-    const uploadImage = useImage();
     const NearEvents = useSelector(state => state.NearEvents)
     const user = useSelector( state => state.User );
     const allEvents = useSelector ( state => state.AllEvents);
@@ -72,19 +57,9 @@ const Home = () => {
     const [estatusPopup, setEstatusPopup] = useState(false);
     const [nombreEvento, setNombreEvento] = useState('');
 
-    const [form, setForm] = useState(formInicialState);
-    const [errorForm, setErrorForm] = useState();
-    
     const [userCord, setUserCord] = useState(0)
 
-    /* 
-    
-    form
-    error
-    handleSubmit
-    handleChange
-
-    */
+  
     function succes(position){
       setUserCord({lat:position.coords.latitude, lng:position.coords.longitude})
   
@@ -103,8 +78,7 @@ const Home = () => {
     }, [dispatch])
 
     useEffect(()=>{
-            dispatch(getNearEvents(userCord))
-        
+        dispatch(getNearEvents(userCord))
     }, [dispatch, userCord])
     
     useEffect(()=>{
@@ -119,38 +93,15 @@ const Home = () => {
         }
     }, [dispatch, allEvents, user,NearEvents]) 
 
-    const handleChangeCrearEvento = (e) => {
-        setForm({...form, [e.target.name]: e.target.value });
-        setEstatusPopup(true)
-    }
-
     const handleClickPopup = () => {
         setEstatusPopup(false)
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setForm({...form,  user: user._id})
-        dispatch(postEvent(form));
-        alert("El evento se creó exitosamente");
-        setForm(formInicialState);
-    };
-
-    const handleChange = async (e) => {
-
-        let valueEvent;
-
-        if( e.target.name === "imagen" ){
-            valueEvent = {...form,  [e.target.name === "imagen"] : await uploadImage(e.target.files[0]) }
-        } else {
-
-            valueEvent = e.target.name === "description" || e.target.name === "event_pay"  
-                ? { ...form, info: { ...form.info, [e.target.name]: e.target.value } }
-                : { ...form, [e.target.name]: e.target.value };
-        }
-        setForm(valueEvent);
-    };
-
+    
+    
+    const handleClickCrearEvento = (e) => {
+        setEstatusPopup(true)
+    }
 
     return(
         <div className={styles.cont_home}>
@@ -193,14 +144,13 @@ const Home = () => {
                     <div className={styles.cont_info_busqueda}>
                         <h2>¿Estas Planeando un Nuevo evento?</h2>
                         <span>Compártelo!</span>
-                        <input type='text' name='name' value={form.name} onChange={(e)=>handleChangeCrearEvento(e)} placeholder='¿Como se llama tu evento?'/>
-                        <PopUp estatus={estatusPopup} onClick={handleClickPopup}>
-                            <CrearEventoHome
-                                form={form}
-                                error={errorForm}
-                                handleSubmit={handleSubmit}
-                                handleChange={handleChange}
-                            /> 
+                        <button onClick={(e)=>handleClickCrearEvento(e)}>¿Como se llama tu evento?</button>
+                        <PopUp 
+                            estatus={estatusPopup}
+                            onClick={handleClickPopup}
+                            title='Crear Evento'
+                        >
+                            <CrearEventoHome/> 
                         </PopUp>
                     </div>
                 </Container>

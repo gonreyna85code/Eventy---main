@@ -31,23 +31,32 @@
 }
 
 
-.closeBtn{
+.header{
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     top: -15px;
     right: -15px;
     position: relative;
+    align-items: flex-start;
 }
 
-.closeBtn button{
+.header h3{
+    width: 80%;
+    margin: 0 auto;
+    padding-block: 5px 0;
+    font-size: 25px;
+    border-bottom: 1px solid #ddd;
+}
+
+.header button{
     border: 0;
-    padding: 10px 20px;
+    padding: 12px 20px;
     background: var(--naranja);
     color: #fff;
     transition: var(--trasition);
     border-radius: 0 10px 0 0;
 }
 
-.closeBtn button:hover{
+.header button:hover{
     color: var(--azul)
 }
