@@ -14,7 +14,7 @@ export default function ResetPassword() {
   console.log(id);
   return (
     <div>
-      <p>Ingrese su nueva contraseña.</p>
+      <h1>Ingrese su nueva contraseña.</h1>
       <div className="input">
         <Input
           label="Nueva Contraseña"
