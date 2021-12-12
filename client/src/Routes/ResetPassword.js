@@ -17,7 +17,7 @@ export default function ResetPassword() {
       <h1>Ingrese su nueva contraseña.</h1>
       <div className="input">
         <Input
-          label="Nueva Contraseña"
+          label="Nueva Contraseña:"
           type="password"
           onChange={(e) => {
             setUser({password: e.target.value,
