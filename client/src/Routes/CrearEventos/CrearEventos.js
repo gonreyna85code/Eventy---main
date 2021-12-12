@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 import Boton from "../../components/Boton/Boton";
 import Input from "../../components/Input/Input";
 import Select from "../../components/Select/Select";
@@ -39,6 +40,7 @@ const subcategories = [
 const CrearEventos = () => {
   const dispatch = useDispatch();
   const uploadImage = useImage();
+  const navigate = useNavigate();
 
   const user = useSelector((state) => state.User);
   const EventCity = useSelector(state=> state.EventCity)
@@ -96,6 +98,10 @@ const CrearEventos = () => {
     dispatch(changeEventCity({}));
     console.log(event);
     alert("Evento creado con exito");
+    setTimeout(function () {
+      navigate("/");
+      window.location.reload();
+      }, 2000);
   }
 
   const handleImage = async (file) => {
