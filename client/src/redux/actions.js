@@ -28,6 +28,8 @@ export const FIND_USER = 'FIND_USER'
 export const POST_FOLLOW = 'POST_FOLLOW'
 export const POST_SUBSCRIPTION = 'POST_SUBSCRIPTION'
 export const DELETE_EVENT = 'DELETE_EVENT' //Eliminar evento.
+export const RESET = 'RESET'
+export const FORGOT = 'FORGOT'
 
 const development = process.env.NODE_ENV !== 'production';
 axios.defaults.withCrendentails = true;
@@ -98,6 +100,44 @@ export function logout() {
       });
       console.log('Usuario no logueado')
       return dispatch({ type: "LOGOUT", payload: json.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function forgot(user) {
+  return async function (dispatch) {
+    try {
+      const json = await axios({
+        method: "POST",
+        data: {
+          username: user.username,          
+        },
+        withCredentials: true,
+        url:  development ? local + 'forgot/' : heroku + "forgot/",
+      });         
+      return dispatch({ type: "FORGOT", payload: json.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function reset(user) {
+  return async function (dispatch) {
+    try {
+      const id = user.id.id;
+      console.log(id)
+      const json = await axios({
+        method: "POST",
+        data: {
+          password: user.password,          
+        },
+        withCredentials: true,
+        url:  development ? local + 'reset/' + id : heroku + "reset/" + id,
+      });         
+      return dispatch({ type: "RESET", payload: json.data });
     } catch (error) {
       console.log(error);
     }
