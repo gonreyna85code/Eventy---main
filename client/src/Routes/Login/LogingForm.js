@@ -76,7 +76,7 @@ export default function Loginform() {
           </div>
           <div>              
               <form action="https://gonzalo-eventy3.herokuapp.com/auth/google" method="GET">
-                <Boton colorBtn="btn_azul" type="submit"> GOOGLE BUTTON </Boton>
+                <Boton colorBtn="btn_azul" type="submit"> GOOGLE LOGIN </Boton>
               </form>
               <br/>
             </div>
