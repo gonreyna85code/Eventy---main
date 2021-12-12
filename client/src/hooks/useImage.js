@@ -3,6 +3,8 @@ import axios from "axios";
 const useImage = () => {
 
     const uploadImage = async (file) =>{
+
+        let img = {};
         
         const formData = new FormData();
         formData.append('file', file);
@@ -11,16 +13,27 @@ const useImage = () => {
         formData.append("timestamp", (Date.now() / 1000) | 0);
         formData.append("skipAuthorization", true);
         
+        console.log(file)
+        if(file.size > 4093047){
 
-        let dataimg = await axios.post( 'https://api.cloudinary.com/v1_1/dbzyomisc/image/upload', formData, {
-            withCredentials: false,
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                "X-Requested-With": "XMLHttpRequest",
+            img.error = 'La imagen debe pesar menos de 4MB'
 
-              }
-        });
-        return dataimg.data.url;
+        } else {
+
+            let dataimg = await axios.post( 'https://api.cloudinary.com/v1_1/dbzyomisc/image/upload', formData, {
+                withCredentials: false,
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    "X-Requested-With": "XMLHttpRequest",
+
+                }
+            });
+
+            img.url = dataimg.data.url;
+        }
+        
+       
+        return img;
     }
 
     return uploadImage;

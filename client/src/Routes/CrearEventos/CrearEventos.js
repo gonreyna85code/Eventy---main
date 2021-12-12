@@ -47,6 +47,7 @@ const CrearEventos = () => {
   const [subCategory, setSubCategory] = useState('')
   const [date, setDate]= useState('')
   const [imgUrl, setImgUrl]= useState(null)
+  const [errorImg, setErrorImg] = useState(null)
   const [description, setDescription] = useState('')
   const [event_pay, setEventPay]= useState(false)
   const [ticketPrice, setTicketPrice]=useState(0)
@@ -96,6 +97,21 @@ const CrearEventos = () => {
     console.log(event);
     alert("Evento creado con exito");
   }
+
+  const handleImage = async (file) => {
+
+    let resultImg = await uploadImage(file);
+
+    if(!resultImg.error){
+        setImgUrl(resultImg.url)
+        setErrorImg(null)
+    } else {
+        
+        setErrorImg(resultImg.error)
+    }
+
+} 
+
 
   if (user === "Usuario no logueado") {
     return <Warning />;
@@ -152,11 +168,11 @@ const CrearEventos = () => {
             label="Imagen del Evento"
             type="file"
             name="imagenArchivo"
-            onChange={async (e) =>
-              setImgUrl(await uploadImage(e.target.files[0]))
-            }
+            onChange={ async (e) => handleImage (e.target.files[0]) }
           />
-          <div>{imgUrl ? <img src={imgUrl} /> : null}</div>
+            { errorImg && <p className={styles.error}>{errorImg}</p>}
+            { imgUrl && <img src={imgUrl} className={styles.imagenCrearEvento}/> }
+
           <div className={styles.item_textarea}>
             <label>Descripción del evento</label>
             <textarea

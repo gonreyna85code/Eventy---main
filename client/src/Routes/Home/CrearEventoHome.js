@@ -15,21 +15,6 @@ const subcategories=[
   {herencia:"social",option:[{value:"Fiesta"}, {value:"Reunion"}, {value:"Protesta"}, {value:"Concierto"}]}
 ];
 
-const formInicialState = {
-    category: null,
-    date: null,
-    event_pay: null,
-    location: null,
-    name: null,
-    subcategory: null,
-    user: null,
-    info:{
-      imagen: null,
-      description: null,
-      ticketPrice: null,
-      credential: null
-    }
-  }
 
 
 const CrearEventoHome = () => {
@@ -44,6 +29,7 @@ const CrearEventoHome = () => {
   const [subCategory, setSubCategory] = useState('')
   const [date, setDate]= useState('')
   const [imgUrl, setImgUrl]= useState(null)
+  const [errorImg, setErrorImg] = useState(null)
   const [description, setDescription] = useState('')
   const [event_pay, setEventPay]= useState(false)
   const [ticketPrice, setTicketPrice]=useState(0)
@@ -74,13 +60,15 @@ const handleChangeSelect = (e) => {
             setEventPay(false)
             setMostrarTipoPago(false)
             setTipoPago('Evento Gratis')
-        } else {
+        } else if (e.target.value === 'true'){
             setTipoPago('Evento de Pago')
             setEventPay(true)
         }
     }
 
 }
+
+
     const handleSubmit = (e) => {
         let event = {
             category,
@@ -111,6 +99,21 @@ const handleClickTipoPago = () => {
         setMostrarTipoPago(true)
     }
 }
+
+
+    const handleImage = async (file) => {
+
+        let resultImg = await uploadImage(file);
+
+        if(!resultImg.error){
+            setImgUrl(resultImg.url)
+            setErrorImg(null)
+        } else {
+            
+            setErrorImg(resultImg.error)
+        }
+
+    } 
   return (
     <div className={styles.cont_form_crear_evento}>
         <form className={styles.form} onSubmit={handleSubmit}>
@@ -127,6 +130,7 @@ const handleClickTipoPago = () => {
                     <div>
                         <h4>¿Este evento es de pago?</h4>
                         <select  name="event_pay" onChange={ (e) => handleChangeSelect(e) }>
+                            <option value=''>Selecciona una opción</option>
                             <option value='false'>No</option>
                             <option value='true'>Si</option>
                         </select>
@@ -142,11 +146,13 @@ const handleClickTipoPago = () => {
                                     onChange={(e) => setTicketPrice(e.target.value)}
                                 />
                                 <Input
-                                    label="Public Key"
+                                    label="Public Key (MercadoPago)"
                                     type="text"
                                     name="credential"
                                     onChange={(e) => setCredential(e.target.value)}
                                 />
+                                <p className={styles.notificacion}><a href="https://www.mercadopago.com.co/developers/es/guides/resources/credentials" target='_blank'>Guía para encontrar tu public key</a></p>
+                                <span onClick={handleClickTipoPago}>Guardar</span>
                             </div>
                         )
                     }
@@ -202,9 +208,9 @@ const handleClickTipoPago = () => {
                 label="Imagen del Evento"
                 type="file"
                 name="imagenArchivo"
-                onChange={ async (e) => setImgUrl(await uploadImage(e.target.files[0])) }
+                onChange={ async (e) => handleImage (e.target.files[0]) }
             />
-
+            { errorImg && <p className={styles.error}>{errorImg}</p>}
             { imgUrl && <img src={imgUrl} className={styles.imagenCrearEvento}/> }
 
             <div className={styles.item_textarea}>

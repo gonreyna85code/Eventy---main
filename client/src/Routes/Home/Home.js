@@ -122,7 +122,7 @@ const Home = () => {
                                     name={evento.name}
                                     img={evento.info.imagen}
                                     location={evento.location.cityName}
-                                    date={evento.date.slice(8,10)+'/'+evento.date.slice(5,7)}
+                                    date={evento.date} //no cambiar esto -  se hizo el cambio de formato en la base de datos
                                     id={evento._id}
                                     />
                                 );

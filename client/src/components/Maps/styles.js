@@ -31,7 +31,7 @@ const styles ={
     suggestionStyle:{
       backgroundColor: '#ffffff', 
       cursor: 'pointer',
-      width:'50%' ,
+      width:'auto' ,
       'fontFamily': 'Open Sans , sans-serif',
       'fontSize': '17px',
       'fontWeight': '500',
@@ -39,14 +39,14 @@ const styles ={
     suggestionActiveStyle:{
       backgroundColor: '#fafafa', 
       cursor: 'pointer',
-      width:'50%',
+      width:'autp',
       'fontFamily': 'Open Sans , sans-serif',
       'fontSize': '17px',
       'fontWeight': '500',
     },
     suggestionContainer:{
-      display: 'grid',
-      'justifyItems':'center'
+      display: 'block',
+      'text-align':'center'
     }
   }
 }
