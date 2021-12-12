@@ -127,7 +127,8 @@ export function forgot(user) {
 export function reset(user) {
   return async function (dispatch) {
     try {
-      const id = user.id.toString();
+      const id = user.id;
+      console.log(id)
       const json = await axios({
         method: "POST",
         data: {
