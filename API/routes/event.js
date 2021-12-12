@@ -6,9 +6,6 @@ const distance = require('google-distance-matrix');
 const { json } = require("body-parser");
 
 
-mercadopago.configure({
-  access_token: 'TEST-7103077711305655-113021-c4a62acbbc30cccc0cfbc219280a11c8-274464234'
-});
 
 const router = Router();
 
@@ -209,6 +206,10 @@ router.get('/lp-events', async(req,res)=>{
 
 
 router.post("/create_preference", (req, res) => {
+  mercadopago.configure({
+    access_token: 'APP_USR-7103077711305655-113021-56572adb8ad27a0270f50bb94563ae2b-274464234'
+  });
+  
 
   const {title, price, quantity} = req.body;
 

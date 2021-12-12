@@ -75,6 +75,7 @@
 .cont_pagos{
     padding-block: 50px;
     background: #fff;
+    padding: 20px;
 }
 .cont_datospago > div{
     display: flex;
