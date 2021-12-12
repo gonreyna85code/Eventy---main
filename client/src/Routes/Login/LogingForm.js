@@ -80,6 +80,7 @@ export default function Loginform() {
             </Boton>
           </div>
           <div>
+            <Link to = '/reset'><Boton colorBtn= 'btn_naranja'>Olvidé mi contraseña</Boton></Link>
             <Boton onClick={(e) => setActiveFrom(true)} colorBtn="btn_naranja">
               Aún no estoy registrado
             </Boton>
