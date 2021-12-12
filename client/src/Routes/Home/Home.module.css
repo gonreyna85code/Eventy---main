@@ -138,11 +138,36 @@
     margin-bottom: 50px;
 }
 
+.cont_crear_evento{
+    margin-bottom: 0;
+    line-height: 1;
+    font-size: 50px;
+}
 
-.cont_form_crear_evento{
-    background: #fff;
-    padding: 0 15px 0 0;
-    overflow: hidden;
+
+.cont_info_crear_evento > h2{
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+.cont_info_crear_evento > span {
+    font-size: 65px;
+    display: block;
+    font-family: var(--fonttitle);
+    color: #fff;
+    text-shadow: 1px 1px 4px #333333a8;
+}
+
+.cont_info_crear_evento > button{
+    max-width: 500px;
+    padding: 10px 25px;
+    width: 100%;
+    text-align: left;
+    border: 1px solid #c9750a;
+    border-radius: 30px;
+    background: #d67d0b;
+    color: #fff;
+    font-size: 17px;
+    margin-top: 25px;
 }
 
 .user_crearevento{
@@ -182,6 +207,14 @@
     margin: 0 0 5px;
     text-align: left;
     text-transform: capitalize;
+    font-size: 17px;
+}
+.cont_user_crearevento > span{
+    font-size: 16px;
+    padding: 3px 10px;
+    background: var(--azul);
+    color: #fff;
+    border-radius: 30px
 }
 
 .tipo_pago{

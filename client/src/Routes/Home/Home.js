@@ -141,7 +141,7 @@ const Home = () => {
             </div>
             <div className={styles.cont_crear_evento}>
                 <Container>
-                    <div className={styles.cont_info_busqueda}>
+                    <div className={styles.cont_info_crear_evento}>
                         <h2>¿Estas Planeando un Nuevo evento?</h2>
                         <span>Compártelo!</span>
                         <button onClick={(e)=>handleClickCrearEvento(e)}>¿Como se llama tu evento?</button>
