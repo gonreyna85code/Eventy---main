@@ -270,5 +270,24 @@ router.delete('/event', (req, res)=>{
   .catch(res.send('error'))
 })
 
+setInterval(function () {
+  let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
+  var year = yesterday.getFullYear();
+  var month = yesterday.getMonth();
+  var day = yesterday.getDate();
+  var fecha = day + "-" + month + "-" + year;
+  Event.findOneAndUpdate(
+    { date: fecha, expired: false },
+    {
+      expired: true,
+    },
+    (error, _evento) => {
+      if (error) {
+        console.log(error);
+      }
+    }
+  );
+}, 3000000);
+
 module.exports = router;
 
