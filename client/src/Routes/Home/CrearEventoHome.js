@@ -226,7 +226,7 @@ const handleClickTipoPago = () => {
 
             { date && EventCity.cityCords && category && category !== '1' && subCategory && subCategory !== '1' && imgUrl && eventName && description
                 ? <Boton colorBtn="btn_azul">Crear Evento</Boton>
-                : null
+                : <p className={styles.notificacion_crear_evento}>Complete todos los campos para poder crear el evento</p>
           }
           
         </form>

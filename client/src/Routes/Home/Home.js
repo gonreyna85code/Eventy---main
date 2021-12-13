@@ -101,8 +101,6 @@ const Home = () => {
         setEstatusPopup(true)
     }
 
-    console.log({follows: user.follows})
-
     return(
         <div className={styles.cont_home}>
             <NavBar/>
@@ -111,7 +109,7 @@ const Home = () => {
                 <div className={styles.cont_info_principal}>
                     <h1 className={styles.titulo}>Eventos Cercanos</h1>
                     <p>Encuentra eventos a 
-                        <select className ={styles.distanceSelector} 
+                        { user && <select className ={styles.distanceSelector} 
                         onChange={(e)=>{
                             setDistance(e.target.value)
                             dispatch(getNearEvents(userCord,e.target.value*1000))
@@ -121,10 +119,10 @@ const Home = () => {
                             <option>20</option>
                             <option>50</option>
 
-                        </select> 
+                        </select> }
                         km de tu ubicación</p>
 
-                        { NearEvents.length > 0 && (
+                        { NearEvents && NearEvents.length > 0 ? (
                                 <Boton
                                     onClick={()=>{
                                         setMapPopup(true)
@@ -133,11 +131,11 @@ const Home = () => {
                                 >
                                 Ver Mapa
                                 </Boton>)
-                        
+                            : null
                         }
                 </div>
                 <div className={`cont-carrusel ${styles.cont_carrusel}`}>
-                    {NearEvents.length>0
+                    { NearEvents &&  NearEvents.length > 0
                     ?<AliceCarousel
                         mouseTracking
                         items={
@@ -167,23 +165,24 @@ const Home = () => {
                 
                 }
                 
-                
+                { user && (
                     <PopUp
-                    estatus={mapPopup}
-                    title='Eventos Cercanos'
-                    onClick={()=>{
-                        setMapPopup(false)
-                    }}
+                        estatus={mapPopup}
+                        title='Eventos Cercanos'
+                        onClick={()=>{
+                            setMapPopup(false)
+                        }}
                     >
-                        <div className={styles.MapPopup}>
+                       <div className={styles.MapPopup}>
                             <Map
                             coords={userCord}
                             type='nearEvents'
-                            NearEvents= {NearEvents}
+                            NearEvents= { NearEvents}
                             />
                         </div>
                     </PopUp>
-
+                )
+                }
                 
 
                 </div>

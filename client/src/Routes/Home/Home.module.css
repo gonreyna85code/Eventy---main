@@ -141,7 +141,6 @@
 .cont_crear_evento{
     margin-bottom: 0;
     line-height: 1;
-    font-size: 50px;
 }
 
 
@@ -258,11 +257,11 @@
 }
 .errorMessage{
     font-family: var(--fonttitle);
-    font-size: 65px;
-    width: 100%;
+    font-size: 30px;
+    line-height: 1.2;
+    text-align: center;
     color:var(--blanco);
-    height: 500px;
-    text-shadow: 1px 1px 4px #333333a8;
+    padding-bottom: 350px;
 }
 .MapPopup > div > div{
     width: 50vw;
@@ -279,6 +278,34 @@
 }  
 .cont_rigth{
     width: 20%;
+}
+
+.item_textarea{
+    display: block;
+}
+.item_textarea label{
+    font-family: var(--font);
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: block;
+    text-align: left;
+}
+
+.item_textarea textarea{
+    display: block;
+    width: calc(100% - 6px);
+    min-width: calc(100% - 6px);
+    max-width: calc(100% - 6px);
+    border: 1px solid #adadad
+}
+
+.notificacion_crear_evento{
+    border: 1px solid #f00;
+    color: #f00;
+    padding: 5px 10px;
+    text-align: center;
+    border-radius: 3px;
 }
 
 @media(max-width:768px){
