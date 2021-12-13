@@ -110,8 +110,8 @@ const handleClickTipoPago = () => {
             setImgUrl(resultImg.url)
             setErrorImg(null)
         } else {
-            
             setErrorImg(resultImg.error)
+            setImgUrl(null)
         }
 
     } 
@@ -135,7 +135,7 @@ const handleClickTipoPago = () => {
                             <option value='false'>No</option>
                             <option value='true'>Si</option>
                         </select>
-                        
+                        <span onClick={handleClickTipoPago}>Guardar</span>
                     </div>
                     {
                         event_pay && (

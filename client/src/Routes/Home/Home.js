@@ -62,16 +62,18 @@ const Home = () => {
     const [mapPopup, setMapPopup] =useState(false)
 
   
-    function succes(position){
-      setUserCord({lat:position.coords.latitude, lng:position.coords.longitude})
-  
-    }
-    function error(e){
-      alert(e.message)
-    }
     
     useEffect(()=>{
+        function succes(position){
+            setUserCord({lat:position.coords.latitude, lng:position.coords.longitude})
+        }
+        function error(e){
+            alert(e.message)
+        }
         navigator.geolocation.getCurrentPosition(succes,error)
+    }, [user])
+
+    useEffect(()=>{
         dispatch(getUser());
     }, [dispatch]);
 
@@ -166,7 +168,7 @@ const Home = () => {
                 
                 }
                 
-                { user && (
+                { user && userCord && NearEvents ? (
                     <PopUp
                         estatus={mapPopup}
                         title='Eventos Cercanos'
@@ -182,7 +184,7 @@ const Home = () => {
                             />
                         </div>
                     </PopUp>
-                )
+                ) : null
                 }
                 
 

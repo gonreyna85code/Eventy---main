@@ -167,10 +167,16 @@
     color: #fff;
     font-size: 17px;
     margin-top: 25px;
+    cursor: pointer
 }
 
 .user_crearevento{
     display:flex
+}
+
+.imagenCrearEvento{
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 @media(min-width:768px){
