@@ -2,7 +2,9 @@ import React,{ useState} from 'react';
 import  {GoogleApiWrapper, Map,Marker} from 'google-maps-react'
 import Places from './Places';
 import styles from './styles';
-
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import EventMarker from './EventMarker.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 export function MapContainer(props){
@@ -57,12 +59,37 @@ export function MapContainer(props){
           
         }}
         onClick={onMapClicked}>
+          {props.type==='nearEvents'
+          ? 
+          props.NearEvents.length>0? 
+          props.NearEvents.map((e)=>{
+            return(
+              <Marker onClick={onMarkerClick}
+              position={{
+                lat: e.location.cityCords.lat,
+                // lat: -34.546824,
+                lng: e.location.cityCords.lng,
+                // lng: -58.4826985
+              }}
+              name={'Current location'} 
+              icon={EventMarker}
+              
+              />
+
+            )
+
+          }):null
+          :
           <Marker onClick={onMarkerClick}
           position={{
             lat: props.coords.lat,
             lng: props.coords.lng
           }}
-          name={'Current location'} />
+          name={'Current location'} 
+          
+          
+          />
+          }
    
           
         </Map>

@@ -131,14 +131,15 @@ export function getEvent(name) {
   .catch(err => alert(err))
 }}
 
-export function getNearEvents(userLocation){
+export function getNearEvents(userLocation, distance){
   return function (dispatch){
     axios({
       withCredentials: true,
       method: 'GET',
       params:{
         lat: userLocation.lat,
-        lng: userLocation.lng
+        lng: userLocation.lng,
+        distance: distance
       },
       url: development ? local +'eventosCercanos/' : heroku + 'eventosCercanos'
     })

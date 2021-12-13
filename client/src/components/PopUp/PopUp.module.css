@@ -23,6 +23,7 @@
     margin-inline: auto;
     max-height: 80vh;
     overflow: hidden;
+    width: 50vw;
 }
 
 .cont_popup{

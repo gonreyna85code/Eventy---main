@@ -67,15 +67,15 @@ router.get('/eventosCercanos',isAuthenticated,  async(req, res)=>{
   var destinosCoords = eventos.map(event=>{
     return `${event.location.cityCords.lat}, ${event.location.cityCords.lng}`
   })
-  // destinos = destinos[0]
   if(req.query && req.query.lat){
     distance.matrix(origin, destinosCoords, async function (err, distances) {
       if (err){
         res.send(err)
       }
       let distancias= distances.rows[0].elements
+      console.log(req.query.distance);
       let filtrado = distancias.map(dist=>{
-        if(dist.distance.value<=5000){
+        if(dist.distance.value<=req.query.distance){
           return  distancias.indexOf(dist)
         }
       })

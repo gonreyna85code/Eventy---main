@@ -3,7 +3,7 @@ const styles ={
     display:'grid',
     position: 'relative',  
     width: '100%',
-    height: '220px',
+    height: '29vw',
     'justifyItems': 'center'
   },
   mapStyle:{
@@ -46,7 +46,7 @@ const styles ={
     },
     suggestionContainer:{
       display: 'block',
-      'text-align':'center'
+      'textAlign':'center'
     }
   }
 }

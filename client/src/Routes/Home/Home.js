@@ -16,6 +16,8 @@ import PopUp from '../../components/PopUp/PopUp';
 import CrearEventoHome from './CrearEventoHome';
 import Input from '../../components/Input/Input';
 import useImage from "../../hooks/useImage";
+import Map from '../../components/Maps/Map';
+
 
 const responsivePrincipal = {
     0: {
@@ -58,6 +60,9 @@ const Home = () => {
     const [nombreEvento, setNombreEvento] = useState('');
 
     const [userCord, setUserCord] = useState(0)
+    const[defaultDistance, setDefaultDistance ] = useState(5)
+    const [distance , setDistance] = useState(0)
+    const [mapPopup, setMapPopup] =useState(false)
 
   
     function succes(position){
@@ -78,7 +83,7 @@ const Home = () => {
     }, [dispatch])
 
     useEffect(()=>{
-        dispatch(getNearEvents(userCord))
+        dispatch(getNearEvents(userCord,defaultDistance*1000))
     }, [dispatch, userCord])
     
     useEffect(()=>{
@@ -87,9 +92,6 @@ const Home = () => {
             setEventosDeportes(filterDeportes)
             let filterSocial = allEvents.filter(e => e.category === 'social')
             setEventosSociales(filterSocial)    
-        }
-        if(NearEvents && NearEvents.length >0){
-            setEventos(NearEvents)
         }
     }, [dispatch, allEvents, user,NearEvents]) 
 
@@ -106,17 +108,30 @@ const Home = () => {
     return(
         <div className={styles.cont_home}>
             <NavBar/>
+            {NearEvents? console.log(NearEvents):null}
             <div className={styles.cont_principal}>
                 <div className={styles.cont_info_principal}>
                     <h1 className={styles.titulo}>Eventos Cercanos</h1>
-                    <p>Encuentra eventos cercanos a tu ubicación</p>
+                    <p>Encuentra eventos a 
+                        <select className ={styles.distanceSelector} 
+                        onChange={(e)=>{
+                            setDistance(e.target.value)
+                            dispatch(getNearEvents(userCord,e.target.value*1000))
+                        }}>
+                            <option>{defaultDistance}</option>
+                            <option>10</option>
+                            <option>20</option>
+                            <option>50</option>
+
+                        </select> 
+                        km de tu ubicación</p>
                 </div>
-                {/* {userCord? dispatch(getNearEvents(userCord)):null} */}
                 <div className={`cont-carrusel ${styles.cont_carrusel}`}>
-                    <AliceCarousel
+                    {NearEvents.length>0
+                    ?<AliceCarousel
                         mouseTracking
                         items={
-                            eventos && eventos.map( evento => {
+                            NearEvents && NearEvents.map( evento => {
                                 return(
                                     <EventHome
                                     name={evento.name}
@@ -137,6 +152,41 @@ const Home = () => {
                         disableButtonsControls={false}
                         disableDotsControls={true}
                     />
+                    :<div className ={styles.errorMessage}>No hay Eventos Cercanos {distance? distance:defaultDistance} Km a tu alrededor </div>
+                    
+                
+                }
+                {NearEvents.length>0
+                ?
+                    <Boton onClick={()=>{
+                        setMapPopup(true)
+                    }}
+                    colorBtn='btn_azul'
+                    >
+
+                        ver mapa con eventos cercanos
+                    </Boton>
+              
+
+                :null
+                }
+                <div className={styles.MapPopup}>
+                    <PopUp
+                    estatus={mapPopup}
+                    title='Eventos Cercanos'
+                    onClick={()=>{
+                        setMapPopup(false)
+                    }}
+                    >
+                        <Map
+                        coords={userCord}
+                        type='nearEvents'
+                        NearEvents= {NearEvents}
+                        />
+                    </PopUp>
+
+                </div>
+
                 </div>
             </div>
             <div className={styles.cont_crear_evento}>

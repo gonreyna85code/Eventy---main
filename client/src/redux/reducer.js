@@ -77,7 +77,7 @@ const initialState = {
   EventosLandingPage:[], //estos son los eventos que se muestran en la landing page
   UserCity:{},
   EventCity:{},
-  NearEvents:{}
+  NearEvents:[]
 };
 
 
