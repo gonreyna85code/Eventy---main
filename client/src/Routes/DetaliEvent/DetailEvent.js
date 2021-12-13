@@ -188,8 +188,7 @@ export default function DetailEvet() {
                     </div>
                     <div>
                       <Boton colorBtn="btn_naranja">Asistiré</Boton>
-                      <Boton colorBtn="btn_naranja">Seguir Evento</Boton>
-                      {user._id === theEvent.user ? (
+                      {user._id === theEvent.user._id ? (
                         <div>
                           <Link to={"/editar-evento/" + name}>
                             <Boton colorBtn="btn_naranja">Editar Evento</Boton>
