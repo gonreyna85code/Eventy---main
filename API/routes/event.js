@@ -2,13 +2,13 @@ const Router = require("express");
 const Event = require("../models/event");
 const User = require("../models/user");
 const mercadopago = require("mercadopago");
-const distance = require('google-distance-matrix');
+const distance = require("google-distance-matrix");
+const nodemailer = require("nodemailer");
 
 const isAuthenticated = function (req, res, next) {
-  if (req.isAuthenticated())
-    return next();
-  res.send('No Disponible');
-}
+  if (req.isAuthenticated()) return next();
+  res.send("No Disponible");
+};
 
 mercadopago.configure({
   access_token:
@@ -17,11 +17,8 @@ mercadopago.configure({
 
 const router = Router();
 
-router.post(
-  "/event",
-  isAuthenticated,
-  function (req, res) {
-    try {
+router.post("/event", isAuthenticated, function (req, res) {
+  try {
     Event.findOne({ name: req.body.name }, async (err, doc) => {
       if (err) throw err;
       if (doc) res.send("Event Already Exists");
@@ -50,112 +47,98 @@ router.post(
       }
     });
     res.send("Event Created");
-    } catch (err) {
-      res.send(err);
-    }
-
+  } catch (err) {
+    res.send(err);
   }
-);
+});
 
-router.get(
-  "/event/:name",
-  isAuthenticated,
-  async (req, res) => {
-    const { name } = req.params;
-    var response = await Event.find({ name: name }).populate("user");
-    console.log(response);
-    response.length > 0
-      ? res.status(200).send(response)
-      : res.status(404).send("No hay eventos");
-  }
-);
+router.get("/event/:name", isAuthenticated, async (req, res) => {
+  const { name } = req.params;
+  var response = await Event.find({ name: name }).populate("user");
+  console.log(response);
+  response.length > 0
+    ? res.status(200).send(response)
+    : res.status(404).send("No hay eventos");
+});
 
-router.get(
-  "/eventosCercanos",
-  isAuthenticated,
-  async (req, res) => {
-    distance.key("AIzaSyCf8E0lXmJWdgTw6vgsHOcslcUZ4oidnE0");
-    var origin = [`${req.query.lat},${req.query.lng}`];
-    console.log(origin);
-    var eventos = await Event.find().populate("user");
-    var destinosCoords = eventos.map((event) => {
-      return `${event.location.cityCords.lat}, ${event.location.cityCords.lng}`;
-    });
-    // destinos = destinos[0]
-    if (req.query && req.query.lat) {
-      distance.matrix(origin, destinosCoords, async function (err, distances) {
-        if (err) {
-          res.send(err);
+router.get("/eventosCercanos", isAuthenticated, async (req, res) => {
+  distance.key("AIzaSyCf8E0lXmJWdgTw6vgsHOcslcUZ4oidnE0");
+  var origin = [`${req.query.lat},${req.query.lng}`];
+  console.log(origin);
+  var eventos = await Event.find().populate("user");
+  var destinosCoords = eventos.map((event) => {
+    return `${event.location.cityCords.lat}, ${event.location.cityCords.lng}`;
+  });
+  // destinos = destinos[0]
+  if (req.query && req.query.lat) {
+    distance.matrix(origin, destinosCoords, async function (err, distances) {
+      if (err) {
+        res.send(err);
+      }
+      let distancias = distances.rows[0].elements;
+      let filtrado = distancias.map((dist) => {
+        if (dist.distance.value <= 50000) {
+          return distancias.indexOf(dist);
         }
-        let distancias = distances.rows[0].elements;
-        let filtrado = distancias.map((dist) => {
-          if (dist.distance.value <= 50000) {
-            return distancias.indexOf(dist);
-          }
-        });
-        filtrado = filtrado.filter((e) => {
-          if (e === undefined) {
-            return;
-          }
-          if (e || e === 0) {
-            return e.toString();
-          }
-        });
-
-        let eventsSend = eventos.filter((event) => {
-          if (filtrado.includes(eventos.indexOf(event))) {
-            return event;
-          }
-        });
-        console.log(eventsSend);
-        res.send(eventsSend);
       });
-    } else {
-      res.send([]);
-    }
+      filtrado = filtrado.filter((e) => {
+        if (e === undefined) {
+          return;
+        }
+        if (e || e === 0) {
+          return e.toString();
+        }
+      });
+
+      let eventsSend = eventos.filter((event) => {
+        if (filtrado.includes(eventos.indexOf(event))) {
+          return event;
+        }
+      });
+      console.log(eventsSend);
+      res.send(eventsSend);
+    });
+  } else {
+    res.send([]);
   }
-);
+});
 
-router.get(
-  "/eventsAll/:parametro",
-  isAuthenticated,
-  async (req, res) => {
-    var parametro = req.params.parametro.toLowerCase();
-    var nombre, lugar, info;
-    var response = await Event.find().populate("user"); //Aqui se piden todos los datos de la base de datos
-    //Aqui se compara el paremetro de busqueda con los tres principales parametros de cada evento con el fin de encontrar lo que le cliente busca
-    nombre = response.filter((evento) => {
-      return evento.name.toLowerCase().includes(parametro);
-    });
-    lugar = response.filter((evento) => {
-      return evento.location.cityName.toLowerCase().includes(parametro);
-    });
-    info = response.filter((evento) => {
-      if (evento.info && evento.info.description)
-        return evento.info.description.toLowerCase().includes(parametro);
-    });
+router.get("/eventsAll/:parametro", isAuthenticated, async (req, res) => {
+  var parametro = req.params.parametro.toLowerCase();
+  var nombre, lugar, info;
+  var response = await Event.find().populate("user"); //Aqui se piden todos los datos de la base de datos
+  //Aqui se compara el paremetro de busqueda con los tres principales parametros de cada evento con el fin de encontrar lo que le cliente busca
+  nombre = response.filter((evento) => {
+    return evento.name.toLowerCase().includes(parametro);
+  });
+  lugar = response.filter((evento) => {
+    return evento.location.cityName.toLowerCase().includes(parametro);
+  });
+  info = response.filter((evento) => {
+    if (evento.info && evento.info.description)
+      return evento.info.description.toLowerCase().includes(parametro);
+  });
 
-    var resultado = nombre.concat(lugar.concat(info));
+  var resultado = nombre.concat(lugar.concat(info));
 
-    function removeDuplicates(inArray) {
-      // esta función elimina los duplicados
-      var arr = inArray.concat();
-      for (var i = 0; i < arr.length; ++i) {
-        for (var j = i + 1; j < arr.length; ++j) {
-          if (arr[i].id === arr[j].id) {
-            arr.splice(j, 1);
-          }
+  function removeDuplicates(inArray) {
+    // esta función elimina los duplicados
+    var arr = inArray.concat();
+    for (var i = 0; i < arr.length; ++i) {
+      for (var j = i + 1; j < arr.length; ++j) {
+        if (arr[i].id === arr[j].id) {
+          arr.splice(j, 1);
         }
       }
-      return arr;
     }
-
-    resultado = removeDuplicates(resultado);
-    if (resultado.length === 0) res.status(400).send("Evento no encontrado");
-    // Si no se encontro nada devuelve un status 400, no se si es el mas indicado, corrigan si se saben el indicado.
-    else res.json(resultado);
+    return arr;
   }
-);
+
+  resultado = removeDuplicates(resultado);
+  if (resultado.length === 0) res.status(400).send("Evento no encontrado");
+  // Si no se encontro nada devuelve un status 400, no se si es el mas indicado, corrigan si se saben el indicado.
+  else res.json(resultado);
+});
 
 router.get(
   "/events/filter/categoria-:categoria?/ciudad-:ciudad?/pago-:pago?",
@@ -223,40 +206,28 @@ router.get(
   }
 );
 
-router.get(
-  "/socialEvents",
-  isAuthenticated,
-  async (req, res) => {
-    var response = await Event.find({ category: "social" }).populate("user");
-    console.log(response);
-    response.length > 0
-      ? res.status(200).send(response) 
-      : res.status(404).send("No hay eventos");
-  }
-);
+router.get("/socialEvents", isAuthenticated, async (req, res) => {
+  var response = await Event.find({ category: "social" }).populate("user");
+  console.log(response);
+  response.length > 0
+    ? res.status(200).send(response)
+    : res.status(404).send("No hay eventos");
+});
 
-router.get(
-  "/sportEvents",
-  isAuthenticated,
-  async (req, res) => {
-    var response = await Event.find({ category: "sports" }).populate("user");
-    response.length > 0
-      ? res.status(200).send(response)
-      : res.status(404).send("No hay eventos");
-  }
-);
+router.get("/sportEvents", isAuthenticated, async (req, res) => {
+  var response = await Event.find({ category: "sports" }).populate("user");
+  response.length > 0
+    ? res.status(200).send(response)
+    : res.status(404).send("No hay eventos");
+});
 
-router.get(
-  "/allEvents",
-  isAuthenticated,
-  async (req, res) => {
-    var response = await Event.find().populate("user"); 
-    console.log(response);
-    response.length > 0
-      ? res.status(200).send(response)
-      : res.status(404).send("No hay Eventos");
-  }
-);
+router.get("/allEvents", isAuthenticated, async (req, res) => {
+  var response = await Event.find().populate("user");
+  console.log(response);
+  response.length > 0
+    ? res.status(200).send(response)
+    : res.status(404).send("No hay Eventos");
+});
 
 //Ruta para traer los eventos que iran en la landing page
 router.get("/lp-events", async (req, res) => {
@@ -269,80 +240,101 @@ router.get("/lp-events", async (req, res) => {
 });
 
 router.post("/create_preference", (req, res) => {
+  const { title, price, quantity } = req.body;
 
-  const {title, price, quantity} = req.body;
+  let preference = {
+    items: [
+      {
+        title: title,
+        unit_price: Number(price),
+        quantity: Number(quantity),
+      },
+    ],
+    back_urls: {
+      success: "https://eventy-main.vercel.app/compraExitosa/" + title,
+      failure: "https://eventy-main.vercel.app/",
+      //	"pending": "http://localhost:8080/feedback"
+    },
+    //auto_return: "approved",
+  };
+  console.log(preference);
 
-	let preference = {
-		items: [
-			{
-				title: title,
-				unit_price: Number(price),
-				quantity: Number(quantity),
-			}
-		],
-		back_urls: {
-			"success": "https://eventy-main.vercel.app/compraExitosa/" + title,
-			"failure": "https://eventy-main.vercel.app/",
-		//	"pending": "http://localhost:8080/feedback"
-		},
-		//auto_return: "approved",
-	};
-  console.log(preference)
-
-	mercadopago.preferences.create(preference)
-		.then(function (response) {
-      global.id = response.body.id
-			res.json({
-				id: response.body.id
-			});
-		}).catch(function (error) {
-			console.log(error);
-		});
+  mercadopago.preferences
+    .create(preference)
+    .then(function (response) {
+      global.id = response.body.id;
+      res.json({
+        id: response.body.id,
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 });
 
-router.put(
-  "/editarEvento/:name",
-  isAuthenticated,
-  (req, res) => {
-    const name = req.params;
-    console.log(name);
+router.put("/editarEvento/:name", isAuthenticated, (req, res) => {
+  const name = req.params;
+  console.log(name);
 
-    Event.updateOne(
-      { name: name.name },
-      {
-        name: req.body.name,
-        location: req.body.location,
-        info: req.body.info,
-        event_pay: req.body.event_pay,
-        date: req.body.date,
-        user: req.body.user,
-        category: req.body.category,
-        subcategory: req.body.subcategory,
-      },
-      (error, evento) => {
-        if (error) {
-          console.log(error);
-        }
-        console.log(evento);
+  Event.updateOne(
+    { name: name.name },
+    {
+      name: req.body.name,
+      location: req.body.location,
+      info: req.body.info,
+      event_pay: req.body.event_pay,
+      date: req.body.date,
+      user: req.body.user,
+      category: req.body.category,
+      subcategory: req.body.subcategory,
+    },
+    (error, evento) => {
+      if (error) {
+        console.log(error);
       }
-    );
-    console.log("hecho");
-    res.status(200).send(req.body);
-  }
-);
+      if (evento) {
+        const transporter = nodemailer.createTransport({
+          service: "gmail",
+          auth: {
+            user: "eventy.mailer.service@gmail.com" /* Your Email */,
+            pass: "eventymailer" /* Your Password */,
+          },
+        });
+        User.findOne({ _id: evento.user }, (err, user) => {
+          if (err) {
+            console.log(err);
+          } else {
+            const mailOptions = {
+              from: "eventy.mailer.service@gmail.com",
+              to: user.email,
+              subject: "Evento Editado",
+              html: `<h1>Evento Editado</h1>
+                <p>El evento ${evento.name} ha sido editado</p>
+                <p>Para ver el evento haga click <a href="https://eventy-main.vercel.app/evento/${evento.name}">Aqui</a></p>
+                `,
+            };
+            transporter.sendMail(mailOptions, function (error, info) {
+              if (error) {
+                console.log(error);
+              } else {
+                console.log("Email sent: " + info.response);
+              }
+            });
+          }
+        });
+        console.log("hecho");
+        res.status(200).send(req.body);
+      }
+    }
+  );
+});
 
-router.delete(
-  "/event",
-  isAuthenticated,
-  (req, res) => {
-    const { name } = req.body;
-    Event.deleteOne({ name: name })
-      .then(res.send("el evento ha sido eliminado"))
+router.delete("/event", isAuthenticated, (req, res) => {
+  const { name } = req.body;
+  Event.deleteOne({ name: name }).then(res.send("el evento ha sido eliminado"));
 
-      //.catch(res.send("error"));
-
-  }
-);
+  //.catch(res.send("error"));
+});
 
 setInterval(function () {
   let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
