@@ -12,19 +12,17 @@ export function MapContainer(props){
   }
 
  
-  
-
     return (
       <div >
         
-        {props.places
+        { props && props.places
           ?<Places
           type={props.type}
           LabelName={props.LabelName}
           />
           :null
         }
-        {props.coords?
+        { props && props.coords?
         <Map 
         containerStyle = {styles.containerStyle}
         style={styles.mapStyle}
@@ -40,9 +38,9 @@ export function MapContainer(props){
           
         }}
         >
-          {props.type==='nearEvents'
+          {props && props.type==='nearEvents'
           ? 
-          props.NearEvents.length>0? 
+          props && props.NearEvents.length>0? 
           props.NearEvents.map((e)=>{
             return(
               <Marker 
