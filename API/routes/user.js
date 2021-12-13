@@ -13,23 +13,18 @@ const isAuthenticated = function (req, res, next) {
 }
 
 router.get("/user", isAuthenticated, async (req, res) => {
-  const near = await Event.find({ location: req.user.profile?.city?.cityName });
-  const follows = await Event.find({ user: req.user.follows });
   if (req.user) {
     User.findOne({ _id: req.user._id }, async (err, doc) => {
       if (err) throw err;
       if (!doc) res.send("User Not Found");
       if (doc) {
-        doc.near = near;
-        doc.follows = follows;
-        doc.save();
+        
         res.send(doc);
         console.log(doc);
       }
     }).populate({
       path:     'follows',			
-      populate: { path:  'user',
-            model: 'user' }
+      populate: { path:  'events'}
       }).populate('events');
   } else {
     res.send("Usuario no logueado");

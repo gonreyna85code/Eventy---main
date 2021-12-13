@@ -213,9 +213,9 @@ const Home = () => {
                                 
                                 return ( <CardHome
                                     name={evento.name}
-                                    location={evento.location.cityName}
+                                    location={evento.location?.cityName}
                                     date={evento.date}
-                                    img={evento.info.imagen}
+                                    img={evento.info?.imagen}
                                     id={evento._id}
                                     tipoEvento={evento.event_pay}
                                     categoria={evento.category}
