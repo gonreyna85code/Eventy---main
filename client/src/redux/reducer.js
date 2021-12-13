@@ -100,7 +100,8 @@ const initialState = {
   UserCity:{},
   EventCity:{},
   NearEvents:[],
-  Follows: []
+  Follows: [],
+  OtherUsers:[]
 };
 
 
