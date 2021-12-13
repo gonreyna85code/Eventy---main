@@ -135,7 +135,7 @@ router.get("/eventsAll/:parametro", isAuthenticated, async (req, res) => {
   }
 
   resultado = removeDuplicates(resultado);
-  if (resultado.length === 0) res.status(400).send("Evento no encontrado");
+  if (resultado.length === 0) res.send("Evento no encontrado");
   // Si no se encontro nada devuelve un status 400, no se si es el mas indicado, corrigan si se saben el indicado.
   else res.json(resultado);
 });
