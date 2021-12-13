@@ -68,6 +68,7 @@ const follows = (payload) => {
   for(let i = 0; i < payload.length; i++){
 
     let user = payload[i].profile;
+    user._id = payload[i]._id;
     for(let j = 0; j < payload[i].events.length; j++){
 
       cleanFollows.push({...[payload[i].events[j]],user})

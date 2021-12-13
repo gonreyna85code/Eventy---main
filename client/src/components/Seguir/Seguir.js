@@ -15,9 +15,9 @@ export default function Seguir({ouser}){
     useEffect(()=>{
         if(Object.keys(user).length !== 0){
 
-            let consulta = user.follows.map( e => e && e._id === ouser._id );
-            
-            if(consulta && consulta.length > 0){
+            let consulta = user.follows.map( e => e && e._id === ouser.id );
+            console.log(consulta)
+            if(consulta.includes(true)){
                 setParams('Dejar de seguir');
             }
         }

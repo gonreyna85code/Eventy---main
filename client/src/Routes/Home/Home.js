@@ -26,7 +26,11 @@ const responsivePrincipal = {
         items: 3,
     },
 }
-
+const reponsivePrincipalMenorA3={
+    0: {
+        items: 1,
+    }
+}
 const responsive = {
     0: {
         items: 1,
@@ -154,7 +158,7 @@ const Home = () => {
                                 );
                             })
                         }
-                        responsive={responsivePrincipal}
+                        responsive={ NearEvents && NearEvents.length > 4 ? responsivePrincipal : reponsivePrincipalMenorA3 }
                         controlsStrategy="alternate"
                         autoPlay={true}
                         infinite={true}
