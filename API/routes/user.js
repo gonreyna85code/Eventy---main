@@ -17,7 +17,7 @@ router.get("/user", isAuthenticated, async (req, res) => {
     User.findOne({ _id: req.user._id }, async (err, doc) => {
       if (err) throw err;
       if (!doc) res.send("User Not Found");
-      if (doc) {        
+      if (doc) {       
         res.send(doc);  
       }
     }).populate({

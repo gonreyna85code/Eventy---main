@@ -123,6 +123,7 @@ export default function DetailEvet() {
       creator = { profile: { name: "", surname: "" } };
     }
   }
+console.log(creator.id);
 
   function handleDelete(e) {
     e.preventDefault();
@@ -201,11 +202,7 @@ export default function DetailEvet() {
                         </div>
                       ) : (
                         <Link
-                          to={`/user/${
-                            creator?.profile?.name +
-                            "-" +
-                            creator?.profile?.surname
-                          }`}
+                          to={`/user/${creator.id}`}
                         >
                           <span className={style.creator}>
                             Creado por:{" "}
