@@ -1,36 +1,17 @@
-import React,{ useState} from 'react';
+import React from 'react';
 import  {GoogleApiWrapper, Map,Marker} from 'google-maps-react'
 import Places from './Places';
 import styles from './styles';
-import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import EventMarker from './EventMarker.png'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
-export function MapContainer(props){
-  // const cityCords = useSelector(state=>state.cityCords)
-  const [showingInfoWindow, setShowingInfoWindow] = useState(false)
-  const [activeMarker, setActiveMarker]= useState({})
-  const [selectedPlace, setSelectedPlace] = useState({})
-  const [mapCenter, setMapCenter]= useState({
+export function MapContainer(props){  
+  const mapCenter ={
     lat : -34.6036844,
     lng : -58.3815591
-  })
-
-  function onMarkerClick (props, marker, e){
-    setSelectedPlace(props)
-    setActiveMarker(marker)
-    setShowingInfoWindow(true)
 
   }
 
-  function onMapClicked (props) {
-    if (showingInfoWindow) {
-      setShowingInfoWindow(true)
-      setActiveMarker(null)
-    }
-    
-  }
+ 
   
 
     return (
@@ -58,13 +39,13 @@ export function MapContainer(props){
           lng: props.coords.lng
           
         }}
-        onClick={onMapClicked}>
+        >
           {props.type==='nearEvents'
           ? 
           props.NearEvents.length>0? 
           props.NearEvents.map((e)=>{
             return(
-              <Marker onClick={onMarkerClick}
+              <Marker 
               position={{
                 lat: e.location.cityCords.lat,
                 // lat: -34.546824,
@@ -80,7 +61,7 @@ export function MapContainer(props){
 
           }):null
           :
-          <Marker onClick={onMarkerClick}
+          <Marker 
           position={{
             lat: props.coords.lat,
             lng: props.coords.lng
@@ -108,9 +89,9 @@ export function MapContainer(props){
         lng: mapCenter.lng
         
       }}
-      onClick={onMapClicked}>
+      >
         
-        <Marker onClick={onMarkerClick}
+        <Marker 
         position={{
           lat:mapCenter.lat,
           lng:mapCenter.lng

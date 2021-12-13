@@ -45,9 +45,10 @@ const yesterday = new Date(new Date().setDate(new Date().getDate()));
 const year = yesterday.getFullYear();
 const month = yesterday.getMonth() +1 ;
 var day = yesterday.getDate();
+var fecha
 if(day.valueOf() < 10){
   day = "0" + day
-  var fecha = (year + "-" + month + "-" +  day);
+  fecha = (year + "-" + month + "-" +  day);
 } else {
    fecha = (year + "-" + month + "-" +  day);
 }

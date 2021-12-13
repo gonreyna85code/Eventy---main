@@ -14,8 +14,6 @@ import Boton from '../../components/Boton/Boton';
 import CardEvent from '../../components/CardEvent/CardEvent';
 import PopUp from '../../components/PopUp/PopUp';
 import CrearEventoHome from './CrearEventoHome';
-import Input from '../../components/Input/Input';
-import useImage from "../../hooks/useImage";
 import Map from '../../components/Maps/Map';
 
 
@@ -50,7 +48,6 @@ const Home = () => {
     const NearEvents = useSelector(state => state.NearEvents)
     const user = useSelector( state => state.User );
     const allEvents = useSelector ( state => state.AllEvents);
-    const [eventos, setEventos] = useState([]);
     const [eventosDeportes, setEventosDeportes] = useState([]);
     const [eventosSociales, setEventosSociales] = useState([]);
 
@@ -58,7 +55,8 @@ const Home = () => {
    
 
     const [userCord, setUserCord] = useState(0)
-    const[defaultDistance, setDefaultDistance ] = useState(5)
+    const[defaultDistance, setDefaultDistance ] = useState()
+    setDefaultDistance(5)
     const [distance , setDistance] = useState(0)
     const [mapPopup, setMapPopup] =useState(false)
 
@@ -82,7 +80,7 @@ const Home = () => {
 
     useEffect(()=>{
         dispatch(getNearEvents(userCord,defaultDistance*1000))
-    }, [dispatch, userCord])
+    }, [dispatch, userCord, defaultDistance])
     
     useEffect(()=>{
         if(allEvents && allEvents.length > 0){
