@@ -60,6 +60,28 @@ export const ordenEventosNombre = ( state, payload ) => {
 }
 
 // Fin de funcion de ordenamiento
+
+const follows = (payload) => {
+
+  const cleanFollows = [];
+
+  for(let i = 0; i < payload.length; i++){
+
+    let user = payload[i].profile;
+    for(let j = 0; j < payload[i].events.length; j++){
+
+      cleanFollows.push({...[payload[i].events[j]],user})
+
+    }
+
+  }
+
+  return cleanFollows;
+
+}
+
+
+
 //===================================
 
 const initialState = {
@@ -77,7 +99,8 @@ const initialState = {
   EventosLandingPage:[], //estos son los eventos que se muestran en la landing page
   UserCity:{},
   EventCity:{},
-  NearEvents:[]
+  NearEvents:[],
+  Follows: []
 };
 
 
@@ -86,6 +109,7 @@ function rootReducer(state = initialState, action) {
     return {
       ...state,
       User: action.payload,
+      Follows: follows( action.payload.follows )
     };
   }
   if (action.type === FIND_EVENT) {

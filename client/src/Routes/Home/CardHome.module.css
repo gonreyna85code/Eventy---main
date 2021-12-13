@@ -49,6 +49,10 @@
     font-size: 16px;
     text-align: left;
 }
+.cont_info_user > a:first-child{
+    text-align: left;
+    color: #000
+}
 
 .name_evento{
     margin: 0;

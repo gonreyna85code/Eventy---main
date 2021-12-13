@@ -48,6 +48,7 @@ const Home = () => {
     const dispatch = useDispatch();
     const NearEvents = useSelector(state => state.NearEvents)
     const user = useSelector( state => state.User );
+    const follows = useSelector( state => state.Follows );
     const allEvents = useSelector ( state => state.AllEvents);
     const [eventosDeportes, setEventosDeportes] = useState([]);
     const [eventosSociales, setEventosSociales] = useState([]);
@@ -104,7 +105,7 @@ const Home = () => {
     return(
         <div className={styles.cont_home}>
             <NavBar/>
-            {NearEvents? console.log(NearEvents):null}
+           
             <div className={styles.cont_principal}>
                 <div className={styles.cont_info_principal}>
                     <h1 className={styles.titulo}>Eventos Cercanos</h1>
@@ -209,16 +210,17 @@ const Home = () => {
                             
                         {
                             
-                            user && user.follows.length > 0 ? user.follows.map( evento => {
+                            follows && follows.length > 0 ? follows.map( evento => {
                                 
                                 return ( <CardHome
-                                    name={evento.name}
-                                    location={evento.location?.cityName}
-                                    date={evento.date}
-                                    img={evento.info?.imagen}
-                                    id={evento._id}
-                                    tipoEvento={evento.event_pay}
-                                    categoria={evento.category}
+                                    name={evento[0].name}
+                                    location={evento[0].location?.cityName}
+                                    date={evento[0].date}
+                                    img={evento[0].info?.imagen}
+                                    id={evento[0]._id}
+                                    tipoEvento={evento[0].event_pay}
+                                    categoria={evento[0].category}
+                                    user={evento.user}
                                 />)
 
 
