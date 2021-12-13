@@ -36,7 +36,7 @@ export default function Setting(){
             surname: user.profile?.surname,
             age: user.profile?.age,
             email: user.profile?.email,
-            city: user.profile?.city,
+            city: user.profile?.city?.cityName,
             photo:user.profile?.photo?user.profile?.photo:'',
             portada:user.profile?.portada?user.profile?.portada:'',
             gender:user.profile?.gender?user.profile?.gender:'',
