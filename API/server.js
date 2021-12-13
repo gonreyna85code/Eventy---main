@@ -7,9 +7,9 @@ const MongoStore = require("connect-mongo");
 const passport = require("passport");
 const passportLocal = require("passport-local").Strategy;
 const bodyParser = require("body-parser");
-const user = require("../routes/user");
-const auth = require("../routes/auth");
-const event = require("../routes/event");
+const user = require("./routes/user");
+const auth = require("./routes/auth");
+const event = require("./routes/event");
 const cors = require("cors");
 const app = express();
 
