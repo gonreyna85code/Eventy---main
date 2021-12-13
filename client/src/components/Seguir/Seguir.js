@@ -26,8 +26,7 @@ export default function Seguir({ouser}){
     function handleClick(e){
         if(e.target.textContent==='Seguir'){
             dispatch(follow(user.username,ouser.id))
-            setParams('Dejar de seguir');
-            window.location.reload();
+            setParams('Dejar de seguir');            
         }else{
             setParams('Seguir');
             dispatch(unfollow(user.username,ouser.id));
