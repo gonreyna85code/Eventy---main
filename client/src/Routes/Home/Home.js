@@ -55,8 +55,8 @@ const Home = () => {
    
 
     const [userCord, setUserCord] = useState(0)
-    const[defaultDistance, setDefaultDistance ] = useState(5)
-    const [distance , setDistance] = useState(0)
+    const [defaultDistance ] = useState(5)
+    const [distance , setDistance] = useState(5)
     const [mapPopup, setMapPopup] =useState(false)
 
   

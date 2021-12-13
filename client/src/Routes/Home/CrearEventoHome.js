@@ -152,7 +152,7 @@ const handleClickTipoPago = () => {
                                     name="credential"
                                     onChange={(e) => setCredential(e.target.value)}
                                 />
-                                <p className={styles.notificacion}><a href="https://www.mercadopago.com.co/developers/es/guides/resources/credentials" target='_blank'>Guía para encontrar tu public key</a></p>
+                                <p className={styles.notificacion}><a href="https://www.mercadopago.com.co/developers/es/guides/resources/credentials" target='_blank' rel="noreferrer">Guía para encontrar tu public key</a></p>
                                 <span onClick={handleClickTipoPago}>Guardar</span>
                             </div>
                         )
