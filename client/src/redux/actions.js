@@ -448,6 +448,7 @@ export function follow(username,data){
 }
 
 export function unfollow(username,data){
+  console.log(data)
   return function (dispatch){
     axios({
       method:"DELETE",

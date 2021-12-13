@@ -14,8 +14,8 @@ const isAuthenticated = function (req, res, next) {
 
 
 router.get("/user", async (req, res) => {
-  const near = await Event.find({ location: req.user?.profile.city.cityName });
-  const follows = await Event.find({ category: req.user?.subscriptions });
+  const near = await Event.find({ location: req.user?.profile?.city?.cityName });
+  const follows = await Event.find({ user: req.user.follows });
   console.log(req.user)
   if (req.user) {
     User.findOne({ _id: req.user._id }, async (err, doc) => {
