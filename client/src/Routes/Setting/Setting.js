@@ -24,6 +24,9 @@ export default function Setting(){
         gender:user.profile?.gender?user.profile?.gender:'',
     });
 
+    const [key, setKey] = useState(user.publicKey ? user.publicKey : "");
+    console.log(key);
+
     var gender=[{value:'Mujer',name:'Mujer'},{value:'Hombre',name:'Hombre'},{value:'No binario',name:'No binario'}]
 
     useEffect(() => {
@@ -55,9 +58,14 @@ export default function Setting(){
         })
     }
 
+    function handleKey(e){
+        setKey(e.target.value);
+        console.log(key);
+    };
+
     function handleSubmit(e){
         e.preventDefault()
-        dispatch(putUser({profile:profile,username:user.username}))
+        dispatch(putUser({profile:profile,username:user.username}, key))//acá va el acces token
     }
 
     if(user==="Usuario no logueado"){
@@ -81,6 +89,7 @@ export default function Setting(){
                         <Input label='Link foto portada' type='portada' name='surname' value={profile.portada} onChange={handleChange} />
                         <Input label='Link foto de perfil' type='link' name='photo' value={profile.photo} onChange={handleChange} />
                         <Select name='gender' onchange={handleChange} default_value={1} default_name='Genero' options={gender}/><br/>
+                        <Input label='Acces Token de Mercado Pago' type='text' name='key' value={key} onChange={handleKey} />
                         <Boton colorBtn='btn_azul' children='Cancelar todas las suscripciones' onClick={handleClick} /><br/>
                         <Boton colorBtn='btn_naranja' children='Guardar' onClick={handleSubmit} />
                     </form>
