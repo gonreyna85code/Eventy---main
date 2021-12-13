@@ -18,18 +18,19 @@
     border-radius: 10px;
     box-shadow: 0 0 5px rgba(0,0,0,0.4);
     background: #fff;
-    padding: 15px;
+    padding: 15px 0 15px 15px;
     display: table;
     margin-inline: auto;
     max-height: 80vh;
     overflow: hidden;
-    width: 50vw;
 }
 
 .cont_popup{
-    height: 65vh;
+    max-height: 65vh;
     overflow-y: scroll;
     overflow-x: hidden;
+    padding-right: 15px;
+    height: auto;
 }
 
 .cont_popup::-webkit-scrollbar-track
