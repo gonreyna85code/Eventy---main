@@ -27,9 +27,11 @@ export default function Seguir({ouser}){
         if(e.target.textContent==='Seguir'){
             dispatch(follow(user.username,ouser.id))
             setParams('Dejar de seguir');
+            window.location.reload();
         }else{
             setParams('Seguir');
             dispatch(unfollow(user.username,ouser.id));
+            window.location.reload();
         }
     }
 
