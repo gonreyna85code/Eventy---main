@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { follow, unfollow } from "../../redux/actions";
+import { follow, unfollow, getUser } from "../../redux/actions";
 import Boton from "../Boton/Boton";
 
 export default function Seguir({ouser}){
-    var user=useSelector(state=>state.User);
+    var user = useSelector(state=>state.User);
     const dispatch=useDispatch();
     const [params,setParams]=useState('Seguir');
+    
 
     useEffect(()=>{
+        dispatch(getUser())
+    }, [dispatch])
+    useEffect(()=>{
         if(Object.keys(user).length !== 0){
-            if(user.follows.includes(ouser.id)){
+
+            let consulta = user.follows.map( e => e && e._id === ouser._id );
+            
+            if(consulta && consulta.length > 0){
                 setParams('Dejar de seguir');
             }
         }

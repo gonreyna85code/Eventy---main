@@ -102,7 +102,7 @@ router.post("/follows", isAuthenticated, (req,res,next) => {
     if (err) throw err;
     if (!doc) res.send("User Not found");
     if (doc) {
-      doc.follows=[...doc.follows,req.body.data];
+      doc.follows.push(req.body.data);
       await doc.save().then((r)=>{
         console.log(doc)
         res.send({Successfull:"User followed",data:r.follows});
