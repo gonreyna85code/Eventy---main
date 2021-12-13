@@ -30,6 +30,7 @@ export const POST_SUBSCRIPTION = 'POST_SUBSCRIPTION'
 export const DELETE_EVENT = 'DELETE_EVENT' //Eliminar evento.
 export const RESET = 'RESET'
 export const FORGOT = 'FORGOT'
+export const VALIDATE_USER = 'VALIDATE_USER'
 
 const development = process.env.NODE_ENV !== 'production';
 axios.defaults.withCrendentails = true;
@@ -128,7 +129,7 @@ export function reset(user) {
   return async function (dispatch) {
     try {
       const id = user.id.id;
-      console.log(id)
+
       const json = await axios({
         method: "POST",
         data: {
@@ -152,7 +153,6 @@ export function getUser() {
         url:  development ? local + 'user' : heroku + "user",
         withCredentials: true,
       });
-      console.log(json.data)
       return dispatch({ type: "GET_USER", payload: json.data });
     } catch (error) {
       console.log(error);
@@ -168,7 +168,6 @@ export function getEvent(name) {
     url:  development ? local + 'event/' + name : heroku + "event/" + name,
   })
   .then(resultado => dispatch({type: GET_EVENT, payload: resultado.data}))
-  .then(resultado => console.log(resultado))
   .catch(err => alert(err))
 }}
 
@@ -186,6 +185,21 @@ export function getNearEvents(userLocation, distance){
     })
     .then(resultado => dispatch({type: GET_NEAR_EVENTS, payload: resultado.data }))
     .catch(err=>alert(err))
+  }
+}
+export function validateUser(username){
+  return function (dispatch){
+    axios({
+      withCredentials:true,
+      method: 'GET',
+      params:{
+        username
+      },
+      url: development? local+ 'validateUser':heroku + 'validateUser'
+    })
+    .then(resultado => {
+      dispatch({type:VALIDATE_USER, payload: resultado.data})
+    })
   }
 }
 
@@ -280,7 +294,6 @@ export function putUser(user, key){
     })
     .then(resultado=>{
       dispatch({type: PUT_USER, payload: user.profile})
-      console.log(resultado.data)
       alert("Cambios guardados")
     })
     .catch(err=>alert(err))
@@ -422,7 +435,6 @@ export function allUnsuscription(username){
 }
 
 export function findUser(id){
-  console.log(id)
   return function (dispatch){
     axios({
       method:"GET",
@@ -451,7 +463,6 @@ export function follow(username,data){
 }
 
 export function unfollow(username,data){
-  console.log(data)
   return function (dispatch){
     axios({
       method:"DELETE",

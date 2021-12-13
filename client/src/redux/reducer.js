@@ -23,7 +23,8 @@ import {
   FIND_USER,
   POST_FOLLOW,
   DELETE_FOLLOW,
-  DELETE_EVENT
+  DELETE_EVENT,
+  VALIDATE_USER
 } from "./actions.js";
 
 //========================
@@ -102,7 +103,8 @@ const initialState = {
   EventCity:{},
   NearEvents:[],
   Follows: [],
-  OtherUsers:[]
+  OtherUsers:[],
+  validUser: true
 };
 
 
@@ -113,6 +115,18 @@ function rootReducer(state = initialState, action) {
       User: action.payload,
       Follows: follows( action.payload.follows )
     };
+  }
+  if (action.type === VALIDATE_USER) {
+    if (action.payload === true) {
+      return {
+        ...state,
+        validUser:false
+      }
+    }
+    return{
+      ...state,
+      validUser:true
+    }
   }
   if (action.type === FIND_EVENT) {
     return {
@@ -233,13 +247,13 @@ function rootReducer(state = initialState, action) {
   }
   if (action.type === CHANGE_USER_CITY) {
     return{
-      state,
+      ...state,
       UserCity:{cityName:action.payload.cityName, cityCords: action.payload.cityCords}
     }
   }
   if (action.type === CHANGE_EVENT_CITY) {
     return{
-      state,
+      ...state,
       EventCity:{cityName:action.payload.cityName, cityCords: action.payload.cityCords}
     }
   }

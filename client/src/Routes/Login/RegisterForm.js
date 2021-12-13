@@ -1,11 +1,15 @@
 import React, {useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeUserCity, registerUser } from "../../redux/actions";
+import { changeUserCity, registerUser, validateUser } from "../../redux/actions";
 import Input from "../../components/Input/Input";
 import Boton from "../../components/Boton/Boton";
 import { useNavigate } from 'react-router';
 import Map from "../../components/Maps/Map";
 import styles from './RegisterForm.module.css'
+import axios from "axios";
+const development = process.env.NODE_ENV !== 'production';
+const local = "http://localhost:4000/"
+const heroku = "https://api-eventy.herokuapp.com/"
 
 export default function RegisterForm(){
   const dispatch = useDispatch()
@@ -16,9 +20,12 @@ export default function RegisterForm(){
   const[password, setContraseña]=useState('')
   const[age, setEdad]=useState('')
   const[email, setEmail]=useState('')
-
+  const validUser = useSelector(state=>state.validUser)
   const UserCity = useSelector(state=> state.UserCity)
- 
+  const emailRegex = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/
+
+
+
  
 
   
@@ -30,7 +37,7 @@ export default function RegisterForm(){
   <div className={styles.container}>
     <h1>Crear nuevo Usuario</h1>
     <form>
-      <div>
+      <div className={name.length>0 ?styles.InputValid: styles.InputInvalid}>
           <Input
             label='Nombre:'
             type='text'
@@ -39,7 +46,7 @@ export default function RegisterForm(){
             }}
           />
       </div>
-      <div className={styles.Input}>
+      <div className={surname.length>0 ?styles.InputValid: styles.InputInvalid}>
       <Input
           label='Apellido:'
           type='text'
@@ -48,17 +55,20 @@ export default function RegisterForm(){
           }}
       />
       </div>
-      <div className={styles.Input}>
+      <div className={username.length<1 || !validUser?styles.InputInvalid: styles.InputValid}>
       <Input
           label='Usuario:'
           type='text'
           name='user'
           onChange={(e)=>{
+            
+            dispatch(validateUser(e.target.value))
             setUsuario(e.target.value)
           }}
-      />
+          />
+          <div>{validUser?null:'Ese nombre de usuario ya existe, prueba con uno diferente'}</div>
       </div>
-      <div className={styles.Input}>
+      <div className={password.length>0 ?styles.InputValid: styles.InputInvalid}>
       <Input
           label='Contraseña:'
           type='password'
@@ -67,7 +77,7 @@ export default function RegisterForm(){
           }}
         />
       </div>
-      <div className={styles.Input}>
+      <div className={age>=18 ?styles.InputValid: styles.InputInvalid}>
       <Input
           label='Edad:'
           type='number'
@@ -75,8 +85,9 @@ export default function RegisterForm(){
             setEdad(e.target.value)
           }}
       />
+      <div>{age<18 ? 'Debes ser mayor de 18 años para crear un usuario':null}</div>
       </div>
-      <div className={styles.Input}>
+      <div className={emailRegex.test(email) ?styles.InputValid: styles.InputInvalid}>
       <Input
           label='Email:'
           type='text'
@@ -93,11 +104,12 @@ export default function RegisterForm(){
       LabelName='Ciudad'
       />
 
-      <div className ={styles.hola}>
+      <div >
         {name !=='' && surname !=='' && username !=='' && password !=='' && age !=='' && email !=='' && UserCity.cityCords ?
         <Boton colorBtn='btn_azul'
         
-        onClick={(e)=>{
+        onClick={ (e)=>{
+          
           e.preventDefault()
           let register= {
             username,
@@ -115,7 +127,6 @@ export default function RegisterForm(){
           navigate('/login')
           console.log(register);
         }}
-        // {...console.log(UserCity)}
         >
           Crear Usuario
           </Boton>
