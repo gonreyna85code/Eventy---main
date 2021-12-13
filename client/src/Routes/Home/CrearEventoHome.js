@@ -122,7 +122,7 @@ const handleClickTipoPago = () => {
             <div className={styles.user_crearevento}>
                 <div className={styles.img_user_crearevento} style={{backgroundImage: `url(${user && user.profile?.photo})`}} ></div>
                 <div className={styles.cont_user_crearevento}>
-                    <h4>{user ? user.profile.name : null}</h4>
+                    <h4>{user ? user.profile?.name : null}</h4>
                     <span onClick={handleClickTipoPago}>{tipoPago ? tipoPago : `¿Este evento es de pago?`}</span>
                 </div>
             </div>
