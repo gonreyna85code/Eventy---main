@@ -13,6 +13,7 @@ const event = require("./routes/event");
 const cors = require("cors");
 const app = express();
 
+
 app.name = "API";
 
 app.use(cors({ origin: "https://eventy-main.vercel.app", credentials: true }));
