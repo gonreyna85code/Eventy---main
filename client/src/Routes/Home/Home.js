@@ -209,7 +209,7 @@ const Home = () => {
             <div className={styles.cont_general}>
                 <Container>
                     <div className={styles.cont_listado_eventos}>
-                            
+                        <h3>Eventos de usuarios seguidos</h3>
                         {
                             
                             follows && follows.length > 0 ? follows.map( evento => {
