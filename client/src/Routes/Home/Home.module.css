@@ -214,9 +214,12 @@
     padding: 3px 10px;
     background: var(--azul);
     color: #fff;
-    border-radius: 30px
+    border-radius: 30px;
+    cursor: pointer
 }
-
+.cont_user_crearevento > span:hover{
+    background: var(--naranja);
+}
 .tipo_pago{
     position: fixed;
     width: 100%;
@@ -238,6 +241,15 @@
     padding: 20px;
     border-radius: 10px;
     min-width: 300px;
+}
+.tipo_pago > div > span{
+    display: block;
+    margin-top: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+.tipo_pago > div > span:hover{
+    color: var(--azul)
 }
 .distanceSelector{
     background-color: transparent;

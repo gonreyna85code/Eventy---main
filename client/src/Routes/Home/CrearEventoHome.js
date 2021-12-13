@@ -135,7 +135,6 @@ const handleClickTipoPago = () => {
                             <option value='false'>No</option>
                             <option value='true'>Si</option>
                         </select>
-                        <span onClick={handleClickTipoPago}>Guardar</span>
                     </div>
                     {
                         event_pay && (
@@ -153,10 +152,17 @@ const handleClickTipoPago = () => {
                                     onChange={(e) => setCredential(e.target.value)}
                                 />
                                 <p className={styles.notificacion}><a href="https://www.mercadopago.com.co/developers/es/guides/resources/credentials" target='_blank' rel="noreferrer">Guía para encontrar tu public key</a></p>
-                                <span onClick={handleClickTipoPago}>Guardar</span>
+                                
                             </div>
                         )
                     }
+                    {
+                        event_pay ? 
+                            credential ? <span onClick={handleClickTipoPago}>Guardar</span> : <p className={styles.notificacion_crear_evento}>Complete todos los campos para poder guardar los datos de pago</p>
+                        : <span onClick={handleClickTipoPago}>Guardar</span>
+                    }
+                    
+                    
                 </div>
             </div>
 
