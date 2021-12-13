@@ -31,7 +31,7 @@
 .info_detail > div{
     margin-bottom: 10px;
 }
-.info_detail > div:nth-child(2){
+.info_detail > div:nth-child(3){
     margin-bottom: 35px;
 }
 .nombreEvento{
