@@ -62,7 +62,7 @@ router.get(
   isAuthenticated,
   async (req, res) => {
     const { name } = req.params;
-    var response = await Event.find({ name: name });
+    var response = await Event.find({ name: name }).populate("user");
     console.log(response);
     response.length > 0
       ? res.status(200).send(response)
@@ -77,7 +77,7 @@ router.get(
     distance.key("AIzaSyCf8E0lXmJWdgTw6vgsHOcslcUZ4oidnE0");
     var origin = [`${req.query.lat},${req.query.lng}`];
     console.log(origin);
-    var eventos = await Event.find();
+    var eventos = await Event.find().populate("user");
     var destinosCoords = eventos.map((event) => {
       return `${event.location.cityCords.lat}, ${event.location.cityCords.lng}`;
     });
@@ -122,7 +122,7 @@ router.get(
   async (req, res) => {
     var parametro = req.params.parametro.toLowerCase();
     var nombre, lugar, info;
-    var response = await Event.find(); //Aqui se piden todos los datos de la base de datos
+    var response = await Event.find().populate("user"); //Aqui se piden todos los datos de la base de datos
     //Aqui se compara el paremetro de busqueda con los tres principales parametros de cada evento con el fin de encontrar lo que le cliente busca
     nombre = response.filter((evento) => {
       return evento.name.toLowerCase().includes(parametro);
@@ -165,7 +165,7 @@ router.get(
     var ciudad = req.params.ciudad.toLowerCase(); //acepta un string con el nombre parcial o total de la ciudad;
     var pago = parseInt(req.params.pago); //acepta 0 para no pago y 1 para pago
 
-    var response = await Event.find(); //Se llama a todos los eventos;
+    var response = await Event.find().populate("user"); //Se llama a todos los eventos;
 
     //A continuacion se declaran las funciones que van a filtrar cada categoria;
     function filtroCat(datos) {
@@ -227,7 +227,7 @@ router.get(
   "/socialEvents",
   isAuthenticated,
   async (req, res) => {
-    var response = await Event.find({ category: "social" });
+    var response = await Event.find({ category: "social" }).populate("user");
     response.length > 0
       ? res.status(200).send(response)
       : res.status(404).send("No hay eventos");
@@ -238,7 +238,7 @@ router.get(
   "/sportEvents",
   isAuthenticated,
   async (req, res) => {
-    var response = await Event.find({ category: "sports" });
+    var response = await Event.find({ category: "sports" }).populate("user");
     response.length > 0
       ? res.status(200).send(response)
       : res.status(404).send("No hay eventos");
@@ -249,7 +249,7 @@ router.get(
   "/allEvents",
   isAuthenticated,
   async (req, res) => {
-    var response = await Event.find();
+    var response = await Event.find().populate("user"); ;
     response.length > 0
       ? res.status(200).send(response)
       : res.status(404).send("No hay Eventos");
