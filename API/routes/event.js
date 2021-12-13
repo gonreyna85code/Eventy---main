@@ -104,7 +104,7 @@ router.get("/eventosCercanos", isAuthenticated, async (req, res) => {
 });
 
 router.get("/eventsAll/:parametro", isAuthenticated, async (req, res) => {
-  var parametro = req.params.parametro.toLowerCase();
+  var parametro = req.params.parametro.toLowerCase()
   var nombre, lugar, info;
   var response = await Event.find().populate("user"); //Aqui se piden todos los datos de la base de datos
   //Aqui se compara el paremetro de busqueda con los tres principales parametros de cada evento con el fin de encontrar lo que le cliente busca

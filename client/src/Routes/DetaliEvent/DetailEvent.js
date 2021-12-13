@@ -65,10 +65,10 @@ export default function DetailEvet() {
         price: fee,
         quantity: cantidad,
         payer: {
-          name: user.profile.name,
-          surname: user.profile.surname,
-          email: user.profile.email,
-          city: user.profile.city,
+          name: user.profile?.name,
+          surname: user.profile?.surname,
+          email: user.profile?.email,
+          city: user.profile?.city,
         },
         statement_descriptor: "Eventy Entradas",
         expires: true,
@@ -112,10 +112,12 @@ export default function DetailEvet() {
   useEffect(() => {
     if (Object.keys(user).length !== 0 && theEvent) {
       if (user._id !== theEvent.user) {
-        dispatch(findUser(theEvent.user));
+        dispatch(findUser(theEvent?.user?._id));
       }
     }
   }, [theEvent, dispatch, user]);
+
+  console.log(theEvent?.user)
 
   var creator = useSelector((state) => state.OtherUsers);
   if (creator) {
@@ -137,7 +139,7 @@ console.log(creator.id);
 
   return (
     <div>
-      {user && !user._id ? (
+      {!user && !user._id ? (
         navigate("/login")
       ) : (
         <div>
