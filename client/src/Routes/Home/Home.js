@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styles from './Home.module.css';
 import NavBar from '../NavBar/NavBar';
 import EventHome from './EventHome';
-import { getUser, getAllEvents, postEvent, getNearEvents } from '../../redux/actions';
+import { getUser, getAllEvents, getNearEvents } from '../../redux/actions';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import './HomeCarrusel.css';
@@ -40,8 +40,6 @@ const responsive = {
     },
 }
 
-const subcategorias = ["Maraton", "Aeromodelismo", "Futbol", "Tenis", "Handball", "Fiesta",
-    "Reunion", "Protesta", "Concierto"];
 
     
 
@@ -57,7 +55,7 @@ const Home = () => {
     const [eventosSociales, setEventosSociales] = useState([]);
 
     const [estatusPopup, setEstatusPopup] = useState(false);
-    const [nombreEvento, setNombreEvento] = useState('');
+   
 
     const [userCord, setUserCord] = useState(0)
     const[defaultDistance, setDefaultDistance ] = useState(5)
