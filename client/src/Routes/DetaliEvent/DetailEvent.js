@@ -158,21 +158,10 @@ export default function DetailEvet() {
               >
                 <Container>
                   <div>
-                    {theEvent.info.imagen ? (
-                      <img
-                        className={style.imagenDetail}
-                        src={theEvent.info.imagen}
-                        alt=""
-                      ></img>
-                    ) : (
-                      <img
-                        className={style.imagenDetail}
-                        src={
-                          "https://www.masquenegocio.com/wp-content/uploads/2018/03/evento-concierto-874x492.jpg"
-                        }
-                        alt=""
-                      ></img>
-                    )}
+                    
+                    <div  className={style.imagenDetail} style={{ backgroundImage:`url(${theEvent.info.imagen ? theEvent.info.imagen : `https://www.masquenegocio.com/wp-content/uploads/2018/03/evento-concierto-874x492.jpg` })`}}>
+                    </div>
+               
                   </div>
                   <div className={style.info_detail}>
                     <h1 className={style.nombreEvento}>{theEvent.name}</h1>
