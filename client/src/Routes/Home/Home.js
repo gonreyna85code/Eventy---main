@@ -141,7 +141,7 @@ const Home = () => {
                             : null
                         }
                 </div>
-                <div className={`cont-carrusel ${styles.cont_carrusel}`}>
+                <div className={`cont-carrusel ${styles.cont_carrusel} ${NearEvents && NearEvents.length < 4 ? `carrusel_menos_3_items` : ``}`}>
                     { NearEvents &&  NearEvents.length > 0
                     ?<AliceCarousel
                         mouseTracking

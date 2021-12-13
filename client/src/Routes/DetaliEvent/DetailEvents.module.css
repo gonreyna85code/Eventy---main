@@ -104,3 +104,13 @@
 .discus{
     margin: 0px 75px ;
 }
+
+
+.evento_expires{
+    display: block;
+    width: calc(100% - 20px);
+    padding: 15px 10px;
+    background: var(--azul);
+    color: #fff;
+    text-align: center;
+}

@@ -144,6 +144,14 @@ export default function DetailEvet() {
         <div>
           {theEvent ? (
             <div>
+              { theEvent && theEvent.expires ?(
+              
+                <div className={style.evento_expires}>
+                  <span>Este evento ya se ha realizado</span>
+                </div>
+
+              ) : null
+              }
               <div
                 className={style.fondo}
                 style={{
@@ -187,7 +195,11 @@ export default function DetailEvet() {
                       <span className={style.info}>{theEvent.date}</span>
                     </div>
                     <div>
-                      <Boton colorBtn="btn_naranja">Asistiré</Boton>
+
+                      { theEvent && !theEvent.expires ?
+                        <Boton colorBtn="btn_naranja">Asistiré</Boton>
+                        : null
+                      }
                       {user._id === theEvent.user._id ? (
                         <div>
                           <Link to={"/editar-evento/" + name}>
@@ -236,37 +248,40 @@ export default function DetailEvet() {
                   </div>
                 </Container>
               </div>
-              <div>
-                <Container>
-                  <div className={`pago ${style.cont_pagos}`}>
-                    {theEvent.event_pay === true ? (
-                      <div>
-                        <h1>Comprar entradas:</h1>
-                        <div className={style.cont_datospago}>
-                          <h3>Precio general: {theEvent.info.ticketPrice}$</h3>
-                          <div>
-                            <Input
-                              label="Cantidad de entradas"
-                              type="number"
-                              name="quantity"
-                              min={1}
-                              onChange={(e) => handleChange(e)}
-                            />
-                            <Boton
-                              colorBtn="btn_azul"
-                              onClick={(e) => handleClick(e)}
-                            >
-                              Comprar {cantidad} entrada/s
-                            </Boton>
+              {  theEvent && !theEvent.expires ?
+                <div>
+                  <Container>
+                    <div className={`pago ${style.cont_pagos}`}>
+                      {theEvent.event_pay === true ? (
+                        <div>
+                          <h1>Comprar entradas:</h1>
+                          <div className={style.cont_datospago}>
+                            <h3>Precio general: {theEvent.info.ticketPrice}$</h3>
+                            <div>
+                              <Input
+                                label="Cantidad de entradas"
+                                type="number"
+                                name="quantity"
+                                min={1}
+                                onChange={(e) => handleChange(e)}
+                              />
+                              <Boton
+                                colorBtn="btn_azul"
+                                onClick={(e) => handleClick(e)}
+                              >
+                                Comprar {cantidad} entrada/s
+                              </Boton>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ) : (
-                      <p>Este evento es GRATUITO.</p>
-                    )}
-                  </div>
-                </Container>
-              </div>
+                      ) : (
+                        <p>Este evento es GRATUITO.</p>
+                      )}
+                    </div>
+                  </Container>
+                </div>
+                : null
+              }
             </div>
           ) : (
             <Loading />
