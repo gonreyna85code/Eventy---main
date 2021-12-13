@@ -28,7 +28,12 @@
     border-radius: 30px;
     margin: 0;
 }
-
+.info_detail > div{
+    margin-bottom: 10px;
+}
+.info_detail > div:nth-child(2){
+    margin-bottom: 35px;
+}
 .nombreEvento{
     font-size:  50px;
     color: white;
@@ -106,11 +111,12 @@
 }
 
 
-.evento_expires{
+.evento_expired{
     display: block;
     width: calc(100% - 20px);
     padding: 15px 10px;
-    background: var(--azul);
-    color: #fff;
+    color: var(--azul);
     text-align: center;
+    font-weight: 600;
+    font-size: 21px;
 }

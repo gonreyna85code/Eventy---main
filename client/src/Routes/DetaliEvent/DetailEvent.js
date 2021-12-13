@@ -52,9 +52,7 @@ export default function DetailEvet() {
 
   const theEvent = Events[0];
 
-  console.log(theEvent);
-  console.log(user);
-  console.log(user.publicKey);
+ 
 
   useEffect(() => {
     if (theEvent && user) {
@@ -81,11 +79,9 @@ export default function DetailEvet() {
 
   function handleChange(e) {
     setCantidad(e.target.value);
-    console.log(cantidad);
   }
 
   function handleClick(e) {
-    console.log(preference);
     dispatch(postPreference(preference));
   }
   
@@ -108,7 +104,7 @@ export default function DetailEvet() {
         },
       });
     }
-  }, [mercadopago, PreferenceId, cantidad,]);
+  }, [mercadopago, PreferenceId, cantidad]);
 
   useEffect(() => {
     if (Object.keys(user).length !== 0 && theEvent) {
@@ -136,6 +132,8 @@ export default function DetailEvet() {
     }, 2000);
   }
 
+
+
   return (
     <div>
       {!user && !user._id ? (
@@ -144,9 +142,9 @@ export default function DetailEvet() {
         <div>
           {theEvent ? (
             <div>
-              { theEvent && theEvent.expires ?(
+              { theEvent && theEvent.expired ?(
               
-                <div className={style.evento_expires}>
+                <div className={style.evento_expired}>
                   <span>Este evento ya se ha realizado</span>
                 </div>
 
@@ -196,7 +194,7 @@ export default function DetailEvet() {
                     </div>
                     <div>
 
-                      { theEvent && !theEvent.expires ?
+                      { theEvent && !theEvent.expired ?
                         <Boton colorBtn="btn_naranja">Asistiré</Boton>
                         : null
                       }
@@ -248,7 +246,7 @@ export default function DetailEvet() {
                   </div>
                 </Container>
               </div>
-              {  theEvent && !theEvent.expires ?
+              {  theEvent && !theEvent.expired ?
                 <div>
                   <Container>
                     <div className={`pago ${style.cont_pagos}`}>
@@ -286,34 +284,36 @@ export default function DetailEvet() {
           ) : (
             <Loading />
           )}
-          <div className={style.discus}>
-            <div id="disqus_thread"></div>
-            {
-              /**
-               *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-               *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-              /*
-    var disqus_config = function () {
-    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    */
-              (function () {
-                // DON'T EDIT BELOW THIS LINE
-                var d = document,
-                  s = d.createElement("script");
-                s.src = "https://eventy.disqus.com/embed.js";
-                s.setAttribute("data-timestamp", +new Date());
-                (d.head || d.body).appendChild(s);
-              })()
-            }
-            <noscript>
-              Please enable JavaScript to view the{" "}
-              <a href="https://disqus.com/?ref_noscript">
-                comments powered by Disqus.
-              </a>
-            </noscript>
-          </div>
+          {  theEvent && !theEvent.expired ? (
+            <div className={style.discus}>
+              <div id="disqus_thread"></div>
+              {
+                /**
+                *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+                (function () {
+                  // DON'T EDIT BELOW THIS LINE
+                  var d = document,
+                    s = d.createElement("script");
+                  s.src = "https://eventy.disqus.com/embed.js";
+                  s.setAttribute("data-timestamp", +new Date());
+                  (d.head || d.body).appendChild(s);
+                })()
+              }
+              <noscript>
+                Please enable JavaScript to view the{" "}
+                <a href="https://disqus.com/?ref_noscript">
+                  comments powered by Disqus.
+                </a>
+              </noscript>
+            </div>
+          ) : null }
           <div className={style.home}>
             <Link to="/">
               <Boton colorBtn="btn_azul">Volver al Home</Boton>
