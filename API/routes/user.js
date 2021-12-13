@@ -26,7 +26,11 @@ router.get("/user", isAuthenticated, async (req, res) => {
         res.send(doc);
         console.log(doc);
       }
-    }).populate('follows').populate('events');
+    }).populate({
+      path:     'follows',			
+      populate: { path:  'user',
+            model: 'user' }
+      }).populate('events');
   } else {
     res.send("Usuario no logueado");
   }

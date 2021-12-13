@@ -228,8 +228,9 @@ router.get(
   isAuthenticated,
   async (req, res) => {
     var response = await Event.find({ category: "social" }).populate("user");
+    console.log(response);
     response.length > 0
-      ? res.status(200).send(response)
+      ? res.status(200).send(response) 
       : res.status(404).send("No hay eventos");
   }
 );
@@ -249,7 +250,8 @@ router.get(
   "/allEvents",
   isAuthenticated,
   async (req, res) => {
-    var response = await Event.find().populate("user"); ;
+    var response = await Event.find().populate("user"); 
+    console.log(response);
     response.length > 0
       ? res.status(200).send(response)
       : res.status(404).send("No hay Eventos");
