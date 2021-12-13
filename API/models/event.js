@@ -9,7 +9,7 @@ const event = new mongoose.Schema({
   event_pay: Boolean,
   date: String,
   expired: Boolean,
-  user: { type: Schema.Types.ObjectId, ref: "User" },
+  user: { type: Schema.Types.String, ref: "User" },
   info: Object,
 });
 
