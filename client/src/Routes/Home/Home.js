@@ -163,7 +163,7 @@ const Home = () => {
                         disableButtonsControls={false}
                         disableDotsControls={true}
                     />
-                    :<div className ={styles.errorMessage}>No hay Eventos Cercanos {distance? distance:defaultDistance} Km a tu alrededor </div>
+                    :<div className ={styles.errorMessage}>No hay Eventos En {distance? distance:defaultDistance} Km a tu alrededor </div>
                     
                 
                 }
