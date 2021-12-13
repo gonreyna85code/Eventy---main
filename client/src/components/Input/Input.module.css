@@ -17,4 +17,5 @@
     padding: 2px 7px;
     border-radius: 3px;
     width: calc( 100% - 17px );
+    display: block;
 }
