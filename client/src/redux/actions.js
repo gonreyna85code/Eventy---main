@@ -421,11 +421,12 @@ export function allUnsuscription(username){
 }
 
 export function findUser(id){
+  console.log(id._id)
   return function (dispatch){
     axios({
       method:"GET",
       withCredentials: true,
-      url:  development ? local + 'other-user/' + id : heroku + 'other-user/' + id,
+      url:  development ? local + 'other-user/' + id._id : heroku + 'other-user/' + id._id,
     })
     .then(resultado => dispatch({type: FIND_USER, payload:resultado.data}))
     .catch(err => alert(err))

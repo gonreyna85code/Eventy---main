@@ -17,10 +17,8 @@ router.get("/user", isAuthenticated, async (req, res) => {
     User.findOne({ _id: req.user._id }, async (err, doc) => {
       if (err) throw err;
       if (!doc) res.send("User Not Found");
-      if (doc) {
-        
-        res.send(doc);
-        console.log(doc);
+      if (doc) {        
+        res.send(doc);  
       }
     }).populate({
       path:     'follows',			
@@ -88,6 +86,7 @@ router.delete("/subscriptions/all", isAuthenticated, (req,res,next) =>{
 });
 
 router.get("/other-user/:id", isAuthenticated, (req,res,next)=>{
+  console.log(req.params.id);
   User.findOne({_id:req.params.id}, async (err,doc) => {
     if (err) throw err;
     if (!doc) res.send("User Not found");
