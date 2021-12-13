@@ -1,4 +1,4 @@
-const morgan = require('morgan');
+require("dotenv").config();
 const mongoose = require("mongoose");
 const express = require("express");
 var session = require("express-session");
@@ -7,20 +7,20 @@ const MongoStore = require("connect-mongo");
 const passport = require("passport");
 const passportLocal = require("passport-local").Strategy;
 const bodyParser = require("body-parser");
-const auth = require("./routes/auth");
 const user = require("./routes/user");
+const auth = require("./routes/auth");
 const event = require("./routes/event");
 const cors = require("cors");
 const app = express();
 
 app.name = "API";
 
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(cors({ origin: "https://eventy-main.vercel.app", credentials: true }));
 
 app.set("trust proxy", 1);
 
 app.get("/", (req, res, next) => {
-  headers["Access-Control-Allow-Origin"] = "http://localhost:3000";
+  headers["Access-Control-Allow-Origin"] = "https://eventy-main.vercel.app";
   headers["Access-Control-Allow-Headers"] =
     "Content-Type, Content-Length, Authorization, Accept, X-Requested-With";
   headers["Access-Contrl-Allow-Methods"] = "PUT, POST, GET, DELETE, OPTIONS";
@@ -33,7 +33,7 @@ app.get("/", (req, res, next) => {
 });
 
 mongoose.connect(
-  'mongodb+srv://gonreyna85:gonreyna85@cluster0.bubyh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+  process.env.MONGO,
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => {
     console.log("Mongoose Is Connected");
@@ -44,7 +44,6 @@ mongoose.set("useCreateIndex", true);
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(cookieParser());
-app.use(morgan("dev"));
 
 app.use(
   session({
@@ -53,12 +52,12 @@ app.use(
     path: "/",
     proxy: true,
     saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: 'mongodb+srv://gonreyna85:gonreyna85@cluster0.bubyh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority' }),
+    store: MongoStore.create({ mongoUrl: process.env.MONGO }),
     cookie: {
-      //httpOnly: true,
-      //sameSite: 'none',
-      //secure: true,
-      //maxAge: 60 * 60 * 1000 * 24 * 365,
+      
+      sameSite: 'none',
+      secure: true,
+      maxAge: 60 * 60 * 1000 * 24 * 365,
     },
   })
 );
@@ -71,7 +70,6 @@ app.use("/", auth);
 app.use("/", user);
 app.use("/", event);
 
-
 app.use((err, req, res, next) => {
   const status = err.status || 500;
   const message = err.message || err;
@@ -79,6 +77,6 @@ app.use((err, req, res, next) => {
   res.status(status).send(message);
 });
 
-app.listen(4000, () => {
-  console.log("Server Has Started on port " + 4000);
+app.listen(process.env.PORT, () => {
+  console.log("Server Has Started on port " + process.env.PORT);
 });

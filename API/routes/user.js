@@ -5,18 +5,16 @@ const Event = require("../models/event");
 
 const router = Router();
 
+
 const isAuthenticated = function (req, res, next) {
   if (req.isAuthenticated())
     return next();
   res.sendStatus(401);
 }
 
-
-
-router.get("/user", async (req, res) => {
-  const near = await Event.find({ location: req.user?.profile?.city?.cityName });
+router.get("/user", isAuthenticated, async (req, res) => {
+  const near = await Event.find({ location: req.user.profile?.city?.cityName });
   const follows = await Event.find({ user: req.user.follows });
-  console.log(req.user)
   if (req.user) {
     User.findOne({ _id: req.user._id }, async (err, doc) => {
       if (err) throw err;
@@ -26,6 +24,7 @@ router.get("/user", async (req, res) => {
         doc.follows = follows;
         doc.save();
         res.send(doc);
+        console.log(doc);
       }
     }).populate('follows').populate('events');
   } else {
@@ -33,7 +32,7 @@ router.get("/user", async (req, res) => {
   }
 });
 
-router.put("/user_update", (req, res, next) => {
+router.put("/user_update", isAuthenticated, (req, res, next) => {
   User.findOne({ username: req.body.username }, async (err, doc) => {
     if (err) throw err;
     if (!doc) res.send("User Not Found");
@@ -47,7 +46,7 @@ router.put("/user_update", (req, res, next) => {
   });
 });
 
-router.post("/subscriptions", (req,res,next) => {
+router.post("/subscriptions", isAuthenticated, (req,res,next) => {
   User.findOne({username:req.body.username}, async (err,doc) => {
     if (err) throw err;
     if (!doc) res.send("User Not found");
@@ -61,7 +60,7 @@ router.post("/subscriptions", (req,res,next) => {
   });
 });
 
-router.delete("/subscriptions", (req,res,next) =>{
+router.delete("/subscriptions", isAuthenticated, (req,res,next) =>{
   User.findOne({username:req.body.username}, async (err,doc) => {
     if (err) throw err;
     if (!doc) res.send("User Not found");
@@ -75,7 +74,7 @@ router.delete("/subscriptions", (req,res,next) =>{
   });
 });
 
-router.delete("/subscriptions/all", (req,res,next) =>{
+router.delete("/subscriptions/all", isAuthenticated, (req,res,next) =>{
   User.findOne({username:req.body.username}, async (err,doc) => {
     if (err) throw err;
     if (!doc) res.send("User Not found");
@@ -89,7 +88,7 @@ router.delete("/subscriptions/all", (req,res,next) =>{
   });
 });
 
-router.get("/other-user/:id", (req,res,next)=>{
+router.get("/other-user/:id", isAuthenticated, (req,res,next)=>{
   User.findOne({_id:req.params.id}, async (err,doc) => {
     if (err) throw err;
     if (!doc) res.send("User Not found");
@@ -100,7 +99,7 @@ router.get("/other-user/:id", (req,res,next)=>{
   });
 });
 
-router.post("/follows", (req,res,next) => {
+router.post("/follows", isAuthenticated, (req,res,next) => {
   User.findOne({username:req.body.username}, async (err,doc) => {
     if (err) throw err;
     if (!doc) res.send("User Not found");
@@ -114,7 +113,7 @@ router.post("/follows", (req,res,next) => {
   });
 });
 
-router.delete("/follows", (req,res,next) =>{
+router.delete("/follows", isAuthenticated, (req,res,next) =>{
   User.findOne({username:req.body.username}, async (err,doc) => {
     if (err) throw err;
     if (!doc) res.send("User Not found");
@@ -130,3 +129,5 @@ router.delete("/follows", (req,res,next) =>{
 });
 
 module.exports = router;
+
+

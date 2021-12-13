@@ -7,8 +7,8 @@ const event = new mongoose.Schema({
   category: { type: Schema.Types.String, ref: "User" },
   subcategory: { type: Schema.Types.String, ref: "User" },
   event_pay: Boolean,
-  expired: Boolean,
   date: String,
+  expired: Boolean,
   user: { type: Schema.Types.ObjectId, ref: "User" },
   info: Object,
 });
