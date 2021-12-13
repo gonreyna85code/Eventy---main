@@ -15,6 +15,7 @@ import CardEvent from '../../components/CardEvent/CardEvent';
 import PopUp from '../../components/PopUp/PopUp';
 import CrearEventoHome from './CrearEventoHome';
 import Map from '../../components/Maps/Map';
+import CardHome from './CardHome'
 
 
 const responsivePrincipal = {
@@ -100,6 +101,8 @@ const Home = () => {
         setEstatusPopup(true)
     }
 
+    console.log({follows: user.follows})
+
     return(
         <div className={styles.cont_home}>
             <NavBar/>
@@ -120,6 +123,18 @@ const Home = () => {
 
                         </select> 
                         km de tu ubicación</p>
+
+                        { NearEvents.length > 0 && (
+                                <Boton
+                                    onClick={()=>{
+                                        setMapPopup(true)
+                                    }}
+                                    colorBtn='btn_azul'
+                                >
+                                Ver Mapa
+                                </Boton>)
+                        
+                        }
                 </div>
                 <div className={`cont-carrusel ${styles.cont_carrusel}`}>
                     {NearEvents.length>0
@@ -151,21 +166,8 @@ const Home = () => {
                     
                 
                 }
-                {NearEvents.length>0
-                ?
-                    <Boton onClick={()=>{
-                        setMapPopup(true)
-                    }}
-                    colorBtn='btn_azul'
-                    >
-
-                        ver mapa con eventos cercanos
-                    </Boton>
-              
-
-                :null
-                }
-                <div className={styles.MapPopup}>
+                
+                
                     <PopUp
                     estatus={mapPopup}
                     title='Eventos Cercanos'
@@ -173,14 +175,16 @@ const Home = () => {
                         setMapPopup(false)
                     }}
                     >
-                        <Map
-                        coords={userCord}
-                        type='nearEvents'
-                        NearEvents= {NearEvents}
-                        />
+                        <div className={styles.MapPopup}>
+                            <Map
+                            coords={userCord}
+                            type='nearEvents'
+                            NearEvents= {NearEvents}
+                            />
+                        </div>
                     </PopUp>
 
-                </div>
+                
 
                 </div>
             </div>
@@ -200,7 +204,37 @@ const Home = () => {
                     </div>
                 </Container>
             </div>
-            <div className={`${styles.cat_sociales} ${styles.cont_categoria_home}`}>
+            <div className={styles.cont_general}>
+                <Container>
+                    <div className={styles.cont_listado_eventos}>
+                            
+                        {
+                            
+                            user && user.follows.length > 0 ? user.follows.map( evento => {
+                                
+                                return ( <CardHome
+                                    name={evento.name}
+                                    location={evento.location.cityName}
+                                    date={evento.date}
+                                    img={evento.info.imagen}
+                                    id={evento._id}
+                                    tipoEvento={evento.event_pay}
+                                    categoria={evento.category}
+                                />)
+
+
+                            })
+
+                            : null
+                        }
+
+                    </div>
+                    <div className={styles.cont_rigth}>
+                        <h3>Listado de Categorías</h3>
+                    </div>
+                </Container>
+            </div>
+            {/* <div className={`${styles.cat_sociales} ${styles.cont_categoria_home}`}>
                 <div className={styles.cont_info_categoria_home}>
                     <h2>Sociales</h2>
                     <Link to = '/social'>
@@ -322,7 +356,7 @@ const Home = () => {
                         />
                     </div>
                 </Container>
-            </div>
+            </div> */}
         </div>
     );
 }

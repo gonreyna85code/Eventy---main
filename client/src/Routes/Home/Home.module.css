@@ -264,12 +264,23 @@
     height: 500px;
     text-shadow: 1px 1px 4px #333333a8;
 }
-.MapPopup{
+.MapPopup > div > div{
     width: 50vw;
 }
-.popusaso{
-    background-color: red;
+.cont_general{
+    background: #f0f2f5;
 }
+.cont_general > div{
+    display: flex;
+}
+.cont_listado_eventos{
+    width: 80%;
+    padding: 20px 50px 20px 0;
+}  
+.cont_rigth{
+    width: 20%;
+}
+
 @media(max-width:768px){
 
     .cat_sociales{

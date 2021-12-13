@@ -1,0 +1,85 @@
+.contenedor{
+    border: 1px solid #ddd;
+    margin: 10px;
+    background: #fff;
+    padding-block: 10px;
+    border-radius: 10px;
+}
+
+.img_user{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.cont_img{
+    width: 100%;
+    height: 300px;
+    background-position: center;
+    background-size: cover;
+}
+.cont_info{
+    padding: 10px;
+    text-align: left;
+    line-height: 1.5;
+}
+
+.info_user{
+    padding-inline: 10px;
+    display: flex;
+}
+
+.cont_info_user{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 15px;
+
+}
+
+.cont_info svg{
+    color: var(--azul)
+}
+.name_user {
+    font-weight: 600;
+    margin-bottom: 7px;
+    font-size: 16px;
+    text-align: left;
+}
+
+.name_evento{
+    margin: 0;
+    text-align: left;
+    line-height: 1;
+    font-size: 23px;
+    color: var(--azul);
+}
+.cont_info_user a:hover h3{
+    color: var(--naranja)
+}
+.acciones{
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+    border-top: 1px solid #ddd;
+    padding-block: 15px 5px;
+}
+.acciones > div{
+    padding-inline: 10px;
+    color: var(--grismedio);
+}
+
+.acciones > div svg{
+    margin-right: 5px;
+    color: var(--grismedio);
+}
+
+.acciones > div a{
+    color: var(--grismedio)
+}
+.acciones > div :is( a:hover, a:hover svg){
+    color: var(--naranja)
+}
