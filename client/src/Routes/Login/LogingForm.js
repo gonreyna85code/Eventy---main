@@ -75,7 +75,7 @@ export default function Loginform() {
             </Boton>
           </div>
           <div>              
-              <form action="https://gonzalo-eventy3.herokuapp.com/auth/google" method="GET">
+              <form action="https://api-eventy.herokuapp.com/auth/google" method="GET">
                 <Boton colorBtn="btn_azul" type="submit"> GOOGLE LOGIN </Boton>
               </form>
               <br/>

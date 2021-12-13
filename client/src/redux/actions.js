@@ -36,7 +36,7 @@ axios.defaults.withCrendentails = true;
 axios.defaults.Credentials = "includes";
 
 const local = "http://localhost:4000/"
-const heroku = "https://gonzalo-eventy3.herokuapp.com/"
+const heroku = "https://api-eventy.herokuapp.com/"
 
 
 
@@ -448,6 +448,7 @@ export function follow(username,data){
 }
 
 export function unfollow(username,data){
+  console.log(data)
   return function (dispatch){
     axios({
       method:"DELETE",
