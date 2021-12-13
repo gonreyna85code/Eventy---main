@@ -1,4 +1,4 @@
-const User = require("../../eventy-back/models/user");
+const User = require("./models/user");
 const bcrypt = require("bcryptjs");
 const localStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
