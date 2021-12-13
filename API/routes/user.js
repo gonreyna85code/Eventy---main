@@ -8,9 +8,27 @@ const router = Router();
 
 const isAuthenticated = function (req, res, next) {
   if (req.isAuthenticated())
-    return next();
+  return next();
   res.sendStatus(401);
 }
+router.get('/validateUser',async(req,res)=>{
+  console.log(req.query.username);
+  let user = req.query.username
+  let users =[]
+  await User.find((err,doc)=>{
+    doc.map(elem=>{
+      users.push(elem.username)
+    })
+  })
+  console.log(users);
+  let existente = false
+  users.forEach(elem=>{
+    if (elem=== user) {
+      existente = true
+    }
+  })
+  res.send(existente)
+})
 
 router.get("/user", isAuthenticated, async (req, res) => {
   if (req.user) {
@@ -96,7 +114,6 @@ router.get("/other-user/:id", isAuthenticated, (req,res,next)=>{
     }
   });
 });
-
 router.post("/follows", isAuthenticated, (req,res,next) => {
   User.findOne({username:req.body.username}, async (err,doc) => {
     if (err) throw err;
