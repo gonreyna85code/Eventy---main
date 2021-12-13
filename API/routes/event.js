@@ -64,7 +64,7 @@ router.get("/event/:name", isAuthenticated, async (req, res) => {
 router.get("/eventosCercanos", isAuthenticated, async (req, res) => {
   distance.key("AIzaSyCf8E0lXmJWdgTw6vgsHOcslcUZ4oidnE0");
   var origin = [`${req.query.lat},${req.query.lng}`];
-  console.log(origin);
+  // console.log(origin);
   var eventos = await Event.find().populate("user");
   var destinosCoords = eventos.map((event) => {
     return `${event.location.cityCords.lat}, ${event.location.cityCords.lng}`;
@@ -77,7 +77,8 @@ router.get("/eventosCercanos", isAuthenticated, async (req, res) => {
       }
       let distancias = distances.rows[0].elements;
       let filtrado = distancias.map((dist) => {
-        if (dist.distance.value <= 50000) {
+        console.log(req.query.distance)
+        if (dist.distance.value <= req.query.distance) {
           return distancias.indexOf(dist);
         }
       });
@@ -95,7 +96,7 @@ router.get("/eventosCercanos", isAuthenticated, async (req, res) => {
           return event;
         }
       });
-      console.log(eventsSend);
+      // console.log(eventsSend);
       res.send(eventsSend);
     });
   } else {

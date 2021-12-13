@@ -107,7 +107,7 @@ const Home = () => {
     return(
         <div className={styles.cont_home}>
             <NavBar/>
-           
+            {console.log(NearEvents)}
             <div className={styles.cont_principal}>
                 <div className={styles.cont_info_principal}>
                     <h1 className={styles.titulo}>Eventos Cercanos</h1>
