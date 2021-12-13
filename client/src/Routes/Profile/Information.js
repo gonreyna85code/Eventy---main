@@ -7,7 +7,7 @@ export default function Information({user,handleClick}){
             <h3 className={styles.title}>Información</h3>
 
             <span> <b>User:</b> {user.username} </span>
-            <span> <b>Ciudad:</b> {user.profile?.city.cityName} </span>
+            <span> <b>Ciudad:</b> {user.profile?.city} </span>
             <span> <b>Edad:</b> {user.profile?.age} </span>
             <span> <b>Género:</b> {user.profile?.gender?user.profile?.gender:''}</span>
             <h3 className={styles.title}>Suscripciones</h3>

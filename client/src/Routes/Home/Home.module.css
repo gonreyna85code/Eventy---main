@@ -178,11 +178,6 @@
         width: 500px;
     }
 }
-@media(max-width:767px){
-    .cont_form_crear_evento {
-        width: 90%;
-    }
-}
 .cont_crear_evento > div > div > div > div{
 
     padding-right: 0!important;
@@ -326,6 +321,12 @@
     }
     .cont_home :is(h1, h2){
         font-size: 60px;
+    }
+    .cont_crear_evento h2{
+        font-size: 45px;
+    }
+    .cont_crear_evento{
+        padding-block: 80px 100px;
     }
 
 }

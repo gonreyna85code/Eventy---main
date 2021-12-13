@@ -7,6 +7,7 @@ import Novedades from './Novedades';
 import { getUser } from '../../redux/actions.js';
 import Warning from '../../components/Warning.js/Warning';
 import Loading from '../../components/Loading/Loading';
+import Container from '../../components/Container/Container';
 
 
 export default function Profile(){
@@ -35,10 +36,12 @@ export default function Profile(){
             { user && user.hasOwnProperty('profile') ?
                 <div className={styles.profile}>
                     <Initial user={user} />
-                    <section id={styles.section2}>
-                        <Information user={user} handleClick={handleClick}/>
-                        <Novedades user={user} params={params} />
-                    </section>
+                    <Container>
+                        <section id={styles.section2}>
+                            <Information user={user} handleClick={handleClick}/>
+                            <Novedades user={user} params={params} />
+                        </section>
+                    </Container>
                 </div>
                 : <Loading/>
             }

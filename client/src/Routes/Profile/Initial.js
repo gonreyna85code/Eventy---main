@@ -1,10 +1,10 @@
 import React from 'react';
-import portada from '../../portadadefault.png';
 import photo from '../../photodefault.png';
 import styles from './Profile.module.css';
 import Boton from '../../components/Boton/Boton';
 import { useLocation, useNavigate } from 'react-router';
 import Seguir from '../../components/Seguir/Seguir';
+
 
 export default function Initial({user,other}){
     const history=useNavigate();
@@ -19,10 +19,14 @@ export default function Initial({user,other}){
         }
     }
 
+    const portada = 'https://images.pexels.com/photos/361499/pexels-photo-361499.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';
+
     if(other){
         return (
             <div className={styles.initial}>
-                <img src={user.profile?.portada?user.profile?.portada:portada} alt='portada' id={styles.portada}/><br/>
+                <div className={styles.cont_img_profile} style={{backgroundImage:`url(${user && user.profile?.portada?user.profile?.portada:portada}})`}}>
+                </div>
+              
                 <section id={styles.section1}>
                     <img src={user.profile?.photo?user.profile?.photo:photo} id={styles.photop} alt='photop' />
                     <section id={styles.name}>
@@ -36,15 +40,16 @@ export default function Initial({user,other}){
 
     return (
         <div className={styles.initial}>
-            <img src={user.profile?.portada?user.profile?.portada:portada} alt='portada' id={styles.portada}/><br/>
+            <div className={styles.cont_img_profile} style={{backgroundImage:`url(${user.profile?.portada?user.profile?.portada:portada}})`}}>
+            </div>
             <section id={styles.section1}>
                 <img src={user.profile?.photo?user.profile?.photo:photo} id={styles.photop} alt='photop' />
                 <section id={styles.name}>
                     <h1 className={styles.fullname}>{`${user.profile?.name} ${user.profile?.surname}`}</h1>
-                    
+                    <Boton colorBtn='btn_azul' children={toRoute} onClick={handleClick}  />
                 </section>
                 <section id={styles.setting} >
-                    <Boton colorBtn='btn_azul' children={toRoute} onClick={handleClick}  />
+                    
                 </section>
             </section>
         </div>

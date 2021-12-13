@@ -1,26 +1,39 @@
-.cont-carrusel .alice-carousel__stage-item{
-    height: 350px;
-    vertical-align: bottom;
-    transition: var(--transition);
-    width: calc( 100% / 3 )!important;
-}
-.cont-carrusel .alice-carousel__stage-item.__active.__target + li{
-    height: 450px;
-    margin-bottom: -50px;
-    overflow: visible;
-    position:relative;
-    z-index: 5;
+@media(min-width: 768px){
+    .cont-carrusel .alice-carousel__stage-item{
+        height: 350px;
+        vertical-align: bottom;
+        transition: var(--transition);
+        width: calc( 100% / 3 )!important;
+    }
+
+    .cont-carrusel .alice-carousel__stage-item.__active.__target + li{
+        height: 450px;
+        margin-bottom: -50px;
+        overflow: visible;
+        position:relative;
+        z-index: 5;
+    }
+    .cont-carrusel .alice-carousel__stage-item.__active.__target + li .cont-eventHome .cont-infoEventoHome h3{
+        font-size: 25px;
+    }
+    .cont-carrusel .alice-carousel__stage-item.__active.__target + li .cont-eventHome .cont-infoEventoHome ul li{
+        font-size: 17px;
+    }
+
+    .cont-carrusel .alice-carousel__stage-item.__active.__target + li .cont-eventHome{
+        width: 550px;
+        margin-left: -16.6666667%;
+        box-shadow: 0 0 10px rgba(1,56,95,0.8);
+    }
+    .cont-carrusel .alice-carousel__stage-item.__active.__target + li .cont-eventHome:hover{
+        box-shadow: 0 0 20px rgba(1,56,95,0.9);
+        transition: var(--transition);
+    }
+    .cont-carrusel .alice-carousel__stage-item.__active.__target + li .cont-eventHome .cont-infoEventoHome{
+        background:linear-gradient(0deg, rgba(1,56,95,1) 2%, rgba(1,56,95,0.9) 10%, rgba(1,56,95,0) 100%);
+    }
 }
 
-.cont-carrusel .alice-carousel__stage-item.__active.__target + li .cont-eventHome{
-    width: 550px;
-    margin-left: -16.6666667%;
-    box-shadow: 0 0 10px rgba(1,56,95,0.8);
-}
-.cont-carrusel .alice-carousel__stage-item.__active.__target + li .cont-eventHome:hover{
-    box-shadow: 0 0 20px rgba(1,56,95,0.9);
-    transition: var(--transition);
-}
 .cont-carrusel .cont-eventHome{
     height: 100%;
     background-size: cover;
@@ -32,9 +45,7 @@
     overflow-y: visible;
     height: 550px;
 }
-.cont-carrusel .alice-carousel__stage-item.__active.__target + li .cont-eventHome .cont-infoEventoHome{
-    background:linear-gradient(0deg, rgba(1,56,95,1) 2%, rgba(1,56,95,0.9) 10%, rgba(1,56,95,0) 100%);
-}
+
 .cont-carrusel .cont-infoEventoHome{
     height: 100%;
     display: flex;
@@ -49,9 +60,7 @@
     color:#fff;
     text-align: left;
 }
-.cont-carrusel .alice-carousel__stage-item.__active.__target + li .cont-eventHome .cont-infoEventoHome h3{
-    font-size: 25px;
-}
+
 .cont-carrusel .cont-infoEventoHome > div h3{
     font-size: 20px;
     letter-spacing: 0.5px;
@@ -61,9 +70,7 @@
     padding: 0;
     list-style: none;
 }
-.cont-carrusel .alice-carousel__stage-item.__active.__target + li .cont-eventHome .cont-infoEventoHome ul li{
-    font-size: 17px;
-}
+
 .cont-carrusel .cont-infoEventoHome > div ul li{
     color:#fff;
     font-size: 14px;
@@ -94,10 +101,16 @@
 }
 
 @media(max-width: 768px){
+    .cont-carrusel .alice-carousel__stage-item{
+        height: 400px;
+        vertical-align: bottom;
+        transition: var(--transition);
+        width: 100%!important;
+    }
     .cont-carrusel .alice-carousel__stage-item.__active.__target + li .cont-eventHome{
-        width: 136%;
-        margin-left: -16.6666667%;
-        box-shadow: 0 0 10px rgba(1,56,95,0.8);
+        -width: 136%;
+        margin-left: 0;
+        -box-shadow: 0 0 10px rgba(1,56,95,0.8);
     }
 }
 
