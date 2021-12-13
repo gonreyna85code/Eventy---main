@@ -54,6 +54,7 @@ export default function DetailEvet() {
 
   console.log(theEvent);
   console.log(user);
+  console.log(user.publicKey);
 
   useEffect(() => {
     if (theEvent && user) {
@@ -87,9 +88,9 @@ export default function DetailEvet() {
     console.log(preference);
     dispatch(postPreference(preference));
   }
-
+  
   const mercadopago = useMercadopago.v2(
-    theEvent && theEvent.hasOwnProperty("info") ? theEvent.info.credential : "",
+    "TEST-73717f29-d26d-4a49-aec6-3f75b4872625",
     {
       locale: "es-AR",
     }
@@ -107,7 +108,7 @@ export default function DetailEvet() {
         },
       });
     }
-  }, [mercadopago, PreferenceId, cantidad]);
+  }, [mercadopago, PreferenceId, cantidad,]);
 
   useEffect(() => {
     if (Object.keys(user).length !== 0 && theEvent) {
@@ -117,15 +118,13 @@ export default function DetailEvet() {
     }
   }, [theEvent, dispatch, user]);
 
-  console.log(theEvent?.user)
-
   var creator = useSelector((state) => state.OtherUsers);
   if (creator) {
     if (Object.keys(creator).length === 0) {
       creator = { profile: { name: "", surname: "" } };
     }
   }
-console.log(creator.id);
+
 
   function handleDelete(e) {
     e.preventDefault();
