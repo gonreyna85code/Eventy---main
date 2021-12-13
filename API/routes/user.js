@@ -35,6 +35,7 @@ router.put("/user_update", isAuthenticated, (req, res, next) => {
     if (!doc) res.send("User Not Found");
     if (doc) {
       doc.profile = req.body.profile;
+      doc.publicKey = req.body.key;
       await doc.save().then((r)=>{
         console.log(doc)
         res.send("User Updated");

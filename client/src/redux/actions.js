@@ -266,7 +266,7 @@ export function getEventosLandingPage(){
 
 }
 
-export function putUser(user){
+export function putUser(user, key){
   return function(dispatch){
     axios({
       method: "PUT",
@@ -274,7 +274,8 @@ export function putUser(user){
       url:  development ? local + 'user_update' : heroku + "user_update",
       data: {
         username:user.username,
-        profile:{...user.profile}
+        profile:{...user.profile},
+        key: key
       }
     })
     .then(resultado=>{
