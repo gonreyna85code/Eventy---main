@@ -1,28 +1,49 @@
-import React from 'react';
+import React,{ useState} from 'react';
 import  {GoogleApiWrapper, Map,Marker} from 'google-maps-react'
 import Places from './Places';
 import styles from './styles';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import EventMarker from './EventMarker.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export function MapContainer(props){  
-  const mapCenter ={
+
+export function MapContainer(props){
+  // const cityCords = useSelector(state=>state.cityCords)
+  const [showingInfoWindow, setShowingInfoWindow] = useState(false)
+  const [activeMarker, setActiveMarker]= useState({})
+  const [selectedPlace, setSelectedPlace] = useState({})
+  const [mapCenter, setMapCenter]= useState({
     lat : -34.6036844,
     lng : -58.3815591
+  })
+
+  function onMarkerClick (props, marker, e){
+    setSelectedPlace(props)
+    setActiveMarker(marker)
+    setShowingInfoWindow(true)
 
   }
 
- 
+  function onMapClicked (props) {
+    if (showingInfoWindow) {
+      setShowingInfoWindow(true)
+      setActiveMarker(null)
+    }
+    
+  }
+  
+
     return (
       <div >
         
-        { props && props.places
+        {props.places
           ?<Places
           type={props.type}
           LabelName={props.LabelName}
           />
           :null
         }
-        { props && props.coords?
+        {props.coords?
         <Map 
         containerStyle = {styles.containerStyle}
         style={styles.mapStyle}
@@ -37,13 +58,13 @@ export function MapContainer(props){
           lng: props.coords.lng
           
         }}
-        >
-          {props && props.type==='nearEvents'
+        onClick={onMapClicked}>
+          {props.type==='nearEvents'
           ? 
-          props && props.NearEvents.length>0? 
+          props.NearEvents.length>0? 
           props.NearEvents.map((e)=>{
             return(
-              <Marker 
+              <Marker onClick={onMarkerClick}
               position={{
                 lat: e.location.cityCords.lat,
                 // lat: -34.546824,
@@ -59,7 +80,7 @@ export function MapContainer(props){
 
           }):null
           :
-          <Marker 
+          <Marker onClick={onMarkerClick}
           position={{
             lat: props.coords.lat,
             lng: props.coords.lng
@@ -87,9 +108,9 @@ export function MapContainer(props){
         lng: mapCenter.lng
         
       }}
-      >
+      onClick={onMapClicked}>
         
-        <Marker 
+        <Marker onClick={onMarkerClick}
         position={{
           lat:mapCenter.lat,
           lng:mapCenter.lng
