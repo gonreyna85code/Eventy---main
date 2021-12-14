@@ -24,8 +24,13 @@ import {
   POST_FOLLOW,
   DELETE_FOLLOW,
   DELETE_EVENT,
+<<<<<<< HEAD
+  PAYED_EVENT,
+  PUT_VENTAS,
+=======
   VALIDATE_USER,
   COMPLETE_USER
+>>>>>>> cb65d4035058e7d989ee3cf7d8b059d25236ef3a
 } from "./actions.js";
 
 //========================
@@ -109,7 +114,11 @@ const initialState = {
   NearEvents:[],
   Follows: [],
   OtherUsers:[],
+<<<<<<< HEAD
+  PayedEvents:[]
+=======
   validUser: true
+>>>>>>> cb65d4035058e7d989ee3cf7d8b059d25236ef3a
 };
 
 
@@ -231,7 +240,7 @@ function rootReducer(state = initialState, action) {
 
   if(action.type === GET_ALL_CITIES){
 
-    const array = [...state.AllEvents].map( e => e.location.cityName)
+    const array = [...state.AllEvents].map( e => e.location && e.location.cityName )
     const unique = [...new Set(array)]
     return{
       ...state,
@@ -309,6 +318,19 @@ function rootReducer(state = initialState, action) {
 
   if(action.type === DELETE_EVENT){
     console.log(action.payload)
+    return{
+      ...state
+    }
+  }
+
+  if(action.type === PAYED_EVENT){
+    return {
+      ...state,
+      User: {...state.User, payedEvents:action.payload}
+    }
+  }
+
+  if(action.type === PUT_VENTAS){
     return{
       ...state
     }

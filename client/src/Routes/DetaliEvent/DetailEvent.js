@@ -55,7 +55,6 @@ export default function DetailEvet() {
 
   console.log(theEvent);
   console.log(user);
-  console.log(user.publicKey);
 
   useEffect(() => {
     if (theEvent && user) {
@@ -63,7 +62,7 @@ export default function DetailEvet() {
         ? theEvent.info.ticketPrice
         : 3;
       setPreference({
-        title: "Entradas de " + theEvent.name,
+        title: cantidad + " Entradas de " + theEvent.name,
         price: fee,
         quantity: cantidad,
         payer: {
@@ -87,7 +86,8 @@ export default function DetailEvet() {
 
   function handleClick(e) {
     console.log(preference);
-    dispatch(postPreference(preference));
+    console.log(theEvent.accesKey);
+    dispatch(postPreference(preference, theEvent.accesKey));
   }
 
   const mercadopago = useMercadopago.v2(
@@ -164,26 +164,17 @@ export default function DetailEvet() {
               <div
                 className={style.fondo}
                 style={{
-                  background: `linear-gradient(0deg, rgb(1, 56, 95) 10%, rgba(1, 56, 95, 0.9) 30%, rgba(1, 56, 95, 0.5) 100%), url(${theEvent.info.imagen})`,
+                  background: `linear-gradient(0deg, rgb(1, 56, 95) 10%, rgba(1, 56, 95, 0.9) 30%, rgba(1, 56, 95, 0.5) 100%), url(${theEvent && theEvent.info.imagen})`,
                 }}
               >
                 <Container>
                   <div>
-                    {theEvent.info.imagen ? (
-                      <img
+                    { /*no cambiar formato de imagen pls */}
+                      <div
                         className={style.imagenDetail}
-                        src={theEvent.info.imagen}
-                        alt=""
-                      ></img>
-                    ) : (
-                      <img
-                        className={style.imagenDetail}
-                        src={
-                          "https://www.masquenegocio.com/wp-content/uploads/2018/03/evento-concierto-874x492.jpg"
-                        }
-                        alt=""
-                      ></img>
-                    )}
+                        style={{backgroundImage:`url(${theEvent && theEvent.info.imagen ? theEvent.info.imagen : `https://www.masquenegocio.com/wp-content/uploads/2018/03/evento-concierto-874x492.jpg`}`}}
+                      ></div>
+                
                   </div>
                   <div className={style.info_detail}>
                     <h1 className={style.nombreEvento}>{theEvent.name}</h1>
@@ -204,7 +195,9 @@ export default function DetailEvet() {
                       <span className={style.info}>{" "+theEvent.date}</span>
                     </div>
                     <div>
-                      {theEvent && !theEvent?.expired && theEvent?.promises?.includes(!user._id) ? (
+                      <Boton colorBtn="btn_naranja">Asistiré</Boton>
+                      <Boton colorBtn="btn_naranja">Seguir Evento</Boton>
+                      {theEvent && !theEvent.expired && theEvent.promises?.includes(!user._id) ? (
                         <Boton  colorBtn="btn_naranja" onClick={(e) => handleAsistir()} >Asistiré</Boton>
                       ) : null}
                       {user._id === theEvent.user._id ? (

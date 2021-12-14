@@ -53,7 +53,8 @@ const CrearEventos = () => {
   const [description, setDescription] = useState('')
   const [event_pay, setEventPay]= useState(false)
   const [ticketPrice, setTicketPrice]=useState(0)
-  const [credential, setCredential] = useState('')
+  const [stock, setStock] = useState(0)
+ 
   
   useEffect(() => {
     dispatch(getUser());
@@ -83,14 +84,16 @@ const CrearEventos = () => {
       date,
       event_pay,
       location: EventCity,
-      name: eventName,
+      name: eventName.trim(),
       subcategory: subCategory,
       user: user?._id,
+      accesKey: user?.publicKey,
       info: {
         imagen: imgUrl,
         description,
+        stock: stock? stock : 100,
+        ventas: 0,
         ticketPrice:ticketPrice?ticketPrice:'El evento no vende entradas',
-        credential: credential,
       }
     }
     e.preventDefault()
@@ -98,10 +101,11 @@ const CrearEventos = () => {
     dispatch(changeEventCity({}));
     console.log(event);
     alert("Evento creado con exito");
-    setTimeout(function () {
+    navigate(`/detailEvent/${eventName.trim()}`)
+    /* setTimeout(function () {
       navigate("/");
       window.location.reload();
-      }, 2000);
+      }, 2000); */
   }
 
   const handleImage = async (file) => {
@@ -201,17 +205,17 @@ const CrearEventos = () => {
             {event_pay === true ? (
               <div>
                 <Input
-                  label="Precio de las entradas"
-                  type="text"
+                  label="Precio de las entradas en ARS"
+                  type="number"
                   name="fee"
                   onChange={(e) => setTicketPrice(e.target.value)}
                 />
-               <Input
-                 label="Public Key"
-                 type="text"
-                 name="credential"
-                 onChange={(e) => setCredential(e.target.value)}
-               />
+                <Input
+                  label="Cantidad de entradas disponibles"
+                  type="number"
+                  name="stock"
+                  onChange={(e) => setStock(e.target.value)}
+                />
              </div>
               
             ) : (

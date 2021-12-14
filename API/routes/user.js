@@ -196,6 +196,25 @@ router.post("/present", isAuthenticated, (req, res, next) => {
   });
 });
 
+<<<<<<< HEAD
+router.post("/payedEvent", (req,res,next) => {
+  console.log(req.body.data)
+  User.findOne({username:req.body.username}, async (err,doc) => {
+    if (err) throw err;
+    if (!doc) res.send("User Not found");
+    if (doc) {
+      doc.payedEvents.push(req.body.data);
+      await doc.save().then((r)=>{
+        console.log(doc)
+        res.send({Successfull:"Event payed",data:r.follows});
+      })
+    }
+  });
+});
+
+module.exports = router;
+
+=======
 router.delete("/follows", isAuthenticated, (req, res, next) => {
   User.findOne({ username: req.body.username }, async (err, doc) => {
     if (err) throw err;
@@ -210,5 +229,6 @@ router.delete("/follows", isAuthenticated, (req, res, next) => {
     }
   });
 });
+>>>>>>> cb65d4035058e7d989ee3cf7d8b059d25236ef3a
 
 module.exports = router;

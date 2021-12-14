@@ -30,6 +30,8 @@ export const POST_SUBSCRIPTION = 'POST_SUBSCRIPTION'
 export const DELETE_EVENT = 'DELETE_EVENT' //Eliminar evento.
 export const RESET = 'RESET'
 export const FORGOT = 'FORGOT'
+export const PAYED_EVENT = 'PAYED_EVENT'
+export const PUT_VENTAS = 'PUT_VENTAS'
 export const VALIDATE_USER = 'VALIDATE_USER'
 export const COMPLETE_USER = 'COMPLETE_USER'
 export const POST_PRESENT = 'POST_PRESENT'
@@ -62,6 +64,7 @@ export function registerUser(register) {
           data: {
             username: register.username,
             password: register.password,
+            publicKey: register.publicKey,
             profile: register.profile,
           },
           withCredentials: true,  
@@ -215,6 +218,8 @@ export function postEvent(event) {
           location: event.location,
           info: event.info,
           event_pay: event.event_pay,
+          accesKey: event.accesKey,
+          stock: event.stock,
           date: event.date,
           user: event.user,
           category: event.category,
@@ -375,7 +380,7 @@ export function getAllCities(){
   return{ type: GET_ALL_CITIES, payload: ''}
 }
 
-export function postPreference(preference){
+export function postPreference(preference, accesKey){
   return function (dispatch){
     axios({
       method: "POST",
@@ -383,7 +388,8 @@ export function postPreference(preference){
       data: {
         title: preference.title,
         price: preference.price,
-        quantity: preference.quantity
+        quantity: preference.quantity,
+        accesKey: accesKey,
       },
       url:  development ? local + 'create_preference' : heroku + "create_preference",
     })
@@ -402,6 +408,22 @@ export function putEvent(edit, id){
     })
     .then(resultado => dispatch({type: PUT_EVENT, payload: resultado.data}))
     .catch(err => err)
+  }
+}
+
+export function putVentas(name, ventas){
+  return function (dispatch){
+    axios({
+      method:"PUT",
+      withCredentials: true,
+      data: {
+        name,
+        ventas,
+      },
+      url:  development ? local + 'ventas' : heroku + 'ventas',
+    })
+    .then(resultado => dispatch({type: PUT_VENTAS, payload: resultado.data}))
+    .catch(err => alert(err))
   }
 }
 
@@ -523,5 +545,23 @@ export function deleteEvent(name){
     })
     .then(resultado => dispatch({type: DELETE_EVENT, payload: resultado.data}))
     .catch(err => err)
+  }
+}
+
+export function payedEvent(username,data){
+  console.log(username);
+  console.log(data);
+  return function (dispatch){
+    axios({
+      method:"POST",
+      withCredentials: true,
+      url:  development ? local + 'payedEvent' : heroku + 'payedEvent',
+      data:{
+        username: username,
+        data: data
+      }
+    })
+    .then(resultado => dispatch({type: PAYED_EVENT, payload:resultado.data.data}))
+    .catch(err => alert(err))
   }
 }
