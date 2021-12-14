@@ -204,7 +204,7 @@ export default function DetailEvet() {
                       <span className={style.info}>{" "+theEvent.date}</span>
                     </div>
                     <div>
-                      {theEvent && !theEvent.expired && theEvent.promises?.includes(!user._id) ? (
+                      {theEvent && !theEvent?.expired && theEvent?.promises?.includes(!user._id) ? (
                         <Boton  colorBtn="btn_naranja" onClick={(e) => handleAsistir()} >Asistiré</Boton>
                       ) : null}
                       {user._id === theEvent.user._id ? (
