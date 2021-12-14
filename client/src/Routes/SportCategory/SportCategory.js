@@ -10,6 +10,7 @@ import Boton from "../../components/Boton/Boton";
 export default function SportCategory(){
     const dispatch = useDispatch();
     const navigate = useNavigate()
+    const user = useSelector(state=> state.User)
     useEffect(()=>{
         dispatch(findEventByCategory('sports'));
     },[dispatch]);

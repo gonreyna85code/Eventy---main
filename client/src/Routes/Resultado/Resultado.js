@@ -7,6 +7,7 @@ import Loading from '../../components/Loading/Loading'
 export default function Resultado(){
     const resultado = useSelector(state => state.SearchResult)
     const navigate = useNavigate()
+    const user = useSelector(state=> state.User)
     return (
         <div>
             {user&& user.password==='' ? navigate('/completarPerfil'):null }

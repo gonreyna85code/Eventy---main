@@ -2,11 +2,13 @@ import React from "react";
 import {Link, useNavigate, useParams} from 'react-router-dom';
 import './Compra.css';
 import Boton from "../../components/Boton/Boton";
+import { useSelector } from "react-redux";
 
 export default function Compra(){
 
     const{title} = useParams();
     const navigate = useNavigate()
+    const user = useSelector(state=>state.User)
 
     return(
         <div className="contenedorCompra">

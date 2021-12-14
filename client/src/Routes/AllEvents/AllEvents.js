@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const AllEvents = () => {
-
+    const user = useSelector(state=> state.User)
     const navigate= useNavigate()
     const filtrosInicialState = {
         orden: null,
