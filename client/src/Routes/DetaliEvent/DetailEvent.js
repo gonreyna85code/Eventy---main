@@ -42,6 +42,7 @@ export default function DetailEvet() {
   const user = useSelector((state) => state.User);
   const Events = useSelector((state) => state.Event);
   const PreferenceId = useSelector((state) => state.PreferenceId);
+  
 
   useEffect(() => {
     dispatch(getEvent(name));
@@ -126,15 +127,13 @@ export default function DetailEvet() {
     }
   }
 
-  function handleAsistir() {
-    const seguidor = user?._id;
-    const seguido = theEvent?._id;
+  function handleAsistir() {    
     const data = {
-      id1: seguidor,
-      id2: seguido,
+      id1: user?._id,
+      id2: theEvent?._id,
     };
     dispatch(present(data));
-    console.log(data);
+    window.location.reload();
   }
 
   function handleDelete(e) {
@@ -146,7 +145,8 @@ export default function DetailEvet() {
       window.location.reload();
     }, 2000);
   }
-
+  const consulta = theEvent?.promises.map(e => e._id.includes(user._id))
+  
   return (
     <div>
       {user&& user.password==='' ? navigate('/completarPerfil'):null }
@@ -172,7 +172,7 @@ export default function DetailEvet() {
                     { /*no cambiar formato de imagen pls */}
                       <div
                         className={style.imagenDetail}
-                        style={{backgroundImage:`url(${theEvent && theEvent.info.imagen ? theEvent.info.imagen : `https://www.masquenegocio.com/wp-content/uploads/2018/03/evento-concierto-874x492.jpg`}`}}
+                        style={{backgroundImage:`url(${theEvent && theEvent?.info?.imagen ? theEvent?.info?.imagen : `https://www.masquenegocio.com/wp-content/uploads/2018/03/evento-concierto-874x492.jpg`}`}}
                       ></div>
                 
                   </div>
@@ -194,13 +194,12 @@ export default function DetailEvet() {
                       />
                       <span className={style.info}>{" "+theEvent.date}</span>
                     </div>
-                    <div>
-                      <Boton colorBtn="btn_naranja">Asistiré</Boton>
-                      <Boton colorBtn="btn_naranja">Seguir Evento</Boton>
-                      {theEvent && !theEvent.expired && theEvent.promises?.includes(!user._id) ? (
+                    <div>              
+                      {theEvent && !theEvent.expired && !consulta.includes(true) ? (
+                        
                         <Boton  colorBtn="btn_naranja" onClick={(e) => handleAsistir()} >Asistiré</Boton>
                       ) : null}
-                      {user._id === theEvent.user._id ? (
+                      {user?._id === theEvent?.user?._id ? (
                         <div>
                           <Link to={"/editar-evento/" + name}>
                             <Boton colorBtn="btn_naranja">Editar Evento</Boton>

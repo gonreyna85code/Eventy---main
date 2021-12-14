@@ -444,6 +444,7 @@ export function subscription(username,data){
 }
 
 export function present(data){
+  console.log('actions', data)
   return function (dispatch){
     axios({
       method:"POST",
