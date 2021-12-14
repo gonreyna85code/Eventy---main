@@ -125,8 +125,8 @@ function CompletePerfil(){
             promises,
           }
           dispatch(completeUser(userComplete))
-          // dispatch(changeUserCity({}))
-          // navigate('/')
+          dispatch(changeUserCity({}))
+          navigate('/')
           console.log(userComplete);
         }}
         > Completar Perfil </Boton>
