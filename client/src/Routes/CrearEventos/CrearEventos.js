@@ -83,7 +83,7 @@ const CrearEventos = () => {
       date,
       event_pay,
       location: EventCity,
-      name: eventName,
+      name: eventName.trim(),
       subcategory: subCategory,
       user: user?._id,
       info: {
@@ -98,10 +98,11 @@ const CrearEventos = () => {
     dispatch(changeEventCity({}));
     console.log(event);
     alert("Evento creado con exito");
-    setTimeout(function () {
+    navigate(`/detailEvent/${eventName.trim()}`)
+    /* setTimeout(function () {
       navigate("/");
       window.location.reload();
-      }, 2000);
+      }, 2000); */
   }
 
   const handleImage = async (file) => {

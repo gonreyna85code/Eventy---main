@@ -164,26 +164,17 @@ export default function DetailEvet() {
               <div
                 className={style.fondo}
                 style={{
-                  background: `linear-gradient(0deg, rgb(1, 56, 95) 10%, rgba(1, 56, 95, 0.9) 30%, rgba(1, 56, 95, 0.5) 100%), url(${theEvent.info.imagen})`,
+                  background: `linear-gradient(0deg, rgb(1, 56, 95) 10%, rgba(1, 56, 95, 0.9) 30%, rgba(1, 56, 95, 0.5) 100%), url(${theEvent && theEvent.info.imagen})`,
                 }}
               >
                 <Container>
                   <div>
-                    {theEvent.info.imagen ? (
-                      <img
+                    { /*no cambiar formato de imagen pls */}
+                      <div
                         className={style.imagenDetail}
-                        src={theEvent.info.imagen}
-                        alt=""
-                      ></img>
-                    ) : (
-                      <img
-                        className={style.imagenDetail}
-                        src={
-                          "https://www.masquenegocio.com/wp-content/uploads/2018/03/evento-concierto-874x492.jpg"
-                        }
-                        alt=""
-                      ></img>
-                    )}
+                        style={{backgroundImage:`url(${theEvent && theEvent.info.imagen ? theEvent.info.imagen : `https://www.masquenegocio.com/wp-content/uploads/2018/03/evento-concierto-874x492.jpg`}`}}
+                      ></div>
+                
                   </div>
                   <div className={style.info_detail}>
                     <h1 className={style.nombreEvento}>{theEvent.name}</h1>
