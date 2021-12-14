@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import styles from './Home.module.css';
 import NavBar from '../NavBar/NavBar';
 import EventHome from './EventHome';
@@ -59,7 +59,7 @@ const Home = () => {
 
     const [estatusPopup, setEstatusPopup] = useState(false);
    
-
+    const navigate = useNavigate()
     const [userCord, setUserCord] = useState(0)
     const [defaultDistance ] = useState(5)
     const [distance , setDistance] = useState(5)
@@ -110,6 +110,7 @@ const Home = () => {
 
     return(
         <div className={styles.cont_home}>
+            {user&& user.password==='' ? navigate('/completarPerfil'):null }
             <NavBar/>
             {console.log(NearEvents)}
             <div className={styles.cont_principal}>

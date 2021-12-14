@@ -31,6 +31,7 @@ export const DELETE_EVENT = 'DELETE_EVENT' //Eliminar evento.
 export const RESET = 'RESET'
 export const FORGOT = 'FORGOT'
 export const VALIDATE_USER = 'VALIDATE_USER'
+export const COMPLETE_USER = 'COMPLETE_USER'
 
 const development = process.env.NODE_ENV !== 'production';
 axios.defaults.withCrendentails = true;
@@ -297,6 +298,23 @@ export function putUser(user, key){
       alert("Cambios guardados")
     })
     .catch(err=>alert(err))
+  }
+}
+export function completeUser(user){
+  console.log(user);
+  return function (dispatch){
+    axios({
+      method: 'PUT',
+      withCredentials:true,
+      url: development ? local + 'userComplete':heroku+ 'userComplete',
+      data:{
+        user: user
+      }
+    }).then(resultado=>{
+      dispatch({type: COMPLETE_USER, payload:user})
+      alert('Perfil Completado')
+    })
+    .catch(err=> alert(err))
   }
 }
 

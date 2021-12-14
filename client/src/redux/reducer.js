@@ -24,7 +24,8 @@ import {
   POST_FOLLOW,
   DELETE_FOLLOW,
   DELETE_EVENT,
-  VALIDATE_USER
+  VALIDATE_USER,
+  COMPLETE_USER
 } from "./actions.js";
 
 //========================
@@ -152,6 +153,15 @@ function rootReducer(state = initialState, action) {
       ...state,
       NearbyEvents: action.payload,
     };
+  }
+  if (action.type === COMPLETE_USER) {
+    return{
+      ...state,
+      User:{
+        ...state,
+        User:action.payload
+      }
+    }
   }
   if (action.type === PUT_USER) {
     return {

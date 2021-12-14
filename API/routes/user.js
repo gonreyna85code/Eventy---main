@@ -2,7 +2,7 @@ const Router = require("express");
 const User = require("../models/user");
 const passport = require("passport");
 const Event = require("../models/event");
-
+const bcrypt = require("bcryptjs");
 const router = Router();
 
 
@@ -29,7 +29,11 @@ router.get('/validateUser',async(req,res)=>{
   })
   res.send(existente)
 })
-
+router.get('/getAllUsers' ,async  (req,res )=>{
+  User.find((err,doc)=>{
+    res.send(doc)
+  })
+})
 router.get("/user", isAuthenticated, async (req, res) => {
   if (req.user) {
     User.findOne({ _id: req.user._id }, async (err, doc) => {
@@ -46,6 +50,12 @@ router.get("/user", isAuthenticated, async (req, res) => {
     res.send("Usuario no logueado");
   }
 });
+// router.get('/deleteuser', async(req,res)=>{
+//   // User.findOne({_id: '61b7d4c0311c1e0023d32b35'},async(err,doc)=>{
+//   //   res.send(doc)
+//   // })
+//   User.deleteOne({_id:'61b7d899b9fb7d4a74e96412'}).then(()=>{res.send('Usuario eliminado')})
+// })
 
 router.put("/user_update", isAuthenticated, (req, res, next) => {
   User.findOne({ username: req.body.username }, async (err, doc) => {
@@ -61,6 +71,26 @@ router.put("/user_update", isAuthenticated, (req, res, next) => {
     }
   });
 });
+
+
+router.put('/userComplete', (req,res)=>{
+  // console.log(req.body.user.username);
+  User.findOne({username:req.body.user.username}, async (err,doc)=>{
+    // const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    if(err) throw err;
+    if(!doc) res.send('User Not Found')
+    if(doc){ 
+      console.log(doc);
+      doc = req.body.user
+      console.log(doc);
+      await doc.save().then(()=>{
+        console.log('UserComplete');
+        res.send(doc)
+
+      })
+    }
+  })
+})
 
 router.post("/subscriptions", isAuthenticated, (req,res,next) => {
   User.findOne({username:req.body.username}, async (err,doc) => {
