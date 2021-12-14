@@ -193,7 +193,7 @@ export default function DetailEvet() {
                         icon={faMapMarkerAlt}
                       />
                       <span className={style.info}>
-                        {theEvent.location.cityName}
+                        {" "+theEvent.location.cityName}
                       </span>
                     </div>
                     <div>
@@ -201,7 +201,7 @@ export default function DetailEvet() {
                         className={style.icono}
                         icon={faCalendarAlt}
                       />
-                      <span className={style.info}>{theEvent.date}</span>
+                      <span className={style.info}>{" "+theEvent.date}</span>
                     </div>
                     <div>
                       {theEvent && !theEvent.expired && theEvent.promises?.includes(!user._id) ? (
