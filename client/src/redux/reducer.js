@@ -79,7 +79,11 @@ const follows = (payload) => {
 
   }
 
-  return cleanFollows;
+  return cleanFollows.sort( (a, b) => {
+    if( a[0].date > b[0].date ) return -1
+    if( a[0].date > b[0].date ) return 1
+    return 0
+});
 
 }
 

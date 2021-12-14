@@ -9,6 +9,7 @@ const event = new mongoose.Schema({
   event_pay: Boolean,
   date: String,
   expired: Boolean,
+  promises: [{ type: Schema.Types.ObjectId, ref: "User" }],
   user: { type: Schema.Types.ObjectId, ref: "User" },
   info: Object,
 });

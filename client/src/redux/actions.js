@@ -32,6 +32,7 @@ export const RESET = 'RESET'
 export const FORGOT = 'FORGOT'
 export const VALIDATE_USER = 'VALIDATE_USER'
 export const COMPLETE_USER = 'COMPLETE_USER'
+export const POST_PRESENT = 'POST_PRESENT'
 
 const development = process.env.NODE_ENV !== 'production';
 axios.defaults.withCrendentails = true;
@@ -417,6 +418,21 @@ export function subscription(username,data){
       }
     })
     .then(resultado => dispatch({type: POST_SUBSCRIPTION, payload:resultado.data.data}))
+    .catch(err => alert(err))
+  }
+}
+
+export function present(data){
+  return function (dispatch){
+    axios({
+      method:"POST",
+      withCredentials: true,
+      url:  development ? local + 'present' : heroku + 'present',
+      data:{        
+        data,
+      }
+    })
+    .then(resultado => dispatch({type: POST_PRESENT, payload:resultado.data.data}))
     .catch(err => alert(err))
   }
 }

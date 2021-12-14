@@ -51,7 +51,7 @@ router.post("/event", isAuthenticated, function (req, res) {
 
 router.get("/event/:name", isAuthenticated, async (req, res) => {
   const { name } = req.params;
-  var response = await Event.find({ name: name }).populate("user");
+  var response = await Event.find({ name: name }).populate("user").populate("promises");
   console.log(response);
   response.length > 0
     ? res.status(200).send(response)
@@ -101,7 +101,7 @@ router.get("/eventosCercanos", isAuthenticated, async (req, res) => {
 router.get("/eventsAll/:parametro", isAuthenticated, async (req, res) => {
   var parametro = req.params.parametro.toLowerCase()
   var nombre, lugar, info;
-  var response = await Event.find().populate("user"); //Aqui se piden todos los datos de la base de datos
+  var response = await Event.find().populate("user").populate("promises"); //Aqui se piden todos los datos de la base de datos
   //Aqui se compara el paremetro de busqueda con los tres principales parametros de cada evento con el fin de encontrar lo que le cliente busca
   nombre = response.filter((evento) => {
     return evento.name.toLowerCase().includes(parametro);
@@ -216,7 +216,7 @@ router.get("/sportEvents", isAuthenticated, async (req, res) => {
 });
 
 router.get("/allEvents", isAuthenticated, async (req, res) => {
-  var response = await Event.find().populate("user");
+  var response = await Event.find().populate("user").populate("promises");
   response.length > 0
     ? res.status(200).send(response)
     : res.status(404).send("No hay Eventos");
@@ -298,7 +298,7 @@ router.put("/editarEvento/:name", isAuthenticated, (req, res) => {
             pass: "eventymailer" /* Your Password */,
           },
         });
-        User.findOne({ _id: evento.user }, (err, user) => {
+        User.findMany({ _id: evento.user }, (err, user) => {
           if (err) {
             console.log(err);
           } else {
