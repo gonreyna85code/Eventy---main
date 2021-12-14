@@ -302,7 +302,6 @@ export function putUser(user, key){
   }
 }
 export function completeUser(user){
-  console.log(user);
   return function (dispatch){
     axios({
       method: 'PUT',

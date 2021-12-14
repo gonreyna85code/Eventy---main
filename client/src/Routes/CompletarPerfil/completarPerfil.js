@@ -127,7 +127,6 @@ function CompletePerfil(){
           dispatch(completeUser(userComplete))
           dispatch(changeUserCity({}))
           navigate('/')
-          console.log(userComplete);
         }}
         > Completar Perfil </Boton>
         :null
