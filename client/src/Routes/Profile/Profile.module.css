@@ -1,131 +1,133 @@
-.profile{
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+.profile {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
-.initial{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+.initial {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
-#section1{
-   width: 100%;
+#section1 {
+  width: 100%;
 }
 
-#name{
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    bottom: auto;
-    text-align: center;
-    width: auto;
+#name {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  bottom: auto;
+  text-align: center;
+  width: auto;
 }
-.fullname{
-    font-size: 50px;
-    margin-block: 10px 0;
+.fullname {
+  font-size: 50px;
+  margin-block: 10px 0;
 }
-#photop{
-    position: relative;
-    width: 200px;
-    height: 200px;
-    display: block;
-    margin-inline: auto;
-    margin-top: -100px;
-    border-radius: 50%;
-    border: 5px solid #fff;
+#photop {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: block;
+  margin-inline: auto;
+  margin-top: -100px;
+  border-radius: 50%;
+  border: 5px solid #fff;
 }
 #portada {
-    height: 250px;
+  height: 250px;
 }
 
-#section2{
-    display: flex;
-    width: 100%;
+#section2 {
+  display: flex;
+  width: 100%;
 }
 
-.info{
-    display: flex;
+.info {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--azul);
+  width: 20%;
+  padding-top: 10px;
+  border-radius: 5px;
+  color: #fff;
+  text-align: center;
+  padding-bottom: 50px;
+  margin-bottom: 15px;
+}
+.info span {
+  margin-block: 5px;
+}
+.title {
+  text-align: center;
+}
+
+.novedades {
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  width: calc(80% - 20px);
+  padding-inline: 20px 0;
+}
+
+.novedad {
+  display: flex;
+  background-color: #ddd;
+  align-content: space-between;
+  width: calc(100% - 20px);
+  margin-bottom: 5px;
+  padding: 10px;
+  border-radius: 5px;
+}
+.p {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+.photoi {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  border: 1px;
+}
+
+#setting {
+  position: relative;
+  left: 300px;
+  bottom: 40px;
+  top: 0px;
+}
+
+.cont_img_profile {
+  background-image: url(https://images.pexels.com/photos/361499/pexels-photo-361499.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260});
+  height: 250px;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+#name > button {
+  width: 120px;
+  display: block;
+  margin: 0 auto 20px;
+  padding-block: 5px;
+}
+
+@media (max-width: 767px) {
+  #section2 {
     flex-direction: column;
-    background-color: var(--azul);
-    width: 20%;
-    padding-top: 10px;
-    border-radius: 5px;
-    color: #fff;
-    text-align: center;
-}
-.info span{
-    margin-block: 5px;
-}
-.title{
-    text-align: center;
-}
-
-.novedades{
-    display: flex;
-    flex-direction: column;
-    align-content: space-around;
-    width: calc(80% - 20px);
-    padding-inline: 20px 0;
-}
-
-.novedad{
-    display: flex;
-    background-color: #ddd;
-    align-content: space-between;
-    width: calc(100% - 20px);
-    margin-bottom: 5px;
-    padding: 10px;
-    border-radius: 5px;
-}
-.p{
-    margin-top: 16px;
-    margin-bottom: 16px;
-    cursor: pointer;
-}
-.photoi{
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
-    border: 1px;
-}
-
-#setting{
-    position: relative;
-    left: 300px;
-    bottom: 40px;
-    top: 0px;
-}
-
-.cont_img_profile{
-    background-image: url(https://images.pexels.com/photos/361499/pexels-photo-361499.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260});
-    height: 250px;
+    padding: 20px;
+    width: calc(100% - 40px);
+  }
+  .info {
     width: 100%;
-    background-size: cover;
-    background-position: center;
-}
-
-#name > button{
-    width: 120px;
-    display: block;
-    margin: 0 auto 20px;
-    padding-block: 5px;
-}
-
-@media(max-width: 767px){
-    #section2{
-        flex-direction: column;
-        padding: 20px;
-        width: calc( 100% - 40px);
-    }
-    .info{
-        width: 100%;
-        margin-bottom: 20px;
-    }
-    .novedades{
-        width: 100%;
-        padding: 0
-    }
+    margin-bottom: 20px;
+  }
+  .novedades {
+    width: 100%;
+    padding: 0;
+  }
 }
