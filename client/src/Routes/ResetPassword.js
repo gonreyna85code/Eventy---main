@@ -14,6 +14,7 @@ export default function ResetPassword() {
   console.log(id);
   return (
     <div>
+      {user&& user.password==='' ? navigate('/completarPerfil'):null }
       <h1>Ingrese su nueva contraseña.</h1>
       <div className="input">
         <Input 

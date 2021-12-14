@@ -149,6 +149,7 @@ export default function DetailEvet() {
 
   return (
     <div>
+      {user&& user.password==='' ? navigate('/completarPerfil'):null }
       {!user && !user._id ? (
         navigate("/login")
       ) : (

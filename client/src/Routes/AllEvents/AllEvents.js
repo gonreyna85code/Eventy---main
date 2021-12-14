@@ -6,11 +6,12 @@ import {getAllEvents, getByCat, getBySub, getByCity, filterByName, getAllCities}
 import CardEvent from '../../components/CardEvent/CardEvent';
 import Loading from '../../components/Loading/Loading';
 import Container from '../../components/Container/Container';
+import { useNavigate } from 'react-router-dom';
 
 
 const AllEvents = () => {
-
-
+    const user = useSelector(state=> state.User)
+    const navigate= useNavigate()
     const filtrosInicialState = {
         orden: null,
         category: 'Todas',
@@ -52,6 +53,7 @@ const AllEvents = () => {
     
     return(
         <div>
+            {user&& user.password==='' ? navigate('/completarPerfil'):null }
         {
         
             cities && cities.length > 0 ?

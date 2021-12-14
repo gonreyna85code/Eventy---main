@@ -26,9 +26,10 @@ function CompletePerfil(){
   const subscriptions= useSelector(state=>state.User.subscriptions)
   const _id= useSelector(state=>state.User._id)
   const username= useSelector(state=>state.User.username)
-  const email= useSelector(state=>state.User.email)
+  const email= useSelector(state=>state.User?.email? state.User.email : state.User.profile?.email)
   const __v= useSelector(state=>state.User.__v)
   const promises= useSelector(state=>state.User.promises)
+
 
 
 
@@ -46,7 +47,6 @@ function CompletePerfil(){
   
   return (
       <div className={styles.Container}>
-        {/* <h1>{user.username}</h1> */}
         <h1>ya casi estas listo para terminar tu registro en eventy!</h1>
         <h2>solo te faltan completar los siguientes datos de la cuenta:</h2>
         <form>
@@ -126,8 +126,7 @@ function CompletePerfil(){
           }
           dispatch(completeUser(userComplete))
           dispatch(changeUserCity({}))
-          // navigate('/')
-          console.log(userComplete);
+          navigate('/')
         }}
         > Completar Perfil </Boton>
         :null

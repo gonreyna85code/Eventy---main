@@ -68,18 +68,30 @@ router.put("/user_update", isAuthenticated, (req, res, next) => {
   });
 });
 
-
 router.put('/userComplete',isAuthenticated, (req,res)=>{
-  // console.log(req.body.user.username);
   User.findOne({username:req.body.user.username}, async (err,doc)=>{
-    // const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    const hashedPassword = await bcrypt.hash(req.body.user.password, 10);
+    let user= req.body.user
     if(err) throw err;
     if(!doc) res.send('User Not Found')
     if(doc){ 
-      console.log(doc);
-      doc = req.body.user
-      console.log(doc);
-      await doc.save().then(()=>{
+      if(doc.email){
+        delete doc.email
+      }
+      doc.events= user.events
+      doc.follows = user.follows
+      doc.near= user.near
+      doc.password = hashedPassword
+      doc.payedEvents = user.payedEvents
+      doc.profile= user.profile
+      doc.promises = user.promises 
+      doc.selledEvents = user.selledEvents
+      doc.subscriptions = user.subscriptions
+      doc.username = user.username
+      doc.__v= user.__v
+      doc._id= user._id
+      doc.save()
+      .then(()=>{
         console.log('UserComplete');
         res.send(doc)
 

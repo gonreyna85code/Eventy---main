@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { findEventSub, getUser } from "../../../redux/actions";
 import botonStyles from '../../../components/Boton/Boton.module.css';
@@ -13,7 +13,7 @@ export default function SubCategory(){
     const {subcategory} = useParams();
     const eventos = useSelector((state) => state.Events);
     const user= useSelector((state)=>state.User);
-
+    const navigate = useNavigate()
     useEffect(()=>{
         dispatch(findEventSub(subcategory)); 
     }, [dispatch, subcategory]);
@@ -26,6 +26,7 @@ export default function SubCategory(){
 
     return(
         <div>
+            {user&& user.password==='' ? navigate('/completarPerfil'):null }
             <h1>{subcategory}</h1>
             <div className ='cardsEvents'>
                 {
