@@ -155,8 +155,8 @@ export default function DetailEvet() {
         <div>
           {theEvent ? (
             <div>
-              {theEvent && theEvent.expires ? (
-                <div className={style.evento_expires}>
+              {theEvent && theEvent.expired ? (
+                <div className={style.evento_expired}>
                   <span>Este evento ya se ha realizado</span>
                 </div>
               ) : null}
@@ -203,7 +203,7 @@ export default function DetailEvet() {
                       <span className={style.info}>{theEvent.date}</span>
                     </div>
                     <div>
-                      {theEvent && !theEvent.expires ? (
+                      {theEvent && !theEvent.expired ? (
                         <Boton  colorBtn="btn_naranja" onClick={(e) => handleAsistir()} >Asistiré</Boton>
                       ) : null}
                       {user._id === theEvent.user._id ? (
@@ -252,7 +252,7 @@ export default function DetailEvet() {
                   </div>
                 </Container>
               </div>
-              {theEvent && !theEvent.expires ? (
+              {theEvent && !theEvent.expired ? (
                 <div>
                   <Container>
                     <div className={`pago ${style.cont_pagos}`}>
@@ -291,7 +291,7 @@ export default function DetailEvet() {
           ) : (
             <Loading />
           )}
-          <div className={style.discus}>
+          {theEvent && !theEvent.expired ? (<div className={style.discus}>
             <div id="disqus_thread"></div>
             {
               /**
@@ -318,7 +318,7 @@ export default function DetailEvet() {
                 comments powered by Disqus.
               </a>
             </noscript>
-          </div>
+          </div>) : null}
           <div className={style.home}>
             <Link to="/">
               <Boton colorBtn="btn_azul">Volver al Home</Boton>
