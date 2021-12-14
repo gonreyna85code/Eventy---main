@@ -67,17 +67,7 @@ router.put("/user_update", isAuthenticated, (req, res, next) => {
     }
   });
 });
-router.get('/getAllUsers' ,async  (req,res )=>{
-  User.find((err,doc)=>{
-    res.send(doc)
-  })
-})
-router.get('/deleteuser', async(req,res)=>{
-  // User.findOne({_id: '61b7d4c0311c1e0023d32b35'},async(err,doc)=>{
-  //   res.send(doc)
-  // })
-  User.deleteOne({_id:'61b8ace916173c26ccc30247'}).then(()=>{res.send('Usuario eliminado')})
-})
+
 router.put('/userComplete',isAuthenticated, (req,res)=>{
   User.findOne({username:req.body.user.username}, async (err,doc)=>{
     const hashedPassword = await bcrypt.hash(req.body.user.password, 10);
