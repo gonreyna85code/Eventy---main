@@ -19,7 +19,7 @@ app.name = "API";
 
 app.use(cors({ origin: ["http://localhost:3000", "https://eventy-main.vercel.app"], credentials: true }));
 
-// app.set("trust proxy", 1);
+app.set("trust proxy", 1);
 
 app.get("/", (req, res, next) => {
   headers["Access-Control-Allow-Origin"] = ["http://localhost:3000", "https://eventy-main.vercel.app"];
