@@ -24,13 +24,10 @@ import {
   POST_FOLLOW,
   DELETE_FOLLOW,
   DELETE_EVENT,
-<<<<<<< HEAD
   PAYED_EVENT,
   PUT_VENTAS,
-=======
   VALIDATE_USER,
   COMPLETE_USER
->>>>>>> cb65d4035058e7d989ee3cf7d8b059d25236ef3a
 } from "./actions.js";
 
 //========================
@@ -114,11 +111,8 @@ const initialState = {
   NearEvents:[],
   Follows: [],
   OtherUsers:[],
-<<<<<<< HEAD
-  PayedEvents:[]
-=======
+  PayedEvents:[],
   validUser: true
->>>>>>> cb65d4035058e7d989ee3cf7d8b059d25236ef3a
 };
 
 

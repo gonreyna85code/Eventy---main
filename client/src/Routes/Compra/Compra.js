@@ -17,10 +17,10 @@ export default function Compra(){
             <h4>Su compra de {title} ha sido exitosa</h4> 
             <h4>Guarde este código QR y muéstrelo al momento de entrar al evento</h4>
             <div>
-            <Boton colorBtn={'btn_naranja'} onClick={handleQr}>Generar Código</Boton>
+            <Boton colorBtn={'btn_naranja'} onClick={''}>Generar Código</Boton>
             </div>
             {
-                qr === true ? 
+                'qr' === true ? 
                 <img className="QR" alt="" src={'https://api.qrserver.com/v1/create-qr-code/?data=Eventy%20Validación%20de%20' + title +'&size=250x250'}></img>
                 :
                 <p></p>

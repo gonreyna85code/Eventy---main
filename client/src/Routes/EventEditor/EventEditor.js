@@ -79,19 +79,19 @@ const EventEditor = () => {
   const DATE =  anio + "-" + mes + "-" +  dia;
 
   const EventCity = useSelector(state=> state.EventCity)
-  const[eventName, setEventName]= useState('')
-  const[category, setCategory] = useState('')
-  const [subCategory, setSubCategory] = useState('')
-  const[date, setDate]= useState(DATE.toString())
-  const [imgUrl, setImgUrl]= useState('')
-  const[description, setDescription] = useState('')
+  const[eventName, setEventName]= useState(event[0]?.name)
+  const[category, setCategory] = useState(event[0]?.category)
+  const [subCategory, setSubCategory] = useState(event[0]?.subcategory)
+  const[date, setDate]= useState(DATE)
+  const [imgUrl, setImgUrl]= useState(event[0]?.info?.imagen)
+  const[description, setDescription] = useState(event[0]?.info?.description)
   const [event_pay, setEventPay]= useState(false)
   const [ticketPrice, setTicketPrice]=useState(0)
   
   
   
   
-  
+  console.log(EventCity)
   
   if (user === 'Usuario no logueado') {
     return(<Warning/>)
