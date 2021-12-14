@@ -55,7 +55,7 @@ router.get("/event/:name", isAuthenticated, async (req, res) => {
   console.log(response);
   response.length > 0
     ? res.status(200).send(response)
-    : res.status(404).send("No hay eventos");
+    : res.send("No hay eventos");
 });
 
 router.get("/eventosCercanos", isAuthenticated, async (req, res) => {
