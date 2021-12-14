@@ -69,7 +69,7 @@ router.put("/user_update", isAuthenticated, (req, res, next) => {
 });
 
 
-router.put('/userComplete', (req,res)=>{
+router.put('/userComplete',isAuthenticated, (req,res)=>{
   // console.log(req.body.user.username);
   User.findOne({username:req.body.user.username}, async (err,doc)=>{
     // const hashedPassword = await bcrypt.hash(req.body.password, 10);
