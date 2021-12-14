@@ -52,15 +52,15 @@ app.use(
   session({
     secret: "secretcode",
     resave: false,
-    // path: "/",
-    // proxy: true,
+    path: "/",
+    proxy: true,
     saveUninitialized: true,
     store: MongoStore.create({ mongoUrl: process.env.MONGO }),
-    // cookie: {      
-    //   sameSite: 'none',
-    //   secure: true,
-    //   maxAge: 60 * 60 * 1000 * 24 * 365,
-    // }, 
+    cookie: {      
+      sameSite: 'none',
+      secure: true,
+      maxAge: 60 * 60 * 1000 * 24 * 365,
+    }, 
   })
 );
 
