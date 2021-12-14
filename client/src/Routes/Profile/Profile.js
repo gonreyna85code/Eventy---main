@@ -8,12 +8,13 @@ import { getUser } from '../../redux/actions.js';
 import Warning from '../../components/Warning.js/Warning';
 import Loading from '../../components/Loading/Loading';
 import Container from '../../components/Container/Container';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Profile(){
     const user = useSelector(state => state.User);
     const dispatch = useDispatch();
-
+    const navigate = useNavigate()
     useEffect(() => {
         dispatch(getUser());
     }, [dispatch]);
@@ -32,7 +33,7 @@ export default function Profile(){
 
     return (
         <div>
-        
+        {user&& user.password==='' ? navigate('/completarPerfil'):null }
             { user && user.hasOwnProperty('profile') ?
                 <div className={styles.profile}>
                     <Initial user={user} />

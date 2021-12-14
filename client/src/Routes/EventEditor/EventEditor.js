@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Boton from "../../components/Boton/Boton";
 import Input from "../../components/Input/Input";
 import Select from "../../components/Select/Select";
@@ -32,6 +32,7 @@ const EventEditor = () => {
     {herencia:"sports",option:[{value:"Maraton"}, {value:"Aeromodelismo"}, {value:"Futbol"}, {value:"Tenis"}, {value:"Handball"}]},
     {herencia:"social",option:[{value:"Fiesta"}, {value:"Reunion"}, {value:"Protesta"}, {value:"Concierto"}]}
   ];
+  const navigate = useNavigate()
   const user = useSelector((state) => state.User);
   const [credential, setCredential] = useState('')
   if(!user){
@@ -78,6 +79,7 @@ const EventEditor = () => {
 
   return (
     <div className={styles.cont_crear_evento}>
+      {user&& user.password==='' ? navigate('/completarPerfil'):null }
       <div className={styles.header}>
         <h1>Editar evento {name}</h1>
       </div>

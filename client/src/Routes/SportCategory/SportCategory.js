@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { findEventByCategory, getUser} from "../../redux/actions";
 import '../SocialCategory/SocialCategory.css'
 import botonStyles from "../../components/Boton/Boton.module.css"
@@ -9,7 +9,7 @@ import Boton from "../../components/Boton/Boton";
 
 export default function SportCategory(){
     const dispatch = useDispatch();
-
+    const navigate = useNavigate()
     useEffect(()=>{
         dispatch(findEventByCategory('sports'));
     },[dispatch]);
@@ -23,6 +23,7 @@ export default function SportCategory(){
 
     return(
         <div>
+            {user&& user.password==='' ? navigate('/completarPerfil'):null }
            <div className = 'encabezado'>
                 <h1 className = 'title'>Eventos Deportivos</h1>
             </div>

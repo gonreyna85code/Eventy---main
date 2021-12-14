@@ -11,6 +11,7 @@ export default function ResetPassword() {
   const [user, setUser] = useState("");
   return (
     <div>
+      {user&& user.password==='' ? navigate('/completarPerfil'):null }
       <h1>Ingrese su Usuario.</h1>
       <div className="input">
         <Input

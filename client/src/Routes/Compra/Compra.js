@@ -1,15 +1,16 @@
 import React from "react";
-import {Link, useParams} from 'react-router-dom';
+import {Link, useNavigate, useParams} from 'react-router-dom';
 import './Compra.css';
 import Boton from "../../components/Boton/Boton";
 
 export default function Compra(){
 
     const{title} = useParams();
-
+    const navigate = useNavigate()
 
     return(
         <div className="contenedorCompra">
+            {user&& user.password==='' ? navigate('/completarPerfil'):null }
             <h1>Compra Exitosa</h1>
             <h4>Su compra de {title} ha sido exitosa</h4> 
             <h4>Guarde este código QR y muéstrelo al momento de entrar al evento</h4>
