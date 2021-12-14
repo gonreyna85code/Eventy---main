@@ -6,7 +6,6 @@ import {faCalendarAlt, faMapMarkerAlt, faTicketAlt, faUsers, faInfoCircle} from 
 
 
 export default function Card({name, location, date, img, id, tipoEvento, categoria, asistentes, user}){
-   
     return(
         <div className = {styles.contenedor} key={id}>
             
@@ -41,7 +40,7 @@ export default function Card({name, location, date, img, id, tipoEvento, categor
                         <Link to = {'/detailEvent/' + name}><FontAwesomeIcon  className={''} icon={faInfoCircle} />Ver Detalles</Link>
                     </div>
                     <div> 
-                        <span><FontAwesomeIcon  className={''} icon={faUsers} /> 0</span>
+                        <span><FontAwesomeIcon  className={''} icon={faUsers} />{asistentes}</span>
                     </div>
                     <div>
                         <span><FontAwesomeIcon  className={''} icon={faTicketAlt} />{tipoEvento ? `Pago` : `Gratis`}</span>

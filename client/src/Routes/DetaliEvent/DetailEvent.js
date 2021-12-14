@@ -261,7 +261,7 @@ export default function DetailEvet() {
                           <h1>Comprar entradas:</h1>
                           <div className={style.cont_datospago}>
                             <h3>
-                              Precio general: {theEvent.info.ticketPrice}$
+                              Precio general: ${theEvent.info.ticketPrice}
                             </h3>
                             <div>
                               <Input

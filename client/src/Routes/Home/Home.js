@@ -218,7 +218,6 @@ const Home = () => {
                         {
                             
                             follows && follows.length > 0 ? follows.map( evento => {
-                                
                                 return ( <CardHome
                                     name={evento[0].name}
                                     location={evento[0].location?.cityName}
@@ -228,6 +227,7 @@ const Home = () => {
                                     tipoEvento={evento[0].event_pay}
                                     categoria={evento[0].category}
                                     user={evento.user}
+                                    asistentes={evento[0].promises?.length}
                                 />)
 
 
