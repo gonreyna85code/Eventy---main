@@ -34,6 +34,14 @@ export default function Novedad({info,type}){
                     <span className={styles.p}> {info.user.username} ha creado el evento <b onClick={handleClick}> {info.event.name} </b></span>
                 </div>
             )
+
+        case 'pago':
+            return(
+                <div className={styles.novedad}>
+                    <span className={styles.p}> {info.user.username} ha comprado entradas para el evento <b onClick={handleClick}> {info.event} </b></span>
+                </div>
+            )
+            
         default:
             return (
                 <div className={styles.novedad}>

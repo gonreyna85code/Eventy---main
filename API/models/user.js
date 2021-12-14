@@ -13,6 +13,8 @@ const user =  mongoose.Schema({
   follows: [{type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   near: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }],
   subscriptions: [{ type: mongoose.Schema.Types.String, ref: "Event" }],
+  payedEvents: [{ type: mongoose.Schema.Types.String, ref: "Event" }],
+  selledEvents: [{ type: mongoose.Schema.Types.String, ref: "Event" }],
 });
 
 module.exports = mongoose.model("User", user);

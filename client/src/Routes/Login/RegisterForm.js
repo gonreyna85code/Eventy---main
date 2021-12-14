@@ -16,6 +16,7 @@ export default function RegisterForm(){
   const[password, setContraseña]=useState('')
   const[age, setEdad]=useState('')
   const[email, setEmail]=useState('')
+  const [publicKey, setPublicKey] = useState('');
 
   const UserCity = useSelector(state=> state.UserCity)
  
@@ -84,6 +85,15 @@ export default function RegisterForm(){
             setEmail(e.target.value)
           }}
       />
+      <p>Para crear eventos pagos, es necesario que nos facilite su credencial Acces Key de Mercado Pago</p>
+      <p>Este apartado es opcional</p>
+            <Input
+          label='Acces Key de Mercado Pago:'
+          type='text'
+          onChange={(e)=>{
+            setPublicKey(e.target.value)
+          }}
+      />
       </div>
       
       <Map 
@@ -102,6 +112,7 @@ export default function RegisterForm(){
           let register= {
             username,
             password,
+            publicKey,
             profile: {
               name,
               surname,

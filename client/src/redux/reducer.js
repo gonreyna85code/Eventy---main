@@ -23,7 +23,9 @@ import {
   FIND_USER,
   POST_FOLLOW,
   DELETE_FOLLOW,
-  DELETE_EVENT
+  DELETE_EVENT,
+  PAYED_EVENT,
+  PUT_VENTAS,
 } from "./actions.js";
 
 //========================
@@ -102,7 +104,8 @@ const initialState = {
   EventCity:{},
   NearEvents:[],
   Follows: [],
-  OtherUsers:[]
+  OtherUsers:[],
+  PayedEvents:[]
 };
 
 
@@ -281,6 +284,19 @@ function rootReducer(state = initialState, action) {
 
   if(action.type === DELETE_EVENT){
     console.log(action.payload)
+    return{
+      ...state
+    }
+  }
+
+  if(action.type === PAYED_EVENT){
+    return {
+      ...state,
+      User: {...state.User, payedEvents:action.payload}
+    }
+  }
+
+  if(action.type === PUT_VENTAS){
     return{
       ...state
     }

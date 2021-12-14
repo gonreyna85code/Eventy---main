@@ -127,6 +127,21 @@ router.delete("/follows", isAuthenticated, (req,res,next) =>{
   });
 });
 
+router.post("/payedEvent", (req,res,next) => {
+  console.log(req.body.data)
+  User.findOne({username:req.body.username}, async (err,doc) => {
+    if (err) throw err;
+    if (!doc) res.send("User Not found");
+    if (doc) {
+      doc.payedEvents.push(req.body.data);
+      await doc.save().then((r)=>{
+        console.log(doc)
+        res.send({Successfull:"Event payed",data:r.follows});
+      })
+    }
+  });
+});
+
 module.exports = router;
 
 

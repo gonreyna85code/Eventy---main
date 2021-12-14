@@ -30,6 +30,8 @@ router.post("/event", isAuthenticated, function (req, res) {
           location: req.body.location,
           info: req.body.info,
           event_pay: req.body.event_pay,
+          accesKey: req.body.accesKey,
+          stock: req.body.stock,
           date: fecha,
           expired: false,
           user: req.body.user,
@@ -238,11 +240,10 @@ router.get("/lp-events", async (req, res) => {
 });
 
 router.post("/create_preference", (req, res) => {
-  const { title, price, quantity } = req.body;
+  const { title, price, quantity, accesKey } = req.body;
 
   mercadopago.configure({
-    access_token:
-      "APP_USR-7103077711305655-113021-56572adb8ad27a0270f50bb94563ae2b-274464234",
+    access_token: accesKey,
   });
 
   let preference = {
@@ -274,6 +275,16 @@ router.post("/create_preference", (req, res) => {
       console.log(error);
     });
 });
+
+router.put("/ventas", isAuthenticated, (req,res)=>{
+  const {name, ventas} = req.body;
+  Event.updateOne(
+    {name: name},
+    {ventas: ventas}
+  )
+  .then(console.log('hecho'))
+  .catch(res.status(400).send('error'))
+})
 
 router.put("/editarEvento/:name", isAuthenticated, (req, res) => {
   const name = req.params;
