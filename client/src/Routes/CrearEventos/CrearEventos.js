@@ -136,7 +136,7 @@ const CrearEventos = () => {
             label="Nombre del Evento"
             type="text"
             name="name"
-            onChange={(e) => setEventName(e.target.value)}
+            onChange={(e) => setEventName(e.target.value.trim())}
           />
           <Map
             type="event"

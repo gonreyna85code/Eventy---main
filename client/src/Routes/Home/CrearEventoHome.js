@@ -171,7 +171,7 @@ const handleClickTipoPago = () => {
                 type="text"
                 name="name"
                 value={eventName}
-                onChange={(e) => setEventName(e.target.value)}
+                onChange={(e) => setEventName(e.target.value.trim())}
             />
             <div className={styles.map}>
                 <Map

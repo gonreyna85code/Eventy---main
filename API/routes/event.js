@@ -51,6 +51,7 @@ router.post("/event", isAuthenticated, function (req, res) {
 
 router.get("/event/:name", isAuthenticated, async (req, res) => {
   const { name } = req.params;
+  console.log(name);
   var response = await Event.find({ name: name }).populate("user").populate("promises");
   console.log(response);
   response.length > 0
