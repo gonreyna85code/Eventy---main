@@ -170,7 +170,7 @@ export function getEvent(name) {
     url:  development ? local + 'event/' + name : heroku + "event/" + name,
   })
   .then(resultado => dispatch({type: GET_EVENT, payload: resultado.data}))
-  .catch(err => alert(err))
+  .catch(err => err)
 }}
 
 export function getNearEvents(userLocation, distance){
@@ -186,7 +186,7 @@ export function getNearEvents(userLocation, distance){
       url: development ? local +'eventosCercanos/' : heroku + 'eventosCercanos'
     })
     .then(resultado => dispatch({type: GET_NEAR_EVENTS, payload: resultado.data }))
-    .catch(err=>alert(err))
+    .catch(err=> err)
   }
 }
 export function validateUser(username){
@@ -238,7 +238,7 @@ export function getAllEvents(){
       url:  development ? local + 'allEvents' : heroku + "allEvents",
     })
     .then(resultado => dispatch({type: GET_ALL_EVENTS, payload: resultado.data}))
-    .catch(err => alert(err))
+    .catch(err => err)
   }
 }
 
@@ -250,7 +250,7 @@ export function findEvent (parametro){
       url:  development ? local + 'eventsAll/' + parametro : heroku + "eventsAll/" + parametro,
     })
     .then(resultado => dispatch({type: FIND_EVENT, payload: resultado}))
-    .catch(err => alert(err))
+    .catch(err => err)
   }
 }
 
@@ -264,7 +264,7 @@ export function getNearbyEvents(parametro){
       
     })
     .then(resultado => dispatch({type: GET_NEARBY_EVENTS, payload: resultado.data}))
-    .catch(err => alert(err))
+    .catch(err => err)
   }
 }
 
@@ -277,7 +277,7 @@ export function getEventosLandingPage(){
     url:  development ? local + 'lp-events/' : heroku + "lp-events/",
   })
   .then(resultado => dispatch({type: GET_EVENTS_LP, payload: resultado.data}))
-  .catch(err => alert(err))
+  .catch(err => err)
 }
 
 }
@@ -298,7 +298,7 @@ export function putUser(user, key){
       dispatch({type: PUT_USER, payload: user.profile})
       alert("Cambios guardados")
     })
-    .catch(err=>alert(err))
+    .catch(err=>err)
   }
 }
 export function completeUser(user){
@@ -314,7 +314,7 @@ export function completeUser(user){
       dispatch({type: COMPLETE_USER, payload:user})
       alert('Perfil Completado')
     })
-    .catch(err=> alert(err))
+    .catch(err=> err)
   }
 }
 
@@ -327,7 +327,7 @@ export function findEventByCategory (category){
         url:  development ? local + 'socialEvents' : heroku + "socialEvents",
       })
       .then(resultado => dispatch({type: FIND_EVENT_CATEGORY, payload: resultado.data}))
-      .catch(err => alert(err))
+      .catch(err => err)
     }
   }else if(category === 'sports'){
     return function (dispatch){
@@ -337,7 +337,7 @@ export function findEventByCategory (category){
         url:  development ? local + 'sportEvents' : heroku + "sportEvents",
       })
       .then(resultado => dispatch({type: FIND_EVENT_CATEGORY, payload: resultado.data}))
-      .catch(err => alert(err))
+      .catch(err => err)
     }
   }
 }
@@ -350,7 +350,7 @@ export function findEventSub(subcategory){
       url:  development ? local + 'allEvents' : heroku + "allEvents",
     })
     .then(resultado => dispatch({type: FIND_EVENT_SUB, payload: resultado.data, sub: subcategory}))
-    .catch(err => alert(err))
+    .catch(err => err)
   }
 } 
 
@@ -388,7 +388,7 @@ export function postPreference(preference){
       url:  development ? local + 'create_preference' : heroku + "create_preference",
     })
     .then(resultado => dispatch({type: POST_PREFERENCE, payload: resultado.data}))
-    .catch(err => alert(err))
+    .catch(err => err)
   }
 }
 
@@ -401,7 +401,7 @@ export function putEvent(edit, id){
       url:  development ? local + 'editarEvento/' + id : heroku + 'editarEvento/' + id,
     })
     .then(resultado => dispatch({type: PUT_EVENT, payload: resultado.data}))
-    .catch(err => alert(err))
+    .catch(err => err)
   }
 }
 
@@ -417,7 +417,7 @@ export function subscription(username,data){
       }
     })
     .then(resultado => dispatch({type: POST_SUBSCRIPTION, payload:resultado.data.data}))
-    .catch(err => alert(err))
+    .catch(err => err)
   }
 }
 
@@ -432,7 +432,7 @@ export function present(data){
       }
     })
     .then(resultado => dispatch({type: POST_PRESENT, payload:resultado.data.data}))
-    .catch(err => alert(err))
+    .catch(err => err)
   }
 }
 
@@ -448,7 +448,7 @@ export function unsubscription(username,data){
       }
     })
     .then(resultado => dispatch({type: DELETE_SUBSCRIPTION, payload:resultado.data.data}))
-    .catch(err => alert(err))
+    .catch(err => err)
   }
 }
 
@@ -463,7 +463,7 @@ export function allUnsuscription(username){
       }
     })
     .then(resultado => dispatch({type: DELETE_SUBSCRIPTION, payload:resultado.data.data}))
-    .catch(err => alert(err))
+    .catch(err => err)
   }
 }
 
@@ -475,7 +475,7 @@ export function findUser(id){
       url:  development ? local + 'other-user/' + id : heroku + 'other-user/' + id,
     })
     .then(resultado => dispatch({type: FIND_USER, payload:resultado.data}))
-    .catch(err => alert(err))
+    .catch(err => err)
   }
 }
 
@@ -491,7 +491,7 @@ export function follow(username,data){
       }
     })
     .then(resultado => dispatch({type: POST_FOLLOW, payload:resultado.data.data}))
-    .catch(err => alert(err))
+    .catch(err => err)
   }
 }
 
@@ -507,7 +507,7 @@ export function unfollow(username,data){
       }
     })
     .then(resultado => dispatch({type: DELETE_FOLLOW, payload:resultado.data.data}))
-    .catch(err => alert(err))
+    .catch(err => err)
   }
 }
 
@@ -522,6 +522,6 @@ export function deleteEvent(name){
       }
     })
     .then(resultado => dispatch({type: DELETE_EVENT, payload: resultado.data}))
-    .catch(err => alert(err))
+    .catch(err => err)
   }
 }

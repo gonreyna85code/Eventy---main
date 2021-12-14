@@ -200,6 +200,9 @@ const Home = () => {
                         <h2>¿Estas Planeando un Nuevo evento?</h2>
                         <span>Compártelo!</span>
                         <button onClick={(e)=>handleClickCrearEvento(e)}>¿Como se llama tu evento?</button>
+                        <div>
+                            <Boton colorBtn='btn_azul' onClick={(e)=>handleClickCrearEvento(e)}>Crear evento</Boton>
+                        </div>
                         <PopUp 
                             estatus={estatusPopup}
                             onClick={handleClickPopup}
