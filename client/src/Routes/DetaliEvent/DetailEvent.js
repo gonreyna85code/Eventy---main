@@ -8,6 +8,7 @@ import {
   getUser,
   findUser,
   deleteEvent,
+  present,
 } from "../../redux/actions";
 import style from "./DetailEvents.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -52,7 +53,9 @@ export default function DetailEvet() {
 
   const theEvent = Events[0];
 
- 
+  console.log(theEvent);
+  console.log(user);
+  console.log(user.publicKey);
 
   useEffect(() => {
     if (theEvent && user) {
@@ -79,12 +82,14 @@ export default function DetailEvet() {
 
   function handleChange(e) {
     setCantidad(e.target.value);
+    console.log(cantidad);
   }
 
   function handleClick(e) {
+    console.log(preference);
     dispatch(postPreference(preference));
   }
-  
+
   const mercadopago = useMercadopago.v2(
     "TEST-73717f29-d26d-4a49-aec6-3f75b4872625",
     {
@@ -121,18 +126,26 @@ export default function DetailEvet() {
     }
   }
 
+  function handleAsistir() {
+    const seguidor = user?._id;
+    const seguido = theEvent?._id;
+    const data = {
+      id1: seguidor,
+      id2: seguido,
+    };
+    dispatch(present(data));
+    console.log(data);
+  }
 
   function handleDelete(e) {
     e.preventDefault();
     dispatch(deleteEvent(theEvent.name));
     alert("El evento ha sido eliminado");
     setTimeout(function () {
-    navigate("/");
-    window.location.reload();
+      navigate("/");
+      window.location.reload();
     }, 2000);
   }
-
-
 
   return (
     <div>
@@ -142,14 +155,11 @@ export default function DetailEvet() {
         <div>
           {theEvent ? (
             <div>
-              { theEvent && theEvent.expired ?(
-              
-                <div className={style.evento_expired}>
+              {theEvent && theEvent.expires ? (
+                <div className={style.evento_expires}>
                   <span>Este evento ya se ha realizado</span>
                 </div>
-
-              ) : null
-              }
+              ) : null}
               <div
                 className={style.fondo}
                 style={{
@@ -158,10 +168,21 @@ export default function DetailEvet() {
               >
                 <Container>
                   <div>
-                    
-                    <div  className={style.imagenDetail} style={{ backgroundImage:`url(${theEvent.info.imagen ? theEvent.info.imagen : `https://www.masquenegocio.com/wp-content/uploads/2018/03/evento-concierto-874x492.jpg` })`}}>
-                    </div>
-               
+                    {theEvent.info.imagen ? (
+                      <img
+                        className={style.imagenDetail}
+                        src={theEvent.info.imagen}
+                        alt=""
+                      ></img>
+                    ) : (
+                      <img
+                        className={style.imagenDetail}
+                        src={
+                          "https://www.masquenegocio.com/wp-content/uploads/2018/03/evento-concierto-874x492.jpg"
+                        }
+                        alt=""
+                      ></img>
+                    )}
                   </div>
                   <div className={style.info_detail}>
                     <h1 className={style.nombreEvento}>{theEvent.name}</h1>
@@ -182,11 +203,9 @@ export default function DetailEvet() {
                       <span className={style.info}>{theEvent.date}</span>
                     </div>
                     <div>
-
-                      { theEvent && !theEvent.expired ?
-                        <Boton colorBtn="btn_naranja">Asistiré</Boton>
-                        : null
-                      }
+                      {theEvent && !theEvent.expires ? (
+                        <Boton  colorBtn="btn_naranja" onClick={(e) => handleAsistir()} >Asistiré</Boton>
+                      ) : null}
                       {user._id === theEvent.user._id ? (
                         <div>
                           <Link to={"/editar-evento/" + name}>
@@ -200,9 +219,7 @@ export default function DetailEvet() {
                           </Boton>
                         </div>
                       ) : (
-                        <Link
-                          to={`/user/${creator.id}`}
-                        >
+                        <Link to={`/user/${creator.id}`}>
                           <span className={style.creator}>
                             Creado por:{" "}
                             {creatorr(
@@ -235,7 +252,7 @@ export default function DetailEvet() {
                   </div>
                 </Container>
               </div>
-              {  theEvent && !theEvent.expired ?
+              {theEvent && !theEvent.expires ? (
                 <div>
                   <Container>
                     <div className={`pago ${style.cont_pagos}`}>
@@ -243,7 +260,9 @@ export default function DetailEvet() {
                         <div>
                           <h1>Comprar entradas:</h1>
                           <div className={style.cont_datospago}>
-                            <h3>Precio general: {theEvent.info.ticketPrice}$</h3>
+                            <h3>
+                              Precio general: {theEvent.info.ticketPrice}$
+                            </h3>
                             <div>
                               <Input
                                 label="Cantidad de entradas"
@@ -267,42 +286,39 @@ export default function DetailEvet() {
                     </div>
                   </Container>
                 </div>
-                : null
-              }
+              ) : null}
             </div>
           ) : (
             <Loading />
           )}
-          {  theEvent && !theEvent.expired ? (
-            <div className={style.discus}>
-              <div id="disqus_thread"></div>
-              {
-                /**
-                *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-                *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-                /*
-      var disqus_config = function () {
-      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-      };
-      */
-                (function () {
-                  // DON'T EDIT BELOW THIS LINE
-                  var d = document,
-                    s = d.createElement("script");
-                  s.src = "https://eventy.disqus.com/embed.js";
-                  s.setAttribute("data-timestamp", +new Date());
-                  (d.head || d.body).appendChild(s);
-                })()
-              }
-              <noscript>
-                Please enable JavaScript to view the{" "}
-                <a href="https://disqus.com/?ref_noscript">
-                  comments powered by Disqus.
-                </a>
-              </noscript>
-            </div>
-          ) : null }
+          <div className={style.discus}>
+            <div id="disqus_thread"></div>
+            {
+              /**
+               *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+               *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+              /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+              (function () {
+                // DON'T EDIT BELOW THIS LINE
+                var d = document,
+                  s = d.createElement("script");
+                s.src = "https://eventy.disqus.com/embed.js";
+                s.setAttribute("data-timestamp", +new Date());
+                (d.head || d.body).appendChild(s);
+              })()
+            }
+            <noscript>
+              Please enable JavaScript to view the{" "}
+              <a href="https://disqus.com/?ref_noscript">
+                comments powered by Disqus.
+              </a>
+            </noscript>
+          </div>
           <div className={style.home}>
             <Link to="/">
               <Boton colorBtn="btn_azul">Volver al Home</Boton>
