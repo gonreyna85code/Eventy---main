@@ -55,7 +55,6 @@ export default function DetailEvet() {
 
   console.log(theEvent);
   console.log(user);
-  console.log(user.publicKey);
 
   useEffect(() => {
     if (theEvent && user) {
@@ -63,7 +62,7 @@ export default function DetailEvet() {
         ? theEvent.info.ticketPrice
         : 3;
       setPreference({
-        title: "Entradas de " + theEvent.name,
+        title: cantidad + " Entradas de " + theEvent.name,
         price: fee,
         quantity: cantidad,
         payer: {
@@ -87,7 +86,8 @@ export default function DetailEvet() {
 
   function handleClick(e) {
     console.log(preference);
-    dispatch(postPreference(preference));
+    console.log(theEvent.accesKey);
+    dispatch(postPreference(preference, theEvent.accesKey));
   }
 
   const mercadopago = useMercadopago.v2(
@@ -195,6 +195,8 @@ export default function DetailEvet() {
                       <span className={style.info}>{" "+theEvent.date}</span>
                     </div>
                     <div>
+                      <Boton colorBtn="btn_naranja">Asistiré</Boton>
+                      <Boton colorBtn="btn_naranja">Seguir Evento</Boton>
                       {theEvent && !theEvent.expired && theEvent.promises?.includes(!user._id) ? (
                         <Boton  colorBtn="btn_naranja" onClick={(e) => handleAsistir()} >Asistiré</Boton>
                       ) : null}
