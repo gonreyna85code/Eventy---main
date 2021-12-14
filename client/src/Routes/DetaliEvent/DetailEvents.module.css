@@ -24,11 +24,18 @@
 
 .imagenDetail{
     width: 100%;
-    height: auto;
-    border-radius: 30px;
+    height: 450px;
     margin: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-
+.info_detail > div{
+    margin-bottom: 10px;
+}
+.info_detail > div:nth-child(3){
+    margin-bottom: 35px;
+}
 .nombreEvento{
     font-size:  50px;
     color: white;
@@ -106,11 +113,34 @@
 }
 
 
-.evento_expires{
+.evento_expired{
     display: block;
     width: calc(100% - 20px);
     padding: 15px 10px;
-    background: var(--azul);
-    color: #fff;
+    color: var(--azul);
     text-align: center;
+    font-weight: 600;
+    font-size: 21px;
+}
+
+
+@media(max-width: 768px){
+    .fondo > div {
+        flex-direction: column;
+        padding-block: 50px;
+    }
+    .dataContent > div{
+        flex-direction: column;
+        align-items: center;
+        padding-block: 50px;
+    }
+    .dataContent > div h2{
+        margin-top: 0;
+        line-height: 1;
+        font-size: 40px;
+    }
+    .dataContent > div p{
+        font-size: 15px;
+        line-height: 1.5;
+    }
 }

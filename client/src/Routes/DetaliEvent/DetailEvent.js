@@ -204,7 +204,7 @@ export default function DetailEvet() {
                     </div>
                     <div>
                       {theEvent && !theEvent.expires ? (
-                        <Boton  colorBtn="btn_naranja" onClick={() => handleAsistir()} >Asistiré</Boton>
+                        <Boton  colorBtn="btn_naranja" onClick={(e) => handleAsistir()} >Asistiré</Boton>
                       ) : null}
                       {user._id === theEvent.user._id ? (
                         <div>
