@@ -7,14 +7,16 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router";
 
 export default function SearchBar(props) {
-  const [state, setState] = React.useState("");
+  var [state, setState] = React.useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   function search(event) {
-    if (state !== "") {
+    const search = state.slice(" ").trim();
+    console.log(search);
+    if (search !== "") {
       navigate("/result");
-      dispatch(findEvent(state));
+      dispatch(findEvent(search));
       setState("");
     }
   }
@@ -25,7 +27,7 @@ export default function SearchBar(props) {
         className={style.input}
         value={state}
         onChange={(event) =>
-          setState(event.target.value.split(" ").filter((e) => e !== ""))
+          setState(event.target.value)
         }
         onKeyDown={(event) => {
           if (event.key === "Enter") search();

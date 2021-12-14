@@ -1,35 +1,35 @@
 @media(min-width: 768px){
-    .cont-carrusel .alice-carousel__stage-item{
+    .cont-carrusel:not(.carrusel_menos_3_items) .alice-carousel__stage-item{
         height: 350px;
         vertical-align: bottom;
         transition: var(--transition);
         width: calc( 100% / 3 )!important;
     }
 
-    .cont-carrusel .alice-carousel__stage-item.__active.__target + li{
+    .cont-carrusel:not(.carrusel_menos_3_items) .alice-carousel__stage-item.__active.__target + li{
         height: 450px;
         margin-bottom: -50px;
         overflow: visible;
         position:relative;
         z-index: 5;
     }
-    .cont-carrusel .alice-carousel__stage-item.__active.__target + li .cont-eventHome .cont-infoEventoHome h3{
+    .cont-carrusel:not(.carrusel_menos_3_items) .alice-carousel__stage-item.__active.__target + li .cont-eventHome .cont-infoEventoHome h3{
         font-size: 25px;
     }
-    .cont-carrusel .alice-carousel__stage-item.__active.__target + li .cont-eventHome .cont-infoEventoHome ul li{
+    .cont-carrusel:not(.carrusel_menos_3_items) .alice-carousel__stage-item.__active.__target + li .cont-eventHome .cont-infoEventoHome ul li{
         font-size: 17px;
     }
 
-    .cont-carrusel .alice-carousel__stage-item.__active.__target + li .cont-eventHome{
+    .cont-carrusel:not(.carrusel_menos_3_items) .alice-carousel__stage-item.__active.__target + li .cont-eventHome{
         width: 550px;
         margin-left: -16.6666667%;
         box-shadow: 0 0 10px rgba(1,56,95,0.8);
     }
-    .cont-carrusel .alice-carousel__stage-item.__active.__target + li .cont-eventHome:hover{
+    .cont-carrusel:not(.carrusel_menos_3_items) .alice-carousel__stage-item.__active.__target + li .cont-eventHome:hover{
         box-shadow: 0 0 20px rgba(1,56,95,0.9);
         transition: var(--transition);
     }
-    .cont-carrusel .alice-carousel__stage-item.__active.__target + li .cont-eventHome .cont-infoEventoHome{
+    .cont-carrusel:not(.carrusel_menos_3_items) .alice-carousel__stage-item.__active.__target + li .cont-eventHome .cont-infoEventoHome{
         background:linear-gradient(0deg, rgba(1,56,95,1) 2%, rgba(1,56,95,0.9) 10%, rgba(1,56,95,0) 100%);
     }
 }

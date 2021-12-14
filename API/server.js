@@ -19,7 +19,7 @@ app.name = "API";
 
 app.use(cors({ origin: ["http://localhost:3000", "https://eventy-main.vercel.app"], credentials: true }));
 
-//app.set("trust proxy", 1);
+app.set("trust proxy", 1);
 
 app.get("/", (req, res, next) => {
   headers["Access-Control-Allow-Origin"] = ["http://localhost:3000", "https://eventy-main.vercel.app"];
@@ -56,14 +56,22 @@ app.use(
     //proxy: true,
     saveUninitialized: true,
     store: MongoStore.create({ mongoUrl: process.env.MONGO }),
+<<<<<<< HEAD
      //cookie: {
       
      // sameSite: 'none',
      // secure: true,
      // maxAge: 60 * 60 * 1000 * 24 * 365,
     //}, 
+=======
+    cookie: {      
+      sameSite: 'none',
+      secure: true,
+      maxAge: 60 * 60 * 1000 * 24 * 365,
+    }, 
+>>>>>>> cb65d4035058e7d989ee3cf7d8b059d25236ef3a
   })
-); 
+);
 
 require("./passportConfig")(passport);
 app.use(passport.initialize());

@@ -22,6 +22,7 @@ import User from './Routes/User/User';
 import Compra from './Routes/Compra/Compra';
 import ResetPassword from './Routes/ResetPassword';
 import Forgot from './Routes/Forgot';
+import CompletePerfil from './Routes/CompletarPerfil/completarPerfil';
 
 function App() {
 
@@ -54,6 +55,7 @@ function App() {
           <Route exact path = '/reset/:id' element = {<div><NavBar/><ResetPassword/></div>}/>
           <Route exact path = '/forgot' element = {<div><NavBar/><Forgot/></div>}/>
           <Route exact path = '/compraExitosa/:title' element = {<div><NavBar/><Compra/></div>}/>
+          <Route exact path = '/completarPerfil' element = {<div><NavBar/><CompletePerfil/></div>}/>
         </Routes>
       </div>
     </BrowserRouter>

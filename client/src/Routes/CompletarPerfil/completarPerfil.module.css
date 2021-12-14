@@ -1,0 +1,12 @@
+.Container{
+  width: 50%;
+  margin: auto;
+  margin-bottom: 50px;
+}
+.InputValid input{
+  box-shadow: 0 0 8px rgb(0, 255, 21);
+}
+.InputInvalid input{
+  box-shadow: 0 0 8px rgb(255, 0, 0);
+
+}

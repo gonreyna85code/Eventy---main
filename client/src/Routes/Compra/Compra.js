@@ -1,43 +1,18 @@
-import React, {useEffect, useState} from "react";
-import {Link, useParams} from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
-import { getUser, getEvent, payedEvent, putEvent, putVentas } from "../../redux/actions";
+import React from "react";
+import {Link, useNavigate, useParams} from 'react-router-dom';
 import './Compra.css';
 import Boton from "../../components/Boton/Boton";
+import { useSelector } from "react-redux";
 
 export default function Compra(){
 
     const{title} = useParams();
-    const dispatch = useDispatch();
-    const name = title.slice(14);
-    
-
-    useEffect(() => {
-        dispatch(getEvent('Festival Nacional del Chamamé 2022'));
-      }, [dispatch, name]);
-    
-      useEffect(() => {
-        dispatch(getUser());
-      }, [dispatch]);
-
-      const user = useSelector((state) => state.User);
-      const event = useSelector((state) => state.Event[0]);
-      const [qr, setQr] = useState(false)
-      const ventas = Number(title.slice(0,1))
-      console.log(ventas);
-
-      console.log(event);
-
-      function handleQr (e){
-          e.preventDefault();
-          setQr(true);
-          dispatch(putVentas(name, ventas))
-          dispatch(payedEvent(user.username, event.name));
-      }
-
+    const navigate = useNavigate()
+    const user = useSelector(state=>state.User)
 
     return(
         <div className="contenedorCompra">
+            {user&& user.password==='' ? navigate('/completarPerfil'):null }
             <h1>Compra Exitosa</h1>
             <h4>Su compra de {title} ha sido exitosa</h4> 
             <h4>Guarde este código QR y muéstrelo al momento de entrar al evento</h4>

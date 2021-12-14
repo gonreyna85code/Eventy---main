@@ -8,6 +8,7 @@ import {
   getUser,
   findUser,
   deleteEvent,
+  present,
 } from "../../redux/actions";
 import style from "./DetailEvents.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -88,7 +89,7 @@ export default function DetailEvet() {
     console.log(theEvent.accesKey);
     dispatch(postPreference(preference, theEvent.accesKey));
   }
-  
+
   const mercadopago = useMercadopago.v2(
     "TEST-73717f29-d26d-4a49-aec6-3f75b4872625",
     {
@@ -108,7 +109,7 @@ export default function DetailEvet() {
         },
       });
     }
-  }, [mercadopago, PreferenceId, cantidad,]);
+  }, [mercadopago, PreferenceId, cantidad]);
 
   useEffect(() => {
     if (Object.keys(user).length !== 0 && theEvent) {
@@ -125,25 +126,41 @@ export default function DetailEvet() {
     }
   }
 
+  function handleAsistir() {
+    const seguidor = user?._id;
+    const seguido = theEvent?._id;
+    const data = {
+      id1: seguidor,
+      id2: seguido,
+    };
+    dispatch(present(data));
+    console.log(data);
+  }
 
   function handleDelete(e) {
     e.preventDefault();
     dispatch(deleteEvent(theEvent.name));
     alert("El evento ha sido eliminado");
     setTimeout(function () {
-    navigate("/");
-    window.location.reload();
+      navigate("/");
+      window.location.reload();
     }, 2000);
   }
 
   return (
     <div>
+      {user&& user.password==='' ? navigate('/completarPerfil'):null }
       {!user && !user._id ? (
         navigate("/login")
       ) : (
         <div>
           {theEvent ? (
             <div>
+              {theEvent && theEvent.expired ? (
+                <div className={style.evento_expired}>
+                  <span>Este evento ya se ha realizado</span>
+                </div>
+              ) : null}
               <div
                 className={style.fondo}
                 style={{
@@ -176,7 +193,7 @@ export default function DetailEvet() {
                         icon={faMapMarkerAlt}
                       />
                       <span className={style.info}>
-                        {theEvent.location.cityName}
+                        {" "+theEvent.location.cityName}
                       </span>
                     </div>
                     <div>
@@ -184,11 +201,14 @@ export default function DetailEvet() {
                         className={style.icono}
                         icon={faCalendarAlt}
                       />
-                      <span className={style.info}>{theEvent.date}</span>
+                      <span className={style.info}>{" "+theEvent.date}</span>
                     </div>
                     <div>
                       <Boton colorBtn="btn_naranja">Asistiré</Boton>
                       <Boton colorBtn="btn_naranja">Seguir Evento</Boton>
+                      {theEvent && !theEvent.expired && theEvent.promises?.includes(!user._id) ? (
+                        <Boton  colorBtn="btn_naranja" onClick={(e) => handleAsistir()} >Asistiré</Boton>
+                      ) : null}
                       {user._id === theEvent.user._id ? (
                         <div>
                           <Link to={"/editar-evento/" + name}>
@@ -202,9 +222,7 @@ export default function DetailEvet() {
                           </Boton>
                         </div>
                       ) : (
-                        <Link
-                          to={`/user/${creator.id}`}
-                        >
+                        <Link to={`/user/${creator.id}`}>
                           <span className={style.creator}>
                             Creado por:{" "}
                             {creatorr(
@@ -237,43 +255,46 @@ export default function DetailEvet() {
                   </div>
                 </Container>
               </div>
-              <div>
-                <Container>
-                  <div className={`pago ${style.cont_pagos}`}>
-                    {theEvent.event_pay === true ? (
-                      <div>
-                        <h1>Comprar entradas:</h1>
-                        <div className={style.cont_datospago}>
-                          <h3>Precio general: {theEvent.info.ticketPrice}$</h3>
-                          <h3>Cantidad de entradas: {theEvent.info.stock}</h3>
-                          <div>
-                            <Input
-                              label="Cantidad de entradas"
-                              type="number"
-                              name="quantity"
-                              min={1}
-                              onChange={(e) => handleChange(e)}
-                            />
-                            <Boton
-                              colorBtn="btn_azul"
-                              onClick={(e) => handleClick(e)}
-                            >
-                              Comprar {cantidad} entrada/s
-                            </Boton>
+              {theEvent && !theEvent.expired ? (
+                <div>
+                  <Container>
+                    <div className={`pago ${style.cont_pagos}`}>
+                      {theEvent.event_pay === true ? (
+                        <div>
+                          <h1>Comprar entradas:</h1>
+                          <div className={style.cont_datospago}>
+                            <h3>
+                              Precio general: ${theEvent.info.ticketPrice}
+                            </h3>
+                            <div>
+                              <Input
+                                label="Cantidad de entradas"
+                                type="number"
+                                name="quantity"
+                                min={1}
+                                onChange={(e) => handleChange(e)}
+                              />
+                              <Boton
+                                colorBtn="btn_azul"
+                                onClick={(e) => handleClick(e)}
+                              >
+                                Comprar {cantidad} entrada/s
+                              </Boton>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ) : (
-                      <p>Este evento es GRATUITO.</p>
-                    )}
-                  </div>
-                </Container>
-              </div>
+                      ) : (
+                        <p>Este evento es GRATUITO.</p>
+                      )}
+                    </div>
+                  </Container>
+                </div>
+              ) : null}
             </div>
           ) : (
             <Loading />
           )}
-          <div className={style.discus}>
+          {theEvent && !theEvent.expired ? (<div className={style.discus}>
             <div id="disqus_thread"></div>
             {
               /**
@@ -300,7 +321,7 @@ export default function DetailEvet() {
                 comments powered by Disqus.
               </a>
             </noscript>
-          </div>
+          </div>) : null}
           <div className={style.home}>
             <Link to="/">
               <Boton colorBtn="btn_azul">Volver al Home</Boton>

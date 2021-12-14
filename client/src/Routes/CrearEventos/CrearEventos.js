@@ -128,6 +128,8 @@ const CrearEventos = () => {
 
   return (
     <div className={styles.cont_crear_evento}>
+      {user&& user.password==='' ? navigate('/completarPerfil'):null }
+
       <div className={styles.header}>
         <h1>Crear un Nuevo Evento</h1>
       </div>
@@ -137,7 +139,7 @@ const CrearEventos = () => {
             label="Nombre del Evento"
             type="text"
             name="name"
-            onChange={(e) => setEventName(e.target.value)}
+            onChange={(e) => setEventName(e.target.value.trim())}
           />
           <Map
             type="event"

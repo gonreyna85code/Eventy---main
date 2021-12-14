@@ -24,8 +24,13 @@ import {
   POST_FOLLOW,
   DELETE_FOLLOW,
   DELETE_EVENT,
+<<<<<<< HEAD
   PAYED_EVENT,
   PUT_VENTAS,
+=======
+  VALIDATE_USER,
+  COMPLETE_USER
+>>>>>>> cb65d4035058e7d989ee3cf7d8b059d25236ef3a
 } from "./actions.js";
 
 //========================
@@ -79,7 +84,11 @@ const follows = (payload) => {
 
   }
 
-  return cleanFollows;
+  return cleanFollows.sort( (a, b) => {
+    if( a[0].date > b[0].date ) return -1
+    if( a[0].date > b[0].date ) return 1
+    return 0
+});
 
 }
 
@@ -105,7 +114,11 @@ const initialState = {
   NearEvents:[],
   Follows: [],
   OtherUsers:[],
+<<<<<<< HEAD
   PayedEvents:[]
+=======
+  validUser: true
+>>>>>>> cb65d4035058e7d989ee3cf7d8b059d25236ef3a
 };
 
 
@@ -116,6 +129,18 @@ function rootReducer(state = initialState, action) {
       User: action.payload,
       Follows: follows( action.payload.follows )
     };
+  }
+  if (action.type === VALIDATE_USER) {
+    if (action.payload === true) {
+      return {
+        ...state,
+        validUser:false
+      }
+    }
+    return{
+      ...state,
+      validUser:true
+    }
   }
   if (action.type === FIND_EVENT) {
     return {
@@ -141,6 +166,15 @@ function rootReducer(state = initialState, action) {
       ...state,
       NearbyEvents: action.payload,
     };
+  }
+  if (action.type === COMPLETE_USER) {
+    return{
+      ...state,
+      User:{
+        ...state,
+        User:action.payload
+      }
+    }
   }
   if (action.type === PUT_USER) {
     return {
@@ -236,13 +270,13 @@ function rootReducer(state = initialState, action) {
   }
   if (action.type === CHANGE_USER_CITY) {
     return{
-      state,
+      ...state,
       UserCity:{cityName:action.payload.cityName, cityCords: action.payload.cityCords}
     }
   }
   if (action.type === CHANGE_EVENT_CITY) {
     return{
-      state,
+      ...state,
       EventCity:{cityName:action.payload.cityName, cityCords: action.payload.cityCords}
     }
   }

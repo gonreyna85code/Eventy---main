@@ -53,22 +53,21 @@ router.post("/event", isAuthenticated, function (req, res) {
 
 router.get("/event/:name", isAuthenticated, async (req, res) => {
   const { name } = req.params;
-  var response = await Event.find({ name: name }).populate("user");
+  console.log(name);
+  var response = await Event.find({ name: name }).populate("user").populate("promises");
   console.log(response);
   response.length > 0
     ? res.status(200).send(response)
-    : res.status(404).send("No hay eventos");
+    : res.send("No hay eventos");
 });
 
 router.get("/eventosCercanos", isAuthenticated, async (req, res) => {
   distance.key("AIzaSyCf8E0lXmJWdgTw6vgsHOcslcUZ4oidnE0");
   var origin = [`${req.query.lat},${req.query.lng}`];
-  // console.log(origin);
   var eventos = await Event.find().populate("user");
   var destinosCoords = eventos.map((event) => {
     return `${event.location.cityCords.lat}, ${event.location.cityCords.lng}`;
   });
-  // destinos = destinos[0]
   if (req.query && req.query.lat) {
     distance.matrix(origin, destinosCoords, async function (err, distances) {
       if (err) {
@@ -76,7 +75,6 @@ router.get("/eventosCercanos", isAuthenticated, async (req, res) => {
       }
       let distancias = distances.rows[0].elements;
       let filtrado = distancias.map((dist) => {
-        console.log(req.query.distance)
         if (dist.distance.value <= req.query.distance) {
           return distancias.indexOf(dist);
         }
@@ -95,7 +93,7 @@ router.get("/eventosCercanos", isAuthenticated, async (req, res) => {
           return event;
         }
       });
-      // console.log(eventsSend);
+
       res.send(eventsSend);
     });
   } else {
@@ -106,7 +104,7 @@ router.get("/eventosCercanos", isAuthenticated, async (req, res) => {
 router.get("/eventsAll/:parametro", isAuthenticated, async (req, res) => {
   var parametro = req.params.parametro.toLowerCase()
   var nombre, lugar, info;
-  var response = await Event.find().populate("user"); //Aqui se piden todos los datos de la base de datos
+  var response = await Event.find().populate("user").populate("promises"); //Aqui se piden todos los datos de la base de datos
   //Aqui se compara el paremetro de busqueda con los tres principales parametros de cada evento con el fin de encontrar lo que le cliente busca
   nombre = response.filter((evento) => {
     return evento.name.toLowerCase().includes(parametro);
@@ -208,7 +206,6 @@ router.get(
 
 router.get("/socialEvents", isAuthenticated, async (req, res) => {
   var response = await Event.find({ category: "social" }).populate("user");
-  console.log(response);
   response.length > 0
     ? res.status(200).send(response)
     : res.status(404).send("No hay eventos");
@@ -222,8 +219,7 @@ router.get("/sportEvents", isAuthenticated, async (req, res) => {
 });
 
 router.get("/allEvents", isAuthenticated, async (req, res) => {
-  var response = await Event.find().populate("user");
-  console.log(response);
+  var response = await Event.find().populate("user").populate("promises");
   response.length > 0
     ? res.status(200).send(response)
     : res.status(404).send("No hay Eventos");
@@ -314,7 +310,7 @@ router.put("/editarEvento/:name", isAuthenticated, (req, res) => {
             pass: "eventymailer" /* Your Password */,
           },
         });
-        User.findOne({ _id: evento.user }, (err, user) => {
+        User.findMany({ _id: evento.user }, (err, user) => {
           if (err) {
             console.log(err);
           } else {
@@ -351,7 +347,7 @@ router.delete("/event", isAuthenticated, (req, res) => {
 });
 
 setInterval(function () {
-  let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
+  let yesterday = new Date(new Date().setDate(new Date().getDate() + 1));
   var year = yesterday.getFullYear();
   var month = yesterday.getMonth();
   var day = yesterday.getDate();

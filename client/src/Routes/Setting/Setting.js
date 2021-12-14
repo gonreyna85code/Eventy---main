@@ -8,11 +8,12 @@ import Initial from '../Profile/Initial';
 import { putUser, getUser, allUnsuscription } from '../../redux/actions';
 import styles from './Setting.module.css';
 import Container from '../../components/Container/Container';
+import { useNavigate } from 'react-router-dom';
 
 export default function Setting(){
     const user = useSelector(state => state.User);
     const dispatch=useDispatch();
-
+    const navigate = useNavigate()
     const [profile,setProfile]=useState({
         name:user.profile?.name,
         surname: user.profile?.surname,
@@ -76,6 +77,7 @@ export default function Setting(){
 
     return (
         <>
+        {user&& user.password==='' ? navigate('/completarPerfil'):null }
             <div className={styles.setting} >
                 <Initial user={user}/>
                 <h1>Configuración</h1>

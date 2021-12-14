@@ -11,6 +11,7 @@ const event = new mongoose.Schema({
   stock: String,
   date: String,
   expired: Boolean,
+  promises: [{ type: Schema.Types.ObjectId, ref: "User" }],
   user: { type: Schema.Types.ObjectId, ref: "User" },
   info: Object,
 });

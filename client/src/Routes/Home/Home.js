@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import styles from './Home.module.css';
 import NavBar from '../NavBar/NavBar';
 import EventHome from './EventHome';
@@ -44,8 +44,8 @@ const responsive = {
 }
 
 
-    
-
+const subcategoriasSport = ["Maraton", "Aeromodelismo", "Futbol", "Tenis", "Handball"];
+const subcategoriasSocial = ["Fiesta", "Reunion", "Protesta", "Concierto"];
 
 const Home = () => {
     
@@ -59,7 +59,7 @@ const Home = () => {
 
     const [estatusPopup, setEstatusPopup] = useState(false);
    
-
+    const navigate = useNavigate()
     const [userCord, setUserCord] = useState(0)
     const [defaultDistance ] = useState(5)
     const [distance , setDistance] = useState(5)
@@ -110,8 +110,8 @@ const Home = () => {
 
     return(
         <div className={styles.cont_home}>
+            {user&& user.password==='' ? navigate('/completarPerfil'):null }
             <NavBar/>
-            {console.log(NearEvents)}
             <div className={styles.cont_principal}>
                 <div className={styles.cont_info_principal}>
                     <h1 className={styles.titulo}>Eventos Cercanos</h1>
@@ -141,7 +141,7 @@ const Home = () => {
                             : null
                         }
                 </div>
-                <div className={`cont-carrusel ${styles.cont_carrusel}`}>
+                <div className={`cont-carrusel ${styles.cont_carrusel} ${NearEvents && NearEvents.length < 4 ? `carrusel_menos_3_items` : ``}`}>
                     { NearEvents &&  NearEvents.length > 0
                     ?<AliceCarousel
                         mouseTracking
@@ -200,6 +200,9 @@ const Home = () => {
                         <h2>¿Estas Planeando un Nuevo evento?</h2>
                         <span>Compártelo!</span>
                         <button onClick={(e)=>handleClickCrearEvento(e)}>¿Como se llama tu evento?</button>
+                        <div>
+                            <Boton colorBtn='btn_azul' onClick={(e)=>handleClickCrearEvento(e)}>Crear evento</Boton>
+                        </div>
                         <PopUp 
                             estatus={estatusPopup}
                             onClick={handleClickPopup}
@@ -213,11 +216,10 @@ const Home = () => {
             <div className={styles.cont_general}>
                 <Container>
                     <div className={styles.cont_listado_eventos}>
-                        <h3>Eventos de usuarios seguidos</h3>
+                        <h5>Eventos de usuarios seguidos</h5>
                         {
                             
                             follows && follows.length > 0 ? follows.map( evento => {
-                                
                                 return ( <CardHome
                                     name={evento[0].name}
                                     location={evento[0].location?.cityName}
@@ -227,6 +229,7 @@ const Home = () => {
                                     tipoEvento={evento[0].event_pay}
                                     categoria={evento[0].category}
                                     user={evento.user}
+                                    asistentes={evento[0].promises?.length}
                                 />)
 
 
@@ -237,133 +240,33 @@ const Home = () => {
 
                     </div>
                     <div className={styles.cont_rigth}>
-                        <h3>Listado de Categorías</h3>
-                    </div>
-                </Container>
-            </div>
-            {/* <div className={`${styles.cat_sociales} ${styles.cont_categoria_home}`}>
-                <div className={styles.cont_info_categoria_home}>
-                    <h2>Sociales</h2>
-                    <Link to = '/social'>
-                    <Boton colorBtn='btn_naranja'>Ver Eventos</Boton>
-                    </Link>
-                </div>
-                <div className={styles.cont_carrusel_categoria_home}>
-                    <AliceCarousel
-                        mouseTracking
-                        items={
-                            eventosSociales && eventosSociales.map( evento => {
+                        
+                        <div className={styles.cont_listado_categorias}>
+                            <h3>Listado de Categorías</h3>
+
+                            <Link to = '/sport'><h4>Deportes</h4></Link>
+                            <ul>{
                                 
-                                return(
-                                    <div>
-                                       {
-                                        
-                                        <CardEvent
-                                            name={evento.name}
-                                            img={evento.info.imagen ? evento.info.imagen : 'https://www.chefandparty.com/wp-content/uploads/2020/07/Sociales.jpg'}
-                                            location={evento.location.cityName}
-                                            date={evento.date}
-                                            id={evento._id}
-                                            buttonColor='naranja'
-                                        />
-                                        }
-                                    </div>
-                                );
-
-                            })
-                        }
-                        responsive={responsive}
-                        controlsStrategy="alternate"
-                        autoPlay={true}
-                        infinite={true}
-                        autoPlayInterval={4000}
-                        disableButtonsControls={true}
-                        disableDotsControls={false}
-                    />
-                </div>
-            </div>
-            <div className={`${styles.cat_deportes} ${styles.cont_categoria_home}`}>
-                <div className={styles.cont_carrusel_categoria_home}>
-                    <AliceCarousel
-                        mouseTracking
-                        items={
-                            eventosDeportes && eventosDeportes.map( evento => {
-                                
-                                return(
-                                    <div>
-                                       {
-
-                                        
-                                            <CardEvent
-                                                name={evento.name}
-                                                img= {evento.info.imagen ? evento.info.imagen :'https://blog.jeep.com.ec/hubfs/7%20deportes%20extremos%20para%20realizar%20outdoor%20despu%C3%A9s%20de%20la%20cuarentena-4.png'}
-                                                location={evento.location.cityName}
-                                                date={evento.date}
-                                                id={evento._id}
-                                                buttonColor='naranja'
-                                                />
-                                            
-                                        }
-                                    </div>
-                                );
-
-                            })
-                        }
-                        responsive={responsive}
-                        controlsStrategy="alternate"
-                        autoPlay={true}
-                        infinite={true}
-                        autoPlayInterval={4000}
-                        disableButtonsControls={true}
-                        disableDotsControls={false}
-                    />
-                </div>
-                <div className={styles.cont_info_categoria_home}>
-                    <h2>Deportes</h2>
-                    <Link to = '/sport'>
-                    <Boton colorBtn='btn_azul'>Ver Eventos</Boton>
-                    </Link>
-                </div>
-            </div>
-            <div className={styles.cont_eventos_seguidos}>
-                <Container>
-                    <h2>Eventos Seguidos</h2>
-                    <div className={styles.cont_carrusel_seguidos}>
-                        <AliceCarousel
-                            mouseTracking
-                            items={
-                                user && user.events.map( evento => {
-                                    
-                                    return(
-                                        <div>
-                                        {
-                                            
-                                            <CardEvent
-                                                name={evento.name}
-                                                img={evento.info.imagen ? evento.info.imagen :'https://blog.jeep.com.ec/hubfs/7%20deportes%20extremos%20para%20realizar%20outdoor%20despu%C3%A9s%20de%20la%20cuarentena-4.png'}
-                                                location={evento.location.cityName}
-                                                date={evento.date}
-                                                id={evento._id}
-                                                buttonColor='naranja'
-                                                />
-
-                                            }
-                                        </div>
-                                    );
-
+                                subcategoriasSport && subcategoriasSport.map( s => {
+                                    return <li key={s}><Link to={`/subcategory/${s}`}>{s}</Link></li>
                                 })
-                            }
-                            responsive={responsive}
-                            controlsStrategy="alternate"
-                            autoPlay={true}
-                            infinite={true}
-                            autoPlayInterval={4000}
-                            disableButtonsControls={true}
-                            disableDotsControls={false}
-                        />
+                            
+                            }</ul>
+                            <Link to = '/social'><h4>Sociales</h4></Link>
+                            <ul>{
+                                
+                                subcategoriasSocial && subcategoriasSocial.map( s => {
+                                    return <li key={s}><Link to={`/subcategory/${s}`}>{s}</Link></li>
+                                })
+                            
+                            }</ul>
+
+                        </div>
+                        
                     </div>
                 </Container>
-            </div> */}
+            </div>
+            
         </div>
     );
 }

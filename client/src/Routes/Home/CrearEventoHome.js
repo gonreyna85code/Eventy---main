@@ -6,7 +6,8 @@ import Select from "../../components/Select/Select";
 import { getUser, postEvent, changeEventCity } from "../../redux/actions";
 import Map from "../../components/Maps/Map";
 import useImage from "../../hooks/useImage";
-import styles from './Home.module.css'
+import styles from './Home.module.css';
+import {useNavigate} from 'react-router-dom';
 
 
 const categories = [{value:"sports",name:"Deportes"},{value:"social",name:"Social"}]
@@ -21,6 +22,8 @@ const CrearEventoHome = () => {
 
   const dispatch = useDispatch();
   const uploadImage = useImage();
+
+  const navigate = useNavigate();
 
   const user = useSelector( state => state.User );
   const EventCity = useSelector(state=> state.EventCity)
@@ -76,7 +79,7 @@ const handleChangeSelect = (e) => {
             date,
             event_pay,
             location: EventCity,
-            name: eventName,
+            name: eventName.trim(),
             subcategory: subCategory,
             user: user?._id,
             info: {
@@ -89,8 +92,7 @@ const handleChangeSelect = (e) => {
         e.preventDefault()
         dispatch(postEvent(event));
         dispatch(changeEventCity({}));
-        console.log(event);
-        alert("Evento creado con exito");
+        navigate(`/detailEvent/${eventName.trim()}`)
     }
 
 const handleClickTipoPago = () => {
@@ -120,9 +122,9 @@ const handleClickTipoPago = () => {
         <form className={styles.form} onSubmit={handleSubmit}>
 
             <div className={styles.user_crearevento}>
-                <div className={styles.img_user_crearevento} style={{backgroundImage: `url(${user && user.profile.photo})`}} ></div>
+                <div className={styles.img_user_crearevento} style={{backgroundImage: `url(${user && user.profile?.photo})`}} ></div>
                 <div className={styles.cont_user_crearevento}>
-                    <h4>{user ? user.profile.name : null}</h4>
+                    <h4>{user ? user.profile?.name : null}</h4>
                     <span onClick={handleClickTipoPago}>{tipoPago ? tipoPago : `¿Este evento es de pago?`}</span>
                 </div>
             </div>
