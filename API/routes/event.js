@@ -22,8 +22,8 @@ router.post("/event", isAuthenticated, function (req, res) {
       if (!doc) {
         const eventDate = new Date(req.body.date);
         var year = eventDate.getFullYear();
-        var month = eventDate.getMonth();
-        var day = eventDate.getDate();
+        var month = eventDate.getMonth()+1;
+        var day = eventDate.getDate()+1;
         var fecha = day + "-" + month + "-" + year;
         const newEvent = new Event({
           name: req.body.name,
@@ -288,6 +288,7 @@ router.put("/ventas", isAuthenticated, (req,res)=>{
 
 router.put("/editarEvento/:name", isAuthenticated, (req, res) => {
   const name = req.params;  
+  console.log(name);
   Event.updateOne(
     { name: name.name },
     {
@@ -314,15 +315,17 @@ router.put("/editarEvento/:name", isAuthenticated, (req, res) => {
         });
         User.find({ follows: req.body.user }, (err, user) => {
           if (err) {
-            console.log(err);                 
-          } else {            
+            console.log(err); 
+
+          } else {     
+            if(user.length > 0){for(let i = 0; i < user.length; i++){       
             const mailOptions = {
               from: "eventy.mailer.service@gmail.com",
-              to: user.email,
+              to: user[i].email,
               subject: "Evento Editado",
               html: `<h1>Evento Editado</h1>
-                <p>El evento ${name} ha sido editado</p>
-                <p>Para ver el evento haga click <a href="https://eventy-main.vercel.app/evento/${name}">Aqui</a></p>`,
+                <p>El evento ${name.name} ha sido editado</p>
+                <p>Para ver el evento haga click <a href="https://eventy-main.vercel.app/evento/${name.name}">Aqui</a></p>`,
             };
             transporter.sendMail(mailOptions, function (error, info) {
               if (error) {
@@ -331,6 +334,7 @@ router.put("/editarEvento/:name", isAuthenticated, (req, res) => {
                 console.log("Email sent: " + info.response);
               }
             });
+          }}
           }
         });
         console.log("hecho");
