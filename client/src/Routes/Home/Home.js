@@ -211,7 +211,8 @@ const Home = () => {
 
                             })
 
-                            : null
+                            : <h3 className='cont-center'>Parece que aún no sigues a ningun usuario :|</h3>
+                            
                         }
 
                     </div>
