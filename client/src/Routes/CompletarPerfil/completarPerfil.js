@@ -28,6 +28,7 @@ function CompletePerfil(){
   const email= useSelector(state=>state.User?.email? state.User.email : state.User.profile?.email)
   const __v= useSelector(state=>state.User.__v)
   const promises= useSelector(state=>state.User.promises)
+  const user = useSelector(state=>state.User)
 
 
 
@@ -45,7 +46,9 @@ function CompletePerfil(){
   
   
   return (
+    
       <div className={styles.Container}>
+        { user && !user?.password==='' ? navigate('/') : null }
         <h1>ya casi estas listo para terminar tu registro en eventy!</h1>
         <h2>solo te faltan completar los siguientes datos de la cuenta:</h2>
         <form>
@@ -128,7 +131,7 @@ function CompletePerfil(){
           setTimeout(function () {
             window.location.reload();
             navigate("/");
-          }, 1000);
+          }, 2000);
           
         }}
         > Completar Perfil </Boton>
