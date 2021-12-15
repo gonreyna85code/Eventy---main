@@ -43,7 +43,7 @@ function CompletePerfil(){
   
   
   
-  
+  console.log(user)
   
   return (
     
