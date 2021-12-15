@@ -125,7 +125,11 @@ function CompletePerfil(){
           }
           dispatch(completeUser(userComplete))
           dispatch(changeUserCity({}))
-          navigate('/')
+          setTimeout(function () {
+            window.location.reload();
+            navigate("/");
+          }, 1000);
+          
         }}
         > Completar Perfil </Boton>
         :null
