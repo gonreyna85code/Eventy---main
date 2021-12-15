@@ -241,7 +241,7 @@ router.post("/create_preference", (req, res) => {
   const { title, price, quantity, accesKey } = req.body;
 
   mercadopago.configure({
-    access_token: accesKey,
+    access_token: 'APP_USR-7103077711305655-113021-56572adb8ad27a0270f50bb94563ae2b-274464234',
   });
 
   let preference = {
