@@ -13,6 +13,7 @@ import Warning from "../../components/Warning.js/Warning";
 
 
 const EventEditor = () => {
+  const event = useSelector((state) => state.Event);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getUser());
@@ -33,7 +34,7 @@ const EventEditor = () => {
   ];
   const navigate = useNavigate()
   const user = useSelector((state) => state.User);
-  const event = useSelector((state) => state.Event);
+  
   const [credential, setCredential] = useState('')
   if(!user){
     dispatch(getUser());
@@ -41,11 +42,12 @@ const EventEditor = () => {
   console.log(event)
 
   function modificarEvento(e){
+    e.preventDefault()
     let event={
       category,
       date,
       event_pay,
-      location:event[0]?.location,
+      location: EventCity,
       name:eventName,
       subcategory: subCategory,
       user:user?._id,
@@ -55,12 +57,11 @@ const EventEditor = () => {
         ticketPrice:ticketPrice?ticketPrice:'El evento no vende entradas',
         credential: credential,
       }
-    }
-    e.preventDefault()
+    }    
     dispatch(putEvent(event,name));
-    dispatch(changeEventCity({}))
+    //dispatch(changeEventCity({}))
     console.log(event);
-    alert('Evento editado con exito')
+    //alert('Evento editado con exito')
   }
 
   const yesterday = new Date(new Date().setDate(new Date().getDate()));
@@ -77,7 +78,7 @@ const EventEditor = () => {
   const mes = event[0]?.date.toString().substring(3,5)
   const anio = event[0]?.date.toString().substring(6,10)
   const DATE =  anio + "-" + mes + "-" +  dia;
-
+  
   const EventCity = useSelector(state=> state.EventCity)
   const[eventName, setEventName]= useState(event[0]?.name)
   const[category, setCategory] = useState(event[0]?.category)
@@ -87,7 +88,7 @@ const EventEditor = () => {
   const[description, setDescription] = useState(event[0]?.info?.description)
   const [event_pay, setEventPay]= useState(false)
   const [ticketPrice, setTicketPrice]=useState(0)
-  
+ 
   
   
   
@@ -136,7 +137,7 @@ const EventEditor = () => {
             label="Fecha"          
             type="date"
             value={date}
-            // min={fecha}
+            min={fecha}
             name="date"
             onChange={e=> setDate(e.target.value)}
           />
@@ -196,7 +197,7 @@ const EventEditor = () => {
           }
           </div>
            
-            <Boton onClick={modificarEvento} colorBtn="btn_azul">Editar Evento</Boton>
+            <Boton onClick={(e) => modificarEvento(e)} colorBtn="btn_azul">Editar Evento</Boton>
             
           
           

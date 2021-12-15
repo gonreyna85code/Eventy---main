@@ -287,8 +287,7 @@ router.put("/ventas", isAuthenticated, (req,res)=>{
 })
 
 router.put("/editarEvento/:name", isAuthenticated, (req, res) => {
-  const name = req.params;
-  console.log(name);
+  const name = req.params;  
   Event.updateOne(
     { name: name.name },
     {
@@ -305,8 +304,7 @@ router.put("/editarEvento/:name", isAuthenticated, (req, res) => {
       if (error) {
         console.log(error);
       }
-      if (evento) {
-        console.log(evento);
+      if (evento) {        
         const transporter = nodemailer.createTransport({
           service: "gmail",
           auth: {
@@ -314,19 +312,17 @@ router.put("/editarEvento/:name", isAuthenticated, (req, res) => {
             pass: "eventymailer" /* Your Password */,
           },
         });
-        
-        User.findOne({ _id: evento.user }, (err, user) => {
+        User.find({ follows: req.body.user }, (err, user) => {
           if (err) {
-            console.log(err);
-          } else {
+            console.log(err);                 
+          } else {            
             const mailOptions = {
               from: "eventy.mailer.service@gmail.com",
               to: user.email,
               subject: "Evento Editado",
               html: `<h1>Evento Editado</h1>
-                <p>El evento ${evento.name} ha sido editado</p>
-                <p>Para ver el evento haga click <a href="https://eventy-main.vercel.app/evento/${evento.name}">Aqui</a></p>
-                `,
+                <p>El evento ${name} ha sido editado</p>
+                <p>Para ver el evento haga click <a href="https://eventy-main.vercel.app/evento/${name}">Aqui</a></p>`,
             };
             transporter.sendMail(mailOptions, function (error, info) {
               if (error) {
