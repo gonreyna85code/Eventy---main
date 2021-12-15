@@ -105,14 +105,11 @@ const CrearEventos = () => {
     
     alert("Evento creado con exito");
     dispatch(getEvent(eventName))
-  //   setTimeout(function () {
-  //     window.location.reload(eventName);
-  //     navigate(`/detailEvent/${eventName.trim()}`)            
-  // }, 2000);
-    /* setTimeout(function () {
-      navigate("/");
-      window.location.reload();
-      }, 2000); */
+    setTimeout(function () {
+      window.location.reload(eventName);
+      navigate(`/detailEvent/${eventName.trim()}`)            
+  }, 2000);
+    
   }
 
   const handleImage = async (file) => {
