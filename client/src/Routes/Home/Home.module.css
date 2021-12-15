@@ -276,7 +276,7 @@
     color:var(--blanco);
     padding-bottom: 350px;
 }
-.MapPopup > div > div{
+.MapPopup{
     width: 50vw;
 }
 .cont_general{

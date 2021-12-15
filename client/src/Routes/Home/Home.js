@@ -8,14 +8,13 @@ import { getUser, getAllEvents, getNearEvents } from '../../redux/actions';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import './HomeCarrusel.css';
-//import SearchBar from '../../components/SearchBar/SearchBar';
 import Container from '../../components/Container/Container';
 import Boton from '../../components/Boton/Boton';
-import CardEvent from '../../components/CardEvent/CardEvent';
 import PopUp from '../../components/PopUp/PopUp';
 import CrearEventoHome from './CrearEventoHome';
-import Map from '../../components/Maps/Map';
 import CardHome from './CardHome'
+import MapContainer from '../../components/Maps/Map';
+
 
 
 const responsivePrincipal = {
@@ -181,7 +180,7 @@ const Home = () => {
                         }}
                     >
                        <div className={styles.MapPopup}>
-                            <Map
+                            <MapContainer
                             coords={userCord}
                             type='nearEvents'
                             NearEvents= { NearEvents}
