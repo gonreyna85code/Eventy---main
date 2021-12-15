@@ -6,7 +6,7 @@ import Input from "../../components/Input/Input";
 import Select from "../../components/Select/Select";
 import Container from "../../components/Container/Container";
 import styles from "./CrearEventos.module.css";
-import { postEvent, getUser, changeEventCity, getEvent } from "../../redux/actions";
+import { postEvent, getUser, changeEventCity } from "../../redux/actions";
 import Map from "../../components/Maps/Map";
 import Warning from "../../components/Warning.js/Warning";
 import useImage from "../../hooks/useImage";
@@ -101,14 +101,17 @@ const CrearEventos = () => {
     }
     e.preventDefault()
     dispatch(postEvent(event));
-    dispatch(changeEventCity({}));    
-    alert("Evento creado con exito");
-    //dispatch(getEvent(eventName))
-    setTimeout(function () {
-      window.location.reload();
-      navigate(`/detailEvent/${eventName.trim()}`)            
-  }, 2000);
+    dispatch(changeEventCity({}));
     
+    alert("Evento creado con exito");
+    setTimeout(function () {
+            window.location.reload();
+            navigate(`/detailEvent/${eventName.trim()}`)            
+        }, 2000);
+    /* setTimeout(function () {
+      navigate("/");
+      window.location.reload();
+      }, 2000); */
   }
 
   const handleImage = async (file) => {
