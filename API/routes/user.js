@@ -28,7 +28,7 @@ router.get("/validateUser", async (req, res) => {
   res.send(existente);
 });
 
-router.get("/user", async (req, res) => {
+router.get("/user", isAuthenticated, async (req, res) => {
   if (req.user) {
     User.findOne({ _id: req.user._id }, async (err, doc) => {
       if (err) throw err;

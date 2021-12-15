@@ -118,10 +118,11 @@ const initialState = {
 
 function rootReducer(state = initialState, action) {
   if (action.type === GET_USER) {
-    if (action.payload === 'Usuario no logueado') {
+    console.log(action.payload.message);
+    if (action.payload.message ==='Request failed with status code 401' ) {
       return{
         ...state,
-        User:action.payload
+        User:'Usuario no logueado'
       }
     }
     return {

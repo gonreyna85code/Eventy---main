@@ -159,9 +159,12 @@ export function getUser() {
         url:  development ? local + 'user' : heroku + "user",
         withCredentials: true,
       });
+      console.log(json);
       return dispatch({ type: "GET_USER", payload: json.data });
     } catch (error) {
-      console.log(error);
+      
+      return dispatch({ type: "GET_USER", payload: error });
+      
     }
   };
 }
