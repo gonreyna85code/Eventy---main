@@ -183,14 +183,14 @@ export default function DetailEvet() {
                 
                   </div>
                   <div className={style.info_detail}>
-                    <h1 className={style.nombreEvento}>{theEvent.name}</h1>
+                    <h1 className={style.nombreEvento}>{theEvent?.name}</h1>
                     <div>
                       <FontAwesomeIcon
                         className={style.icono}
                         icon={faMapMarkerAlt}
                       />
                       <span className={style.info}>
-                        {" "+theEvent.location.cityName}
+                        {" "+theEvent?.location?.cityName}
                       </span>
                     </div>
                     <div>
@@ -198,10 +198,10 @@ export default function DetailEvet() {
                         className={style.icono}
                         icon={faCalendarAlt}
                       />
-                      <span className={style.info}>{" "+theEvent.date}</span>
+                      <span className={style.info}>{" "+theEvent?.date}</span>
                     </div>
                     <div>              
-                      {theEvent && !theEvent.expired && !consulta.includes(true) ? (
+                      {theEvent && !theEvent?.expired && !consulta.includes(true) ? (
                         
                         <Boton  colorBtn="btn_naranja" onClick={(e) => handleAsistir()} >Asistiré</Boton>
                       ) : null}
@@ -238,7 +238,7 @@ export default function DetailEvet() {
                   <div className={style.dataInfo}>
                     <h2>Información del evento:</h2>
                     <p className={style.dataInfoP}>
-                      {theEvent.info.description}
+                      {theEvent?.info?.description}
                     </p>
                   </div>
                   <div className={style.dataInfo}>
