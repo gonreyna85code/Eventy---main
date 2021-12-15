@@ -48,7 +48,7 @@ function CompletePerfil(){
   return (
     
       <div className={styles.Container}>
-        { user && user?.password.length > 0 ? navigate('/') : null }
+        { user && user?.password?.length > 0 ? navigate('/') : null }
         <h1>ya casi estas listo para terminar tu registro en eventy!</h1>
         <h2>solo te faltan completar los siguientes datos de la cuenta:</h2>
         <form>
