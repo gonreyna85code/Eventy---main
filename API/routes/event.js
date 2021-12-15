@@ -68,7 +68,7 @@ router.get("/eventosCercanos", isAuthenticated, async (req, res) => {
   var origin = [`${req.query.lat},${req.query.lng}`];
   var eventos = await Event.find().populate("user");
   var destinosCoords = eventos.map((event) => {
-    return `${event.location.cityCords.lat}, ${event.location.cityCords.lng}`;
+    return `${event?.location?.cityCords?.lat}, ${event?.location?.cityCords?.lng}`;
   });
   if (req.query && req.query.lat) {
     distance.matrix(origin, destinosCoords, async function (err, distances) {
@@ -289,7 +289,6 @@ router.put("/ventas", isAuthenticated, (req,res)=>{
 router.put("/editarEvento/:name", isAuthenticated, (req, res) => {
   const name = req.params;
   console.log(name);
-
   Event.updateOne(
     { name: name.name },
     {
@@ -307,6 +306,7 @@ router.put("/editarEvento/:name", isAuthenticated, (req, res) => {
         console.log(error);
       }
       if (evento) {
+        console.log(evento);
         const transporter = nodemailer.createTransport({
           service: "gmail",
           auth: {
@@ -314,7 +314,8 @@ router.put("/editarEvento/:name", isAuthenticated, (req, res) => {
             pass: "eventymailer" /* Your Password */,
           },
         });
-        User.findMany({ _id: evento.user }, (err, user) => {
+        
+        User.findOne({ _id: evento.user }, (err, user) => {
           if (err) {
             console.log(err);
           } else {

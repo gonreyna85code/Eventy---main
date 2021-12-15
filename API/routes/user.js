@@ -176,19 +176,20 @@ router.post("/follows", isAuthenticated, (req, res, next) => {
 
 router.post("/present", isAuthenticated, (req, res, next) => {
   console.log(req.body.data);
-  User.findOne({ _id: req.body.id1 }, async (err, doc) => {
+  User.findOne({ _id: req.body.data.id1 }, async (err, doc) => {
     if (err) throw err;
-    if (!doc) res.send("User Not found");
+    if (!doc) console.log("User Not found");
     if (doc) {
-      doc.promises.push(req.body.id2);
+      doc.promises.push(req.body.data.id2);
+      console.log(doc);
       await doc.save().then((r) => {
-        Event.findOne({ user: req.body.id2 }, async (err, doc) => {
+        Event.findOne({ _id: req.body.data.id2 }, async (err, doc) => {
           if (err) throw err;
-          if (!doc) res.send("Event Not found");
+          if (!doc) console.log("Event Not found");
           if (doc) {
-            doc.promises.push(req.body.id1);
+            doc.promises.push(req.body.data.id1);
             await doc.save().then((r) => {
-              console.log(doc);
+              console.log(doc.promises);
               res.send({ Successfull: "User followed", data: r.people });
             });
           }
@@ -197,7 +198,6 @@ router.post("/present", isAuthenticated, (req, res, next) => {
     }
   });
 });
-
 
 router.delete("/follows", isAuthenticated, (req, res, next) => {
   User.findOne({ username: req.body.username }, async (err, doc) => {

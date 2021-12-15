@@ -19,7 +19,6 @@ const EventEditor = () => {
   }, [dispatch]);
   
   const{name} = useParams();
-  console.log(name)
   useEffect(()=>{ 
     dispatch(getEvent(name)); 
   }, [dispatch, name]);
@@ -34,18 +33,19 @@ const EventEditor = () => {
   ];
   const navigate = useNavigate()
   const user = useSelector((state) => state.User);
+  const event = useSelector((state) => state.Event);
   const [credential, setCredential] = useState('')
   if(!user){
     dispatch(getUser());
   }
-  console.log(user)
+  console.log(event)
 
   function modificarEvento(e){
     let event={
       category,
       date,
       event_pay,
-      location:EventCity,
+      location:event[0]?.location,
       name:eventName,
       subcategory: subCategory,
       user:user?._id,
@@ -62,21 +62,40 @@ const EventEditor = () => {
     console.log(event);
     alert('Evento editado con exito')
   }
+
+  const yesterday = new Date(new Date().setDate(new Date().getDate()));
+  const year = yesterday.getFullYear();
+  const month = yesterday.getMonth() +1 ;
+  var day = yesterday.getDate()
+  if(day.valueOf() < 10){
+    day = "0" + day
+    var fecha = (year + "-" + month + "-" +  day);
+  } else {
+     fecha = (year + "-" + month + "-" +  day);
+  }
+  const dia = event[0]?.date.toString().substring(0,2)
+  const mes = event[0]?.date.toString().substring(3,5)
+  const anio = event[0]?.date.toString().substring(6,10)
+  const DATE =  anio + "-" + mes + "-" +  dia;
+
   const EventCity = useSelector(state=> state.EventCity)
-  const[eventName, setEventName]= useState('')
-  const[category, setCategory] = useState('')
-  const [subCategory, setSubCategory] = useState('')
-  const[date, setDate]= useState('')
-  const [imgUrl, setImgUrl]= useState('')
-  const[description, setDescription] = useState('')
+  const[eventName, setEventName]= useState(event[0]?.name)
+  const[category, setCategory] = useState(event[0]?.category)
+  const [subCategory, setSubCategory] = useState(event[0]?.subcategory)
+  const[date, setDate]= useState(DATE)
+  const [imgUrl, setImgUrl]= useState(event[0]?.info?.imagen)
+  const[description, setDescription] = useState(event[0]?.info?.description)
   const [event_pay, setEventPay]= useState(false)
   const [ticketPrice, setTicketPrice]=useState(0)
+  
+  
+  
+  
+  console.log(event[0]?.location?.cityName)
   
   if (user === 'Usuario no logueado') {
     return(<Warning/>)
   }
-
-
   return (
     <div className={styles.cont_crear_evento}>
       {user&& user.password==='' ? navigate('/completarPerfil'):null }
@@ -89,33 +108,35 @@ const EventEditor = () => {
             label="Nombre del Evento"
             type="text"
             name="name"
+            defaultValue={event[0]?.name}
             onChange={e=>setEventName(e.target.value)}
             />
           <Map
           type ='event'
           places={true}
-          coords={EventCity.cityCords}
+          defaultValue={event[0]?.location?.cityCords}
+          coords={event[0]?.location?.cityCords}
           LabelName='Direccion'
           />
           <Select
             name="category"
             onchange={e=>setCategory(e.target.value)}
-            default_value="1"
-            default_name='Selecciona una Categoría'
+            default_name={event[0]?.category}
             options={categories}  
           />
-          {category === 'social' || category === 'sports' ?
+          
             <Select
               type="a"
               name="subcategory"
               onchange={e=>setSubCategory(e.target.value)}
-              default_value="1"
-              default_name='Selecciona una Subcategoría'
-              herencia={category} options={subcategories}/> : null}
+              default_name={event[0]?.subcategory}
+              herencia={category} options={subcategories}/>
           
           <Input
-            label="Fecha"
+            label="Fecha"          
             type="date"
+            value={date}
+            // min={fecha}
             name="date"
             onChange={e=> setDate(e.target.value)}
           />
@@ -123,6 +144,7 @@ const EventEditor = () => {
             label="Imagen del Evento (url)"
             type="url"
             name="imagen"
+            defaultValue={event[0]?.info?.imagen}
             onChange={e=>setImgUrl(e.target.value)}
           />
           <div className={styles.item_textarea}>
@@ -130,6 +152,7 @@ const EventEditor = () => {
             <textarea
               name="description"
               rows="4"
+              defaultValue={event[0]?.info?.description}
               onChange={e=>setDescription(e.target.value)}
             ></textarea>
           </div>
@@ -164,6 +187,7 @@ const EventEditor = () => {
                 label="Public Key"
                 type="text"
                 name="credential"
+                defaultValue={event[0]?.info?.credential}
                 onChange={e=>setCredential(e.target.value)}
               />
             </div>
@@ -171,10 +195,10 @@ const EventEditor = () => {
             <p>Marque la casilla si se venden entradas para su evento. De lo contrario, precione 'Editar Evento'</p>
           }
           </div>
-          {date && EventCity.cityCords && category && category!== '1' && subCategory && subCategory !== '1' && imgUrl && eventName && description
-            ?<Boton onClick={modificarEvento} colorBtn="btn_azul">Editar Evento</Boton>
-            :null
-          }
+           
+            <Boton onClick={modificarEvento} colorBtn="btn_azul">Editar Evento</Boton>
+            
+          
           
         </form>
       </Container>
