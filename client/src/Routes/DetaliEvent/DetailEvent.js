@@ -155,11 +155,10 @@ export default function DetailEvet() {
   return (
     <div>
       {user&& user.password==='' ? navigate('/completarPerfil'):null } 
-      {user === 'Usuario no logueado'
+      {Events === 'No Disponible'
       ? (navigate('/login'))
       : null
-      }
-      
+      }      
         <div>
           {theEvent ? (
             <div>
