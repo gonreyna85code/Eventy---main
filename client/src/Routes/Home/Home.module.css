@@ -252,18 +252,22 @@
     color: var(--azul)
 }
 .distanceSelector{
-    background-color: transparent;
-    border: none;
+    background-color: #01385fd1;
     font-family: var(--font);
     color: var(--blanco);
     font-size: 20px;
     font-weight: 500;
     line-height: 1.5;
+    border: 1px solid;
+    margin-inline: 5px;
+    border-radius: 30px;
+    padding: 1px 5px;
 }
 .distanceSelector option{
-    background-color: var(--azul);
+    background-color: #01385f;
     text-align: center;
     border: none;
+    font-size: 17px;
 }
 .distanceSelector option:hover{
     background-color: red;

@@ -136,7 +136,7 @@ const Home = () => {
                                 );
                             })
                         }
-                        responsive={ NearEvents && NearEvents.length > 4 ? responsivePrincipal : reponsivePrincipalMenorA3 }
+                        responsive={ NearEvents && NearEvents.length < 4 ? reponsivePrincipalMenorA3 : responsivePrincipal }
                         controlsStrategy="alternate"
                         autoPlay={true}
                         infinite={true}

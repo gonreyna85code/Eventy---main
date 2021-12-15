@@ -84,19 +84,7 @@ export default function DetailEvet() {
     }
   }, [theEvent, cantidad, user]);
 
-  useEffect(() => {
-    if (mercadopago && PreferenceId) {
-      mercadopago.checkout({
-        preference: {
-          id: PreferenceId,
-        },
-        render: {
-          container: ".pago",
-          label: "Comprar " + cantidad + " entrada/s",
-        },
-      });
-    }
-  }, [mercadopago, PreferenceId, cantidad]);
+
 
   useEffect(() => {
     if (Object.keys(user).length !== 0 && theEvent) {
@@ -120,7 +108,7 @@ export default function DetailEvet() {
   let publicKey = theEvent && theEvent.publicKey;
   console.log(publicKey);
 
-  if(theEvent && theEvent.hasOwnProperty('publicKey')){
+  if(theEvent && theEvent.publicKey){
   var mercadopago = useMercadopago.v2(
     theEvent.publicKey,
     {
@@ -129,6 +117,19 @@ export default function DetailEvet() {
   );
   }
 
+  useEffect(() => {
+    if (mercadopago && PreferenceId) {
+      mercadopago.checkout({
+        preference: {
+          id: PreferenceId,
+        },
+        render: {
+          container: ".pago",
+          label: "Comprar " + cantidad + " entrada/s",
+        },
+      });
+    }
+  }, [mercadopago, PreferenceId, cantidad]);
 
   if (creator) {
     if (Object.keys(creator).length === 0) {
