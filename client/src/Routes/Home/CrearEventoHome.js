@@ -92,7 +92,12 @@ const handleChangeSelect = (e) => {
         e.preventDefault()
         dispatch(postEvent(event));
         dispatch(changeEventCity({}));
-        navigate(`/detailEvent/${eventName.trim()}`)
+        setTimeout(function () {
+            navigate(`/detailEvent/${eventName.trim()}`)
+            window.location.reload();
+        }, 1000);
+        
+
     }
 
 const handleClickTipoPago = () => {
