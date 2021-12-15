@@ -284,7 +284,7 @@ router.put("/ventas", isAuthenticated, (req,res)=>{
     {name: name},
     {ventas: ventas},
   )
-  .then(console.log('hecho'))
+  .then(res.send('hecho'))
 })
 
 router.put("/editarEvento/:name", isAuthenticated, (req, res) => {
