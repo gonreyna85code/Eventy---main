@@ -62,8 +62,8 @@ const CrearEventos = () => {
 
   const yesterday = new Date(new Date().setDate(new Date().getDate()));
   const year = yesterday.getFullYear();
-  const month = yesterday.getMonth() +1 ;
-  var day = yesterday.getDate()
+  const month = yesterday.getMonth() + 1 ;
+  var day = yesterday.getDate() ;
   if(day.valueOf() < 10){
     day = "0" + day
     var fecha = (year + "-" + month + "-" +  day);
@@ -100,7 +100,7 @@ const CrearEventos = () => {
     e.preventDefault()
     dispatch(postEvent(event));
     dispatch(changeEventCity({}));
-    console.log(event);
+    
     alert("Evento creado con exito");
     navigate(`/detailEvent/${eventName.trim()}`)
     /* setTimeout(function () {
@@ -127,7 +127,7 @@ const CrearEventos = () => {
   if (user === "Usuario no logueado") {
     return <Warning />;
   }
-
+  console.log(date);
   return (
     <div className={styles.cont_crear_evento}>
       {user&& user.password==='' ? navigate('/completarPerfil'):null }
