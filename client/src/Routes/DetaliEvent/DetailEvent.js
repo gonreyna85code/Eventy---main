@@ -150,12 +150,12 @@ export default function DetailEvet() {
       window.location.reload();
     }, 2000);
   }
-  const consulta = theEvent?.promises.map(e => e._id.includes(user._id))
+  const consulta = theEvent?.promises?.map(e => e._id.includes(user._id))
   
   return (
     <div>
-      {user&& user.password==='' ? navigate('/completarPerfil'):null }
-      {!user && !user._id ? (
+      {user&& user.password==='' ? navigate('/completarPerfil'):null } ?
+      {!user._id ? (
         navigate("/login")
       ) : (
         <div>
@@ -169,7 +169,7 @@ export default function DetailEvet() {
               <div
                 className={style.fondo}
                 style={{
-                  background: `linear-gradient(0deg, rgb(1, 56, 95) 10%, rgba(1, 56, 95, 0.9) 30%, rgba(1, 56, 95, 0.5) 100%), url(${theEvent && theEvent.info.imagen})`,
+                  background: `linear-gradient(0deg, rgb(1, 56, 95) 10%, rgba(1, 56, 95, 0.9) 30%, rgba(1, 56, 95, 0.5) 100%), url(${theEvent && theEvent?.info?.imagen})`,
                 }}
               >
                 <Container>
