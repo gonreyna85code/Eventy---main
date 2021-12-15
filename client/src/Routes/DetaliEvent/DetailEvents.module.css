@@ -3,6 +3,10 @@
     background-repeat: no-repeat!important;
     background-size: cover!important;
     min-height: 500px;
+    display: flex;
+    align-items: center;
+    width: calc(100% - 40px);
+    padding-inline: 20px;
 }
 
 .fondo > div{
@@ -15,7 +19,10 @@
 .fondo > div > div{
     width: 50%;
 }
-
+.fondo > div > div:last-child{
+    width: calc(50% - 40px);
+    padding-inline: 20px;
+}
 .infoDetail{
     display: flex;
     justify-content: center;
@@ -39,6 +46,8 @@
 .nombreEvento{
     font-size:  50px;
     color: white;
+    line-height: 1;
+    margin-top: 0;
 }
 
 .icono{
@@ -52,7 +61,8 @@
 .dataContent{
     vertical-align: top;
     background-color: rgb(237, 139, 38);
-    padding-block: 30px;
+    padding: 30px 20px;
+    width: calc(100% - 40px);
 }
 
 .dataContent > div{
@@ -69,6 +79,7 @@
 .dataInfo h2{
     font-size:50px;
     text-align: left;
+    margin-top:0
 }
 .dataInfo p{
     font-size: 18px;
@@ -125,9 +136,34 @@
 
 
 @media(max-width: 768px){
+
+    .imagenDetail{
+        display: none;
+    }
+    .fondo > div > div{
+        width: 100%;
+    }
     .fondo > div {
         flex-direction: column;
-        padding-block: 50px;
+        padding-block: 50px; 
+        min-height: auto;
+    }
+    .fondo > div > div:last-child{
+        width: calc( 100% - 40px );
+        padding-inline: 20px;
+    }
+    .dataContent{
+        width: calc(100% - 40px);
+        padding-inline: 20px;
+    }
+    .dataContent > div > div{
+        width: 100%;
+    }
+    .dataInfo{
+        margin: 0;
+    }
+    .dataInfo:first-child{
+        margin-bottom: 30px;
     }
     .dataContent > div{
         flex-direction: column;
@@ -142,5 +178,18 @@
     .dataContent > div p{
         font-size: 15px;
         line-height: 1.5;
+    }
+
+
+}
+
+
+@media(max-width: 425px){
+    .cont_datospago > div{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 15px;
     }
 }

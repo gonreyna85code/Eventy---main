@@ -6,10 +6,7 @@ import Boton from "../../components/Boton/Boton";
 import { useNavigate } from 'react-router';
 import Map from "../../components/Maps/Map";
 import styles from './RegisterForm.module.css'
-import axios from "axios";
-const development = process.env.NODE_ENV !== 'production';
-const local = "http://localhost:4000/"
-const heroku = "https://api-eventy.herokuapp.com/"
+
 
 export default function RegisterForm(){
   const dispatch = useDispatch()

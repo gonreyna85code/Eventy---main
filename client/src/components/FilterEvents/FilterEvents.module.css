@@ -16,3 +16,11 @@
 .cont_filtros > div{
     margin-inline: 5px;
 }
+@media(max-width: 768px){
+    .cont_filtros{
+        flex-direction: column;
+    }
+    .cont_filtros > div{
+        width: 100%;
+    }
+}

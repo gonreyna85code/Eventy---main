@@ -61,6 +61,7 @@ router.put("/user_update", isAuthenticated, (req, res, next) => {
     if (!doc) res.send("User Not Found");
     if (doc) {
       doc.profile = req.body.profile;
+      doc.email = req.body.profile?.email;
       doc.publicKey = req.body.pkey;
       doc.Acceskey = req.body.key;
       await doc.save().then((r) => {
@@ -87,6 +88,7 @@ router.put('/userComplete',isAuthenticated, (req,res)=>{
       doc.password = hashedPassword
       doc.payedEvents = user.payedEvents
       doc.profile= user.profile
+      doc.email= user.profile?.email
       doc.promises = user.promises 
       doc.selledEvents = user.selledEvents
       doc.subscriptions = user.subscriptions

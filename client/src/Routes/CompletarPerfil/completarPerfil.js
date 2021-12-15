@@ -11,7 +11,6 @@ import styles from './completarPerfil.module.css'
 function CompletePerfil(){
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const user = useSelector(state=>state.User)
   const UserCity = useSelector(state=>state.UserCity)
   const [name, setName] = useState('')
   const [surname ,setSurname]= useState('')
@@ -36,7 +35,7 @@ function CompletePerfil(){
 
   useEffect(()=>{
     dispatch(getUser())
-  },[])
+  },[dispatch])
 
   
   

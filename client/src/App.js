@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import './App.css';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-// import LogingForm from './components/Login/LogingForm';
 import LogingForm from './Routes/Login/LogingForm'
 import Landing from './Routes/Landing/Landing';
 import CrearEventos from './Routes/CrearEventos/CrearEventos';
@@ -23,17 +22,31 @@ import Compra from './Routes/Compra/Compra';
 import ResetPassword from './Routes/ResetPassword';
 import Forgot from './Routes/Forgot';
 import CompletePerfil from './Routes/CompletarPerfil/completarPerfil';
-
+import { useJsApiLoader } from '@react-google-maps/api';
+const libraries=["places"];
+// import env from '../.env'
 function App() {
-
+  const GOOGLE_KEY='AIzaSyCf8E0lXmJWdgTw6vgsHOcslcUZ4oidnE0'
   const dispatch = useDispatch();
   const user = useSelector(state => state.User);
 
+
+  const {isLoaded, loadError} = useJsApiLoader(
+    {googleMapsApiKey:GOOGLE_KEY,
+    libraries
+  })
   useEffect(()=>{
 
     dispatch(getUser());
 
   }, [dispatch]);
+  if (loadError) {
+    alert('script no cargado')
+  }
+  if (!isLoaded) {
+    return<h2>Loading</h2>
+  }
+
 
   return (
     <BrowserRouter>

@@ -11,14 +11,14 @@ export default function Novedades({user,params}){
             </div>
         )
     }
-    if(user.events?.length!==0){
+    if(user && user.hasOwnProperty('events') && user.events.length!==0){
         return (
             <div className={styles.novedades}>
                 {user.events.map((e)=><Novedad info={{event:e,user:user}} type='evento' key={`${e}${Math.random()}`} />)}
             </div>
         )
     }
-    if(user.payedEvents.length!==0){
+    if(user && user.hasOwnProperty('payedEvents') && user.payedEvents.length!==0){
         return(
             <div className={styles.novedades}>
                 {user.payedEvents.map((e)=><Novedad info={{event:e,user:user}} type='pago' key={`${e}${Math.random()}`} />)}

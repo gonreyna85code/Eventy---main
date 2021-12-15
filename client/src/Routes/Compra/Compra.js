@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser, getEvent, payedEvent, putVentas } from "../../redux/actions";
+import { getUser, getEvent, putVentas } from "../../redux/actions";
 import {Link, useNavigate, useParams} from 'react-router-dom';
 import './Compra.css';
 import Boton from "../../components/Boton/Boton";

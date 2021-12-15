@@ -13,7 +13,7 @@ export default function ResetPassword() {
   const [user, setUser] = useState("");
   console.log(id);
   return (
-    <div>
+    <div className="reset-password">
       {user&& user.password==='' ? navigate('/completarPerfil'):null }
       <h1>Ingrese su nueva contraseña.</h1>
       <div className="input">

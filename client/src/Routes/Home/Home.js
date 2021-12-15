@@ -1,21 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './Home.module.css';
 import NavBar from '../NavBar/NavBar';
 import EventHome from './EventHome';
-import { getUser, getAllEvents, getNearEvents } from '../../redux/actions';
+import { getUser,  getNearEvents } from '../../redux/actions';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import './HomeCarrusel.css';
-//import SearchBar from '../../components/SearchBar/SearchBar';
 import Container from '../../components/Container/Container';
 import Boton from '../../components/Boton/Boton';
-import CardEvent from '../../components/CardEvent/CardEvent';
 import PopUp from '../../components/PopUp/PopUp';
 import CrearEventoHome from './CrearEventoHome';
-import Map from '../../components/Maps/Map';
 import CardHome from './CardHome'
+import MapContainer from '../../components/Maps/Map';
+
 
 
 const responsivePrincipal = {
@@ -31,17 +30,7 @@ const reponsivePrincipalMenorA3={
         items: 1,
     }
 }
-const responsive = {
-    0: {
-        items: 1,
-    },
-    768:{
-        items: 2
-    },
-    1024:  {
-        items: 3,
-    },
-}
+
 
 
 const subcategoriasSport = ["Maraton", "Aeromodelismo", "Futbol", "Tenis", "Handball"];
@@ -53,9 +42,7 @@ const Home = () => {
     const NearEvents = useSelector(state => state.NearEvents)
     const user = useSelector( state => state.User );
     const follows = useSelector( state => state.Follows );
-    const allEvents = useSelector ( state => state.AllEvents);
-    const [eventosDeportes, setEventosDeportes] = useState([]);
-    const [eventosSociales, setEventosSociales] = useState([]);
+ 
 
     const [estatusPopup, setEstatusPopup] = useState(false);
    
@@ -81,22 +68,13 @@ const Home = () => {
         dispatch(getUser());
     }, [dispatch]);
 
-    useEffect(()=>{
-        dispatch(getAllEvents())
-    }, [dispatch])
+  
 
     useEffect(()=>{
         dispatch(getNearEvents(userCord,defaultDistance*1000))
     }, [dispatch, userCord, defaultDistance])
     
-    useEffect(()=>{
-        if(allEvents && allEvents.length > 0){
-            let filterDeportes = allEvents.filter(e => e.category === 'sports')
-            setEventosDeportes(filterDeportes)
-            let filterSocial = allEvents.filter(e => e.category === 'social')
-            setEventosSociales(filterSocial)    
-        }
-    }, [dispatch, allEvents, user,NearEvents]) 
+   
 
     const handleClickPopup = () => {
         setEstatusPopup(false)
@@ -158,7 +136,7 @@ const Home = () => {
                                 );
                             })
                         }
-                        responsive={ NearEvents && NearEvents.length > 4 ? responsivePrincipal : reponsivePrincipalMenorA3 }
+                        responsive={ NearEvents && NearEvents.length < 4 ? reponsivePrincipalMenorA3 : responsivePrincipal }
                         controlsStrategy="alternate"
                         autoPlay={true}
                         infinite={true}
@@ -181,7 +159,7 @@ const Home = () => {
                         }}
                     >
                        <div className={styles.MapPopup}>
-                            <Map
+                            <MapContainer
                             coords={userCord}
                             type='nearEvents'
                             NearEvents= { NearEvents}
@@ -200,9 +178,7 @@ const Home = () => {
                         <h2>¿Estas Planeando un Nuevo evento?</h2>
                         <span>Compártelo!</span>
                         <button onClick={(e)=>handleClickCrearEvento(e)}>¿Como se llama tu evento?</button>
-                        <div>
-                            <Boton colorBtn='btn_azul' onClick={(e)=>handleClickCrearEvento(e)}>Crear evento</Boton>
-                        </div>
+                        
                         <PopUp 
                             estatus={estatusPopup}
                             onClick={handleClickPopup}
@@ -235,7 +211,11 @@ const Home = () => {
 
                             })
 
-                            : null
+                            : <div className='cont-center'>
+                                <h3 className='cont-center'>Parece que aún no sigues a ningún usuario :'(</h3>
+                                <Link to='/all-events'><Boton colorBtn='btn_azul'>Ver Eventos</Boton></Link>
+                            </div>
+                            
                         }
 
                     </div>

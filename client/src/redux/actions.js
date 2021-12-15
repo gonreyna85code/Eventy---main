@@ -405,6 +405,7 @@ export function postPreference(preference, accesKey){
 }
 
 export function putEvent(edit, id){
+  console.log(edit, id);
   return function (dispatch){
     axios({
       method:"PUT",
