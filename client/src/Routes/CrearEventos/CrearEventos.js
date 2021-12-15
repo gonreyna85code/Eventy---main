@@ -54,6 +54,7 @@ const CrearEventos = () => {
   const [event_pay, setEventPay]= useState(false)
   const [ticketPrice, setTicketPrice]=useState(0)
   const [stock, setStock] = useState(0)
+  const [alias, setAlias] = useState('')
  
   
   useEffect(() => {
@@ -92,6 +93,7 @@ const CrearEventos = () => {
       stock: stock? stock : 100,
       ventas: 0,
       info: {
+        alias: alias,
         imagen: imgUrl,
         description,
         ticketPrice:ticketPrice?ticketPrice:'El evento no vende entradas',
@@ -216,6 +218,14 @@ const CrearEventos = () => {
                   type="number"
                   name="stock"
                   onChange={(e) => setStock(e.target.value)}
+                />
+                <p>Para que recibas los pagos de la venta de entradas, necesitamos tu Alias de Mercado Pago</p>
+                <p>Los pagos pasaran por una cuenta moderadora y luego se redirigirán a la que nos das ahora</p>
+                  <Input
+                  label="Alias de Mercado Pago"
+                  type="string"
+                  name="alias"
+                  onChange={(e) => setAlias(e.target.value)}
                 />
              </div>
               

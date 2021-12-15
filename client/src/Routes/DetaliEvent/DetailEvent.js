@@ -96,7 +96,7 @@ export default function DetailEvet() {
 
   
   var mercadopago = useMercadopago.v2(
-    'APP_USR-131f2e04-9b1f-48bd-8c6a-bfb92711cb94',
+    'TEST-73717f29-d26d-4a49-aec6-3f75b4872625',
     {
       locale: "es-AR",
     }
@@ -265,6 +265,8 @@ export default function DetailEvet() {
                             <h3>
                               Cantidad de entradas disponibles: {theEvent.stock - theEvent.ventas}
                             </h3>
+                            {
+                              theEvent.stock !== theEvent.ventas ?
                             <div>
                               <Input
                                 label="Cantidad de entradas"
@@ -280,6 +282,9 @@ export default function DetailEvet() {
                                 Comprar {cantidad} entrada/s
                               </Boton>
                             </div>
+                            :
+                            <p></p>
+                            }
                           </div>
                         </div>
                       ) : (
