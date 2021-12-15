@@ -75,14 +75,14 @@ router.get("/eventosCercanos", isAuthenticated, async (req, res) => {
       if (err) {
         res.send(err);
       }
-      let distancias = distances.rows[0].elements;
-      let filtrado = distancias.map((dist) => {
-        if (dist.distance.value <= req.query.distance) {
-          return distancias.indexOf(dist);
+      let distancias = distances.rows[0]?.elements;
+      let filtrado = distancias?.map((dist) => {
+        if (dist.distance?.value <= req.query.distance) {
+          return distancias?.indexOf(dist);
         }
       });
       
-      filtrado = filtrado.filter((e) => {
+      filtrado = filtrado?.filter((e) => {
         if (e === undefined) {
           return;
         }
@@ -91,8 +91,8 @@ router.get("/eventosCercanos", isAuthenticated, async (req, res) => {
         }
       });
 
-      let eventsSend = eventos.filter((event) => {
-        if (filtrado.includes(eventos.indexOf(event))) {
+      let eventsSend = eventos?.filter((event) => {
+        if (filtrado?.includes(eventos?.indexOf(event))) {
           return event;
         }
       });
