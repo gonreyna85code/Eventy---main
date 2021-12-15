@@ -85,7 +85,7 @@ const Home = () => {
     const handleClickCrearEvento = (e) => {
         setEstatusPopup(true)
     }
-
+console.log(user)
     return(
         <div className={styles.cont_home}>
             {user&& user.password==='' ? navigate('/completarPerfil'):null }
