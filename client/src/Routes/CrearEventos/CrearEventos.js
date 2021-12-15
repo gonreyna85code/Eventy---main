@@ -104,8 +104,7 @@ const CrearEventos = () => {
     dispatch(changeEventCity({}));
     
     alert("Evento creado con exito");
-    setTimeout(function () {
-            
+    setTimeout(function () {            
             navigate(`/detailEvent/${eventName.trim()}`)    
             window.location.reload();        
         }, 2000);

@@ -326,7 +326,7 @@ router.put("/editarEvento/:name", isAuthenticated, (req, res) => {
               subject: "Evento Editado",
               html: `<h1>Evento Editado</h1>
                 <p>El evento ${name.name} ha sido editado</p>
-                <p>Para ver el evento haga click <a href="https://eventy-main.vercel.app/evento/${name.name}">Aqui</a></p>`,
+                <p>Para ver el evento haga click <a href="https://eventy-main.vercel.app/detailEvent/${name.name}">Aqui</a></p>`,
             };
             transporter.sendMail(mailOptions, function (error, info) {
               if (error) {

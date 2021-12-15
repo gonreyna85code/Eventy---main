@@ -94,7 +94,7 @@ const handleChangeSelect = (e) => {
         dispatch(changeEventCity({}));
         alert("Evento creado con exito");        
         navigate(`/detailEvent/${eventName.trim()}`)   
-            window.location.reload();
+        window.location.reload();
         
 
     }
