@@ -30,7 +30,7 @@ export default function MapContainer(props){
         (<GoogleMap 
           mapContainerStyle = {styles.containerStyle}
           style={styles.mapStyle}
-          zoom={15}
+          zoom={10}
           onClick={()=>{
             setActiveMarker(null)
           }}
@@ -107,7 +107,7 @@ export default function MapContainer(props){
         <GoogleMap 
         style={styles.mapStyle}
       mapContainerStyle = {styles.containerStyle}
-      zoom={15}
+      zoom={10}
       center={{
         lat: mapCenter.lat,
         lng: mapCenter.lng
