@@ -81,6 +81,7 @@ router.get("/eventosCercanos", isAuthenticated, async (req, res) => {
           return distancias.indexOf(dist);
         }
       });
+      
       filtrado = filtrado.filter((e) => {
         if (e === undefined) {
           return;
