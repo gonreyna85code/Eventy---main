@@ -45,7 +45,12 @@ export default function Compra(){
             <h4>Su compra de {title} ha sido exitosa</h4> 
             <h4>Guarde este código QR y muéstrelo al momento de entrar al evento</h4>
             <div>
-            <Boton colorBtn={'btn_naranja'} onClick={handleQr}>Generar Código</Boton>
+                {
+                    qr === false ?
+                    <Boton colorBtn={'btn_naranja'} onClick={handleQr}>Generar Código</Boton>
+                    :
+                    <p></p>
+                }
             </div>
             {
                 qr === true ? 

@@ -76,13 +76,13 @@ router.get("/eventosCercanos", isAuthenticated, async (req, res) => {
         res.send(err);
       }
       let distancias = distances.rows[0]?.elements;
-      let filtrado = distancias.map((dist) => {
-        if (dist.distance.value <= req.query.distance) {
-          return distancias.indexOf(dist);
+      let filtrado = distancias?.map((dist) => {
+        if (dist.distance?.value <= req.query.distance) {
+          return distancias?.indexOf(dist);
         }
       });
       
-      filtrado = filtrado.filter((e) => {
+      filtrado = filtrado?.filter((e) => {
         if (e === undefined) {
           return;
         }
@@ -91,8 +91,8 @@ router.get("/eventosCercanos", isAuthenticated, async (req, res) => {
         }
       });
 
-      let eventsSend = eventos.filter((event) => {
-        if (filtrado.includes(eventos.indexOf(event))) {
+      let eventsSend = eventos?.filter((event) => {
+        if (filtrado?.includes(eventos?.indexOf(event))) {
           return event;
         }
       });
@@ -242,7 +242,7 @@ router.post("/create_preference", (req, res) => {
   const { title, price, quantity, accesKey } = req.body;
 
   mercadopago.configure({
-    access_token: 'APP_USR-7103077711305655-113021-56572adb8ad27a0270f50bb94563ae2b-274464234',
+    access_token: 'TEST-7103077711305655-113021-c4a62acbbc30cccc0cfbc219280a11c8-274464234',
   });
 
   let preference = {
