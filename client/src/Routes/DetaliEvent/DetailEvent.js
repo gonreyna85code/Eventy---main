@@ -165,6 +165,7 @@ export default function DetailEvet() {
       { Events === "No Disponible" ? (
         navigate("/login")
       ) : (
+        
         <div>
           {theEvent ? (
             <div>
