@@ -105,8 +105,9 @@ const CrearEventos = () => {
     
     alert("Evento creado con exito");
     setTimeout(function () {
-            window.location.reload();
-            navigate(`/detailEvent/${eventName.trim()}`)            
+            
+            navigate(`/detailEvent/${eventName.trim()}`)    
+            window.location.reload();        
         }, 2000);
     /* setTimeout(function () {
       navigate("/");

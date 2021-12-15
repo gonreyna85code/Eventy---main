@@ -93,10 +93,8 @@ const handleChangeSelect = (e) => {
         dispatch(postEvent(event));
         dispatch(changeEventCity({}));
         alert("Evento creado con exito");        
-        setTimeout(function () {            
-            navigate(`/detailEvent/${eventName.trim()}`)   
-            window.location.reload();         
-        }, 2000);
+        navigate(`/detailEvent/${eventName.trim()}`)   
+            window.location.reload();
         
 
     }
