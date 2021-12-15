@@ -68,13 +68,13 @@ const AllEvents = () => {
                         <Container>
                             <div className={styles.cont_listado_eventos}>
                                 {
-                                    eventos.map( evento => evento.name && evento.name.length > 0
+                                    eventos.map( evento => evento?.name && evento?.name?.length > 0
                                                             ?
                                                                 <CardEvent
                                                                     name={evento.name}
-                                                                    img={evento.info.hasOwnProperty('imagen') ? evento.info.imagen : ``}
-                                                                    location={evento && evento.location.cityName ? evento.location.cityName : `` }
-                                                                    date={evento.date}
+                                                                    img={evento?.info.hasOwnProperty('imagen') ? evento?.info?.imagen : ``}
+                                                                    location={evento && evento?.location?.cityName ? evento?.location?.cityName : `` }
+                                                                    date={evento?.date}
                                                                     id={evento._id}
                                                                     buttonColor='naranja'
                                                                 />
