@@ -201,7 +201,7 @@ export default function DetailEvet() {
                       <span className={style.info}>{" "+theEvent?.date}</span>
                     </div>
                     <div>              
-                      {theEvent && !theEvent?.expired && !consulta.includes(true) ? (
+                      {theEvent && !theEvent?.expired && !consulta?.includes(true) ? (
                         
                         <Boton  colorBtn="btn_naranja" onClick={(e) => handleAsistir()} >Asistiré</Boton>
                       ) : null}
