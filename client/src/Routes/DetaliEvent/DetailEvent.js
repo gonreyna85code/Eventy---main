@@ -108,14 +108,13 @@ export default function DetailEvet() {
   let publicKey = theEvent && theEvent.publicKey;
   console.log(publicKey);
 
-  if(theEvent && theEvent.publicKey){
   var mercadopago = useMercadopago.v2(
-    theEvent.publicKey,
+    'APP_USR-131f2e04-9b1f-48bd-8c6a-bfb92711cb94',
     {
       locale: "es-AR",
     }
   );
-  }
+  
 
   useEffect(() => {
     if (mercadopago && PreferenceId) {
