@@ -45,7 +45,7 @@ const EventEditor = () => {
       category,
       date,
       event_pay,
-      location:EventCity,
+      location:event[0]?.location,
       name:eventName,
       subcategory: subCategory,
       user:user?._id,
@@ -91,7 +91,7 @@ const EventEditor = () => {
   
   
   
-  console.log(EventCity)
+  console.log(event[0]?.location?.cityName)
   
   if (user === 'Usuario no logueado') {
     return(<Warning/>)
@@ -114,7 +114,8 @@ const EventEditor = () => {
           <Map
           type ='event'
           places={true}
-          coords={EventCity.cityCords}
+          defaultValue={event[0]?.location?.cityCords}
+          coords={event[0]?.location?.cityCords}
           LabelName='Direccion'
           />
           <Select

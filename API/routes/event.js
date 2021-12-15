@@ -310,6 +310,7 @@ router.put("/editarEvento/:name", isAuthenticated, (req, res) => {
             pass: "eventymailer" /* Your Password */,
           },
         });
+        
         User.findOne({ _id: evento.user }, (err, user) => {
           if (err) {
             console.log(err);
