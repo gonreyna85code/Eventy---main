@@ -60,3 +60,30 @@
   box-shadow: 0 0 8px rgb(255, 0, 0);
 
 }
+
+
+.contenedor_login{
+  display: flex;
+  flex-direction: row;
+  grid-template-columns: none;
+}
+
+.contenedor_login .contCenter{
+  padding: 50px
+}
+
+@media(max-width: 768px){
+  .contenedor_login{
+    flex-direction: column;
+  }
+
+  .contenedor_login .Banner{
+    height: auto;
+  }
+  .contenedor_login .Banner img{
+    width: 250px;
+    margin-inline: auto;
+    display: block;
+  }
+  
+}

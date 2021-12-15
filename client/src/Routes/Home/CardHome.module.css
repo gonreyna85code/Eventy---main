@@ -36,7 +36,7 @@
     flex-direction: column;
     justify-content: center;
     padding-left: 15px;
-
+    width: calc(100% - 70px);
 }
 
 .cont_info svg{

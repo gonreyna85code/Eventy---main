@@ -27,10 +27,10 @@ export default function Loginform() {
   return (
     <div>
       <div
-        className={activeFrom ? estilos.ContenedorActive : estilos.Contenedor}
+        className={`${activeFrom ? estilos.ContenedorActive : estilos.Contenedor} ${estilos.contenedor_login}`}
       >
         <div className={estilos.Banner}>
-          <img src={logo} alt="" />
+          <img src={logo} alt="Eventy" />
         </div>
         <div className={estilos.contCenter}>
           <Link to="/">

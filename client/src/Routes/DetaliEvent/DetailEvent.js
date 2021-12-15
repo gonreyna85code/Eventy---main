@@ -42,7 +42,8 @@ export default function DetailEvet() {
   const user = useSelector((state) => state.User);
   const Events = useSelector((state) => state.Event);
   const PreferenceId = useSelector((state) => state.PreferenceId);
-  
+  var creator = useSelector((state) => state.OtherUsers);
+  const [theEvent, setTheEvent] = useState(null)
 
   useEffect(() => {
     dispatch(getEvent(name));
@@ -52,7 +53,10 @@ export default function DetailEvet() {
     dispatch(getUser());
   }, [dispatch]);
 
-  const theEvent = Events[0];
+  useEffect(()=>{
+    setTheEvent(Events[0])
+  }, [Events])
+
 
   console.log(theEvent);
   console.log(user);
@@ -80,29 +84,6 @@ export default function DetailEvet() {
     }
   }, [theEvent, cantidad, user]);
 
-  function handleChange(e) {
-    setCantidad(e.target.value);
-    console.log(cantidad);
-  }
-
-  function handleClick(e) {
-    console.log(preference);
-    console.log(theEvent.accesKey);
-    dispatch(postPreference(preference, theEvent.accesKey));
-  }
-
-  let publicKey = theEvent && theEvent.publicKey;
-  console.log(publicKey);
-
-  if(theEvent && theEvent.publicKey){
-  var mercadopago = useMercadopago.v2(
-    theEvent.publicKey,
-    {
-      locale: "es-AR",
-    }
-  );
-  }
-
   useEffect(() => {
     if (mercadopago && PreferenceId) {
       mercadopago.checkout({
@@ -125,7 +106,30 @@ export default function DetailEvet() {
     }
   }, [theEvent, dispatch, user]);
 
-  var creator = useSelector((state) => state.OtherUsers);
+  function handleChange(e) {
+    setCantidad(e.target.value);
+    console.log(cantidad);
+  }
+
+  function handleClick(e) {
+    console.log(preference);
+    console.log(theEvent.accesKey);
+    dispatch(postPreference(preference, theEvent.accesKey));
+  }
+
+  let publicKey = theEvent && theEvent.publicKey;
+  console.log(publicKey);
+
+  if(theEvent && theEvent.hasOwnProperty('publicKey')){
+  var mercadopago = useMercadopago.v2(
+    theEvent.publicKey,
+    {
+      locale: "es-AR",
+    }
+  );
+  }
+
+
   if (creator) {
     if (Object.keys(creator).length === 0) {
       creator = { profile: { name: "", surname: "" } };
@@ -152,6 +156,8 @@ export default function DetailEvet() {
   }
   const consulta = theEvent?.promises.map(e => e._id.includes(user._id))
   
+  if(!theEvent) return <Loading />
+
   return (
     <div>
       {user&& user.password==='' ? navigate('/completarPerfil'):null }
@@ -218,13 +224,13 @@ export default function DetailEvet() {
                         </div>
                       ) : (
                         <Link to={`/user/${creator.id}`}>
-                          <span className={style.creator}>
+                          <Boton colorBtn='btn_naranja'>
                             Creado por:{" "}
                             {creatorr(
                               creator?.profile?.name,
                               creator?.profile?.surname
                             )}
-                          </span>
+                          </Boton>
                         </Link>
                       )}
                     </div>

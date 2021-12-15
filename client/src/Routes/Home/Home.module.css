@@ -403,5 +403,13 @@
     .cont_home > div{
         padding-inline: 10px
     }
-    
+    .cont_listado_eventos, .cont_rigth{
+        width: 100%;
+        padding-inline: 0
+    }
+    .cont_rigth > div{
+        margin-inline: 10px
+    }
 }
+    
+

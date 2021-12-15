@@ -99,7 +99,6 @@ export default function Setting(){
                         <Select name='gender' onchange={handleChange} default_value={1} default_name='Genero' options={gender}/><br/>
                         <Input label='Acces Token de Mercado Pago' type='text' name='key' value={key} onChange={handleKey} />
                         <Input label='Public Key de Mercado Pago' type='text' name='pkey' value={pkey} onChange={handlePKey} />
-                        <Boton colorBtn='btn_azul' children='Cancelar todas las suscripciones' onClick={handleClick} /><br/>
                         <Boton colorBtn='btn_naranja' children='Guardar' onClick={handleSubmit} />
                     </form>
                 </Container>

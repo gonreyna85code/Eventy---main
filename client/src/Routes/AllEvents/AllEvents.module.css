@@ -10,6 +10,7 @@
 .cont_header h1{
     color: #fff;
     font-size: 65px;
+    margin: 0
 }
 .cont_listado_eventos{
     display: flex;
@@ -22,3 +23,14 @@
     width: calc(100% / 3 - 57px);
 }
 
+@media(max-width:768px){
+    .cont_listado_eventos > div{
+        width: calc(100% / 2 - 57px);
+    }  
+}
+
+@media(max-width:425px){
+    .cont_listado_eventos > div{
+        width: 100%;
+    }  
+}

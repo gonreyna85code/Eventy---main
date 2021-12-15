@@ -63,6 +63,7 @@
 }
 .title {
   text-align: center;
+  margin-bottom: 5px;
 }
 
 .novedades {
@@ -115,7 +116,15 @@
   margin: 0 auto 20px;
   padding-block: 5px;
 }
-
+.item_seguidos{
+  color: #fff;
+  margin-block: 5px;
+}
+.item_seguidos:hover{
+  font-weight: bolder;
+  transition: var(--trasition);
+  color: var(--naranja)
+}
 @media (max-width: 767px) {
   #section2 {
     flex-direction: column;
