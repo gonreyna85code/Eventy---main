@@ -244,7 +244,7 @@ export default function DetailEvet() {
                   <div className={style.dataInfo}>
                     <div>
                       <Map
-                        coords={theEvent.location.cityCords}
+                        coords={theEvent?.location?.cityCords}
                         LabelName="Ciudad"
                       />
                     </div>
@@ -260,10 +260,10 @@ export default function DetailEvet() {
                           <h1>Comprar entradas:</h1>
                           <div className={style.cont_datospago}>
                             <h3>
-                              Precio general: ${theEvent.info.ticketPrice}
+                              Precio general: ${theEvent?.info?.ticketPrice}
                             </h3>
                             <h3>
-                              Cantidad de entradas disponibles: {theEvent.stock - theEvent.ventas}
+                              Cantidad de entradas disponibles: {theEvent?.stock - theEvent?.ventas}
                             </h3>
                             {
                               theEvent.stock !== theEvent.ventas ?
@@ -298,7 +298,7 @@ export default function DetailEvet() {
           ) : (
             <Loading />
           )}
-          {theEvent && !theEvent.expired ? (<div className={style.discus}>
+          {theEvent && !theEvent?.expired ? (<div className={style.discus}>
             <div id="disqus_thread"></div>
             {
               
