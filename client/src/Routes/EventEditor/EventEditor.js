@@ -59,9 +59,13 @@ const EventEditor = () => {
       }
     }    
     dispatch(putEvent(event,name));
-    //dispatch(changeEventCity({}))
+    dispatch(changeEventCity({}))
     console.log(event);
-    //alert('Evento editado con exito')
+    alert('Evento editado con exito')
+    setTimeout(function () {            
+      navigate(`/detailEvent/${eventName.trim()}`)    
+      window.location.reload();        
+  }, 2000);
   }
 
   const yesterday = new Date(new Date().setDate(new Date().getDate()));
