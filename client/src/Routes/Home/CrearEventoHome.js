@@ -95,7 +95,7 @@ const handleChangeSelect = (e) => {
         setTimeout(function () {
             navigate(`/detailEvent/${eventName.trim()}`)
             window.location.reload();
-        }, 1000);
+        }, 2500);
         
 
     }
