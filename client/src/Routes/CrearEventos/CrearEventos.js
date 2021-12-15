@@ -87,12 +87,13 @@ const CrearEventos = () => {
       name: eventName,
       subcategory: subCategory,
       user: user?._id,
-      accesKey: user?.publicKey,
+      accesKey: user?.Acceskey,
+      publicKey: user?.publicKey,
+      stock: stock? stock : 100,
+      ventas: 0,
       info: {
         imagen: imgUrl,
         description,
-        stock: stock? stock : 100,
-        ventas: 0,
         ticketPrice:ticketPrice?ticketPrice:'El evento no vende entradas',
       }
     }

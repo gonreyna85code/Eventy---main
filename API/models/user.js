@@ -8,7 +8,8 @@ const user =  mongoose.Schema({
   profile: Object,
   name: String,
   email: String,
-  publicKey: String,
+  Acceskey: String,   //esto es Public Key 
+  publicKey: String,  //esto es Acces Token
   events: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }],
   follows: [{type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   near: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }],

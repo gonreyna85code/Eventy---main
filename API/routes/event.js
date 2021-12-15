@@ -30,8 +30,10 @@ router.post("/event", isAuthenticated, function (req, res) {
           location: req.body.location,
           info: req.body.info,
           event_pay: req.body.event_pay,
+          publicKey: req.body.publicKey,
           accesKey: req.body.accesKey,
           stock: req.body.stock,
+          ventas: req.body.ventas,
           date: fecha,
           expired: false,
           user: req.body.user,
@@ -265,6 +267,7 @@ router.post("/create_preference", (req, res) => {
       global.id = response.body.id;
       res.json({
         id: response.body.id,
+        preference: preference,
       });
     })
     .catch(function (error) {
@@ -274,12 +277,13 @@ router.post("/create_preference", (req, res) => {
 
 router.put("/ventas", isAuthenticated, (req,res)=>{
   const {name, ventas} = req.body;
+  console.log(name);
+  console.log(ventas);
   Event.updateOne(
     {name: name},
-    {ventas: ventas}
+    {ventas: ventas},
   )
   .then(console.log('hecho'))
-  .catch(res.status(400).send('error'))
 })
 
 router.put("/editarEvento/:name", isAuthenticated, (req, res) => {

@@ -64,7 +64,8 @@ export function registerUser(register) {
           data: {
             username: register.username,
             password: register.password,
-            publicKey: register.publicKey,
+            publicKey: register.publicKey, //esto es el accesToken
+            accesKey: register.accesKey,   //esto es el publicKey
             profile: register.profile,
           },
           withCredentials: true,  
@@ -218,8 +219,10 @@ export function postEvent(event) {
           location: event.location,
           info: event.info,
           event_pay: event.event_pay,
+          publicKey: event.publicKey,
           accesKey: event.accesKey,
           stock: event.stock,
+          ventas: event.ventas,
           date: event.date,
           user: event.user,
           category: event.category,
@@ -287,7 +290,9 @@ export function getEventosLandingPage(){
 
 }
 
-export function putUser(user, key){
+export function putUser(user, key, pkey){
+  console.log(pkey);
+  console.log(key);
   return function(dispatch){
     axios({
       method: "PUT",
@@ -296,7 +301,8 @@ export function putUser(user, key){
       data: {
         username:user.username,
         profile:{...user.profile},
-        key: key
+        key: key,     //acces token
+        pkey: pkey    //public key 
       }
     })
     .then(resultado=>{
@@ -418,7 +424,7 @@ export function putVentas(name, ventas){
       withCredentials: true,
       data: {
         name,
-        ventas,
+        ventas
       },
       url:  development ? local + 'ventas' : heroku + 'ventas',
     })

@@ -90,12 +90,17 @@ export default function DetailEvet() {
     dispatch(postPreference(preference, theEvent.accesKey));
   }
 
-  const mercadopago = useMercadopago.v2(
-    "TEST-73717f29-d26d-4a49-aec6-3f75b4872625",
+  let publicKey = theEvent && theEvent.publicKey;
+  console.log(publicKey);
+
+  if(theEvent && theEvent.publicKey){
+  var mercadopago = useMercadopago.v2(
+    theEvent.publicKey,
     {
       locale: "es-AR",
     }
   );
+  }
 
   useEffect(() => {
     if (mercadopago && PreferenceId) {
@@ -265,6 +270,9 @@ export default function DetailEvet() {
                           <div className={style.cont_datospago}>
                             <h3>
                               Precio general: ${theEvent.info.ticketPrice}
+                            </h3>
+                            <h3>
+                              Cantidad de entradas disponibles: {theEvent.stock - theEvent.ventas}
                             </h3>
                             <div>
                               <Input

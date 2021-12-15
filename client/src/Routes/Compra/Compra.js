@@ -1,14 +1,42 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser, getEvent, payedEvent, putVentas } from "../../redux/actions";
 import {Link, useNavigate, useParams} from 'react-router-dom';
 import './Compra.css';
 import Boton from "../../components/Boton/Boton";
-import { useSelector } from "react-redux";
+
 
 export default function Compra(){
 
     const{title} = useParams();
+    const dispatch = useDispatch();
+    const name = title.slice(14);
+    
+
+    useEffect(() => {
+        dispatch(getEvent('Festival Nacional del Chamamé 2022'));
+      }, [dispatch, name]);
+    
+      useEffect(() => {
+        dispatch(getUser());
+      }, [dispatch]);
+
+      const user = useSelector((state) => state.User);
+      const event = useSelector((state) => state.Event[0]);
+      const [qr, setQr] = useState(false)
+      const ventasEntradas = Number(title.slice(0,1))
+      const ventas = event && event.ventas + ventasEntradas
+      console.log(ventas);
+      console.log(event);
+
+      function handleQr (e){
+          e.preventDefault();
+          setQr(true);
+          dispatch(putVentas(name, ventas));
+      }
+
     const navigate = useNavigate()
-    const user = useSelector(state=>state.User)
+
 
     return(
         <div className="contenedorCompra">
@@ -21,7 +49,7 @@ export default function Compra(){
             </div>
             {
                 qr === true ? 
-                <img className="QR" alt="" src={'https://api.qrserver.com/v1/create-qr-code/?data=Eventy%20Validación%20de%20' + title +'&size=250x250'}></img>
+                <img className="QR" alt="" src={'https://api.qrserver.com/v1/create-qr-code/?data=Eventy%20Validación%20de%20' + title + '.%20Usuario:%20' + user.username + '&size=250x250'}></img>
                 :
                 <p></p>
             }
