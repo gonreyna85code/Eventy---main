@@ -40,6 +40,9 @@
     max-width: calc( 100% - 6px );;
     border-radius: 3px;
 }
+.imagenCrearEvento{
+    width: 100%;
+}
 
 @media(max-width:767px){
     .header h1{

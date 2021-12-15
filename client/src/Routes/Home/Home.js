@@ -211,7 +211,10 @@ const Home = () => {
 
                             })
 
-                            : <h3 className='cont-center'>Parece que aún no sigues a ningun usuario :|</h3>
+                            : <div className='cont-center'>
+                                <h3 className='cont-center'>Parece que aún no sigues a ningún usuario :'(</h3>
+                                <Link to='/all-events'><Boton colorBtn='btn_azul'>Ver Eventos</Boton></Link>
+                            </div>
                             
                         }
 
