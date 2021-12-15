@@ -101,12 +101,11 @@ const CrearEventos = () => {
     }
     e.preventDefault()
     dispatch(postEvent(event));
-    dispatch(changeEventCity({}));
-    
+    dispatch(changeEventCity({}));    
     alert("Evento creado con exito");
-    dispatch(getEvent(eventName))
+    //dispatch(getEvent(eventName))
     setTimeout(function () {
-      window.location.reload(eventName);
+      window.location.reload();
       navigate(`/detailEvent/${eventName.trim()}`)            
   }, 2000);
     
