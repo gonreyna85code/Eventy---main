@@ -88,7 +88,7 @@ const Home = () => {
 console.log(user)
     return(
         <div className={styles.cont_home}>
-            {user&& user.password==='' ? navigate('/completarPerfil'):null }
+            {user&& user?.data?.password==='' ? navigate('/completarPerfil'):null }
             <NavBar/>
             <div className={styles.cont_principal}>
                 <div className={styles.cont_info_principal}>
