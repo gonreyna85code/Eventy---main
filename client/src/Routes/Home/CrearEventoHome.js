@@ -228,7 +228,8 @@ const handleClickTipoPago = () => {
                 name="description"
                 rows="2"
                 onChange={(e) => setDescription(e.target.value)}
-                >{description}
+                defaultValue={description}
+                >
                 </textarea>
             </div>
 

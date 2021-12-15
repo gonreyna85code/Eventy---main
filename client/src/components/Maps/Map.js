@@ -1,26 +1,19 @@
-import React,{ useEffect, useState} from 'react';
+import React,{useState} from 'react';
 import  { InfoWindow,Marker, GoogleMap} from '@react-google-maps/api'
 import Places from './Places';
 import styles from './styles';
-import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import EventMarker from './EventMarker.png'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 // import GoogleMap from 'google-maps-react'
 
 
 export default function MapContainer(props){
   
-  const [mapCenter, setMapCenter]= useState({
-    lat : -34.6036844,
-    lng : -58.3815591
-  })
+  const mapCenter = {lat : -34.6036844,lng : -58.3815591}
   const [activeMarker, setActiveMarker] = useState()
-  const [center , setCenter]= useState({lat: props.coords?.lat,lng: props.coords?.lng})
+  const center= {lat: props.coords?.lat,lng: props.coords?.lng}
 
-  useEffect(()=>{
-    console.log(activeMarker);
-  },[activeMarker])
+ 
 
     return (
       <div >
@@ -71,10 +64,11 @@ export default function MapContainer(props){
           
           
           ? (props.NearEvents.length>0? 
-            props.NearEvents.map((e)=>{
+            props.NearEvents?.map((e)=>{
               return(
                 activeMarker?null:
                 <Marker 
+                key={props.NearEvents.indexOf(e)}
                 onClick={()=>{
                   setActiveMarker(e)
                 }}

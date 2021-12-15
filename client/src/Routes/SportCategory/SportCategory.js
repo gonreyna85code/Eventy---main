@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import { Link, useNavigate } from "react-router-dom";
 import { findEventByCategory, getUser} from "../../redux/actions";
 import '../SocialCategory/SocialCategory.css'
 import botonStyles from "../../components/Boton/Boton.module.css"
 import Card from "../../components/CardEvent/CardEvent";
-import Boton from "../../components/Boton/Boton";
 
 export default function SportCategory(){
     const dispatch = useDispatch();

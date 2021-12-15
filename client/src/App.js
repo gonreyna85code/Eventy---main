@@ -24,14 +24,15 @@ import Forgot from './Routes/Forgot';
 import CompletePerfil from './Routes/CompletarPerfil/completarPerfil';
 import { useJsApiLoader } from '@react-google-maps/api';
 const libraries=["places"];
+// import env from '../.env'
 function App() {
-
+  const GOOGLE_KEY='AIzaSyCf8E0lXmJWdgTw6vgsHOcslcUZ4oidnE0'
   const dispatch = useDispatch();
   const user = useSelector(state => state.User);
 
 
   const {isLoaded, loadError} = useJsApiLoader(
-    {googleMapsApiKey:process.env.GOOGLE_KEY,
+    {googleMapsApiKey:GOOGLE_KEY,
     libraries
   })
   useEffect(()=>{
