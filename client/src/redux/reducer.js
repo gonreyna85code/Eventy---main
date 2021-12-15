@@ -118,6 +118,12 @@ const initialState = {
 
 function rootReducer(state = initialState, action) {
   if (action.type === GET_USER) {
+    if (action.payload === 'Usuario no logueado') {
+      return{
+        ...state,
+        User:action.payload
+      }
+    }
     return {
       ...state,
       User: action.payload,
