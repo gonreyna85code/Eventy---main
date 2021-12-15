@@ -70,7 +70,7 @@ const EventEditor = () => {
 
   const yesterday = new Date(new Date().setDate(new Date().getDate()));
   const year = yesterday.getFullYear();
-  const month = yesterday.getMonth() +1 ;
+  var month = yesterday.getMonth() +1 ;
   var day = yesterday.getDate()
   if(day.valueOf() < 10){
     day = "0" + day
@@ -78,7 +78,7 @@ const EventEditor = () => {
   } 
   if(month.valueOf() < 10){
     month = "0" + month
-    var fecha = (year + "-" + month + "-" +  day);
+     fecha = (year + "-" + month + "-" +  day);
   } else {
      fecha = (year + "-" + month + "-" +  day);
   }
