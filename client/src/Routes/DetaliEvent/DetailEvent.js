@@ -42,7 +42,8 @@ export default function DetailEvet() {
   const user = useSelector((state) => state.User);
   const Events = useSelector((state) => state.Event);
   const PreferenceId = useSelector((state) => state.PreferenceId);
-  
+  var creator = useSelector((state) => state.OtherUsers);
+  const [theEvent, setTheEvent] = useState(null)
 
   useEffect(() => {
     dispatch(getEvent(name));
@@ -52,7 +53,10 @@ export default function DetailEvet() {
     dispatch(getUser());
   }, [dispatch]);
 
-  const theEvent = Events[0];
+  useEffect(()=>{
+    setTheEvent(Events[0])
+  }, [Events])
+
 
   console.log(theEvent);
   console.log(user);
@@ -79,6 +83,16 @@ export default function DetailEvet() {
       });
     }
   }, [theEvent, cantidad, user]);
+
+
+
+  useEffect(() => {
+    if (Object.keys(user).length !== 0 && theEvent) {
+      if (user._id !== theEvent.user) {
+        dispatch(findUser(theEvent?.user?._id));
+      }
+    }
+  }, [theEvent, dispatch, user]);
 
   function handleChange(e) {
     setCantidad(e.target.value);
@@ -117,15 +131,6 @@ export default function DetailEvet() {
     }
   }, [mercadopago, PreferenceId, cantidad]);
 
-  useEffect(() => {
-    if (Object.keys(user).length !== 0 && theEvent) {
-      if (user._id !== theEvent.user) {
-        dispatch(findUser(theEvent?.user?._id));
-      }
-    }
-  }, [theEvent, dispatch, user]);
-
-  var creator = useSelector((state) => state.OtherUsers);
   if (creator) {
     if (Object.keys(creator).length === 0) {
       creator = { profile: { name: "", surname: "" } };
@@ -152,6 +157,8 @@ export default function DetailEvet() {
   }
   const consulta = theEvent?.promises.map(e => e._id.includes(user._id))
   
+  if(!theEvent) return <Loading />
+
   return (
     <div>
       {user&& user.password==='' ? navigate('/completarPerfil'):null }
@@ -218,13 +225,13 @@ export default function DetailEvet() {
                         </div>
                       ) : (
                         <Link to={`/user/${creator.id}`}>
-                          <span className={style.creator}>
+                          <Boton colorBtn='btn_naranja'>
                             Creado por:{" "}
                             {creatorr(
                               creator?.profile?.name,
                               creator?.profile?.surname
                             )}
-                          </span>
+                          </Boton>
                         </Link>
                       )}
                     </div>

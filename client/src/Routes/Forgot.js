@@ -10,7 +10,7 @@ export default function ResetPassword() {
   const dispatch = useDispatch();
   const [user, setUser] = useState("");
   return (
-    <div>
+    <div className="forgot">
       {user&& user.password==='' ? navigate('/completarPerfil'):null }
       <h1>Ingrese su Usuario.</h1>
       <div className="input">

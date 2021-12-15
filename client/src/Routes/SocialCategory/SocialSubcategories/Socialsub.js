@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { findEventSub, getUser } from "../../../redux/actions";
@@ -51,7 +51,7 @@ export default function SubCategory(){
                 <div className = 'siguenos'>
                     <h1>¡Síguenos en nuestro servidor de Discord y encuentra gente con tus mismos intereses!</h1>
                 </div>
-                <iframe className = 'discord' src="https://discordapp.com/widget?id=916403266538074232&theme=dark" width="350" height="350" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                <iframe title="iframe" className = 'discord' src="https://discordapp.com/widget?id=916403266538074232&theme=dark" width="350" height="350" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
             </div>
         </div>
     )
