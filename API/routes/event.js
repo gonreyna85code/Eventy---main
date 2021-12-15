@@ -75,7 +75,7 @@ router.get("/eventosCercanos", isAuthenticated, async (req, res) => {
       if (err) {
         res.send(err);
       }
-      let distancias = distances.rows[0].elements;
+      let distancias = distances.rows[0]?.elements;
       let filtrado = distancias.map((dist) => {
         if (dist.distance.value <= req.query.distance) {
           return distancias.indexOf(dist);
