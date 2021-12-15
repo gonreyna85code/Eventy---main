@@ -99,7 +99,7 @@ const EventEditor = () => {
   }
   return (
     <div className={styles.cont_crear_evento}>
-      {user&& user.password==='' ? navigate('/completarPerfil'):null }
+      {user&& user?.password==='' ? navigate('/completarPerfil'):null }
       <div className={styles.header}>
         <h1>Editar evento {name}</h1>
       </div>

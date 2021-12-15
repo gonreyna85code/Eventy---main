@@ -154,7 +154,7 @@ export default function DetailEvet() {
   
   return (
     <div>
-      {user&& user.password==='' ? navigate('/completarPerfil'):null } 
+      {user&& user?.password==='' ? navigate('/completarPerfil'):null } 
       {Events === 'No Disponible'
       ? (navigate('/login'))
       : null

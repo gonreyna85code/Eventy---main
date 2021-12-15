@@ -24,7 +24,7 @@ export default function SocialCategory(){
 
     return(
         <div>
-            {user&& user.password==='' ? navigate('/completarPerfil'):null }
+            {user&& user?.password==='' ? navigate('/completarPerfil'):null }
             <div className = 'encabezado'>
                 <h1 className = 'title'>Eventos Sociales</h1>
             </div>

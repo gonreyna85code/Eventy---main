@@ -33,7 +33,7 @@ export default function Profile(){
 
     return (
         <div>
-        {user&& user.password==='' ? navigate('/completarPerfil'):null }
+        {user&& user?.password==='' ? navigate('/completarPerfil'):null }
             { user && user.hasOwnProperty('profile') ?
                 <div className={styles.profile}>
                     <Initial user={user} />

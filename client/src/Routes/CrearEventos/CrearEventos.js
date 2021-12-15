@@ -132,7 +132,7 @@ const CrearEventos = () => {
   console.log(date);
   return (
     <div className={styles.cont_crear_evento}>
-      {user&& user.password==='' ? navigate('/completarPerfil'):null }
+      {user&& user?.password==='' ? navigate('/completarPerfil'):null }
 
       <div className={styles.header}>
         <h1>Crear un Nuevo Evento</h1>

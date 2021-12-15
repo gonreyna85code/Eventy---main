@@ -23,7 +23,7 @@ export default function User() {
 
   return (
     <div className={styles.profile}>
-      {user&& user.password==='' ? navigate('/completarPerfil'):null }
+      {user&& user?.password==='' ? navigate('/completarPerfil'):null }
       <Initial user={ouser} other={true} />
     </div>
   );

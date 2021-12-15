@@ -83,7 +83,7 @@ export default function Setting(){
 
     return (
         <>
-        {user&& user.password==='' ? navigate('/completarPerfil'):null }
+        {user&& user?.password==='' ? navigate('/completarPerfil'):null }
             <div className={styles.setting} >
                 <Initial user={user}/>
                 <h1>Configuración</h1>

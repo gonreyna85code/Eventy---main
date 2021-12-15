@@ -26,7 +26,7 @@ export default function SubCategory(){
 
     return(
         <div>
-            {user&& user.password==='' ? navigate('/completarPerfil'):null }
+            {user&& user?.password==='' ? navigate('/completarPerfil'):null }
             <h1>{subcategory}</h1>
             <div className ='cardsEvents'>
                 {

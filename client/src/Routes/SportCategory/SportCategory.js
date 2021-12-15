@@ -23,7 +23,7 @@ export default function SportCategory(){
 
     return(
         <div>
-            {user&& user.password==='' ? navigate('/completarPerfil'):null }
+            {user&& user?.password==='' ? navigate('/completarPerfil'):null }
            <div className = 'encabezado'>
                 <h1 className = 'title'>Eventos Deportivos</h1>
             </div>
