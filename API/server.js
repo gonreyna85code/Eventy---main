@@ -19,7 +19,7 @@ app.name = "API";
 
 app.use(cors({ origin: ["http://localhost:3000", "https://eventy-main.vercel.app"], credentials: true }));
 
-app.set("trust proxy", 1);
+//app.set("trust proxy", 1);
 
 app.get("/", (req, res, next) => {
   headers["Access-Control-Allow-Origin"] = ["http://localhost:3000", "https://eventy-main.vercel.app"];
@@ -52,15 +52,15 @@ app.use(
   session({
     secret: "secretcode",
     resave: false,
-    path: "/",
-    proxy: true,
+    //path: "/",
+    //proxy: true,
     saveUninitialized: true,
     store: MongoStore.create({ mongoUrl: process.env.MONGO }),
-    cookie: {      
-      sameSite: 'none',
-      secure: true,
-      maxAge: 60 * 60 * 1000 * 24 * 365,
-    }, 
+    // cookie: {      
+    //   sameSite: 'none',
+    //   secure: true,
+    //   maxAge: 60 * 60 * 1000 * 24 * 365,
+    // }, 
   })
 );
 
