@@ -114,7 +114,7 @@ const EventEditor = () => {
   const dia = event[0]?.date.toString().substring(0, 2);
   const mes = event[0]?.date.toString().substring(3, 5);
   const anio = event[0]?.date.toString().substring(6, 10);
-  const DATE = anio + "-" + mes + "-" + dia;
+  const DATE = dia + "-" + mes + "-" + anio;
 
   const EventCity = useSelector((state) => state.EventCity);
   const [eventName, setEventName] = useState(event[0]?.name);
