@@ -97,20 +97,7 @@ const EventEditor = () => {
     }
   }
 
-  const yesterday = new Date(new Date().setDate(new Date().getDate()));
-  const year = yesterday.getFullYear();
-  var month = yesterday.getMonth() + 1;
-  var day = yesterday.getDate();
-  if (day.valueOf() < 10) {
-    day = "0" + day;
-    var fecha = day + "-" + year + "-" + day;
-  }
-  if (month.valueOf() < 10) {
-    month = "0" + month;
-    fecha = day + "-" + month + "-" + year;
-  } else {
-    fecha = day + "-" + month + "-" + year;
-  }
+  
   const dia = event[0]?.date.toString().substring(0, 2);
   const mes = event[0]?.date.toString().substring(3, 5);
   const anio = event[0]?.date.toString().substring(6, 10);
@@ -125,6 +112,22 @@ const EventEditor = () => {
   const [description, setDescription] = useState(event[0]?.info?.description);
   const [event_pay, setEventPay] = useState(false);
   const [ticketPrice, setTicketPrice] = useState(0);
+
+
+  const yesterday = new Date(new Date().setDate(new Date().getDate()));
+  const year = yesterday.getFullYear();
+  var month = yesterday.getMonth() + 1;
+  var day = yesterday.getDate();
+  if (day.valueOf() < 10) {
+    day = "0" + day;
+    var fecha = year + "-" + year + "-" + day;
+  }
+  if (month.valueOf() < 10) {
+    month = "0" + month;
+    fecha = year + "-" + month + "-" + day;
+  } else {
+    fecha = year + "-" + month + "-" + day;
+  }
 
   console.log(event[0]?.location?.cityName);
 
