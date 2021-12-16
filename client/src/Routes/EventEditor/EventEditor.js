@@ -24,7 +24,7 @@ const EventEditor = () => {
     dispatch(getEvent(name)); 
   }, [dispatch, name]);
   
-  
+  const EventCity = useSelector(state=> state.EventCity)
 
    
   const categories = [{value:"sports",name:"Deportes"},{value:"social",name:"Social"}]
@@ -42,7 +42,7 @@ const EventEditor = () => {
   console.log(event)
 
   function modificarEvento(e){
-    if (Object.entries(EventCity) === 0){
+    if (Object.entries(EventCity).length === 0){
       var loc = event[0]?.location
       console.log(loc)
     } else {
@@ -102,7 +102,7 @@ const EventEditor = () => {
   const anio = event[0]?.date.toString().substring(6,10)
   const DATE =  anio + "-" + mes + "-" +  dia;
   
-  const EventCity = useSelector(state=> state.EventCity)
+  
   const[eventName, setEventName]= useState(event[0]?.name)
   const[category, setCategory] = useState(event[0]?.category)
   const [subCategory, setSubCategory] = useState(event[0]?.subcategory)
