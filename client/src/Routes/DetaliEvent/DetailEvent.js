@@ -324,7 +324,7 @@ export default function DetailEvet() {
             </Link>
           </div>
         </div>
-      )
+      
     </div>
   )
 }
