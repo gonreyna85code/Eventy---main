@@ -45,7 +45,6 @@ const EventEditor = () => {
   function modificarEvento(e){
     if (Object.entries(EventCity).length === 0){
       var loc = event[0]?.location
-      console.log(loc)
     } else {
       loc = EventCity
     }
@@ -70,16 +69,16 @@ const EventEditor = () => {
     console.log(event);
     alert('Evento editado con exito')
     setTimeout(function () {            
-      //navigate(`/detailEvent/${eventName}`)    
-      //window.location.reload();        
+      navigate(`/detailEvent/${eventName}`)    
+      window.location.reload();        
   }, 2000);}else{
     dispatch(putEvent(event,name));
     dispatch(changeEventCity({}))
     console.log(event);
     alert('Evento editado con exito')
     setTimeout(function () {            
-      //navigate(`/detailEvent/${eventName}`)    
-      //window.location.reload();        
+      navigate(`/detailEvent/${eventName}`)    
+      window.location.reload();        
   }, 2000)
   }
   }
@@ -116,7 +115,7 @@ const EventEditor = () => {
   
   
   
-  console.log(event[0]?.location?.cityName)
+  
   
   if (user === 'Usuario no logueado') {
     return(<Warning/>)
