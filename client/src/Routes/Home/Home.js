@@ -112,7 +112,7 @@ console.log(user)
                                     onClick={()=>{
                                         setMapPopup(true)
                                     }}
-                                    colorBtn='btn_azul'
+                                    colorBtn='btn_naranja'
                                 >
                                 Ver Mapa
                                 </Boton>)

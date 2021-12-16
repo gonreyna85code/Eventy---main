@@ -42,6 +42,7 @@
 }
 .imagenCrearEvento{
     width: 100%;
+    max-width: 450px;
 }
 
 @media(max-width:767px){
