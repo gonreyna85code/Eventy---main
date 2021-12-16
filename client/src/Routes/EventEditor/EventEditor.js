@@ -148,7 +148,7 @@ const EventEditor = () => {
           <Input
             label="Fecha"          
             type="date"
-            value={date}
+            value={DATE}
             min={fecha}
             name="date"
             onChange={e=> setDate(e.target.value)}
