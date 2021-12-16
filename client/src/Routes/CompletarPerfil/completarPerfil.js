@@ -115,13 +115,10 @@ function CompletePerfil(){
               surname,
               age,
               email,
-              city: {
-                cityName: UserCity.cityName,
-                cityCords: {
-                  lat: UserCity.cityCords.lat,
-                  lng: UserCity.cityCords.lng,
-                },
-              },
+              city: UserCity.cityName,
+              gender:'',
+              photo:'',
+              portada:''
             },
             __v,
             promises,
