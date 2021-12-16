@@ -103,18 +103,18 @@ const EventEditor = () => {
   var day = yesterday.getDate();
   if (day.valueOf() < 10) {
     day = "0" + day;
-    var fecha = year + "-" + month + "-" + day;
+    var fecha = day + "-" + year + "-" + day;
   }
   if (month.valueOf() < 10) {
     month = "0" + month;
-    fecha = year + "-" + month + "-" + day;
+    fecha = day + "-" + month + "-" + year;
   } else {
-    fecha = year + "-" + month + "-" + day;
+    fecha = day + "-" + month + "-" + year;
   }
   const dia = event[0]?.date.toString().substring(0, 2);
   const mes = event[0]?.date.toString().substring(3, 5);
   const anio = event[0]?.date.toString().substring(6, 10);
-  const DATE = dia + "-" + mes + "-" + anio;
+  const DATE = anio + "-" + mes + "-" + dia;
 
   const EventCity = useSelector((state) => state.EventCity);
   const [eventName, setEventName] = useState(event[0]?.name);
