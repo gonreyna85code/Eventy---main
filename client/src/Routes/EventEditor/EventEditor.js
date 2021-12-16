@@ -83,7 +83,7 @@ const EventEditor = () => {
       dispatch(changeEventCity(event[0]?.location));
       alert("Evento editado con exito");
       setTimeout(function () {
-        navigate(`/detailEvent/${eventName.trim()}`);
+        navigate(`/detailEvent/${name.trim()}`);
         window.location.reload();
       }, 2000);
     } else {
@@ -91,7 +91,7 @@ const EventEditor = () => {
       console.log(event);
       alert("Evento editado con exito");
       setTimeout(function () {
-        navigate(`/detailEvent/${eventName.trim()}`);
+        navigate(`/detailEvent/${name.trim()}`);
         window.location.reload();
       }, 2000);
     }
