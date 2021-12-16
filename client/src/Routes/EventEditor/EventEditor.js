@@ -59,7 +59,11 @@ const EventEditor = () => {
       }
     }    
     dispatch(putEvent(event,name));
+    if(Object.entries(EventCity).length === 0){
+      dispatch(changeEventCity(event[0]?.location))
+    } else {
     dispatch(changeEventCity({}))
+    }
     console.log(event);
     alert('Evento editado con exito')
     setTimeout(function () {            
