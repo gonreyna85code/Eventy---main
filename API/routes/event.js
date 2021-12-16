@@ -289,7 +289,11 @@ router.put("/ventas", isAuthenticated, (req,res)=>{
 
 router.put("/editarEvento/:name", isAuthenticated, (req, res) => {
   const name = req.params;  
-  console.log(name);
+  const eventDate = new Date(req.body.date);
+        var year = eventDate.getFullYear();
+        var month = eventDate.getMonth()+1;
+        var day = eventDate.getDate();
+        var fecha = day + "-" + month + "-" + year;  
   Event.updateOne(
     { name: name.name },
     {
@@ -297,7 +301,7 @@ router.put("/editarEvento/:name", isAuthenticated, (req, res) => {
       location: req.body.location,
       info: req.body.info,
       event_pay: req.body.event_pay,
-      date: req.body.date,
+      date: fecha,
       user: req.body.user,
       category: req.body.category,
       subcategory: req.body.subcategory,
