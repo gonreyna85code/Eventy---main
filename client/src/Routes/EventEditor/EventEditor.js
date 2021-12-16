@@ -13,7 +13,7 @@ import Warning from "../../components/Warning.js/Warning";
 
 
 const EventEditor = () => {
-  const event = useSelector((state) => state.Event);
+  
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getUser());
@@ -42,20 +42,21 @@ const EventEditor = () => {
   }
   console.log(Object.entries(EventCity).length)
 
-
-
+  const event = useSelector((state) => state.Event);
+  if (Object.entries(EventCity).length === 0){
+    var loc = event[0]?.location
+  } else {
+    loc = EventCity
+  }
+  console.log(EventCity)
   function modificarEvento(e){
-    // if (Object.entries(EventCity).length === 0){
-    //   var loc = 
-    // } else {
-    //   loc = EventCity
-    // }
+    
     e.preventDefault()
     let event={
       category,
       date,
       event_pay,
-      location: event[0]?.location,
+      location: loc,
       name:eventName,
       subcategory: subCategory,
       user:user?._id,
