@@ -19,7 +19,10 @@ const EventEditor = () => {
     dispatch(getUser());
   }, [dispatch]);
   
-  const{name} = useParams();
+  var{name} = useParams();
+  if (name === undefined){
+    name = event[0]?.name
+  }
   useEffect(()=>{ 
     dispatch(getEvent(name)); 
   }, [dispatch, name]);
