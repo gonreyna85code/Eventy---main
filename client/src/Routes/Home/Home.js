@@ -48,8 +48,8 @@ const Home = () => {
    
     const navigate = useNavigate()
     const [userCord, setUserCord] = useState(0)
-    const [defaultDistance ] = useState(5)
-    const [distance , setDistance] = useState(5)
+    const [defaultDistance ] = useState(10)
+    const [distance , setDistance] = useState(10)
     const [mapPopup, setMapPopup] =useState(false)
 
   
@@ -99,8 +99,7 @@ console.log(user)
                             setDistance(e.target.value)
                             dispatch(getNearEvents(userCord,e.target.value*1000))
                         }}>
-                            <option>{defaultDistance}</option>
-                            <option>10</option>
+                            <option>{defaultDistance}</option>                            
                             <option>20</option>
                             <option>50</option>
 
