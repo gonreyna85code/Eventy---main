@@ -77,8 +77,8 @@ const EventEditor = () => {
     console.log(event);
     alert('Evento editado con exito')
     setTimeout(function () {            
-      navigate(`/detailEvent/${eventName}`)    
-      window.location.reload();        
+      //navigate(`/detailEvent/${eventName}`)    
+      //window.location.reload();        
   }, 2000)
   }
   }
