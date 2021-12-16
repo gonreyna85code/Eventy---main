@@ -39,7 +39,7 @@ const EventEditor = () => {
   if(!user){
     dispatch(getUser());
   }
-  console.log(event)
+  console.log(Object.entries(EventCity).length)
 
   function modificarEvento(e){
     if (Object.entries(EventCity).length === 0){
