@@ -36,10 +36,11 @@ const CrearEventoHome = () => {
   const [description, setDescription] = useState('')
   const [event_pay, setEventPay]= useState(false)
   const [ticketPrice, setTicketPrice]=useState(0)
-  const [credential, setCredential] = useState('')
   const [tipoPago, setTipoPago]=useState(null)
   const [mostrarTipoPago, setMostrarTipoPago] = useState(false)
-  
+  const [stock, setStock] = useState(0)
+  const [alias, setAlias] = useState('')
+
     useEffect(()=>{
         dispatch(getUser());
     }, [ EventCity, dispatch]);
@@ -82,11 +83,15 @@ const handleChangeSelect = (e) => {
             name: eventName.trim(),
             subcategory: subCategory,
             user: user?._id,
+            accesKey: user?.Acceskey,
+            publicKey: user?.publicKey,
+            stock: stock? stock : 100,
+            ventas: 0,
             info: {
-                imagen: imgUrl,
+                alias: alias,
+                imagen: imgUrl || 'https://res.cloudinary.com/dbzyomisc/image/upload/v1639612565/c466yhhhr0mloibuuaox.jpg',
                 description,
                 ticketPrice:ticketPrice?ticketPrice:'El evento no vende entradas',
-                credential: credential,
             }
         }
         e.preventDefault()
@@ -146,25 +151,32 @@ const handleClickTipoPago = () => {
                         event_pay && (
                             <div>
                                 <Input
-                                    label="Precio de las entradas"
-                                    type="text"
+                                    label="Precio de las entradas en ARS"
+                                    type="number"
                                     name="fee"
                                     onChange={(e) => setTicketPrice(e.target.value)}
                                 />
                                 <Input
-                                    label="Public Key (MercadoPago)"
-                                    type="text"
-                                    name="credential"
-                                    onChange={(e) => setCredential(e.target.value)}
+                                    label="Cantidad de entradas disponibles"
+                                    type="number"
+                                    name="stock"
+                                    onChange={(e) => setStock(e.target.value)}
                                 />
-                                <p className={styles.notificacion}><a href="https://www.mercadopago.com.co/developers/es/guides/resources/credentials" target='_blank' rel="noreferrer">Guía para encontrar tu public key</a></p>
-                                
+                                    <p className={styles.notificacion}>Para que recibas los pagos de la venta de entradas, necesitamos tu Alias de Mercado Pago</p>
+                                    <p className={styles.notificacion}>Los pagos pasaran por una cuenta moderadora y luego se redirigirán a la que nos das ahora</p>
+                                <Input
+                                    label="Alias de Mercado Pago"
+                                    type="string"
+                                    name="alias"
+                                    onChange={(e) => setAlias(e.target.value)}
+                                />
+                              
                             </div>
                         )
                     }
                     {
                         event_pay ? 
-                            credential ? <span onClick={handleClickTipoPago}>Guardar</span> : <p className={styles.notificacion_crear_evento}>Complete todos los campos para poder guardar los datos de pago</p>
+                        stock ? <span onClick={handleClickTipoPago}>Guardar</span> : <p className={styles.notificacion_crear_evento}>Complete todos los campos para poder guardar los datos de pago</p>
                         : <span onClick={handleClickTipoPago}>Guardar</span>
                     }
                     
@@ -237,7 +249,7 @@ const handleClickTipoPago = () => {
                 </textarea>
             </div>
 
-            { date && EventCity.cityCords && category && category !== '1' && subCategory && subCategory !== '1' && imgUrl && eventName && description
+            { date && EventCity.cityCords && category && category !== '1' && subCategory && subCategory !== '1' && eventName && description
                 ? <Boton colorBtn="btn_azul">Crear Evento</Boton>
                 : <p className={styles.notificacion_crear_evento}>Complete todos los campos para poder crear el evento</p>
           }

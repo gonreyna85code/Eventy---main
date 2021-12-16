@@ -94,7 +94,7 @@ const CrearEventos = () => {
       ventas: 0,
       info: {
         alias: alias,
-        imagen: imgUrl,
+        imagen: imgUrl || 'https://res.cloudinary.com/dbzyomisc/image/upload/v1639612565/c466yhhhr0mloibuuaox.jpg',
         description,
         ticketPrice:ticketPrice?ticketPrice:'El evento no vende entradas',
       }
