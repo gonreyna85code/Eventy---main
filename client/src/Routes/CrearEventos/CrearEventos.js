@@ -47,7 +47,7 @@ const CrearEventos = () => {
   const [eventName, setEventName]= useState('')
   const [category, setCategory] = useState('')
   const [subCategory, setSubCategory] = useState('')
-  const [date, setDate]= useState('')
+  const [date, setDate]= useState()
   const [imgUrl, setImgUrl]= useState(null)
   const [errorImg, setErrorImg] = useState(null)
   const [description, setDescription] = useState('')
@@ -177,6 +177,7 @@ const CrearEventos = () => {
             label="Fecha"
             required
             type="date"
+            value={date}
             name="date"
             min= {fecha}
             onChange={(e) => setDate(e.target.value)}

@@ -58,6 +58,15 @@ const EventEditor = () => {
         credential: credential,
       }
     }    
+   if(Object.entries(EventCity).length === 0) {
+     dispatch(putEvent(event,name));
+    dispatch(changeEventCity(event[0]?.location))
+    console.log(event);
+    alert('Evento editado con exito')
+    setTimeout(function () {            
+      navigate(`/detailEvent/${eventName}`)    
+      window.location.reload();        
+  }, 2000);}else{
     dispatch(putEvent(event,name));
     dispatch(changeEventCity({}))
     console.log(event);
@@ -65,7 +74,8 @@ const EventEditor = () => {
     setTimeout(function () {            
       navigate(`/detailEvent/${eventName}`)    
       window.location.reload();        
-  }, 2000);
+  }, 2000)
+  }
   }
 
   const yesterday = new Date(new Date().setDate(new Date().getDate()));
