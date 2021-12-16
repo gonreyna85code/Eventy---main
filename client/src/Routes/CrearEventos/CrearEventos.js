@@ -80,16 +80,12 @@ const CrearEventos = () => {
   }
 
   function crearEvento(e) {
-    if (Object.entries(EventCity) === 0){
-      var loc = event[0]?.location
-    } else {
-      loc = EventCity
-    }
+    
     let event = {
       category,
       date,
       event_pay,
-      location: loc,
+      location: EventCity,
       name: eventName.trim(),
       subcategory: subCategory,
       user: user?._id,

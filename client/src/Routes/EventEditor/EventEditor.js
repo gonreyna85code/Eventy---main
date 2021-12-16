@@ -42,12 +42,17 @@ const EventEditor = () => {
   console.log(event)
 
   function modificarEvento(e){
+    if (Object.entries(EventCity) === 0){
+      var loc = event[0]?.location
+    } else {
+      loc = EventCity
+    }
     e.preventDefault()
     let event={
       category,
       date,
       event_pay,
-      location: EventCity,
+      location: loc,
       name:eventName,
       subcategory: subCategory,
       user:user?._id,
