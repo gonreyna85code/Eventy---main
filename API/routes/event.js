@@ -360,7 +360,7 @@ setInterval(function () {
   let yesterday = new Date(new Date().setDate(new Date().getDate() - 2));
   console.log(yesterday)
   var year = yesterday.getFullYear();
-  var month = yesterday.getMonth();
+  var month = yesterday.getMonth()+1;
   var day = yesterday.getDate();
   var fecha = day + "-" + month + "-" + year;
   console.log(fecha)
