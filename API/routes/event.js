@@ -363,6 +363,7 @@ setInterval(function () {
   var month = yesterday.getMonth();
   var day = yesterday.getDate();
   var fecha = day + "-" + month + "-" + year;
+  console.log(fecha)
   Event.updateMany(
     { date: fecha, expired: false },
     {
