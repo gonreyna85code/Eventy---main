@@ -358,6 +358,7 @@ router.delete("/event", isAuthenticated, (req, res) => {
 
 setInterval(function () {
   let yesterday = new Date(new Date().setDate(new Date().getDate() + 1));
+  console.log(yesterday)
   var year = yesterday.getFullYear();
   var month = yesterday.getMonth();
   var day = yesterday.getDate();
@@ -373,6 +374,6 @@ setInterval(function () {
       }
     }
   );
-}, 3000000);
+}, 3000);
 
 module.exports = router;
