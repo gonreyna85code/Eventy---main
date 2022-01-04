@@ -64,7 +64,7 @@ router.get("/event/:name", isAuthenticated, async (req, res) => {
 });
 
 router.get("/eventosCercanos", isAuthenticated, async (req, res) => {
-  distance.key("AIzaSyCf8E0lXmJWdgTw6vgsHOcslcUZ4oidnE0");
+  distance.key("AIzaSyDPWDkciErHNGtLqTs8MxKzmCxslJyXqXs");
   var origin = [`${req.query.lat},${req.query.lng}`];
   var eventos = await Event.find().populate("user");
   var destinosCoords = eventos.map((event) => {

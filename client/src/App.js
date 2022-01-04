@@ -26,7 +26,7 @@ import { useJsApiLoader } from '@react-google-maps/api';
 const libraries=["places"];
 // import env from '../.env'
 function App() {
-  const GOOGLE_KEY='AIzaSyCf8E0lXmJWdgTw6vgsHOcslcUZ4oidnE0'
+  const GOOGLE_KEY='AIzaSyDPWDkciErHNGtLqTs8MxKzmCxslJyXqXs'
   const dispatch = useDispatch();
   const user = useSelector(state => state.User);
 
